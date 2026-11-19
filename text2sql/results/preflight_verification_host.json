@@ -1,0 +1,115 @@
+{
+  "python": "3.12.14",
+  "executable": "/workspace/scratch/9c979444d489/verification_env/bin/python",
+  "dependencies": [
+    {
+      "package": "sqlglot",
+      "installed": "30.33.0",
+      "compatible": true
+    },
+    {
+      "package": "psycopg",
+      "installed": "3.3.9",
+      "compatible": true
+    },
+    {
+      "package": "pymssql",
+      "installed": "2.4.6",
+      "compatible": true
+    },
+    {
+      "package": "langgraph",
+      "installed": "1.2.23",
+      "compatible": true
+    },
+    {
+      "package": "langchain-openai",
+      "installed": "1.8.3",
+      "compatible": true
+    },
+    {
+      "package": "fastapi",
+      "installed": "0.165.0",
+      "compatible": true
+    },
+    {
+      "package": "httpx",
+      "installed": "0.28.1",
+      "compatible": true
+    },
+    {
+      "package": "pyyaml",
+      "installed": "6.0.3",
+      "compatible": true
+    },
+    {
+      "package": "python-dotenv",
+      "installed": "1.2.4",
+      "compatible": true
+    },
+    {
+      "package": "packaging",
+      "installed": "26.3",
+      "compatible": true
+    },
+    {
+      "package": "openai",
+      "installed": "3.55.1",
+      "compatible": true
+    },
+    {
+      "package": "uvicorn",
+      "installed": "0.54.0",
+      "compatible": true
+    },
+    {
+      "package": "mcp",
+      "installed": "2.3.0",
+      "compatible": true
+    },
+    {
+      "package": "duckdb",
+      "installed": "2.0.0",
+      "compatible": true
+    },
+    {
+      "package": "pytest",
+      "installed": "9.2.0",
+      "compatible": true
+    }
+  ],
+  "docker_available": false,
+  "services": {
+    "erp": {
+      "port": 14330,
+      "tcp_reachable": false
+    },
+    "compta": {
+      "port": 5433,
+      "tcp_reachable": false
+    },
+    "paie": {
+      "port": 5434,
+      "tcp_reachable": false
+    },
+    "journal_default": {
+      "port": 5432,
+      "tcp_reachable": false
+    }
+  },
+  "llm": {
+    "configured": false,
+    "models_endpoint_ok": false,
+    "generation_tested": false
+  },
+  "source_credentials_configured": false,
+  "journal_configured": false,
+  "task1_file_sha256": {
+    "calorvia_tools.py": "94edc1448bf9e48b90266316ac03310a9754756523230b422c64232199125d5d",
+    "calorvia_agent.py": "5c963d36f94264105caadd0fe9b4b6d117e577e09f5c6fc5bac6b024d743cc73",
+    "calorvia_mcp_server.py": "f3dd1944146fb2de3329baff6b39c1c3a6756ea0cd875a05b5acae2c2bc686f7",
+    "pyproject.toml": "2f8cb8ce6192f2ce611bbde96ef1c77caa072d0d2f20e7564f8ac70a2463a1c3"
+  },
+  "changes_made": false,
+  "gpu_models_loaded": false
+}

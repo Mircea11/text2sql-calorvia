@@ -1,0 +1,20 @@
+{
+  "kind": "local_contract_verification_not_live_agent_evaluation",
+  "tests": 67,
+  "passed": 63,
+  "skipped": 4,
+  "failures": 0,
+  "errors": 0,
+  "task1_preserved": {
+    "pyproject.toml": true,
+    ".gitignore": true,
+    "calorvia_tools.py": true,
+    "calorvia_agent.py": true,
+    "calorvia_mcp_server.py": true
+  },
+  "shared_dependencies_changed": false,
+  "models_started": false,
+  "official_evaluation_questions": 45,
+  "cpu_reference_queries": 37,
+  "live_acl_and_model_evaluations": "not_executed"
+}

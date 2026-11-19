@@ -1,11 +1,11 @@
 {
-  "checkpoint": 1,
-  "status": "implementation_in_progress_not_final_delivery",
+  "checkpoint": 2,
+  "status": "local_implementation_verified_live_delivery_blocked",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
   "task1_files_unchanged": true,
-  "original_brief": "projet_text2sql_enonce.md, read completely from the official course Drive folder",
+  "original_brief": "data/text2sql/projet_text2sql_enonce.md, lu intégralement ; guide, présentation et scripts fournis contrôlés",
   "original_sources_folder": "https://drive.google.com/drive/folders/1Pjz7Fp7_akGGR8IxL00uNKFqq6Zpme0U",
   "official_brief_folder": "https://drive.google.com/drive/folders/1uLCd3IQjw1POHu8KAjaquOF8AbK0tJnm",
   "local_project": "/workspace/scratch/9c979444d489/calorvia_rag",
@@ -13,10 +13,10 @@
   "source_sql_directory": "data/text2sql/sources_calorvia/sql",
   "offline_data_directory": "data/text2sql/offline",
   "verified": {
-    "tests_passed": 44,
+    "tests_passed": 63,
     "native_permission_tests_skipped": 4,
-    "evaluation_questions": 44,
-    "reference_queries": 36,
+    "evaluation_questions": 45,
+    "reference_queries": 37,
     "tables": {
       "erp": 23,
       "compta": 14,
@@ -28,14 +28,19 @@
       "paie": 217612
     },
     "real_mcp_stdio_exchange": true,
-    "official_openai_sdk_contract": true
+    "official_openai_sdk_contract": true,
+    "ontology_mock_contract": true,
+    "cross_process_lock": true,
+    "openai_json_and_sse": true,
+    "task1_shared_dependencies_changed": false
   },
   "next_actions": [
-    "Complete and test native NVIDIA metadata/ontology links and generation provenance",
-    "Test CPU reranking endpoint and NVIDIA API integration with mocks; do not claim live generation",
-    "Complete evaluation metrics, reproducible setup, final report and demonstration script",
-    "Re-run targeted tests and save the next checkpoint within about 15 minutes",
-    "Bundle only genuinely necessary local-machine actions once implementation is reviewable"
+    "Ne pas recommencer : lire ce checkpoint et le README",
+    "Sur le poste de cours, exécuter avec le Python RAG : python text2sql/local_check.py ; rapport sans secrets dans data/text2sql/local_environment.json",
+    "Examiner les versions et ressources réelles ; compléter uniquement les dépendances manquantes compatibles",
+    "Vérifier/restaurer les sources si absentes, puis tests ACL natifs et native-check",
+    "Compiler réellement NVIDIA et faire certifier les termes ; deux évaluations séquentielles sur créneau hors RAG",
+    "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration"
   ],
   "pending_live": [
     "Docker/source restoration and agent_ro database privileges",
@@ -54,5 +59,6 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-19T15:17:50.769028+01:00"
+  "saved_at": "2026-11-19T15:31:34.304775+01:00",
+  "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié"
 }

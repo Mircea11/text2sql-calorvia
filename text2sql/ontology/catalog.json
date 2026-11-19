@@ -8,7 +8,7 @@
       "tables": {
         "SOC_SITE": {
           "name": "SOC_SITE",
-          "description": "",
+          "description": "Sites de l'entreprise",
           "columns": {
             "SIT_ID": {
               "type": "INT",
@@ -51,11 +51,12 @@
             "SIT_ID"
           ],
           "foreign_keys": [],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "PAR_CODE": {
           "name": "PAR_CODE",
-          "description": "",
+          "description": "Codes métier et libellés : types, statuts et motifs",
           "columns": {
             "COD_TYPE": {
               "type": "VARCHAR(20)",
@@ -79,11 +80,12 @@
             "COD_VAL"
           ],
           "foreign_keys": [],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ART_FAMILLE": {
           "name": "ART_FAMILLE",
-          "description": "",
+          "description": "Familles d'articles et comptes comptables",
           "columns": {
             "FAM_CODE": {
               "type": "VARCHAR(6)",
@@ -114,11 +116,12 @@
             "FAM_CODE"
           ],
           "foreign_keys": [],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "FRN_FOURNISSEUR": {
           "name": "FRN_FOURNISSEUR",
-          "description": "",
+          "description": "Fournisseurs d'articles",
           "columns": {
             "FRN_ID": {
               "type": "INT",
@@ -173,11 +176,12 @@
             "FRN_ID"
           ],
           "foreign_keys": [],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ART_ARTICLE": {
           "name": "ART_ARTICLE",
-          "description": "",
+          "description": "Articles, produits finis, pièces et prestations",
           "columns": {
             "ART_ID": {
               "type": "INT",
@@ -276,11 +280,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ART_TARIF": {
           "name": "ART_TARIF",
-          "description": "",
+          "description": "Tarifs par période et exceptions par client",
           "columns": {
             "TAR_ID": {
               "type": "INT",
@@ -334,11 +339,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ART_NOMENC": {
           "name": "ART_NOMENC",
-          "description": "",
+          "description": "Composants de la nomenclature de fabrication",
           "columns": {
             "NOM_ID": {
               "type": "INT",
@@ -384,11 +390,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "VDR_VENDEUR": {
           "name": "VDR_VENDEUR",
-          "description": "",
+          "description": "Commerciaux et matricules de paie",
           "columns": {
             "VDR_ID": {
               "type": "INT",
@@ -431,11 +438,12 @@
             "VDR_ID"
           ],
           "foreign_keys": [],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "CLI_CLIENT": {
           "name": "CLI_CLIENT",
-          "description": "",
+          "description": "Référentiel des clients",
           "columns": {
             "CLI_ID": {
               "type": "INT",
@@ -516,11 +524,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "VTE_CDE": {
           "name": "VTE_CDE",
-          "description": "",
+          "description": "En-têtes des commandes clients",
           "columns": {
             "CDE_ID": {
               "type": "INT",
@@ -595,11 +604,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "VTE_CDE_LIG": {
           "name": "VTE_CDE_LIG",
-          "description": "",
+          "description": "Lignes des commandes clients",
           "columns": {
             "LIG_ID": {
               "type": "INT",
@@ -657,11 +667,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "VTE_FACT": {
           "name": "VTE_FACT",
-          "description": "",
+          "description": "En-têtes des factures F et avoirs A, montants stockés positifs",
           "columns": {
             "FAC_ID": {
               "type": "INT",
@@ -752,11 +763,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "VTE_FACT_LIG": {
           "name": "VTE_FACT_LIG",
-          "description": "",
+          "description": "Lignes des factures et avoirs",
           "columns": {
             "FL_ID": {
               "type": "INT",
@@ -827,11 +839,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ACH_CDE": {
           "name": "ACH_CDE",
-          "description": "",
+          "description": "Commandes fournisseurs",
           "columns": {
             "AC_ID": {
               "type": "INT",
@@ -889,11 +902,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ACH_CDE_LIG": {
           "name": "ACH_CDE_LIG",
-          "description": "",
+          "description": "Lignes des commandes fournisseurs",
           "columns": {
             "ACL_ID": {
               "type": "INT",
@@ -947,11 +961,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ACH_RECEP": {
           "name": "ACH_RECEP",
-          "description": "",
+          "description": "Réceptions fournisseurs",
           "columns": {
             "REC_ID": {
               "type": "INT",
@@ -1005,11 +1020,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ACH_RECEP_LIG": {
           "name": "ACH_RECEP_LIG",
-          "description": "",
+          "description": "Lignes reçues et lots",
           "columns": {
             "RL_ID": {
               "type": "INT",
@@ -1076,11 +1092,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "ACH_FACT": {
           "name": "ACH_FACT",
-          "description": "",
+          "description": "Factures des fournisseurs d'articles",
           "columns": {
             "AF_ID": {
               "type": "INT",
@@ -1163,11 +1180,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "PRD_OF": {
           "name": "PRD_OF",
-          "description": "",
+          "description": "Ordres de fabrication par produit, semaine et ligne",
           "columns": {
             "OF_ID": {
               "type": "INT",
@@ -1237,11 +1255,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "LOG_TRANSP": {
           "name": "LOG_TRANSP",
-          "description": "",
+          "description": "Transporteurs",
           "columns": {
             "TRP_ID": {
               "type": "INT",
@@ -1276,11 +1295,12 @@
             "TRP_ID"
           ],
           "foreign_keys": [],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "LOG_EXPED": {
           "name": "LOG_EXPED",
-          "description": "",
+          "description": "Expéditions et bons de livraison",
           "columns": {
             "EXP_ID": {
               "type": "INT",
@@ -1372,11 +1392,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "STK_MVT": {
           "name": "STK_MVT",
-          "description": "",
+          "description": "Mouvements de stock : quantités déjà signées",
           "columns": {
             "MVT_ID": {
               "type": "INT",
@@ -1438,11 +1459,12 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         },
         "STK_ETAT": {
           "name": "STK_ETAT",
-          "description": "",
+          "description": "Photographie du stock au 31 mai 2026",
           "columns": {
             "ART_ID": {
               "type": "INT",
@@ -1489,6 +1511,7 @@
               ]
             }
           ],
+          "description_origin": "Description ajoutée par IA d'après la présentation ; aucun commentaire ERP natif",
           "restricted_columns": []
         }
       }

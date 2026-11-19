@@ -1,63 +1,158 @@
-# Calorvia — Text-to-SQL, checkpoint 1
+# Calorvia — laboratoire 2 : Text-to-SQL
 
-**État : implémentation en cours, pas de rendu final.** Le brief original a été lu intégralement. Ce dossier est développé dans le dépôt RAG sans déplacer ni modifier ses modules, son environnement ou ses modèles.
+**Checkpoint 2 — 19 novembre 2026. Code vérifié localement ; rendu natif encore incomplet.**
+Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
+travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
+toutes les 15 minutes par des commits limités au laboratoire 2.
 
-## Résultats conservés
+## Destination vérifiée
 
-- 51 tables cataloguées : ERP 23, comptabilité 14, paie 14.
-- Copies CPU de vérification : 139 308 / 101 045 / 217 612 lignes. Ces copies DuckDB ne remplacent pas les moteurs exigés.
-- 44 questions de développement, dont 36 requêtes de référence vérifiées sur les scripts officiels. Aucun accès au jeu de réserve du formateur.
-- 44 tests réussis ; 4 tests de privilèges natifs non exécutés ici.
-- Échange MCP stdio réel et client officiel OpenAI testés sans modèle ni base distante.
-- Les fichiers RAG existants sont conservés à l'identique.
+L'énoncé intégral est `data/text2sql/projet_text2sql_enonce.md`. Guide, présentation,
+Compose et trois scripts SQL se trouvent dans `data/text2sql/sources_calorvia/`.
+Les PDF de paie ne sont pas présents ici ; leur lecture est facultative et n'est
+pas utilisée. La réserve du formateur n'a pas été consultée.
+
+| Exigence obligatoire | Test d'acceptation | État |
+|---|---|---|
+| Trois bases : GESPRO/SQL Server, compta/PostgreSQL, paie/PostgreSQL | agent_ro ; 10 185 factures, 20 562 écritures, 7 298 fiches | Volumes vérifiés dans les copies CPU ; moteurs natifs en attente |
+| Ontologie NVIDIA auto-ontology | Génération réelle, export YAML des 51 tables et liens ; définitions testées et certifiées humainement | Brouillon natif, graphes et protocole testés ; génération et certification en attente |
+| Comparer ≥2 solutions pour SQL Server | Note argumentée Trino / copie / import YAML | Dans RAPPORT.md ; import YAML retenu sous réserve du test natif |
+| Six outils MCP | list_sources, list_tables, get_table_card, find_values, validate_sql, execute_sql | Découverte stdio et validation testées ; accès natifs en attente |
+| Lecture seule à plusieurs niveaux | SELECT unique, dialecte, noms, limites ; ACL refusant l'écriture même validation contournée | Tests applicatifs passés ; 4 tests natifs non exécutés |
+| Agent LangChain/LangGraph ou n8n | Choix des sources, corrections bornées, rapprochement, refus/clarification, SQL exécuté montré | LangGraph et Decimal testés avec modèle simulé ; vrai LLM en attente |
+| API OpenAI | GET /v1/models ; POST /v1/chat/completions | SDK officiel, JSON et SSE testés avec réponse simulée |
+| ≥40 questions et attentes | Simples, croisées, ambiguës, impossibles, malveillantes | 45 questions ; 37 requêtes de référence vérifiées sur données fournies |
+| Comparaison sans/avec ontologie | Même commit/modèle/données/réglages ; exactitude, validité SQL, erreurs, comportements, latence | Évaluateur séquentiel et reprenable prêt ; campagnes non exécutées |
+| Journal PostgreSQL et export results/ | Question, SQL, source, durée, volume, erreurs, résultats d'expériences et commit | Schéma distinct ; DSN ou transport Docker existant ; exécution native en attente |
+| Dépôt privé text2sql-calorvia, collaborateur, tags | Historique authentique, README, tags v0.1-sources à v1.0 | Développement dans le dépôt RAG ; remise distincte en attente |
+| Rapport et démonstration | RAPPORT.md, cinq échecs réels analysés ; cinq questions du formateur en dix minutes | Rapport provisoire et DEMO.md préparés ; résultats/démo réels en attente |
+
+Facultatif : graphiques, mémoire persistante, autres outils, comparaison de modèles,
+Trino. Le SSE renvoie la réponse après son calcul ; il ne diffuse pas les tokens
+internes. L'historique client est accepté, sans mémoire persistante supplémentaire.
+
+## Installation et exécution
+
+Depuis la racine du dépôt, utiliser le Python de l'environnement **RAG existant**.
+Si les dépendances ne sont pas encore disponibles, le diagnostic initial ne
+requiert que la bibliothèque standard ; il n'affiche pas les secrets :
+
+```bash
+.venv/bin/python text2sql/local_check.py
+.venv/bin/python -m text2sql dependencies
+```
+
+`dependencies` compare les versions sans rien installer. `dependencies --install`
+ajoute les paquets manquants en contraignant toutes les versions déjà présentes ;
+il refuse un conflit. Ne pas lancer de synchronisation globale. Après tout ajout
+sur le poste réel, relancer les tests Task 2 et un échange connu de Task 1 avant
+une campagne. Aucun changement de dépendance partagé n'a été effectué ici.
+
+Configurer `text2sql/.env` d'après `.env.example`, sans remplacer le `.env` du RAG.
+Le LLM reprend `CALORVIA_LLM_BASE_URL/MODEL` ou les paramètres explicites T2SQL.
+Le mot de passe agent_ro et le journal doivent rester sur le poste. Le port ERP
+réel du Compose fourni est **14330**, malgré les mentions 1433 dans le guide.
+
+```bash
+.venv/bin/python -m text2sql preflight
+.venv/bin/python -m pytest text2sql/tests -q
+.venv/bin/python -m text2sql init-journal
+.venv/bin/python -m text2sql verify-sources
+T2SQL_LIVE=1 .venv/bin/python -m pytest text2sql/tests/test_live_permissions.py -q
+.venv/bin/python -m text2sql native-check
+```
+
+Si les sources n'existent pas encore, suivre le guide officiel depuis
+`data/text2sql/sources_calorvia/docker/`, configurer son `.env`, puis lancer
+`docker compose up -d`. Préserver les bases/volumes existants ; aucune suppression
+ni restauration forcée n'est nécessaire. Les ports et noms propres aux sources
+ne sont pas ceux de Task 1.
+
+### Ontologie
+
+Le code NVIDIA est épinglé au commit indiqué dans `auto_ontology.py`. Son code,
+`.env.example`, ses schémas et ses routes API ont été relus. Ses dépendances
+`openai==2.44.0` et `langchain-openai<1.3.5` sont incompatibles avec le banc CPU
+utilisé ici (3.55.1 et 1.8.3). La préparation prévoit donc des services CPU isolés,
+sans modèle GPU supplémentaire, et un catalogue pgvector distinct dont les
+migrations ne touchent pas le schéma du cours. **Les versions réelles de
+l'environnement RAG restent à inspecter avant cette installation.**
+
+```bash
+.venv/bin/python -m text2sql ontology-draft
+.venv/bin/python -m text2sql serve
+```
+
+Dans un autre terminal, après avoir réservé un créneau libre hors des évaluations RAG :
+
+```bash
+.venv/bin/python -m text2sql ontology-prepare
+.venv/bin/python -m text2sql ontology-start --allow-inference
+.venv/bin/python -m text2sql ontology-generate --allow-inference
+```
+
+Cette préparation ne lance aucun serveur de modèle. Les quatre rôles NVIDIA
+pointent vers les endpoints locaux ; KumoRFM est désactivé. Un adaptateur lexical
+CPU au format NIM est disponible sur l'API Task 2 ; il ne remplace pas BGE sous un
+nom trompeur. La compatibilité réelle des sorties structurées, embeddings et de
+la compilation doit encore être établie. Ne pas présenter le brouillon YAML comme
+un export généré/certifié. Le reçu réel, ses empreintes et la couverture sont
+contrôlés avant l'expérience avec ontologie. Un reçu de test simulé est refusé.
+
+### Évaluation, reprise et démonstration
+
+Travailler dans un worktree propre pour les campagnes officielles, afin de
+préserver les modifications RAG non commitées. Le worktree utilise les mêmes
+endpoints de modèles et sources ; ne pas recréer leur infrastructure. Les fichiers
+.env locaux doivent y être disponibles sans être ajoutés à Git.
+
+```bash
+.venv/bin/python -m text2sql evaluate --without-ontology --allow-inference
+.venv/bin/python -m text2sql evaluate --allow-inference
+.venv/bin/python -m text2sql compare --without-run text2sql/results/SANS.json --with-run text2sql/results/AVEC.json
+.venv/bin/python -m text2sql evaluate --resume text2sql/results/LOT_INTERROMPU.json --allow-inference
+```
+
+Les noms JSON sont ceux renvoyés par la commande, pas des résultats fournis ici.
+Une sauvegarde atomique JSON et une écriture PostgreSQL suivent **chaque question**.
+La reprise refuse tout changement de commit, modèle, données ou paramètres.
+Les questions attendues ne sont jamais injectées dans le contexte de l'agent.
+Les nombres tolèrent 0,01 pour les montants ; période, unités, regroupements et
+refus exigent aussi la revue sémantique dans le CSV. Un contrôle numérique seul
+n'est pas un score d'exactitude validé. La comparaison garde les erreurs et valeurs
+manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 
 ## Carte des fichiers
 
-| Fichier | But et relations | Résultat / vérification |
-|---|---|---|
-| `config.py` | Lit les `.env` existants ; partage les endpoints locaux | Pas de chargement GPU ; URL distante refusée |
-| `catalog.py`, `ontology/catalog.json` | DDL officiels → tables, colonnes, PK/FK, commentaires | 23 + 14 + 14 tables vérifiées |
-| `validation.py` | SQL du modèle → SELECT contrôlé et borné | Écritures, fonctions dangereuses, noms inconnus et données personnelles testés |
-| `sources.py` | Outils MCP → connexions `agent_ro` → rollback | Code prêt ; pilotes/moteurs réels à tester sur la machine |
-| `journal.py`, `journal.sql` | Accès sources → journal PostgreSQL existant | DSN ou transport Docker Calorvia ; essai natif en attente |
-| `mcp_server.py` | Expose les six outils demandés, via stdio | Découverte et validation MCP testées |
-| `agent.py` | LangGraph → outils MCP → réponse et preuves SQL | Boucle testée avec modèle simulé ; LLM réel en attente |
-| `api.py` | Client OpenAI → agent ; SSE après calcul | Authentification, client SDK et SSE testés ; adaptateur lexical CPU à compléter/tester |
-| `ontology.py`, `ontology/business.yaml` | Définitions métier → contexte de l'agent | Brouillon révisé par IA ; pas de certification humaine revendiquée |
-| `auto_ontology.py`, `ontology/native_draft.yaml` | Import/compilation/export NVIDIA local | Brouillon natif prêt ; génération NVIDIA réelle non exécutée |
-| `runtime.py` | Prépare des conteneurs CPU NVIDIA, modèles partagés | Configuration écrite en code ; démarrage Docker à vérifier |
-| `offline.py` | Scripts officiels → copies CPU hors Git | 457 965 lignes chargées ; calculs de référence vérifiés |
-| `evaluation.py`, `evaluation/questions.json` | Questions → références ; futur agent → mesures | 44 questions ; résultats CPU dans `results/offline_references.json` |
-| `cli.py` | Commandes de préparation et d'exécution | Audit des dépendances et preflight exécutés |
-| `tests/` | Contrats SQL, MCP, agent, API et privilèges | 44 passed / 4 skipped au checkpoint 1 |
-| `CHECKPOINT.json` | État, fichiers, prochaines actions et limites | À lire avant toute reprise |
+| Fichier/module | Rôle | Entrées/dépendances | Sorties et utilisateurs | Exécution/contrôle | Attendu et statut réel |
+|---|---|---|---|---|---|
+| config.py | Configuration locale | Environnement et .env | Settings pour agent/MCP/API | preflight | Aucun endpoint distant ; testé |
+| catalog.py, ontology/catalog.json | Catalogue des DDL | Trois SQL officiels, sqlglot | 51 fiches pour MCP/ontologie | tests/test_workflow.py | Types, PK/FK, commentaires ; vérifiés contre les fichiers |
+| validation.py | SELECT borné et confidentialité | SQL, dialecte, catalogue | SQL validé vers sources.py | tests/test_safety.py | Écritures, noms inconnus, fonctions dangereuses refusés ; testé |
+| sources.py | Accès agent_ro et rollback | Pilotes natifs, Settings, Journal | Colonnes/lignes/troncature vers MCP | verify-sources, native-check | Code vérifié ; moteurs réels non testés |
+| journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Sources/RAG préservés ; accès réel non testé |
+| mcp_server.py | Six outils stdio | SourceService | Outils pour agent.py | tests/test_protocol.py | Échange MCP réel sans bases ; passé |
+| agent.py | Boucle LangGraph et rapprochement | LLM HTTP, MCP, ontologie | Réponse, SQL, traces et Decimal vers API/évaluation | ask --question «…» | Boucle/rapprochement simulés passés ; LLM réel en attente |
+| api.py | Façade OpenAI authentifiée | Agent, clé API | JSON/SSE vers SDK/Open WebUI | serve, tests/test_protocol.py | SDK officiel JSON/SSE et rerank CPU passés |
+| ontology.py, ontology/business.yaml | Règles métier et contexte | Définitions corrigées, YAML NVIDIA éventuel | Contexte agent et termes des fiches | tests/test_ontology.py | Pas de fuite de termes dans le mode sans ontologie ; testé |
+| auto_ontology.py, ontology/native_draft.yaml | Import/compilation/export NVIDIA | Métadonnées, règles, API locale | Export et reçu vérifiable vers agent/évaluation | ontology-draft / ontology-generate | 51 tables, 80 FK, 9 concepts ; protocole simulé passé, génération réelle en attente |
+| ontology_runtime.py | Préparation CPU NVIDIA | Commit officiel, endpoints existants | Configuration privée dans data/text2sql | ontology-prepare/start/stop | Pas de nouveau modèle ; Docker non exécuté ici |
+| runtime.py | Exclusion des traitements Task 2 | Verrou local interprocessus | API, agent, compilation, évaluation | tests/test_workflow.py | Concurrence Task 2 refusée ; ne détecte pas Task 1 |
+| offline.py | Copies de vérification CPU | SQL officiels, DuckDB, empreintes | data/text2sql/offline vers références | offline-build / offline-check | 457 965 lignes ; copies et références vérifiées |
+| evaluation.py, evaluation/questions.json | Jeu et campagnes reprenables | 45 questions, réponses attendues séparées, agent | JSON/CSV et journal PostgreSQL | evaluate / compare | 37 références CPU passées ; aucune mesure LLM réelle |
+| local_check.py | Diagnostic avant installation | Bibliothèque standard, état local | data/text2sql/local_environment.json | python text2sql/local_check.py | Aucun secret affiché, aucune inférence |
+| preflight.py, cli.py, __main__.py | Commandes et diagnostic après installation | Modules Task 2 et paquets installés | État et contrôles opérateur | python -m text2sql --help | CLI et diagnostic exécutés ici |
+| tests/ | Contrats et ACL indépendantes | Données officielles optionnelles ; moteurs pour ACL | Résultats de tests | pytest text2sql/tests -q | Voir results/verification_checkpoint_2.json ; tests natifs marqués en attente |
+| CHECKPOINT.json, results/ | Reprise et preuves | État vérifié, résultats distincts de Task 1 | Continuation et rapport | Lire avant de reprendre | État sauvegardé par étape ; aucun score RAG réutilisé |
 
-## Reprise
+## Limites et prochaine intervention
 
-1. Lire `CHECKPOINT.json`, puis ce README. Ne pas recommencer l'implémentation.
-2. Compléter et tester la génération NVIDIA, la preuve de provenance et les liens entre sources.
-3. Compléter les métriques d'évaluation, la documentation d'installation, le rapport et la démonstration.
-4. Refaire les contrôles locaux après les changements ; sauvegarder un nouveau checkpoint.
-5. Demander une seule intervention groupée pour les accès/services de la machine qui restent indispensables.
+Ce workspace n'accède pas au poste de cours, à Docker, aux bases natives ou aux
+endpoints de modèles. L'intervention nécessaire est de lancer **un seul diagnostic**
+avec le Python RAG sur ce poste : `python text2sql/local_check.py`, puis transmettre
+`data/text2sql/local_environment.json`. Aucun mot de passe ni clé ne doit être transmis.
+Ce diagnostic permettra d'adapter la suite sans présumer de l'environnement réel.
 
-## Commandes actuelles
-
-Depuis la racine du dépôt, avec l'interpréteur de l'environnement existant :
-
-```bash
-python -m text2sql.cli dependencies
-python -m pytest text2sql/tests -q
-python -m text2sql.cli preflight
-```
-
-Ne pas exécuter `uv sync` pour cette préparation : les ajouts sont audités sans modifier les versions déjà installées. Ne lancer aucun nouveau modèle GPU.
-
-Les sources officielles sont attendues dans `data/text2sql/sources_calorvia/`. Le port ERP réel du Compose fourni est **14330**, contrairement au port 1433 indiqué dans certaines parties du guide.
-
-## Limites encore bloquantes
-
-Ce workspace n'a ni Docker, ni les bases restaurées, ni les serveurs de modèles de la machine du cours. Il ne permet donc pas de prouver les ACL natives, de générer réellement l'ontologie NVIDIA, de mesurer la précision de l'agent ou de réaliser la démonstration finale. Aucun résultat de ces étapes n'est inventé.
-
-Le brief demande un dépôt privé de soumission `text2sql-calorvia`, des tags par étape, une ontologie générée/certifiée, une comparaison avec/sans ontologie, un `RAPPORT.md` analysant cinq échecs et une démonstration de dix minutes. Ces obligations restent sur la checklist du rendu.
-
-Les vérifications du checkpoint sont des réalisations assistées par IA ; elles ne constituent pas une preuve de maîtrise indépendante de Mi.
+Les vérifications et le code sont réalisés par l'IA. Ils ne prouvent aucune
+compétence indépendante de Mi. La certification humaine, les cinq échecs réellement
+observés et la démonstration avec le formateur restent à effectuer.

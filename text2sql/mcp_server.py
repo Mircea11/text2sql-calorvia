@@ -43,7 +43,9 @@ def get_table_card(source: Literal["erp", "compta", "paie"], table: str) -> dict
 
 
 @mcp.tool(annotations=ToolAnnotations(read_only_hint=True, open_world_hint=False))
-def find_values(source: Literal["erp", "compta", "paie"], table: str, column: str, value: str) -> dict:
+def find_values(
+    source: Literal["erp", "compta", "paie"], table: str, column: str, value: str
+) -> dict:
     """Recherche l'orthographe réelle d'un nom ou code, hors données personnelles."""
     return service().find_values(source, table, column, value)
 

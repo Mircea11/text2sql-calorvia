@@ -20,9 +20,19 @@ HERE = Path(__file__).resolve().parent
 def local_url(value: str) -> str:
     """Refuse un endpoint distant : les données du laboratoire restent locales."""
     parsed = urlsplit(value)
-    if parsed.scheme != "http" or parsed.hostname not in {"localhost", "127.0.0.1", "::1"}:
+    if parsed.scheme != "http" or parsed.hostname not in {
+        "localhost",
+        "127.0.0.1",
+        "::1",
+    }:
         raise ValueError("Endpoint HTTP local obligatoire (localhost/127.0.0.1/::1)")
-    if parsed.username or parsed.password or parsed.query or parsed.fragment:
+    if (
+        parsed.username
+        or parsed.password
+        or parsed.query
+        or parsed.fragment
+        or not parsed.netloc
+    ):
         raise ValueError("Ne pas placer de secret ou de paramètres dans un endpoint")
     return value.rstrip("/")
 
@@ -49,12 +59,16 @@ class Settings:
         return cls(
             llm_url=os.getenv("T2SQL_LLM_URL", os.getenv("CALORVIA_LLM_BASE_URL", "")),
             llm_model=os.getenv("T2SQL_LLM_MODEL", os.getenv("CALORVIA_LLM_MODEL", "")),
-            llm_key=os.getenv("T2SQL_LLM_KEY", os.getenv("CALORVIA_LLM_API_KEY", "local")),
+            llm_key=os.getenv(
+                "T2SQL_LLM_KEY", os.getenv("CALORVIA_LLM_API_KEY", "local")
+            ),
             api_key=os.getenv("T2SQL_API_KEY", ""),
             erp_port=int(os.getenv("T2SQL_ERP_PORT", "14330")),
             compta_port=int(os.getenv("T2SQL_COMPTA_PORT", "5433")),
             paie_port=int(os.getenv("T2SQL_PAIE_PORT", "5434")),
-            source_password=os.getenv("T2SQL_SOURCE_PASSWORD", os.getenv("AGENT_RO_PASSWORD", "")),
+            source_password=os.getenv(
+                "T2SQL_SOURCE_PASSWORD", os.getenv("AGENT_RO_PASSWORD", "")
+            ),
             journal_dsn=os.getenv("T2SQL_JOURNAL_DSN", ""),
             max_rows=min(1000, max(1, int(os.getenv("T2SQL_MAX_ROWS", "200")))),
             timeout_s=min(30, max(1, int(os.getenv("T2SQL_TIMEOUT_S", "30")))),
@@ -63,12 +77,29 @@ class Settings:
 
     def require_llm(self) -> None:
         if not self.llm_url or not self.llm_model:
-            raise ValueError("Configurer le LLM existant : CALORVIA_LLM_BASE_URL/MODEL ou T2SQL_LLM_URL/MODEL")
+            raise ValueError(
+                "Configurer le LLM existant : CALORVIA_LLM_BASE_URL/MODEL ou T2SQL_LLM_URL/MODEL"
+            )
         local_url(self.llm_url)
 
 
 SOURCES = {
-    "erp": {"database": "GESPRO", "dialect": "tsql", "schema": "dbo", "port_setting": "erp_port"},
-    "compta": {"database": "compta", "dialect": "postgres", "schema": "public", "port_setting": "compta_port"},
-    "paie": {"database": "paie", "dialect": "postgres", "schema": "public", "port_setting": "paie_port"},
+    "erp": {
+        "database": "GESPRO",
+        "dialect": "tsql",
+        "schema": "dbo",
+        "port_setting": "erp_port",
+    },
+    "compta": {
+        "database": "compta",
+        "dialect": "postgres",
+        "schema": "public",
+        "port_setting": "compta_port",
+    },
+    "paie": {
+        "database": "paie",
+        "dialect": "postgres",
+        "schema": "public",
+        "port_setting": "paie_port",
+    },
 }

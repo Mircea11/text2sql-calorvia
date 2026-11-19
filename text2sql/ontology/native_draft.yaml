@@ -9,10 +9,10 @@ data_layer:
       tables:
       - id: 99d320bf-00d6-55d1-a4c1-ebcb2b025cb6
         name: SOC_SITE
-        description: Table source erp.SOC_SITE ; définition à réviser. STK_ETAT est
-          la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
-          ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
-          12. Le stock futur n'est pas disponible.
+        description: Sites de l'entreprise STK_ETAT est la photographie au 31/05/2026.
+          STK_MVT contient des quantités déjà signées ; ne pas signer une seconde
+          fois les retours ou sorties. AE12 désigne Aéris 12. Le stock futur n'est
+          pas disponible.
         pk:
         - 052cd24d-ab86-5bab-9bc3-277fefc5f47b
         type: table
@@ -64,7 +64,7 @@ data_layer:
           is_unique: false
       - id: 77cf910a-3c8d-54f2-95fb-41d42d17f760
         name: PAR_CODE
-        description: 'Table source erp.PAR_CODE ; définition à réviser. '
+        description: 'Codes métier et libellés : types, statuts et motifs '
         pk:
         - d78efb07-08d1-5be2-b886-0549e19e6e68
         - a9c9429a-1325-5d3e-af44-0ee0da44b23f
@@ -92,7 +92,7 @@ data_layer:
           is_unique: false
       - id: 033c99a6-3b61-54e6-a074-fbf732674912
         name: ART_FAMILLE
-        description: 'Table source erp.ART_FAMILLE ; définition à réviser. '
+        description: 'Familles d''articles et comptes comptables '
         pk:
         - ff0421bf-dd9f-5aea-9544-b97778000601
         type: table
@@ -129,7 +129,7 @@ data_layer:
           is_unique: false
       - id: cf1f2c28-0df3-5bf1-9bb5-89d2545f34b0
         name: FRN_FOURNISSEUR
-        description: 'Table source erp.FRN_FOURNISSEUR ; définition à réviser. '
+        description: 'Fournisseurs d''articles '
         pk:
         - e4f0d427-e1cb-5049-9075-efc4ac074ae6
         type: table
@@ -196,8 +196,8 @@ data_layer:
           is_unique: false
       - id: 08d4f659-1515-5050-9bd8-5c4d3b78a41f
         name: ART_ARTICLE
-        description: Table source erp.ART_ARTICLE ; définition à réviser. STK_ETAT
-          est la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
+        description: Articles, produits finis, pièces et prestations STK_ETAT est
+          la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
           ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
           12. Le stock futur n'est pas disponible.
         pk:
@@ -286,7 +286,7 @@ data_layer:
           is_unique: false
       - id: 54ae2c40-2f21-5220-8eb1-af9d21b5be2c
         name: ART_TARIF
-        description: 'Table source erp.ART_TARIF ; définition à réviser. '
+        description: 'Tarifs par période et exceptions par client '
         pk:
         - 0e839aa0-4b2d-57ca-aa7a-cc75b1798306
         type: table
@@ -328,7 +328,7 @@ data_layer:
           is_unique: false
       - id: bd1141b3-6bc1-53c8-80e8-113f8d552d6d
         name: ART_NOMENC
-        description: 'Table source erp.ART_NOMENC ; définition à réviser. '
+        description: 'Composants de la nomenclature de fabrication '
         pk:
         - d03c1474-5708-5a08-971f-97f3822467f7
         type: table
@@ -360,7 +360,7 @@ data_layer:
           is_unique: false
       - id: bc9a13c5-77a6-5d2d-98b5-9afc9265ef95
         name: VDR_VENDEUR
-        description: 'Table source erp.VDR_VENDEUR ; définition à réviser. '
+        description: 'Commerciaux et matricules de paie '
         pk:
         - 1da34798-c6d6-5838-b79b-37bbb81c6b1d
         type: table
@@ -412,7 +412,7 @@ data_layer:
           is_unique: false
       - id: 225452b1-399c-5942-beef-f21a49f353a5
         name: CLI_CLIENT
-        description: 'Table source erp.CLI_CLIENT ; définition à réviser. '
+        description: 'Référentiel des clients '
         pk:
         - 5f4b43d2-87e3-5a07-a159-6a5263d21c6a
         type: table
@@ -499,7 +499,7 @@ data_layer:
           is_unique: false
       - id: 03daab66-b039-5b96-baf9-88dc874ae2cb
         name: VTE_CDE
-        description: 'Table source erp.VTE_CDE ; définition à réviser. '
+        description: 'En-têtes des commandes clients '
         pk:
         - 9c67c31c-1483-5fad-9c2d-97468d70f644
         type: table
@@ -556,7 +556,7 @@ data_layer:
           is_unique: false
       - id: a2830aaf-06a9-5abd-9248-2df2226abccd
         name: VTE_CDE_LIG
-        description: 'Table source erp.VTE_CDE_LIG ; définition à réviser. '
+        description: 'Lignes des commandes clients '
         pk:
         - bca846c9-d458-55ba-8f1b-d40500a1acf0
         type: table
@@ -603,10 +603,10 @@ data_layer:
           is_unique: false
       - id: 7fc864c1-70be-53fe-9478-09a43a0f0718
         name: VTE_FACT
-        description: Table source erp.VTE_FACT ; définition à réviser. Les factures
-          F contribuent positivement et les avoirs A négativement. Les montants des
-          avoirs sont stockés positifs. Agréger les en-têtes OU les lignes, jamais
-          leur montant d'en-tête après une jointure un-à-plusieurs.
+        description: En-têtes des factures F et avoirs A, montants stockés positifs
+          Les factures F contribuent positivement et les avoirs A négativement. Les
+          montants des avoirs sont stockés positifs. Agréger les en-têtes OU les lignes,
+          jamais leur montant d'en-tête après une jointure un-à-plusieurs.
         pk:
         - 108890cc-6f79-5235-9937-7e28c32e7c4d
         type: table
@@ -683,10 +683,10 @@ data_layer:
           is_unique: false
       - id: 822b88b5-f02a-5084-a373-1c24b4f4b5ff
         name: VTE_FACT_LIG
-        description: Table source erp.VTE_FACT_LIG ; définition à réviser. Les factures
-          F contribuent positivement et les avoirs A négativement. Les montants des
-          avoirs sont stockés positifs. Agréger les en-têtes OU les lignes, jamais
-          leur montant d'en-tête après une jointure un-à-plusieurs.
+        description: Lignes des factures et avoirs Les factures F contribuent positivement
+          et les avoirs A négativement. Les montants des avoirs sont stockés positifs.
+          Agréger les en-têtes OU les lignes, jamais leur montant d'en-tête après
+          une jointure un-à-plusieurs.
         pk:
         - ab4b0d68-6365-5ead-90d9-a0d0422d5ae7
         type: table
@@ -738,7 +738,7 @@ data_layer:
           is_unique: false
       - id: a283db26-18e6-596b-b7f0-4b5292138e52
         name: ACH_CDE
-        description: 'Table source erp.ACH_CDE ; définition à réviser. '
+        description: 'Commandes fournisseurs '
         pk:
         - 45ea08f4-04d5-50ca-9d2e-acda525e0c48
         type: table
@@ -785,7 +785,7 @@ data_layer:
           is_unique: false
       - id: 320b9816-5661-5a3a-ba74-98e9ab7ac01b
         name: ACH_CDE_LIG
-        description: 'Table source erp.ACH_CDE_LIG ; définition à réviser. '
+        description: 'Lignes des commandes fournisseurs '
         pk:
         - 78c8046d-a55f-5bc8-a5fb-cbd23c70e081
         type: table
@@ -827,7 +827,7 @@ data_layer:
           is_unique: false
       - id: 871355b0-6cf4-50f9-824c-10ecf999ab85
         name: ACH_RECEP
-        description: 'Table source erp.ACH_RECEP ; définition à réviser. '
+        description: 'Réceptions fournisseurs '
         pk:
         - 27e1f369-11e6-56f0-92c6-479f364ed9c8
         type: table
@@ -869,7 +869,7 @@ data_layer:
           is_unique: false
       - id: 0e57e42b-6e75-5d08-bb5f-fce988bebfd8
         name: ACH_RECEP_LIG
-        description: 'Table source erp.ACH_RECEP_LIG ; définition à réviser. '
+        description: 'Lignes reçues et lots '
         pk:
         - 0920f427-7eec-5275-82f2-2830cf01fc8b
         type: table
@@ -916,7 +916,7 @@ data_layer:
           is_unique: false
       - id: fadea78c-619d-581f-9dad-68fed6612adf
         name: ACH_FACT
-        description: 'Table source erp.ACH_FACT ; définition à réviser. '
+        description: 'Factures des fournisseurs d''articles '
         pk:
         - f0598563-1d0b-5b6a-afea-b2fe87d9a012
         type: table
@@ -983,7 +983,7 @@ data_layer:
           is_unique: false
       - id: 2d39b602-6591-526e-a1fc-54c1b0f44f9b
         name: PRD_OF
-        description: 'Table source erp.PRD_OF ; définition à réviser. '
+        description: 'Ordres de fabrication par produit, semaine et ligne '
         pk:
         - 55b07c0f-c091-5ecf-8b31-13e2fc7a89f6
         type: table
@@ -1045,7 +1045,7 @@ data_layer:
           is_unique: false
       - id: 27516eac-e124-57e4-afc7-9f32bae584de
         name: LOG_TRANSP
-        description: 'Table source erp.LOG_TRANSP ; définition à réviser. '
+        description: 'Transporteurs '
         pk:
         - 71ed8bea-7b63-5282-94a8-cf8436e93b49
         type: table
@@ -1087,7 +1087,7 @@ data_layer:
           is_unique: false
       - id: 80c8329e-8825-5a10-a9f8-a590c5261e52
         name: LOG_EXPED
-        description: 'Table source erp.LOG_EXPED ; définition à réviser. '
+        description: 'Expéditions et bons de livraison '
         pk:
         - 59fd8059-4952-5762-a241-e19f727496f5
         type: table
@@ -1154,10 +1154,10 @@ data_layer:
           is_unique: false
       - id: 8a5e2f59-ea1a-5bd6-9bd9-96b5af1b4f73
         name: STK_MVT
-        description: Table source erp.STK_MVT ; définition à réviser. STK_ETAT est
-          la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
+        description: 'Mouvements de stock : quantités déjà signées STK_ETAT est la
+          photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
           ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
-          12. Le stock futur n'est pas disponible.
+          12. Le stock futur n''est pas disponible.'
         pk:
         - 29127d91-1f17-5c96-8686-5114af7c787b
         type: table
@@ -1209,10 +1209,10 @@ data_layer:
           is_unique: false
       - id: 6f28c105-ab02-5997-a01b-ea690914bd98
         name: STK_ETAT
-        description: Table source erp.STK_ETAT ; définition à réviser. STK_ETAT est
-          la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
-          ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
-          12. Le stock futur n'est pas disponible.
+        description: Photographie du stock au 31 mai 2026 STK_ETAT est la photographie
+          au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne pas signer
+          une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le stock
+          futur n'est pas disponible.
         pk:
         - a45466a3-3586-58c2-8370-06e6d4867853
         - 7c431b79-5f82-514d-8d58-2483ba9f0cb5
@@ -2673,10 +2673,9 @@ semantic_layer:
   terms:
   - id: 4399c34b-a842-53ae-b499-e29925825531
     name: erp.SOC_SITE
-    description: Table source erp.SOC_SITE ; définition à réviser. STK_ETAT est la
-      photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne
-      pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le
-      stock futur n'est pas disponible.
+    description: Sites de l'entreprise STK_ETAT est la photographie au 31/05/2026.
+      STK_MVT contient des quantités déjà signées ; ne pas signer une seconde fois
+      les retours ou sorties. AE12 désigne Aéris 12. Le stock futur n'est pas disponible.
     represents:
     - 99d320bf-00d6-55d1-a4c1-ebcb2b025cb6
     columns_attributes:
@@ -2718,7 +2717,7 @@ semantic_layer:
       column_id: 37e16ab5-7a32-59c6-bfc2-ef1b2487ea2d
   - id: 818210fc-ac4c-5b5a-93d2-035c0221db54
     name: erp.PAR_CODE
-    description: 'Table source erp.PAR_CODE ; définition à réviser. '
+    description: 'Codes métier et libellés : types, statuts et motifs '
     represents:
     - 77cf910a-3c8d-54f2-95fb-41d42d17f760
     columns_attributes:
@@ -2740,7 +2739,7 @@ semantic_layer:
       column_id: efa6a69f-62af-5212-b5cb-607792183c6c
   - id: 41afdb10-250f-5352-bd05-b30f4f33d79d
     name: erp.ART_FAMILLE
-    description: 'Table source erp.ART_FAMILLE ; définition à réviser. '
+    description: 'Familles d''articles et comptes comptables '
     represents:
     - 033c99a6-3b61-54e6-a074-fbf732674912
     columns_attributes:
@@ -2770,7 +2769,7 @@ semantic_layer:
       column_id: 14c65f4d-09fb-5058-9558-b1e27ddb2529
   - id: 32d9a911-b806-5282-8b8b-be90a6bc15e9
     name: erp.FRN_FOURNISSEUR
-    description: 'Table source erp.FRN_FOURNISSEUR ; définition à réviser. '
+    description: 'Fournisseurs d''articles '
     represents:
     - cf1f2c28-0df3-5bf1-9bb5-89d2545f34b0
     columns_attributes:
@@ -2824,10 +2823,10 @@ semantic_layer:
       column_id: 308720cd-1321-5343-af7e-518333e2fdac
   - id: 4848f03e-7497-5cd5-b3bb-af60a1d4bdc9
     name: erp.ART_ARTICLE
-    description: Table source erp.ART_ARTICLE ; définition à réviser. STK_ETAT est
-      la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ;
-      ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12.
-      Le stock futur n'est pas disponible.
+    description: Articles, produits finis, pièces et prestations STK_ETAT est la photographie
+      au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne pas signer une
+      seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le stock futur n'est
+      pas disponible.
     represents:
     - 08d4f659-1515-5050-9bd8-5c4d3b78a41f
     columns_attributes:
@@ -2897,7 +2896,7 @@ semantic_layer:
       column_id: 1b688446-6825-5f62-b5a5-c8085ef0793b
   - id: 1a948de8-8651-5362-a360-3d81bfd25aa1
     name: erp.ART_TARIF
-    description: 'Table source erp.ART_TARIF ; définition à réviser. '
+    description: 'Tarifs par période et exceptions par client '
     represents:
     - 54ae2c40-2f21-5220-8eb1-af9d21b5be2c
     columns_attributes:
@@ -2931,7 +2930,7 @@ semantic_layer:
       column_id: fc7d909f-4aed-5806-9887-1fc21de47730
   - id: cefab5d4-8c4a-5201-9231-ec1fef30ef23
     name: erp.ART_NOMENC
-    description: 'Table source erp.ART_NOMENC ; définition à réviser. '
+    description: 'Composants de la nomenclature de fabrication '
     represents:
     - bd1141b3-6bc1-53c8-80e8-113f8d552d6d
     columns_attributes:
@@ -2957,7 +2956,7 @@ semantic_layer:
       column_id: a50edf75-0d6e-5a92-86b6-0a84e423f233
   - id: c21244da-8c35-5b82-b8a8-68c23476ef12
     name: erp.VDR_VENDEUR
-    description: 'Table source erp.VDR_VENDEUR ; définition à réviser. '
+    description: 'Commerciaux et matricules de paie '
     represents:
     - bc9a13c5-77a6-5d2d-98b5-9afc9265ef95
     columns_attributes:
@@ -2999,7 +2998,7 @@ semantic_layer:
       column_id: 64d1b9e0-78ae-5e11-96e3-04a40c8bda29
   - id: a250c615-94ba-5b5f-b42f-632c07f80ad2
     name: erp.CLI_CLIENT
-    description: 'Table source erp.CLI_CLIENT ; définition à réviser. '
+    description: 'Référentiel des clients '
     represents:
     - 225452b1-399c-5942-beef-f21a49f353a5
     columns_attributes:
@@ -3069,7 +3068,7 @@ semantic_layer:
       column_id: 0ad42b98-c6d2-5a41-8133-806cab880563
   - id: 333e4482-a98d-505b-8c92-eaee014a04d7
     name: erp.VTE_CDE
-    description: 'Table source erp.VTE_CDE ; définition à réviser. '
+    description: 'En-têtes des commandes clients '
     represents:
     - 03daab66-b039-5b96-baf9-88dc874ae2cb
     columns_attributes:
@@ -3115,7 +3114,7 @@ semantic_layer:
       column_id: 082834d4-98d0-5ce9-b93f-08c78f9464c6
   - id: 8b8aa0ad-15e5-5f2c-a517-7a8009dde9d5
     name: erp.VTE_CDE_LIG
-    description: 'Table source erp.VTE_CDE_LIG ; définition à réviser. '
+    description: 'Lignes des commandes clients '
     represents:
     - a2830aaf-06a9-5abd-9248-2df2226abccd
     columns_attributes:
@@ -3153,10 +3152,10 @@ semantic_layer:
       column_id: b156d270-6937-5636-9e68-a36abd079e70
   - id: 21d00bfd-fdd6-5e8f-87cf-e601f8d3de9d
     name: erp.VTE_FACT
-    description: Table source erp.VTE_FACT ; définition à réviser. Les factures F
-      contribuent positivement et les avoirs A négativement. Les montants des avoirs
-      sont stockés positifs. Agréger les en-têtes OU les lignes, jamais leur montant
-      d'en-tête après une jointure un-à-plusieurs.
+    description: En-têtes des factures F et avoirs A, montants stockés positifs Les
+      factures F contribuent positivement et les avoirs A négativement. Les montants
+      des avoirs sont stockés positifs. Agréger les en-têtes OU les lignes, jamais
+      leur montant d'en-tête après une jointure un-à-plusieurs.
     represents:
     - 7fc864c1-70be-53fe-9478-09a43a0f0718
     columns_attributes:
@@ -3218,10 +3217,10 @@ semantic_layer:
       column_id: c63a8c63-fa4a-5e99-9ed6-c48481b05777
   - id: 7d834294-9b57-549a-99d9-f0521af8f24b
     name: erp.VTE_FACT_LIG
-    description: Table source erp.VTE_FACT_LIG ; définition à réviser. Les factures
-      F contribuent positivement et les avoirs A négativement. Les montants des avoirs
-      sont stockés positifs. Agréger les en-têtes OU les lignes, jamais leur montant
-      d'en-tête après une jointure un-à-plusieurs.
+    description: Lignes des factures et avoirs Les factures F contribuent positivement
+      et les avoirs A négativement. Les montants des avoirs sont stockés positifs.
+      Agréger les en-têtes OU les lignes, jamais leur montant d'en-tête après une
+      jointure un-à-plusieurs.
     represents:
     - 822b88b5-f02a-5084-a373-1c24b4f4b5ff
     columns_attributes:
@@ -3263,7 +3262,7 @@ semantic_layer:
       column_id: ccaa4b31-3dc6-5ced-858c-3dfba25a79ce
   - id: 8466b458-a353-5bd1-a1c7-26c4ea9f6e21
     name: erp.ACH_CDE
-    description: 'Table source erp.ACH_CDE ; définition à réviser. '
+    description: 'Commandes fournisseurs '
     represents:
     - a283db26-18e6-596b-b7f0-4b5292138e52
     columns_attributes:
@@ -3301,7 +3300,7 @@ semantic_layer:
       column_id: d26e11c8-012e-5f7e-8c7d-04ec1f06cb2e
   - id: 2560d711-a066-5dc4-be85-4dec7001a77f
     name: erp.ACH_CDE_LIG
-    description: 'Table source erp.ACH_CDE_LIG ; définition à réviser. '
+    description: 'Lignes des commandes fournisseurs '
     represents:
     - 320b9816-5661-5a3a-ba74-98e9ab7ac01b
     columns_attributes:
@@ -3335,7 +3334,7 @@ semantic_layer:
       column_id: dc5595cb-8bdf-5e22-838d-66ddc38233e9
   - id: cf33fcd3-a236-54e7-9c0d-20c037f01b8c
     name: erp.ACH_RECEP
-    description: 'Table source erp.ACH_RECEP ; définition à réviser. '
+    description: 'Réceptions fournisseurs '
     represents:
     - 871355b0-6cf4-50f9-824c-10ecf999ab85
     columns_attributes:
@@ -3369,7 +3368,7 @@ semantic_layer:
       column_id: a3524401-0c31-5704-8b3b-7dba1bc7219a
   - id: 0cbcd3fd-ace1-5298-8fec-d2c0ed0668f7
     name: erp.ACH_RECEP_LIG
-    description: 'Table source erp.ACH_RECEP_LIG ; définition à réviser. '
+    description: 'Lignes reçues et lots '
     represents:
     - 0e57e42b-6e75-5d08-bb5f-fce988bebfd8
     columns_attributes:
@@ -3407,7 +3406,7 @@ semantic_layer:
       column_id: 3b60362e-11ae-5ec8-93f9-07941c566910
   - id: 7b345f2a-a115-56fc-8729-64d3f3fbfa3a
     name: erp.ACH_FACT
-    description: 'Table source erp.ACH_FACT ; définition à réviser. '
+    description: 'Factures des fournisseurs d''articles '
     represents:
     - fadea78c-619d-581f-9dad-68fed6612adf
     columns_attributes:
@@ -3461,7 +3460,7 @@ semantic_layer:
       column_id: 55de66da-690d-5453-b68e-eaff8c555645
   - id: 89e742d2-96e1-5afd-877f-3ff482fcaf06
     name: erp.PRD_OF
-    description: 'Table source erp.PRD_OF ; définition à réviser. '
+    description: 'Ordres de fabrication par produit, semaine et ligne '
     represents:
     - 2d39b602-6591-526e-a1fc-54c1b0f44f9b
     columns_attributes:
@@ -3511,7 +3510,7 @@ semantic_layer:
       column_id: 990fbdec-b9d6-5a3b-9ba4-bea78e038c53
   - id: f365797d-e87e-5d37-92d6-d39015fd5d8f
     name: erp.LOG_TRANSP
-    description: 'Table source erp.LOG_TRANSP ; définition à réviser. '
+    description: 'Transporteurs '
     represents:
     - 27516eac-e124-57e4-afc7-9f32bae584de
     columns_attributes:
@@ -3545,7 +3544,7 @@ semantic_layer:
       column_id: 2eab115b-97ac-562d-aa1a-9a5d3c865ad6
   - id: d3a3159c-2932-54d7-b1b9-519a5fe22dfc
     name: erp.LOG_EXPED
-    description: 'Table source erp.LOG_EXPED ; définition à réviser. '
+    description: 'Expéditions et bons de livraison '
     represents:
     - 80c8329e-8825-5a10-a9f8-a590c5261e52
     columns_attributes:
@@ -3599,10 +3598,10 @@ semantic_layer:
       column_id: 52427311-19c3-5580-9f16-74970aff40b4
   - id: 420a7cbf-18ff-5920-b898-104ab048a9df
     name: erp.STK_MVT
-    description: Table source erp.STK_MVT ; définition à réviser. STK_ETAT est la
-      photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne
-      pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le
-      stock futur n'est pas disponible.
+    description: 'Mouvements de stock : quantités déjà signées STK_ETAT est la photographie
+      au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne pas signer une
+      seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le stock futur n''est
+      pas disponible.'
     represents:
     - 8a5e2f59-ea1a-5bd6-9bd9-96b5af1b4f73
     columns_attributes:
@@ -3644,10 +3643,10 @@ semantic_layer:
       column_id: a54eda83-a268-57f9-abdd-0d8a3a780672
   - id: 26053fde-7988-5db3-a349-0927c56bcf28
     name: erp.STK_ETAT
-    description: Table source erp.STK_ETAT ; définition à réviser. STK_ETAT est la
-      photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne
-      pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le
-      stock futur n'est pas disponible.
+    description: Photographie du stock au 31 mai 2026 STK_ETAT est la photographie
+      au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne pas signer une
+      seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le stock futur n'est
+      pas disponible.
     represents:
     - 6f28c105-ab02-5997-a01b-ea690914bd98
     columns_attributes:
@@ -4689,8 +4688,189 @@ semantic_layer:
       name: amount
       description: ''
       column_id: d7e64546-9d56-5dd5-af9a-6bd97a3ff55d
-  concepts: []
-  semantic_fks: []
+  concepts:
+  - id: 947c1dae-84a5-51bc-b2a1-35707f4f0119
+    name: Client / tiers
+    description: Normaliser les numéros de TVA ; contrôler l'unicité et le type du
+      tiers. Rapprochement en Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - a250c615-94ba-5b5f-b42f-632c07f80ad2
+    - df112a31-7416-54a0-a662-79ca1c5b650d
+    keys:
+    - id: 27c95f7d-4f0b-51de-99be-fd8d67ee63ee
+      name: erp.CLI_CLIENT.CLI_TVA
+      column_ids:
+      - a9a2da5b-03fa-58ff-ba2c-b4cef661f3c4
+    - id: 87c0aeb7-9cfd-5922-b1d5-b3a66ab8c5b0
+      name: compta.tiers.numero_tva
+      column_ids:
+      - f7df60c0-2227-5759-90a3-179daaf04393
+  - id: 1ecbe13a-c2b3-5595-a871-b182bfef822d
+    name: Fournisseur / tiers
+    description: Normaliser les numéros de TVA ; filtrer les fournisseurs. Rapprochement
+      en Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - 32d9a911-b806-5282-8b8b-be90a6bc15e9
+    - df112a31-7416-54a0-a662-79ca1c5b650d
+    keys:
+    - id: 82d2f5b6-ad65-5eb1-a02e-27e43b293161
+      name: erp.FRN_FOURNISSEUR.FRN_TVA
+      column_ids:
+      - 9dedbfb6-f3f3-5037-85cb-6df83eaccd43
+    - id: bc9aa82b-0d9e-5d02-8b2e-c604f779ab96
+      name: compta.tiers.numero_tva
+      column_ids:
+      - f7df60c0-2227-5759-90a3-179daaf04393
+  - id: b873206d-4330-5c8e-bcc9-3ce393d11584
+    name: Facture client
+    description: Filtrer le journal VEN ; la date de facture et la période comptable
+      peuvent différer. Rapprochement en Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - 21d00bfd-fdd6-5e8f-87cf-e601f8d3de9d
+    - 7c451a2b-62bd-5700-857d-d99e0416d732
+    keys:
+    - id: 27f7b6eb-a91b-52ff-8416-96fbc1ba1e57
+      name: erp.VTE_FACT.FAC_NUM
+      column_ids:
+      - b766d112-022c-5876-bd99-62b811c0a079
+    - id: 4833bb02-d4ec-5a5b-9112-fb058856d70c
+      name: compta.ecriture.reference_externe
+      column_ids:
+      - 805ed650-0dca-5ac7-bf4e-45edf9069285
+  - id: 635f304e-62b4-5cc6-b38e-950b4d2c08b3
+    name: Facture fournisseur
+    description: 'Filtrer ACH et rapprocher aussi le fournisseur : une référence seule
+      peut ne pas être unique. Rapprochement en Python ; aucune jointure SQL entre
+      moteurs.'
+    term_ids:
+    - 7b345f2a-a115-56fc-8729-64d3f3fbfa3a
+    - 7c451a2b-62bd-5700-857d-d99e0416d732
+    keys:
+    - id: dcebc7c8-6b05-515b-9474-ae312368664c
+      name: erp.ACH_FACT.AF_NUM_FRN
+      column_ids:
+      - 9b64816f-46af-5626-8ac0-b99dddd5d199
+    - id: b17008c5-c461-5368-a822-8e22fd369039
+      name: compta.ecriture.reference_externe
+      column_ids:
+      - 805ed650-0dca-5ac7-bf4e-45edf9069285
+  - id: 5feaf24c-4664-5fe3-a568-dad2b9f926fa
+    name: Commercial / travailleur
+    description: Normaliser le matricule ; ne pas diffuser de rémunération individuelle.
+      Rapprochement en Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - c21244da-8c35-5b82-b8a8-68c23476ef12
+    - 39e92f77-3944-56b8-9980-ab789e3d85c2
+    keys:
+    - id: 8cce3d9d-6af0-5025-a080-a883dc7951ae
+      name: erp.VDR_VENDEUR.VDR_MATRICULE
+      column_ids:
+      - eeef14bb-d76e-5cef-9225-7b43af6aec30
+    - id: 912496af-816f-50fe-b766-fc91c0ee73bb
+      name: paie.employees.employee_id
+      column_ids:
+      - 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+  - id: dbd9323b-82f7-5c09-87bc-f575efa76754
+    name: Centre analytique / coût
+    description: Comparer les codes de centre de coût ; contrôler les relations un-à-plusieurs.
+      Rapprochement en Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - cef3e28f-9bbe-544e-a260-e7c76898a0f8
+    - e23de4e1-f880-53de-8420-ce6a7f3e8a9f
+    keys:
+    - id: 8de6f9d5-bdfc-5cbb-b595-eb92de05ac3c
+      name: compta.centre_analytique.code_centre
+      column_ids:
+      - 0c284de8-0316-5528-adf3-eb8df3f379f6
+    - id: f6242ce5-6bc2-516c-9c65-ecbcb67dc70a
+      name: paie.cost_centers.gl_cost_center
+      column_ids:
+      - 9f306379-aa0c-5edb-8f54-8762f063054f
+  - id: 965c6650-93b1-5bf7-bc38-e61d68c577d8
+    name: Compte comptable ERP
+    description: Conserver les six chiffres du PCMN comme texte. Rapprochement en
+      Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - 41afdb10-250f-5352-bd05-b30f4f33d79d
+    - 5ab24673-8cb4-5f1d-b896-e44f13e58ec9
+    keys:
+    - id: 3638236d-334b-5fd2-b03a-6e7c7245cdb3
+      name: erp.ART_FAMILLE.FAM_CPT_VENTE
+      column_ids:
+      - 37666cd2-f349-5794-a046-9257d48ad2fd
+    - id: 9488638e-795c-5873-80a5-32bcbd1c3cb0
+      name: compta.plan_comptable.numero_compte
+      column_ids:
+      - 96586592-ec27-5bd7-a4d0-344b93f49304
+  - id: b9e1c796-f14a-56de-9d26-e22fa56ad99b
+    name: Compte comptable paie
+    description: Rapprocher les écritures par période, pas uniquement par compte.
+      Rapprochement en Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - aaba91b9-fb52-5374-b20a-af98859f4797
+    - 5ab24673-8cb4-5f1d-b896-e44f13e58ec9
+    keys:
+    - id: 12ef6331-e233-5398-8fb9-af1be93b912a
+      name: paie.pay_elements.gl_account
+      column_ids:
+      - 77431236-8271-57b7-ac1e-c0ffdeaa17c8
+    - id: b3cd5fcb-e881-52ae-8a2a-fdcd6a482835
+      name: compta.plan_comptable.numero_compte
+      column_ids:
+      - 96586592-ec27-5bd7-a4d0-344b93f49304
+  - id: 6360c092-4542-526b-a935-e6a62f05c57a
+    name: Calcul de paie
+    description: Filtrer SAL et normaliser le préfixe de référence ; vérifier l'unicité.
+      Rapprochement en Python ; aucune jointure SQL entre moteurs.
+    term_ids:
+    - 40e48596-255b-56f8-a832-b1f29bc10ba0
+    - 7c451a2b-62bd-5700-857d-d99e0416d732
+    keys:
+    - id: 8c0fcd64-110f-50a3-9261-5781244afce3
+      name: paie.payroll_runs.run_id
+      column_ids:
+      - 6489990e-a302-5dea-9e9c-419ae1d6f6be
+    - id: b9d1e398-45af-50b6-aa27-4bc38a2743eb
+      name: compta.ecriture.reference_externe
+      column_ids:
+      - 805ed650-0dca-5ac7-bf4e-45edf9069285
+  semantic_fks:
+  - column_id: a9a2da5b-03fa-58ff-ba2c-b4cef661f3c4
+    concept_key_id: 87c0aeb7-9cfd-5922-b1d5-b3a66ab8c5b0
+    column_attribute_id: 549f1f2a-c385-55b4-98f8-635672afcc7f
+    use_in_join_paths: false
+  - column_id: 9dedbfb6-f3f3-5037-85cb-6df83eaccd43
+    concept_key_id: bc9aa82b-0d9e-5d02-8b2e-c604f779ab96
+    column_attribute_id: 549f1f2a-c385-55b4-98f8-635672afcc7f
+    use_in_join_paths: false
+  - column_id: b766d112-022c-5876-bd99-62b811c0a079
+    concept_key_id: 4833bb02-d4ec-5a5b-9112-fb058856d70c
+    column_attribute_id: 4168c006-4667-5fc1-b797-e6510579d99e
+    use_in_join_paths: false
+  - column_id: 9b64816f-46af-5626-8ac0-b99dddd5d199
+    concept_key_id: b17008c5-c461-5368-a822-8e22fd369039
+    column_attribute_id: 4168c006-4667-5fc1-b797-e6510579d99e
+    use_in_join_paths: false
+  - column_id: eeef14bb-d76e-5cef-9225-7b43af6aec30
+    concept_key_id: 912496af-816f-50fe-b766-fc91c0ee73bb
+    column_attribute_id: 0c0c9917-27ef-579d-876d-c7f8ec5d05c0
+    use_in_join_paths: false
+  - column_id: 0c284de8-0316-5528-adf3-eb8df3f379f6
+    concept_key_id: f6242ce5-6bc2-516c-9c65-ecbcb67dc70a
+    column_attribute_id: 36fb5133-4058-5e09-94ce-db49cff06a60
+    use_in_join_paths: false
+  - column_id: 37666cd2-f349-5794-a046-9257d48ad2fd
+    concept_key_id: 9488638e-795c-5873-80a5-32bcbd1c3cb0
+    column_attribute_id: c244b4aa-1b09-562a-8a6b-0dc1ecde10b1
+    use_in_join_paths: false
+  - column_id: 77431236-8271-57b7-ac1e-c0ffdeaa17c8
+    concept_key_id: b3cd5fcb-e881-52ae-8a2a-fdcd6a482835
+    column_attribute_id: c244b4aa-1b09-562a-8a6b-0dc1ecde10b1
+    use_in_join_paths: false
+  - column_id: 6489990e-a302-5dea-9e9c-419ae1d6f6be
+    concept_key_id: b9d1e398-45af-50b6-aa27-4bc38a2743eb
+    column_attribute_id: 4168c006-4667-5fc1-b797-e6510579d99e
+    use_in_join_paths: false
   sql_attributes:
     manual: []
     table: []

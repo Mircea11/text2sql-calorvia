@@ -1,7 +1,7 @@
 {
   "kind": "offline_reference_verification_not_agent_accuracy",
-  "questions": 44,
-  "reference_queries": 36,
+  "questions": 45,
+  "reference_queries": 37,
   "passed": true,
   "checks": [
     {
@@ -252,6 +252,13 @@
     {
       "question": "X07",
       "source": "paie",
+      "sql_valid": true,
+      "reference_matches": true,
+      "error": null
+    },
+    {
+      "question": "E13",
+      "source": "erp",
       "sql_valid": true,
       "reference_matches": true,
       "error": null
