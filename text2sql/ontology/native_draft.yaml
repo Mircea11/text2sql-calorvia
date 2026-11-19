@@ -1,0 +1,4700 @@
+data_layer:
+  databases:
+  - id: 0d94e3b5-4f05-5182-9723-1c1ab9ee2a40
+    dialect: tsql
+    schemas:
+    - id: d1178cac-081f-54af-9793-2cfa60e20749
+      name: dbo
+      database_name: GESPRO
+      tables:
+      - id: 99d320bf-00d6-55d1-a4c1-ebcb2b025cb6
+        name: SOC_SITE
+        description: Table source erp.SOC_SITE ; définition à réviser. STK_ETAT est
+          la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
+          ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
+          12. Le stock futur n'est pas disponible.
+        pk:
+        - 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+        type: table
+        columns:
+        - id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+          name: SIT_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: b7c8c839-9d04-53b6-b8e6-5005914e3c7a
+          name: SIT_CODE
+          type: VARCHAR(3)
+          description: ''
+          is_unique: false
+        - id: d4d52d6c-1f09-55ba-92db-b40c6306f692
+          name: SIT_LIB
+          type: VARCHAR(60)
+          description: ''
+          is_unique: false
+        - id: 07669630-d82e-5ca4-974d-2b1853da1054
+          name: SIT_TYPE
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: fe1de325-b398-5500-bb92-b9007914f43f
+          name: SIT_ADR
+          type: VARCHAR(120)
+          description: ''
+          is_unique: false
+        - id: 217e2ac7-2b98-5b5b-ac84-baa8fe1fb9c8
+          name: SIT_VILLE
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: af893a84-4ed0-50bd-aea0-090267662572
+          name: SIT_PAYS
+          type: VARCHAR(2)
+          description: ''
+          is_unique: false
+        - id: 9c627a62-6fa0-51e4-914f-6bea6d5b87ba
+          name: SIT_DT_OUV
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 37e16ab5-7a32-59c6-bfc2-ef1b2487ea2d
+          name: SIT_ACTIF
+          type: BIT
+          description: ''
+          is_unique: false
+      - id: 77cf910a-3c8d-54f2-95fb-41d42d17f760
+        name: PAR_CODE
+        description: 'Table source erp.PAR_CODE ; définition à réviser. '
+        pk:
+        - d78efb07-08d1-5be2-b886-0549e19e6e68
+        - a9c9429a-1325-5d3e-af44-0ee0da44b23f
+        type: table
+        columns:
+        - id: d78efb07-08d1-5be2-b886-0549e19e6e68
+          name: COD_TYPE
+          type: VARCHAR(20)
+          description: ''
+          is_unique: true
+        - id: a9c9429a-1325-5d3e-af44-0ee0da44b23f
+          name: COD_VAL
+          type: VARCHAR(20)
+          description: ''
+          is_unique: true
+        - id: 5d1acdd5-20ea-5c3c-9687-66ee08629987
+          name: COD_LIB
+          type: VARCHAR(100)
+          description: ''
+          is_unique: false
+        - id: efa6a69f-62af-5212-b5cb-607792183c6c
+          name: COD_ORDRE
+          type: INT
+          description: ''
+          is_unique: false
+      - id: 033c99a6-3b61-54e6-a074-fbf732674912
+        name: ART_FAMILLE
+        description: 'Table source erp.ART_FAMILLE ; définition à réviser. '
+        pk:
+        - ff0421bf-dd9f-5aea-9544-b97778000601
+        type: table
+        columns:
+        - id: ff0421bf-dd9f-5aea-9544-b97778000601
+          name: FAM_CODE
+          type: VARCHAR(6)
+          description: ''
+          is_unique: true
+        - id: 5f5bbb35-b045-5089-b3cc-1b1a04020870
+          name: FAM_LIB
+          type: VARCHAR(60)
+          description: ''
+          is_unique: false
+        - id: 4f3025fb-de43-55be-aa91-fc46fe5cb09f
+          name: FAM_TYPE
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: 8e4158df-b985-57be-8b82-438bcf60cde7
+          name: FAM_GAMME
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: 37666cd2-f349-5794-a046-9257d48ad2fd
+          name: FAM_CPT_VENTE
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+        - id: 14c65f4d-09fb-5058-9558-b1e27ddb2529
+          name: FAM_CPT_ACHAT
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+      - id: cf1f2c28-0df3-5bf1-9bb5-89d2545f34b0
+        name: FRN_FOURNISSEUR
+        description: 'Table source erp.FRN_FOURNISSEUR ; définition à réviser. '
+        pk:
+        - e4f0d427-e1cb-5049-9075-efc4ac074ae6
+        type: table
+        columns:
+        - id: e4f0d427-e1cb-5049-9075-efc4ac074ae6
+          name: FRN_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: fa849cfc-17a8-55f7-ba92-5b9fc9ab4fe0
+          name: FRN_CODE
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 1e2421bf-5923-5ca9-97e5-8a00152c536b
+          name: FRN_NOM
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: 9dedbfb6-f3f3-5037-85cb-6df83eaccd43
+          name: FRN_TVA
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: 32c90465-efa2-58ec-8ecb-675b92ef5b67
+          name: FRN_PAYS
+          type: VARCHAR(2)
+          description: ''
+          is_unique: false
+        - id: c44a8bfc-d4ee-5227-8293-4728dada6fe2
+          name: FRN_ADR
+          type: VARCHAR(120)
+          description: ''
+          is_unique: false
+        - id: bdaf30f1-5f62-5c82-88a8-bf277c6de311
+          name: FRN_CP
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 110aaa40-7bb9-5f90-98e4-822cc9b2e06c
+          name: FRN_VILLE
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: b1503b55-09b1-5b81-8025-872936f84a34
+          name: FRN_COND_PAIE
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+        - id: 7c97587e-235c-5a28-9669-c24eb4698ca1
+          name: FRN_DELAI_J
+          type: INT
+          description: ''
+          is_unique: false
+        - id: bf44b4d5-2e35-54ce-8719-770281eb39bf
+          name: FRN_DT_CREA
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 308720cd-1321-5343-af7e-518333e2fdac
+          name: FRN_ACTIF
+          type: BIT
+          description: ''
+          is_unique: false
+      - id: 08d4f659-1515-5050-9bd8-5c4d3b78a41f
+        name: ART_ARTICLE
+        description: Table source erp.ART_ARTICLE ; définition à réviser. STK_ETAT
+          est la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
+          ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
+          12. Le stock futur n'est pas disponible.
+        pk:
+        - abfb3aab-fe26-5ac6-b692-cfa1851f4313
+        type: table
+        columns:
+        - id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: d16dbc55-3908-5449-846c-bdb6108a9fa8
+          name: ART_CODE
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: 670c5464-cf99-5384-9124-ae6b2a1624d0
+          name: ART_LIB
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: a9074713-85ee-5e5f-bf09-18ac11435982
+          name: FAM_CODE
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+        - id: 411ebd3b-32df-51cf-9e4c-9e1977c20b25
+          name: ART_TYPE
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: 3c01b4c5-5ffa-5637-b5e4-12aea6e0ddc4
+          name: ART_UNITE
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: 39e7f6b4-d2d0-593b-826a-3b5037854d06
+          name: ART_POIDS_KG
+          type: DECIMAL(10, 3)
+          description: ''
+          is_unique: false
+        - id: a44db94d-dc61-59be-8532-66c6cb91563b
+          name: ART_PRIX_STD
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: 6efc88f7-2aaa-5473-8531-cddf0fb1648e
+          name: ART_VENDABLE
+          type: BIT
+          description: ''
+          is_unique: false
+        - id: 32f5dc07-2b7a-56ac-8444-3cd2f5efb498
+          name: ART_STOCKE
+          type: BIT
+          description: ''
+          is_unique: false
+        - id: c1e19866-6bac-5121-a477-3c3e4339e031
+          name: SIT_ID_PROD
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 208dbd34-94ef-5765-bcee-a09ebe21f916
+          name: ART_LIGNE
+          type: VARCHAR(3)
+          description: ''
+          is_unique: false
+        - id: 42524e12-3cf3-55ef-84cd-a0742da73db2
+          name: FRN_ID_PRINC
+          type: INT
+          description: ''
+          is_unique: false
+        - id: abba546d-c7c3-545f-8c1e-154c5a4cc577
+          name: ART_COND
+          type: DECIMAL(10, 3)
+          description: ''
+          is_unique: false
+        - id: 6907834e-74aa-5178-aabf-6c9b33dbf279
+          name: ART_DT_CREA
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 1b688446-6825-5f62-b5a5-c8085ef0793b
+          name: ART_ACTIF
+          type: BIT
+          description: ''
+          is_unique: false
+      - id: 54ae2c40-2f21-5220-8eb1-af9d21b5be2c
+        name: ART_TARIF
+        description: 'Table source erp.ART_TARIF ; définition à réviser. '
+        pk:
+        - 0e839aa0-4b2d-57ca-aa7a-cc75b1798306
+        type: table
+        columns:
+        - id: 0e839aa0-4b2d-57ca-aa7a-cc75b1798306
+          name: TAR_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: b06a106a-d31f-5fe9-881a-702b494bb9bb
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: f354b65a-1c93-5947-9a8a-1337227ed113
+          name: CLI_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 4929e307-a5a0-5227-b2fd-21ab65b5112f
+          name: TAR_PRIX
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: f4779a1e-7931-50c4-979f-8fb83275ed04
+          name: TAR_DT_DEB
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: dfb5d2fc-d74e-5fa7-81e4-180cbc68585f
+          name: TAR_DT_FIN
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: fc7d909f-4aed-5806-9887-1fc21de47730
+          name: TAR_COMMENT
+          type: VARCHAR(100)
+          description: ''
+          is_unique: false
+      - id: bd1141b3-6bc1-53c8-80e8-113f8d552d6d
+        name: ART_NOMENC
+        description: 'Table source erp.ART_NOMENC ; définition à réviser. '
+        pk:
+        - d03c1474-5708-5a08-971f-97f3822467f7
+        type: table
+        columns:
+        - id: d03c1474-5708-5a08-971f-97f3822467f7
+          name: NOM_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 6acb2403-8670-5e4a-a105-aa0aa7a586ec
+          name: ART_ID_PF
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 5ddd3a1f-26af-52c7-892e-304c6ce546d2
+          name: ART_ID_COMP
+          type: INT
+          description: ''
+          is_unique: false
+        - id: c300519e-1b7b-5728-a943-ad03782a5e18
+          name: NOM_QTE
+          type: DECIMAL(10, 3)
+          description: ''
+          is_unique: false
+        - id: a50edf75-0d6e-5a92-86b6-0a84e423f233
+          name: NOM_DT_DEB
+          type: DATE
+          description: ''
+          is_unique: false
+      - id: bc9a13c5-77a6-5d2d-98b5-9afc9265ef95
+        name: VDR_VENDEUR
+        description: 'Table source erp.VDR_VENDEUR ; définition à réviser. '
+        pk:
+        - 1da34798-c6d6-5838-b79b-37bbb81c6b1d
+        type: table
+        columns:
+        - id: 1da34798-c6d6-5838-b79b-37bbb81c6b1d
+          name: VDR_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 055fe79d-fd04-5cd8-aa79-6cf8eee2ae95
+          name: VDR_CODE
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+        - id: 0314e293-6332-54b4-a0d9-359c1247b8a0
+          name: VDR_NOM
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: f3d91f5f-532e-58b3-9a9e-62471335a16b
+          name: VDR_PRENOM
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: 74828a17-93ee-5e4b-bd11-f06095759649
+          name: VDR_ZONE
+          type: VARCHAR(3)
+          description: ''
+          is_unique: false
+        - id: eeef14bb-d76e-5cef-9225-7b43af6aec30
+          name: VDR_MATRICULE
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: f6c2d9c8-fbe4-5c8a-a7d0-2eb8ca0bda68
+          name: VDR_EMAIL
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: ec5c4539-ed6b-5716-9fd7-33cda13ffd7e
+          name: VDR_DT_ENTREE
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 64d1b9e0-78ae-5e11-96e3-04a40c8bda29
+          name: VDR_ACTIF
+          type: BIT
+          description: ''
+          is_unique: false
+      - id: 225452b1-399c-5942-beef-f21a49f353a5
+        name: CLI_CLIENT
+        description: 'Table source erp.CLI_CLIENT ; définition à réviser. '
+        pk:
+        - 5f4b43d2-87e3-5a07-a159-6a5263d21c6a
+        type: table
+        columns:
+        - id: 5f4b43d2-87e3-5a07-a159-6a5263d21c6a
+          name: CLI_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 8995f665-f869-5dc8-b53d-a04bd5c1b582
+          name: CLI_CODE
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 34b53a53-5a34-513d-bc20-ec74ddd0c06d
+          name: CLI_NOM
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: 0e62e3b9-90bf-5f14-aaa8-07e9447c9087
+          name: CLI_TYPE
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: a9a2da5b-03fa-58ff-ba2c-b4cef661f3c4
+          name: CLI_TVA
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: c6b52583-8a31-5373-82f9-143a43119b16
+          name: CLI_ADR
+          type: VARCHAR(120)
+          description: ''
+          is_unique: false
+        - id: 233523fa-54c6-5c2f-a65a-e7a9541629ae
+          name: CLI_CP
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 1530dc1c-4750-50e5-9c09-c0bdae9b205e
+          name: CLI_VILLE
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: 156a67b4-83af-57b6-b331-2bc573cad78c
+          name: CLI_PAYS
+          type: VARCHAR(2)
+          description: ''
+          is_unique: false
+        - id: 51c33888-bb06-5368-ae9c-322c583cd2b4
+          name: CLI_REGION
+          type: VARCHAR(3)
+          description: ''
+          is_unique: false
+        - id: 68ed15ed-f5d5-50b9-9950-b59402ea2114
+          name: VDR_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: f1f9b72c-72cb-5858-9270-42f213158b97
+          name: CLI_COND_PAIE
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+        - id: 372599b4-eb68-577f-a47e-56a04fba137a
+          name: CLI_REMISE_PCT
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: 72199f9f-bff1-5e03-8bab-64d0ab1f2148
+          name: CLI_PLAFOND
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: a7f89bc4-b67a-54e7-a9d9-9f6bacecaa76
+          name: CLI_DT_CREA
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 0ad42b98-c6d2-5a41-8133-806cab880563
+          name: CLI_ACTIF
+          type: BIT
+          description: ''
+          is_unique: false
+      - id: 03daab66-b039-5b96-baf9-88dc874ae2cb
+        name: VTE_CDE
+        description: 'Table source erp.VTE_CDE ; définition à réviser. '
+        pk:
+        - 9c67c31c-1483-5fad-9c2d-97468d70f644
+        type: table
+        columns:
+        - id: 9c67c31c-1483-5fad-9c2d-97468d70f644
+          name: CDE_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 08fa5652-776a-532d-9854-bb4bbc97fe48
+          name: CDE_NUM
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+        - id: 0248a7bf-b493-5741-9771-b7deb95f1afd
+          name: CDE_DT
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 84a0f1ac-4fe2-56e0-a206-049b04a95666
+          name: CLI_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 5c25c8ab-29b5-5d9b-9d97-ad2138a0528c
+          name: VDR_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 378cd1c3-89c9-554f-b4c1-ef09b06db784
+          name: CDE_REF_CLI
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: d7741606-f6c5-5113-b9d1-4ff5e62de5da
+          name: CDE_DT_LIV_PREV
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 94756ca0-7aa7-5503-b070-5047bc194e56
+          name: SIT_ID_EXP
+          type: INT
+          description: ''
+          is_unique: false
+        - id: cd6521cc-71c6-5566-a839-9d68e8d6a15a
+          name: CDE_STATUT
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+        - id: 082834d4-98d0-5ce9-b93f-08c78f9464c6
+          name: CDE_MT_HT
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+      - id: a2830aaf-06a9-5abd-9248-2df2226abccd
+        name: VTE_CDE_LIG
+        description: 'Table source erp.VTE_CDE_LIG ; définition à réviser. '
+        pk:
+        - bca846c9-d458-55ba-8f1b-d40500a1acf0
+        type: table
+        columns:
+        - id: bca846c9-d458-55ba-8f1b-d40500a1acf0
+          name: LIG_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: c1e0047b-36ab-5b75-8eea-5c5f94f23bdc
+          name: CDE_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 29a24276-f149-5408-bd9f-a82cf9860763
+          name: LIG_NO
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 315a0edd-14e1-5cf1-903b-5b02e76a3e57
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: aa803b01-4673-5d46-8cad-25122d1117d8
+          name: LIG_QTE
+          type: DECIMAL(10, 2)
+          description: ''
+          is_unique: false
+        - id: 2688acac-20e6-5315-b4d0-88f076a119af
+          name: LIG_PU
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: abbbf758-3a5b-5da4-a6ff-9c49acc89475
+          name: LIG_REMISE_PCT
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: b156d270-6937-5636-9e68-a36abd079e70
+          name: LIG_QTE_LIV
+          type: DECIMAL(10, 2)
+          description: ''
+          is_unique: false
+      - id: 7fc864c1-70be-53fe-9478-09a43a0f0718
+        name: VTE_FACT
+        description: Table source erp.VTE_FACT ; définition à réviser. Les factures
+          F contribuent positivement et les avoirs A négativement. Les montants des
+          avoirs sont stockés positifs. Agréger les en-têtes OU les lignes, jamais
+          leur montant d'en-tête après une jointure un-à-plusieurs.
+        pk:
+        - 108890cc-6f79-5235-9937-7e28c32e7c4d
+        type: table
+        columns:
+        - id: 108890cc-6f79-5235-9937-7e28c32e7c4d
+          name: FAC_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: b766d112-022c-5876-bd99-62b811c0a079
+          name: FAC_NUM
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+        - id: f0ea556a-7276-582c-9f6e-f18e9aa26ff5
+          name: FAC_TYPE
+          type: VARCHAR(1)
+          description: ''
+          is_unique: false
+        - id: 4242f883-2681-5d1b-be1b-55e51d83fae6
+          name: FAC_DT
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 13ff26e7-2c66-5c37-8c79-319809d674db
+          name: FAC_DT_ECH
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: d6e35db6-77c4-5350-bd34-ccc6881638eb
+          name: CLI_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 9d918be4-a848-5dcb-8f37-8c15374f08c6
+          name: CDE_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 77be6677-4a79-53a5-b7f4-bce50267d433
+          name: FAC_ID_ORIG
+          type: INT
+          description: ''
+          is_unique: false
+        - id: b44b5a2c-3906-5a5a-af3b-61b6e074f9be
+          name: FAC_MOTIF
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+        - id: 6de80f71-753f-5f2d-91c6-23acbcc1f364
+          name: FAC_TX_TVA
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: a6d66189-19e8-596a-a6bb-ae7e29fb11e4
+          name: FAC_MT_HT
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+        - id: 6fdacc38-1403-590e-b7d8-2457bf5a1cc6
+          name: FAC_MT_TVA
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+        - id: 50121de4-c068-5f88-9d76-2e523c939a7c
+          name: FAC_MT_TTC
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+        - id: c63a8c63-fa4a-5e99-9ed6-c48481b05777
+          name: FAC_STATUT
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+      - id: 822b88b5-f02a-5084-a373-1c24b4f4b5ff
+        name: VTE_FACT_LIG
+        description: Table source erp.VTE_FACT_LIG ; définition à réviser. Les factures
+          F contribuent positivement et les avoirs A négativement. Les montants des
+          avoirs sont stockés positifs. Agréger les en-têtes OU les lignes, jamais
+          leur montant d'en-tête après une jointure un-à-plusieurs.
+        pk:
+        - ab4b0d68-6365-5ead-90d9-a0d0422d5ae7
+        type: table
+        columns:
+        - id: ab4b0d68-6365-5ead-90d9-a0d0422d5ae7
+          name: FL_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 3d975097-b1ff-5737-bee4-28cc8959a2dc
+          name: FAC_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 1176c494-e6a3-5061-8f70-49d8599c5081
+          name: FL_NO
+          type: INT
+          description: ''
+          is_unique: false
+        - id: b3fde9fe-1480-59d4-84f4-08316aafb617
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 4d70306a-084d-5a6d-ac9f-a9eceac0b464
+          name: LIG_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 88772829-3d10-5bfe-ae20-c27746978c37
+          name: FL_QTE
+          type: DECIMAL(10, 2)
+          description: ''
+          is_unique: false
+        - id: 8f98b6f2-1f35-5e19-b4af-e1ef201bffe1
+          name: FL_PU
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: 070782b1-bace-545c-8936-5d1c76ecd05f
+          name: FL_REMISE_PCT
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: ccaa4b31-3dc6-5ced-858c-3dfba25a79ce
+          name: FL_MT_HT
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+      - id: a283db26-18e6-596b-b7f0-4b5292138e52
+        name: ACH_CDE
+        description: 'Table source erp.ACH_CDE ; définition à réviser. '
+        pk:
+        - 45ea08f4-04d5-50ca-9d2e-acda525e0c48
+        type: table
+        columns:
+        - id: 45ea08f4-04d5-50ca-9d2e-acda525e0c48
+          name: AC_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: fb08ebdd-1b94-599a-90fb-1e3638028e81
+          name: AC_NUM
+          type: VARCHAR(14)
+          description: ''
+          is_unique: false
+        - id: e2d2b96c-a734-5101-832b-d3a5f40259c3
+          name: FRN_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 4bd11352-861f-5bfe-aecb-d400d25818d5
+          name: SIT_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 4095239e-8079-5ea9-b8cc-b19b67e8a506
+          name: AC_DT
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: f4f83dc6-a5a8-5412-9f40-899e6e56c629
+          name: AC_DT_LIV_PREV
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: cbba6935-f73c-57fb-ac38-90a0c0ae921d
+          name: AC_STATUT
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: d26e11c8-012e-5f7e-8c7d-04ec1f06cb2e
+          name: AC_MT_HT
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+      - id: 320b9816-5661-5a3a-ba74-98e9ab7ac01b
+        name: ACH_CDE_LIG
+        description: 'Table source erp.ACH_CDE_LIG ; définition à réviser. '
+        pk:
+        - 78c8046d-a55f-5bc8-a5fb-cbd23c70e081
+        type: table
+        columns:
+        - id: 78c8046d-a55f-5bc8-a5fb-cbd23c70e081
+          name: ACL_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 507b3b60-2328-5bec-aa46-9ad3576927e9
+          name: AC_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 5bca0489-bb64-52de-b1ed-a749b5ab8b47
+          name: ACL_NO
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 413d39b3-326b-5e08-95e7-3b86aaf2a55b
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 989d2f7a-a155-5622-a718-ece939f80e9a
+          name: ACL_QTE
+          type: DECIMAL(12, 3)
+          description: ''
+          is_unique: false
+        - id: 03954000-fd6b-59b8-b45f-86273afe4cf5
+          name: ACL_PU
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: dc5595cb-8bdf-5e22-838d-66ddc38233e9
+          name: ACL_QTE_RECUE
+          type: DECIMAL(12, 3)
+          description: ''
+          is_unique: false
+      - id: 871355b0-6cf4-50f9-824c-10ecf999ab85
+        name: ACH_RECEP
+        description: 'Table source erp.ACH_RECEP ; définition à réviser. '
+        pk:
+        - 27e1f369-11e6-56f0-92c6-479f364ed9c8
+        type: table
+        columns:
+        - id: 27e1f369-11e6-56f0-92c6-479f364ed9c8
+          name: REC_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: f5945e4c-d3e2-5c78-a3fb-417747c4702e
+          name: REC_NUM
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 621b9ada-fa0f-59e9-9f50-dd7cf15e1cdc
+          name: AC_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 6565a5b6-0c0b-5c97-9f3c-8bd61761b03a
+          name: REC_DT
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: cc3e41b8-9e8c-52aa-bf79-549f3c66969b
+          name: SIT_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: bd14122e-05e8-5678-b343-9326ed8a2d36
+          name: REC_BL_FRN
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: a3524401-0c31-5704-8b3b-7dba1bc7219a
+          name: REC_COMMENT
+          type: VARCHAR(200)
+          description: ''
+          is_unique: false
+      - id: 0e57e42b-6e75-5d08-bb5f-fce988bebfd8
+        name: ACH_RECEP_LIG
+        description: 'Table source erp.ACH_RECEP_LIG ; définition à réviser. '
+        pk:
+        - 0920f427-7eec-5275-82f2-2830cf01fc8b
+        type: table
+        columns:
+        - id: 0920f427-7eec-5275-82f2-2830cf01fc8b
+          name: RL_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 16f57963-fea3-5b9c-b3c8-f4bfd44a764b
+          name: REC_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: c05c2fb1-e219-516e-8fe4-49e99dcfaaec
+          name: ACL_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 74b74b90-aaaa-5121-9c48-03cf07c1e87a
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: c4ff8d4b-b29b-5497-8461-7f6583d88f7b
+          name: RL_QTE_RECUE
+          type: DECIMAL(12, 3)
+          description: ''
+          is_unique: false
+        - id: 9cae9843-a30b-5255-a6b5-e813289516da
+          name: RL_QTE_REFUSEE
+          type: DECIMAL(12, 3)
+          description: ''
+          is_unique: false
+        - id: e6097362-79dc-5499-a201-3aff4107e35f
+          name: RL_LOT
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: 3b60362e-11ae-5ec8-93f9-07941c566910
+          name: RL_MOTIF_REFUS
+          type: VARCHAR(100)
+          description: ''
+          is_unique: false
+      - id: fadea78c-619d-581f-9dad-68fed6612adf
+        name: ACH_FACT
+        description: 'Table source erp.ACH_FACT ; définition à réviser. '
+        pk:
+        - f0598563-1d0b-5b6a-afea-b2fe87d9a012
+        type: table
+        columns:
+        - id: f0598563-1d0b-5b6a-afea-b2fe87d9a012
+          name: AF_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 9b64816f-46af-5626-8ac0-b99dddd5d199
+          name: AF_NUM_FRN
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: ad3d875c-8123-52d6-9773-d0549d951882
+          name: FRN_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 2f531211-4b47-5d9e-946e-5b49f7f310e6
+          name: AC_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 6ec006ca-4bd9-51f1-8756-09202fdedeb6
+          name: REC_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: ef4fcd4c-42d4-5532-a71c-19691d985045
+          name: AF_DT
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 1ee27f2b-093d-50ed-bacf-9b634549cfae
+          name: AF_DT_ECH
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: e7706f96-a4a7-5a4b-ac78-1836472d69f8
+          name: AF_MT_HT
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+        - id: 194d0945-25c2-5db6-9831-1ef5e2fc046e
+          name: AF_MT_TVA
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+        - id: 110daf74-8a5d-5ecd-8276-7bab7e5c83eb
+          name: AF_MT_TTC
+          type: DECIMAL(14, 2)
+          description: ''
+          is_unique: false
+        - id: 1fae1d2a-278f-5ced-b12f-3f4404a023a7
+          name: AF_STATUT
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 55de66da-690d-5453-b68e-eaff8c555645
+          name: AF_COMMENT
+          type: VARCHAR(200)
+          description: ''
+          is_unique: false
+      - id: 2d39b602-6591-526e-a1fc-54c1b0f44f9b
+        name: PRD_OF
+        description: 'Table source erp.PRD_OF ; définition à réviser. '
+        pk:
+        - 55b07c0f-c091-5ecf-8b31-13e2fc7a89f6
+        type: table
+        columns:
+        - id: 55b07c0f-c091-5ecf-8b31-13e2fc7a89f6
+          name: OF_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 8f5565c3-2a58-536a-b6b1-21a9cc48db24
+          name: OF_NUM
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: f959bb6b-cffc-5f67-9488-0924272bacd7
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: ad27f2f5-0cd9-5990-92ba-89888ecd0b5b
+          name: SIT_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 6c3ea2e8-7ef2-5325-b1f7-807c3b223379
+          name: OF_LIGNE
+          type: VARCHAR(3)
+          description: ''
+          is_unique: false
+        - id: 3d394f55-6c53-5197-8208-7d7bd5b34327
+          name: OF_DT_DEB
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 58eb8897-cef5-556b-aabf-3a9263405c79
+          name: OF_DT_FIN
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 303a0d16-78b4-5b9f-84b0-04814bdef0d5
+          name: OF_QTE_PREV
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 94069e88-7763-5284-80b1-a13aab815e44
+          name: OF_QTE_REAL
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 05c3fd26-b22d-5b8e-a29b-a8ba90c799e5
+          name: OF_QTE_REBUT
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 990fbdec-b9d6-5a3b-9ba4-bea78e038c53
+          name: OF_STATUT
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+      - id: 27516eac-e124-57e4-afc7-9f32bae584de
+        name: LOG_TRANSP
+        description: 'Table source erp.LOG_TRANSP ; définition à réviser. '
+        pk:
+        - 71ed8bea-7b63-5282-94a8-cf8436e93b49
+        type: table
+        columns:
+        - id: 71ed8bea-7b63-5282-94a8-cf8436e93b49
+          name: TRP_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: a1837433-d0c7-567f-a055-15d9599411a4
+          name: TRP_CODE
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+        - id: 9429d9ae-0ff6-54e5-8e42-1f820c805f08
+          name: TRP_NOM
+          type: VARCHAR(60)
+          description: ''
+          is_unique: false
+        - id: e2951fda-0a62-5d2b-9943-1cd3e64b638c
+          name: TRP_TVA
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: 98fb4689-e494-5a82-bdba-7719cbc91685
+          name: TRP_PAYS
+          type: VARCHAR(2)
+          description: ''
+          is_unique: false
+        - id: 54436480-2015-507a-a5af-d66b78ed16d7
+          name: TRP_TYPE
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 2eab115b-97ac-562d-aa1a-9a5d3c865ad6
+          name: TRP_ACTIF
+          type: BIT
+          description: ''
+          is_unique: false
+      - id: 80c8329e-8825-5a10-a9f8-a590c5261e52
+        name: LOG_EXPED
+        description: 'Table source erp.LOG_EXPED ; définition à réviser. '
+        pk:
+        - 59fd8059-4952-5762-a241-e19f727496f5
+        type: table
+        columns:
+        - id: 59fd8059-4952-5762-a241-e19f727496f5
+          name: EXP_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: e16dfa17-d627-57eb-a9e3-ec46b79b7414
+          name: EXP_NUM
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+        - id: acbafcfc-4cb9-56df-be19-5807fa7be299
+          name: CDE_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 33a2905b-5ed5-5712-b56e-f808ac02aad9
+          name: FAC_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 3331cde9-623a-55f5-b594-f10b5c8857d2
+          name: SIT_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: bf51eb62-ffb6-591b-8a71-1aa36bc1e33b
+          name: TRP_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 045036be-1f8d-5975-9608-51f89e13793e
+          name: EXP_DT
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: d1ca5300-361f-5b39-ae0a-462540ca91b9
+          name: EXP_DT_LIV
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 513125c1-6643-5c89-ae3a-bcfa95907b48
+          name: EXP_NB_COLIS
+          type: INT
+          description: ''
+          is_unique: false
+        - id: e47b3d23-e110-5ee3-b674-2b5e95077d32
+          name: EXP_POIDS_KG
+          type: DECIMAL(10, 1)
+          description: ''
+          is_unique: false
+        - id: 9d362d7a-caec-5095-9df4-8ec1f281a1fc
+          name: EXP_STATUT
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 52427311-19c3-5580-9f16-74970aff40b4
+          name: EXP_INCIDENT
+          type: VARCHAR(200)
+          description: ''
+          is_unique: false
+      - id: 8a5e2f59-ea1a-5bd6-9bd9-96b5af1b4f73
+        name: STK_MVT
+        description: Table source erp.STK_MVT ; définition à réviser. STK_ETAT est
+          la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
+          ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
+          12. Le stock futur n'est pas disponible.
+        pk:
+        - 29127d91-1f17-5c96-8686-5114af7c787b
+        type: table
+        columns:
+        - id: 29127d91-1f17-5c96-8686-5114af7c787b
+          name: MVT_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 6e3a9f16-6739-5545-ab27-b90fb46b14a0
+          name: MVT_DT
+          type: TIMESTAMP(0)
+          description: ''
+          is_unique: false
+        - id: f58db522-0f55-5dc9-b859-059ad7ba3348
+          name: MVT_TYPE
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: 77be5033-5e82-5f01-ad97-5d5dc7d9a7f4
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 731e9e23-fc89-5b13-9e36-06aab8ea2550
+          name: SIT_ID
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 04bebd0f-c6f8-526b-acd0-30dc66ace31a
+          name: MVT_QTE
+          type: DECIMAL(12, 3)
+          description: ''
+          is_unique: false
+        - id: 542e133b-012a-583f-9f16-8e7fc1bd53af
+          name: MVT_REF
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: 370067ad-7254-59e7-baad-ad87729cb65b
+          name: MVT_LOT
+          type: VARCHAR(20)
+          description: ''
+          is_unique: false
+        - id: a54eda83-a268-57f9-abdd-0d8a3a780672
+          name: MVT_USER
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+      - id: 6f28c105-ab02-5997-a01b-ea690914bd98
+        name: STK_ETAT
+        description: Table source erp.STK_ETAT ; définition à réviser. STK_ETAT est
+          la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées
+          ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris
+          12. Le stock futur n'est pas disponible.
+        pk:
+        - a45466a3-3586-58c2-8370-06e6d4867853
+        - 7c431b79-5f82-514d-8d58-2483ba9f0cb5
+        type: table
+        columns:
+        - id: a45466a3-3586-58c2-8370-06e6d4867853
+          name: ART_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 7c431b79-5f82-514d-8d58-2483ba9f0cb5
+          name: SIT_ID
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 90ce2d45-fe45-5498-9e6f-0fd05dc85802
+          name: STK_QTE
+          type: DECIMAL(12, 3)
+          description: ''
+          is_unique: false
+        - id: bcdb1a2c-e865-55ce-961b-ca66da2cd143
+          name: STK_SEUIL_MIN
+          type: DECIMAL(12, 3)
+          description: ''
+          is_unique: false
+        - id: 3466a558-f54f-53f8-9733-af6aabea5661
+          name: STK_DT_DERN_MVT
+          type: TIMESTAMP(0)
+          description: ''
+          is_unique: false
+  - id: eb8da936-2cb5-5bc1-a336-681fcbbf2ab0
+    dialect: postgres
+    schemas:
+    - id: bfb046ea-8b5c-59ad-b1c1-dcb6fcaae1c9
+      name: public
+      database_name: compta
+      tables:
+      - id: 64ec6edc-9883-5224-8746-66bec2ffc225
+        name: exercice
+        description: 'Exercices comptables '
+        pk:
+        - fb0ebc7c-6a05-5fb8-a605-b62719dde9e7
+        type: table
+        columns:
+        - id: fb0ebc7c-6a05-5fb8-a605-b62719dde9e7
+          name: code_exercice
+          type: VARCHAR(4)
+          description: Code de l'exercice (année)
+          is_unique: true
+        - id: 0bde1931-f3cb-53ed-b1fb-692d4226a6f6
+          name: libelle
+          type: VARCHAR(40)
+          description: Libellé
+          is_unique: false
+        - id: 3311fe2b-d5ac-5406-9251-c21a6c99a96f
+          name: date_debut
+          type: DATE
+          description: Premier jour de l'exercice
+          is_unique: false
+        - id: 38a96fe3-6087-5631-a609-c0945da66977
+          name: date_fin
+          type: DATE
+          description: Dernier jour de l'exercice
+          is_unique: false
+        - id: 28405839-d987-54a9-ab81-dc2c301e3131
+          name: statut
+          type: VARCHAR(10)
+          description: OUVERT ou CLOTURE
+          is_unique: false
+        - id: 3dd2d98a-0153-5277-bdec-c0bc3ec554aa
+          name: date_cloture
+          type: DATE
+          description: Date de clôture définitive
+          is_unique: false
+      - id: 45300689-5b7e-591f-9a10-43c81716ac97
+        name: periode
+        description: 'Périodes mensuelles '
+        pk:
+        - a24e62f8-bfb2-526a-9ad4-1790fecffcfe
+        type: table
+        columns:
+        - id: a24e62f8-bfb2-526a-9ad4-1790fecffcfe
+          name: code_periode
+          type: VARCHAR(7)
+          description: Code AAAA-MM
+          is_unique: true
+        - id: 219d3e7f-947b-5ff1-8b28-155c284ad71a
+          name: code_exercice
+          type: VARCHAR(4)
+          description: Exercice
+          is_unique: false
+        - id: 17bae3e7-a141-50b5-83db-3c481ee28a67
+          name: date_debut
+          type: DATE
+          description: Premier jour
+          is_unique: false
+        - id: 0ab8a8ed-8f4e-577a-b558-df91d6dd593d
+          name: date_fin
+          type: DATE
+          description: Dernier jour
+          is_unique: false
+        - id: b35ebeee-7957-57e4-a5a8-06a47d801f92
+          name: statut
+          type: VARCHAR(10)
+          description: OUVERTE ou CLOTUREE (plus aucune écriture possible)
+          is_unique: false
+      - id: 70034ec9-fb0b-5549-af17-6aeab9070cd0
+        name: plan_comptable
+        description: Plan comptable (PCMN belge, comptes à 6 chiffres) Somme credit-debit
+          des classes 6 et 7, hors comptes d'affectation 69 et 79. Inclure le bénéfice
+          à reporter 693000 annulerait artificiellement le résultat déjà affecté.
+        pk:
+        - 96586592-ec27-5bd7-a4d0-344b93f49304
+        type: table
+        columns:
+        - id: 96586592-ec27-5bd7-a4d0-344b93f49304
+          name: numero_compte
+          type: VARCHAR(6)
+          description: Numéro de compte
+          is_unique: true
+        - id: ad2625dc-3980-5114-ba66-a7888dce51bc
+          name: libelle
+          type: VARCHAR(100)
+          description: Libellé du compte
+          is_unique: false
+        - id: eb615202-1d4f-5acb-9cfc-b5c5e5c47ca8
+          name: classe
+          type: INT
+          description: Classe du PCMN (1 à 7)
+          is_unique: false
+        - id: 9788ac83-6257-53d6-9dd8-0d19b5eca0e5
+          name: type_compte
+          type: VARCHAR(8)
+          description: BILAN, CHARGE ou PRODUIT
+          is_unique: false
+        - id: eb07d959-6169-5b6a-abb8-5a4a4d6010b5
+          name: lettrable
+          type: BOOLEAN
+          description: Vrai si les lignes de ce compte sont lettrées (tiers)
+          is_unique: false
+        - id: df091308-8747-5f6a-97fa-1591ed3a53e9
+          name: analytique_obligatoire
+          type: BOOLEAN
+          description: Vrai si un centre analytique est obligatoire
+          is_unique: false
+        - id: 1b9e8cd7-f6b4-58d2-83fe-17377f7e2fa3
+          name: actif
+          type: BOOLEAN
+          description: Vrai si le compte est utilisable
+          is_unique: false
+      - id: cd431dfd-dc23-5535-896c-ec6f4f42a9bd
+        name: journal
+        description: 'Journaux comptables '
+        pk:
+        - 564767e6-c38e-5f2e-997a-1055e4512af4
+        type: table
+        columns:
+        - id: 564767e6-c38e-5f2e-997a-1055e4512af4
+          name: code_journal
+          type: VARCHAR(4)
+          description: Code du journal
+          is_unique: true
+        - id: 0057ab91-9429-5105-a040-9f3bc40c024a
+          name: libelle
+          type: VARCHAR(80)
+          description: Libellé
+          is_unique: false
+        - id: 70140f2a-a733-5d55-b82f-0f374e26250c
+          name: type_journal
+          type: VARCHAR(10)
+          description: VENTES, ACHATS, FINANCIER, DIVERS, PAIE ou OUVERTURE
+          is_unique: false
+      - id: 378e1cca-ebea-59df-b27b-92cb7d17ac10
+        name: tiers
+        description: 'Clients et fournisseurs '
+        pk:
+        - 4f6dd284-c549-5f07-9c10-c95affa54643
+        type: table
+        columns:
+        - id: 4f6dd284-c549-5f07-9c10-c95affa54643
+          name: id_tiers
+          type: INT
+          description: Identifiant
+          is_unique: true
+        - id: 508539f3-0289-58b4-ae81-9cef12250cb5
+          name: code_tiers
+          type: VARCHAR(8)
+          description: Code du tiers (C... client, F... fournisseur)
+          is_unique: false
+        - id: 4711c6d7-b8b7-5e57-9469-9534ff1d7b7e
+          name: type_tiers
+          type: VARCHAR(12)
+          description: CLIENT ou FOURNISSEUR
+          is_unique: false
+        - id: cd3079ee-b1a1-551b-9f55-2375d5a03d51
+          name: nom
+          type: VARCHAR(80)
+          description: Nom
+          is_unique: false
+        - id: f7df60c0-2227-5759-90a3-179daaf04393
+          name: numero_tva
+          type: VARCHAR(20)
+          description: Numéro de TVA au format 'BE 0123.456.789'
+          is_unique: false
+        - id: 6fd3d7b2-d8b9-5996-b397-0018ec10df54
+          name: pays
+          type: VARCHAR(2)
+          description: Pays (ISO)
+          is_unique: false
+        - id: 2e99c337-ea0b-599c-ad6f-dd60df0e4988
+          name: compte_collectif
+          type: VARCHAR(6)
+          description: Compte collectif (400000 clients, 440000 fournisseurs)
+          is_unique: false
+        - id: 8b4ecf18-f02d-58a3-b465-bbb092b2b8fe
+          name: conditions_paiement
+          type: VARCHAR(6)
+          description: Conditions de paiement
+          is_unique: false
+        - id: d90b2a3b-20a6-58e3-8187-24ba02291a0e
+          name: date_creation
+          type: DATE
+          description: Date de création dans le logiciel comptable
+          is_unique: false
+        - id: 7a8a563f-f40b-5561-9a50-1fa4145c5bc4
+          name: actif
+          type: BOOLEAN
+          description: Vrai si actif
+          is_unique: false
+      - id: a1711086-9657-5bd5-beda-adccdcd0d65e
+        name: centre_analytique
+        description: 'Centres analytiques (centres de coût et de profit) '
+        pk:
+        - 0c284de8-0316-5528-adf3-eb8df3f379f6
+        type: table
+        columns:
+        - id: 0c284de8-0316-5528-adf3-eb8df3f379f6
+          name: code_centre
+          type: VARCHAR(12)
+          description: Code du centre
+          is_unique: true
+        - id: c93d44c3-b69d-5d11-9be5-a925a7870e05
+          name: libelle
+          type: VARCHAR(80)
+          description: Libellé
+          is_unique: false
+        - id: 50b6879a-54f4-5e17-ad77-daa3de7b3013
+          name: site
+          type: VARCHAR(3)
+          description: Site (NAM, SEN, GND, HRS, LIL ou vide)
+          is_unique: false
+        - id: 72c9c566-c7ca-5a1c-979a-e256b9f730a4
+          name: actif
+          type: BOOLEAN
+          description: Vrai si actif
+          is_unique: false
+      - id: d87a7fa5-b407-5ac3-89fb-c06f350c9fb3
+        name: taux_tva
+        description: 'Codes TVA '
+        pk:
+        - e4853f31-cc77-53c6-a481-a25efdb9f876
+        type: table
+        columns:
+        - id: e4853f31-cc77-53c6-a481-a25efdb9f876
+          name: code_tva
+          type: VARCHAR(5)
+          description: Code
+          is_unique: true
+        - id: ebfc2d30-d925-583a-9fb8-62bee69cd589
+          name: libelle
+          type: VARCHAR(80)
+          description: Libellé
+          is_unique: false
+        - id: 76246046-41ec-552b-aeb7-e25ed92aeb87
+          name: taux
+          type: DECIMAL(5, 2)
+          description: Taux en %
+          is_unique: false
+        - id: d60cf8f5-c9b1-5099-9f80-610882318aae
+          name: numero_compte
+          type: VARCHAR(6)
+          description: Compte de TVA
+          is_unique: false
+      - id: 013c640c-0c3f-5c47-bcec-666009099fae
+        name: compte_bancaire
+        description: 'Comptes bancaires '
+        pk:
+        - 3d01f070-34b6-5002-9722-e62616a5b884
+        type: table
+        columns:
+        - id: 3d01f070-34b6-5002-9722-e62616a5b884
+          name: code_banque
+          type: VARCHAR(4)
+          description: Code (journal financier)
+          is_unique: true
+        - id: 51b000e4-084e-5204-a987-2366568513d0
+          name: libelle
+          type: VARCHAR(60)
+          description: Libellé
+          is_unique: false
+        - id: fa3ef4f3-c8b7-5cb9-b00f-0842343d69d4
+          name: numero_compte
+          type: VARCHAR(6)
+          description: Compte comptable
+          is_unique: false
+        - id: 3ea40d80-2572-527c-82a3-817f3d5c24c7
+          name: devise
+          type: VARCHAR(3)
+          description: Devise
+          is_unique: false
+      - id: 2b2e1423-4e96-5ec2-bbbf-3bfd77237168
+        name: ecriture
+        description: Écritures comptables (en-têtes de pièces) Somme credit-debit
+          des comptes 70, à la période comptable. Les autres produits 74 ne sont pas
+          du chiffre d'affaires. Le facturé ERP et le comptabilisé peuvent différer.
+          Somme credit-debit des classes 6 et 7, hors comptes d'affectation 69 et
+          79. Inclure le bénéfice à reporter 693000 annulerait artificiellement le
+          résultat déjà affecté. Convention vérifiée pour ce laboratoire ; somme credit-debit
+          des produits 7 hors affectation 79 et des charges 60, 61, 62. Les dotations/reprises
+          63 et charges financières 65 sont exclues. Les autres produits 74 sont inclus
+          dans EBITDA. Marge = EBITDA / chiffre d'affaires 70, pas / tous les produits
+          7. Utiliser period_month pour la période de paie et payment_date pour la
+          date de paiement. Les charges comptables peuvent comporter des écritures
+          manuelles hors paie. Aucune rémunération, commission ou fiche de paie individuelle
+          n'est diffusée dans ce démonstrateur sans identité RH vérifiée ; seules
+          les statistiques agrégées sont permises.
+        pk:
+        - 57e13351-2aaa-5207-9a08-968f0c10cae8
+        type: table
+        columns:
+        - id: 57e13351-2aaa-5207-9a08-968f0c10cae8
+          name: id_ecriture
+          type: INT
+          description: Identifiant
+          is_unique: true
+        - id: fd2000da-1f86-5930-a1ea-e9f28964f2b0
+          name: code_journal
+          type: VARCHAR(4)
+          description: Journal
+          is_unique: false
+        - id: 521ab10e-1877-5c43-bf85-ebd8253da712
+          name: numero_piece
+          type: VARCHAR(16)
+          description: Numéro de pièce (journal-année-numéro)
+          is_unique: false
+        - id: f24e0849-4186-5104-83dd-c99c1936e683
+          name: date_ecriture
+          type: DATE
+          description: Date comptable
+          is_unique: false
+        - id: 65e0430a-f190-5a3c-9ad2-bbf7d5bc4755
+          name: code_periode
+          type: VARCHAR(7)
+          description: Période
+          is_unique: false
+        - id: 996a2cc8-977c-567b-92c0-9b65ed4fb0fb
+          name: libelle
+          type: VARCHAR(200)
+          description: Libellé
+          is_unique: false
+        - id: 805ed650-0dca-5ac7-bf4e-45edf9069285
+          name: reference_externe
+          type: VARCHAR(40)
+          description: Référence du document d'origine (numéro de facture ERP, numéro
+            de facture fournisseur, calcul de paie...)
+          is_unique: false
+        - id: bf30b75e-18a7-5272-9bc7-91b1d041fff2
+          name: id_tiers
+          type: INT
+          description: Tiers principal
+          is_unique: false
+        - id: adf6f3d7-56b8-580d-89aa-d07f741de1d1
+          name: date_echeance
+          type: DATE
+          description: Date d'échéance (factures)
+          is_unique: false
+        - id: cc0af0f3-7b6c-57e3-82f3-34e513db203c
+          name: statut
+          type: VARCHAR(10)
+          description: VALIDEE ou BROUILLARD (provisoire)
+          is_unique: false
+        - id: e05b595b-681d-5a88-9e93-4b763ccaa1fa
+          name: date_saisie
+          type: TIMESTAMP
+          description: Date et heure de saisie ou d'import
+          is_unique: false
+        - id: bd6375e1-bc61-5de2-9ac2-cb921dfadbdc
+          name: utilisateur
+          type: VARCHAR(12)
+          description: Utilisateur ou traitement d'import
+          is_unique: false
+      - id: 53b9f518-8f1f-517c-aad0-4e315c8d33a2
+        name: ligne_ecriture
+        description: Lignes d'écritures (débit et crédit positifs) Somme credit-debit
+          des comptes 70, à la période comptable. Les autres produits 74 ne sont pas
+          du chiffre d'affaires. Le facturé ERP et le comptabilisé peuvent différer.
+          Somme credit-debit des classes 6 et 7, hors comptes d'affectation 69 et
+          79. Inclure le bénéfice à reporter 693000 annulerait artificiellement le
+          résultat déjà affecté. Convention vérifiée pour ce laboratoire ; somme credit-debit
+          des produits 7 hors affectation 79 et des charges 60, 61, 62. Les dotations/reprises
+          63 et charges financières 65 sont exclues. Les autres produits 74 sont inclus
+          dans EBITDA. Marge = EBITDA / chiffre d'affaires 70, pas / tous les produits
+          7. Utiliser period_month pour la période de paie et payment_date pour la
+          date de paiement. Les charges comptables peuvent comporter des écritures
+          manuelles hors paie. Aucune rémunération, commission ou fiche de paie individuelle
+          n'est diffusée dans ce démonstrateur sans identité RH vérifiée ; seules
+          les statistiques agrégées sont permises.
+        pk:
+        - 2dd13158-aa23-53db-9033-bfa74cfaed59
+        type: table
+        columns:
+        - id: 2dd13158-aa23-53db-9033-bfa74cfaed59
+          name: id_ligne
+          type: INT
+          description: Identifiant
+          is_unique: true
+        - id: 536b85ac-625e-5379-a29e-2daa308f00c1
+          name: id_ecriture
+          type: INT
+          description: Écriture
+          is_unique: false
+        - id: 59faeb7a-abde-5d3d-95f0-b741ed8b9e05
+          name: numero_ligne
+          type: INT
+          description: Numéro de ligne dans l'écriture
+          is_unique: false
+        - id: e0573744-ed8a-5340-be80-247ab0adc442
+          name: numero_compte
+          type: VARCHAR(6)
+          description: Compte
+          is_unique: false
+        - id: 86454361-ee51-5c37-adad-ee2958fadb86
+          name: id_tiers
+          type: INT
+          description: Tiers (comptes 400000 et 440000)
+          is_unique: false
+        - id: 34c8a44a-6477-5882-81c0-c4f09f757c5a
+          name: libelle
+          type: VARCHAR(200)
+          description: Libellé de la ligne
+          is_unique: false
+        - id: 76c0400f-b4b2-5d76-a8c9-07069a097dfd
+          name: debit
+          type: DECIMAL(14, 2)
+          description: Montant au débit
+          is_unique: false
+        - id: 7d24e50a-b1df-583e-b954-b0e485133248
+          name: credit
+          type: DECIMAL(14, 2)
+          description: Montant au crédit
+          is_unique: false
+        - id: cd2b7865-6229-5d15-9ad4-99ee045345f3
+          name: code_centre
+          type: VARCHAR(12)
+          description: Centre analytique
+          is_unique: false
+        - id: f03c5f7d-cd15-5755-8ac8-200f529b6bae
+          name: code_tva
+          type: VARCHAR(5)
+          description: Code TVA de la base HT
+          is_unique: false
+        - id: 4ca6b5c6-ae98-53c3-802f-4246dc093b93
+          name: code_lettrage
+          type: VARCHAR(8)
+          description: Code de lettrage (facture et paiement qui se soldent)
+          is_unique: false
+        - id: fa459c53-40c4-526f-87b5-8cf0b7a05877
+          name: date_lettrage
+          type: DATE
+          description: Date du lettrage
+          is_unique: false
+      - id: f45daf31-9f6c-5b61-a915-ead5d555ff28
+        name: budget
+        description: 'Budget 2026 par compte et par mois (trois versions : V1, V2,
+          FINAL) '
+        pk:
+        - 0226f5c6-e06d-5d4b-a491-f6ef5f9b9d72
+        type: table
+        columns:
+        - id: 0226f5c6-e06d-5d4b-a491-f6ef5f9b9d72
+          name: id_budget
+          type: INT
+          description: Identifiant
+          is_unique: true
+        - id: d0b18770-bda1-59ef-b261-06c4e5c88a63
+          name: code_exercice
+          type: VARCHAR(4)
+          description: Exercice
+          is_unique: false
+        - id: 750ee942-55d7-5a9b-a477-e6c504206786
+          name: version
+          type: VARCHAR(6)
+          description: 'Version du budget (V1, V2, FINAL : seule FINAL est approuvée)'
+          is_unique: false
+        - id: 9c275b28-e86f-5914-adb3-7f13493f085f
+          name: numero_compte
+          type: VARCHAR(6)
+          description: Compte
+          is_unique: false
+        - id: f01522df-357b-544e-ac4c-6292d84e36a1
+          name: code_centre
+          type: VARCHAR(12)
+          description: Centre analytique (non utilisé, budget global)
+          is_unique: false
+        - id: e7a474bf-2a62-539c-a830-a4807af250a1
+          name: mois
+          type: INT
+          description: Mois (1 à 12)
+          is_unique: false
+        - id: 771beb6f-56bf-5750-97e9-60a2c53ac1da
+          name: montant
+          type: DECIMAL(14, 2)
+          description: Montant budgété, positif pour les charges comme pour les produits
+          is_unique: false
+      - id: ff1f7f3d-dedc-5d76-b434-686925906506
+        name: immobilisation
+        description: 'Registre des immobilisations '
+        pk:
+        - 56f92a6f-ebc2-5692-843e-793cad313512
+        type: table
+        columns:
+        - id: 56f92a6f-ebc2-5692-843e-793cad313512
+          name: id_immo
+          type: INT
+          description: Identifiant
+          is_unique: true
+        - id: 16079393-1446-5686-a706-2403df20f0e4
+          name: code_immo
+          type: VARCHAR(10)
+          description: Code
+          is_unique: false
+        - id: 8eb6a07c-2e7f-56b0-9d5d-94efd747cf6f
+          name: libelle
+          type: VARCHAR(100)
+          description: Libellé
+          is_unique: false
+        - id: 597826b3-6d60-514f-a9d6-705c161b13e1
+          name: numero_compte
+          type: VARCHAR(6)
+          description: Compte d'immobilisation
+          is_unique: false
+        - id: 98d4f011-f819-5549-aaf7-27e17d37d8ef
+          name: code_centre
+          type: VARCHAR(12)
+          description: Centre analytique
+          is_unique: false
+        - id: 4aaf5f8c-803b-5e1a-9139-41910b1a6a51
+          name: date_mise_service
+          type: DATE
+          description: Date de mise en service (vide si en cours)
+          is_unique: false
+        - id: 9c00c192-6180-550d-a436-bec864c6bad3
+          name: valeur_acquisition
+          type: DECIMAL(14, 2)
+          description: 'Valeur d''acquisition (pour les en-cours : montant engagé)'
+          is_unique: false
+        - id: 33287eb0-7ece-56ec-97c7-c0222e0679ae
+          name: duree_annees
+          type: INT
+          description: Durée d'amortissement en années
+          is_unique: false
+        - id: 97c40869-5dc6-5670-95b6-1dbcabfddb36
+          name: methode
+          type: VARCHAR(10)
+          description: Méthode d'amortissement
+          is_unique: false
+        - id: 4c5a75d9-fd95-5795-b512-8f3423cf167b
+          name: id_tiers_fournisseur
+          type: INT
+          description: Fournisseur
+          is_unique: false
+        - id: b7a3c9e8-0338-5ee3-a22d-e784914d5c0d
+          name: statut
+          type: VARCHAR(10)
+          description: EN_SERVICE, EN_COURS ou AMORTI
+          is_unique: false
+      - id: 999b57e4-1ea6-5243-8ce7-4e072b28652a
+        name: amortissement
+        description: 'Dotations mensuelles aux amortissements par immobilisation '
+        pk:
+        - bb7ea8c2-89fe-56be-8586-6bd63158af21
+        type: table
+        columns:
+        - id: bb7ea8c2-89fe-56be-8586-6bd63158af21
+          name: id_amortissement
+          type: INT
+          description: Identifiant
+          is_unique: true
+        - id: 3ab06c45-bf6a-587b-88ed-6ab446569362
+          name: id_immo
+          type: INT
+          description: Immobilisation
+          is_unique: false
+        - id: 9ceb07c1-ff30-5372-9a3c-fecb225d2209
+          name: code_periode
+          type: VARCHAR(7)
+          description: Période
+          is_unique: false
+        - id: 3023a736-4d2c-5c5d-bfb4-cbbbb0eb73f4
+          name: montant
+          type: DECIMAL(14, 2)
+          description: Dotation du mois
+          is_unique: false
+        - id: e9eb2e3e-1bb6-58b4-aa2a-4c76b23c6de9
+          name: id_ecriture
+          type: INT
+          description: Écriture d'amortissement
+          is_unique: false
+      - id: 73dbe54a-4a6b-5cdd-acbd-60d0239415bc
+        name: mouvement_bancaire
+        description: 'Mouvements des extraits bancaires (CODA) et rapprochement '
+        pk:
+        - 8961e57c-466e-5d94-b518-9f6be5b2d031
+        type: table
+        columns:
+        - id: 8961e57c-466e-5d94-b518-9f6be5b2d031
+          name: id_mouvement
+          type: INT
+          description: Identifiant
+          is_unique: true
+        - id: 59d4e1e6-1484-5722-8442-56530a96a376
+          name: code_banque
+          type: VARCHAR(4)
+          description: Compte bancaire
+          is_unique: false
+        - id: 78361111-127d-522d-86e4-329efc208d1e
+          name: date_operation
+          type: DATE
+          description: Date de l'opération
+          is_unique: false
+        - id: 3509a70a-b905-51c6-a685-36764b6bfc88
+          name: date_valeur
+          type: DATE
+          description: Date valeur
+          is_unique: false
+        - id: e284c6c8-10ca-52c4-9a1c-ab5a1d97e3e3
+          name: montant
+          type: DECIMAL(14, 2)
+          description: Montant signé (positif = entrée d'argent)
+          is_unique: false
+        - id: ff6005ec-719a-5013-9f0d-7b521ada4654
+          name: type_operation
+          type: VARCHAR(30)
+          description: Type d'opération bancaire
+          is_unique: false
+        - id: f0d25e8c-abb7-5e26-a576-86a033c5f302
+          name: contrepartie_nom
+          type: VARCHAR(80)
+          description: Nom de la contrepartie
+          is_unique: false
+        - id: 8ea2a1f0-037d-54d4-ab70-5024fc92c6d6
+          name: communication
+          type: VARCHAR(200)
+          description: Communication (libre ou structurée)
+          is_unique: false
+        - id: 8f2a8d50-e450-5b41-a278-e5d85e0be61c
+          name: id_ecriture
+          type: INT
+          description: Écriture comptable liée (vide si pas encore comptabilisé)
+          is_unique: false
+        - id: 053971ba-df1f-5ac3-bc24-bc734c2f4ab3
+          name: statut_rapprochement
+          type: VARCHAR(14)
+          description: RAPPROCHE ou NON_RAPPROCHE
+          is_unique: false
+  - id: 3fbb783c-076c-532e-ba17-3ed371e539b4
+    dialect: postgres
+    schemas:
+    - id: f0b9ad15-7cd7-5901-a5e2-2f2ea9a69b2d
+      name: public
+      database_name: paie
+      tables:
+      - id: 76c0b2d6-9668-53d5-9a39-ce4705b2501e
+        name: work_sites
+        description: Lieux de travail COUNT DISTINCT employee_id pour start_date <=
+          date et end_date NULL ou >= date. Une personne peut avoir plusieurs avenants.
+          Ce nombre de personnes n'est pas une somme d'ETP ; celle-ci utilise work_regime.
+        pk:
+        - 0a2a5529-ad42-5c19-b19e-e26325718de9
+        type: table
+        columns:
+        - id: 0a2a5529-ad42-5c19-b19e-e26325718de9
+          name: site_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: true
+        - id: fac8af46-6488-5c4b-9ac5-53a0f2e9a34e
+          name: name
+          type: VARCHAR(60)
+          description: ''
+          is_unique: false
+        - id: a1fcc2fe-38cb-5828-8f36-9f3bb86e865b
+          name: street
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: 79a595ae-0efe-5000-86cb-36a33f5a729a
+          name: postal_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 450560a8-d8ba-570c-830e-5476373a40bd
+          name: city
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: d27cb8b6-6e83-5e20-a8da-7e0f5ee1592e
+          name: opened_on
+          type: DATE
+          description: ''
+          is_unique: false
+      - id: 083fe67b-8ed6-50e3-9bcd-0df7067b6eac
+        name: cost_centers
+        description: 'Centres de coût de la paie et correspondance avec la comptabilité '
+        pk:
+        - 975a7e69-228f-5922-b500-a16f34235d2a
+        type: table
+        columns:
+        - id: 975a7e69-228f-5922-b500-a16f34235d2a
+          name: cost_center_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: true
+        - id: 8cb47cc9-bda0-5d86-a5c3-6748a2fc03e0
+          name: name
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: e349f113-6258-5c77-bb7f-fae59ec33564
+          name: site_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 9f306379-aa0c-5edb-8f54-8762f063054f
+          name: gl_cost_center
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+      - id: e1cce8cd-cfb6-50ce-9daf-09f4ab95020c
+        name: departments
+        description: Départements COUNT DISTINCT employee_id pour start_date <= date
+          et end_date NULL ou >= date. Une personne peut avoir plusieurs avenants.
+          Ce nombre de personnes n'est pas une somme d'ETP ; celle-ci utilise work_regime.
+        pk:
+        - 8f3f7ec9-257b-5afb-adac-f46a9c69165d
+        type: table
+        columns:
+        - id: 8f3f7ec9-257b-5afb-adac-f46a9c69165d
+          name: department_code
+          type: VARCHAR(12)
+          description: ''
+          is_unique: true
+        - id: 7b8668ce-ce87-5b06-89e1-514920060eef
+          name: name
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: eadf8037-2fc9-5f5f-ae78-47c98aa5148d
+          name: site_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: bfcf8437-c744-5b43-8c7d-6cffcd79ff06
+          name: cost_center_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: fd1ee982-4b21-5e20-9f16-70cfde824a3f
+          name: head_employee_id
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+      - id: e86f645d-3716-5a41-bd9d-b89041efd886
+        name: job_positions
+        description: 'Fonctions '
+        pk:
+        - 7b786b8b-f05a-54a7-97c2-9a5c7af42932
+        type: table
+        columns:
+        - id: 7b786b8b-f05a-54a7-97c2-9a5c7af42932
+          name: position_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: true
+        - id: caa1d3ab-8e00-5920-a327-c2c359c70dc4
+          name: title
+          type: VARCHAR(60)
+          description: ''
+          is_unique: false
+        - id: ef15e0e2-363d-57ee-a09e-de1db92cff04
+          name: category
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: a31e1887-3df7-5d1e-b8b6-cb62e8782e02
+          name: joint_committee
+          type: VARCHAR(5)
+          description: ''
+          is_unique: false
+        - id: c36b7d87-7046-50b0-9971-ebf99c573150
+          name: salary_class
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+      - id: 608c048c-a26f-5699-a84c-a2c713863876
+        name: salary_scales
+        description: 'Barèmes mensuels minimum et maximum par classe '
+        pk:
+        - 68da977c-462e-5950-9c7a-66a716df40c8
+        - ede48112-29ac-5594-ac6c-a416c7259edd
+        type: table
+        columns:
+        - id: 68da977c-462e-5950-9c7a-66a716df40c8
+          name: salary_class
+          type: VARCHAR(4)
+          description: ''
+          is_unique: true
+        - id: ede48112-29ac-5594-ac6c-a416c7259edd
+          name: valid_from
+          type: DATE
+          description: ''
+          is_unique: true
+        - id: 2bdf525e-f3fe-5695-ae3d-79b6f0a652ab
+          name: min_monthly
+          type: DECIMAL(10, 2)
+          description: ''
+          is_unique: false
+        - id: 3e09b798-c0e2-501f-9dcc-7aa36269bcd6
+          name: max_monthly
+          type: DECIMAL(10, 2)
+          description: ''
+          is_unique: false
+      - id: 4fd2f43d-b1eb-55ff-925f-97b675e18e56
+        name: employees
+        description: 'Travailleurs (données personnelles : numéro national, IBAN,
+          adresse) '
+        pk:
+        - 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+        type: table
+        columns:
+        - id: 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+          name: employee_id
+          type: VARCHAR(8)
+          description: ''
+          is_unique: true
+        - id: 2182b800-fb91-5494-bf5c-987121541300
+          name: last_name
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: 49a2dc9f-de1f-57e8-8115-9d3225ce39c7
+          name: first_name
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: 8ff42504-c0a8-5486-8e15-a6372a16f746
+          name: gender
+          type: VARCHAR(1)
+          description: ''
+          is_unique: false
+        - id: 70833408-f83a-5408-86fc-6529d13977aa
+          name: postal_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 509fd297-f7dd-5937-87e2-8c415286a62d
+          name: city
+          type: VARCHAR(40)
+          description: ''
+          is_unique: false
+        - id: efad59d2-382c-5dc3-9d7c-f266b2a90aa7
+          name: hire_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 2e2eaa4e-da85-5e5a-adb5-ad89439a9349
+          name: exit_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 175bff6b-6170-5309-b1ab-e0bfd4db27ab
+          name: exit_reason
+          type: VARCHAR(30)
+          description: ''
+          is_unique: false
+        - id: a13e61f1-4a72-5c52-bef9-3c7f06d0a72a
+          name: manager_id
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+      - id: 30ef4bd6-6a17-5070-9228-711087390bf6
+        name: contracts
+        description: Contrats et avenants (une ligne par période) COUNT DISTINCT employee_id
+          pour start_date <= date et end_date NULL ou >= date. Une personne peut avoir
+          plusieurs avenants. Ce nombre de personnes n'est pas une somme d'ETP ; celle-ci
+          utilise work_regime.
+        pk:
+        - f11c45ee-9841-596e-a40f-c26ff40698af
+        type: table
+        columns:
+        - id: f11c45ee-9841-596e-a40f-c26ff40698af
+          name: contract_id
+          type: INT
+          description: ''
+          is_unique: true
+        - id: b30b20bc-d216-568b-8d92-3a82f962a69c
+          name: employee_id
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+        - id: 948025d8-0e1b-595a-aa32-373e918af0af
+          name: contract_type
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: 47cbb0fb-f847-575e-b4bf-87354a2b797f
+          name: start_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: de6ed2b5-6945-5609-909a-0046f8e81f19
+          name: end_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 6b883cf2-f040-5cc7-b773-898cf014f060
+          name: planned_end_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 38067b1a-b4de-539d-9422-4adda139d6fa
+          name: department_code
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+        - id: 2819d226-a2ef-5e3c-82a4-b910371c641a
+          name: position_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 2c6c5d87-8a19-5cd2-8544-55370839967c
+          name: work_regime
+          type: DECIMAL(4, 2)
+          description: ''
+          is_unique: false
+        - id: b4048d9f-7757-5857-b64f-81a4dd80f233
+          name: weekly_hours
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: 91ff4032-9dec-58ec-b33f-4e96bd42e05b
+          name: shift_pattern
+          type: VARCHAR(5)
+          description: ''
+          is_unique: false
+        - id: 61a9c748-0bdb-5b0f-82bf-6434d3afa39b
+          name: telework_allowed
+          type: BOOLEAN
+          description: ''
+          is_unique: false
+      - id: 3ef1af09-2d0b-5836-b1dc-7e8989ba3314
+        name: salary_history
+        description: 'Historique des salaires (mensuel pour les employés, horaire
+          pour les ouvriers) '
+        pk:
+        - ec0f5525-554e-517a-b81b-56b143bb02f7
+        type: table
+        columns:
+        - id: ec0f5525-554e-517a-b81b-56b143bb02f7
+          name: salary_id
+          type: INT
+          description: ''
+          is_unique: true
+        - id: 111bdaa6-c099-5ffa-b0b4-d7f99d4723fb
+          name: employee_id
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+        - id: 8772630c-e55c-5416-a0f5-02b8b2f78f2d
+          name: valid_from
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 904918b3-8084-5f00-969d-c212a2e43726
+          name: monthly_gross
+          type: DECIMAL(10, 2)
+          description: ''
+          is_unique: false
+        - id: a9673d82-7ecf-5de7-befe-95d0442cf06b
+          name: hourly_rate
+          type: DECIMAL(10, 4)
+          description: ''
+          is_unique: false
+        - id: 78bca804-848b-5c08-a50b-b64a6f409adc
+          name: reason
+          type: VARCHAR(15)
+          description: ''
+          is_unique: false
+      - id: b316a66b-1441-54bb-aac4-751c02eeaa15
+        name: absence_types
+        description: Codes d'absence Une ligne de timesheets décrit un jour ouvré
+          pour une personne. work_location TELE signifie télétravail. ACC désigne
+          accident du travail. Ne pas confondre jours calendaires, jours ouvrés et
+          heures d'absence.
+        pk:
+        - 69fd350c-0474-5703-8220-cf14ad84a721
+        type: table
+        columns:
+        - id: 69fd350c-0474-5703-8220-cf14ad84a721
+          name: absence_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: true
+        - id: a66a3e7d-0eef-5656-b33c-b4de799fea40
+          name: label
+          type: VARCHAR(60)
+          description: ''
+          is_unique: false
+        - id: 64127b34-378f-531f-b1d8-63a3f4a004b5
+          name: paid_by_employer
+          type: BOOLEAN
+          description: ''
+          is_unique: false
+        - id: 6df20f12-6ebb-5968-89eb-d06c7e0cdd8a
+          name: meal_voucher
+          type: BOOLEAN
+          description: ''
+          is_unique: false
+      - id: 617ae2a5-7d45-50ec-bf1d-0af6ecc0e69d
+        name: timesheets
+        description: Prestations journalières Une ligne de timesheets décrit un jour
+          ouvré pour une personne. work_location TELE signifie télétravail. ACC désigne
+          accident du travail. Ne pas confondre jours calendaires, jours ouvrés et
+          heures d'absence.
+        pk:
+        - e63e0cf8-fdc0-5a05-a3dc-f16b06c68ae3
+        type: table
+        columns:
+        - id: e63e0cf8-fdc0-5a05-a3dc-f16b06c68ae3
+          name: timesheet_id
+          type: INT
+          description: ''
+          is_unique: true
+        - id: e45fc75a-1a2c-54c7-b4eb-a1a76cc60bbd
+          name: employee_id
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+        - id: dbf467c9-2cb0-5755-a4bd-0f7e5c1cd237
+          name: work_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: b5bc0736-e1e3-55bc-9af1-d51c0b95fb41
+          name: planned_hours
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: 2d40abd1-78b4-53bd-a421-96b5e2037486
+          name: worked_hours
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: 1e591eea-ae8b-574d-8f13-3245854e89d4
+          name: overtime_hours
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: 2b1d7246-97b1-5232-b1ba-e1e31ea734fb
+          name: absence_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: e7b1770a-dfb7-5483-afa3-4372c083244f
+          name: absence_hours
+          type: DECIMAL(5, 2)
+          description: ''
+          is_unique: false
+        - id: 370c175f-bebd-5eb3-82b4-dceefeec7709
+          name: work_location
+          type: VARCHAR(4)
+          description: ''
+          is_unique: false
+        - id: 3af2dc45-0f0a-5111-858b-f28355a0bc66
+          name: shift
+          type: VARCHAR(5)
+          description: ''
+          is_unique: false
+        - id: 5e028bc6-0e9c-5f79-9de3-f29be1166b72
+          name: validated
+          type: BOOLEAN
+          description: ''
+          is_unique: false
+      - id: ef305bb3-d229-5b83-adc5-f8b8eb890d51
+        name: pay_elements
+        description: Éléments de paie et compte comptable Utiliser period_month pour
+          la période de paie et payment_date pour la date de paiement. Les charges
+          comptables peuvent comporter des écritures manuelles hors paie. Aucune rémunération,
+          commission ou fiche de paie individuelle n'est diffusée dans ce démonstrateur
+          sans identité RH vérifiée ; seules les statistiques agrégées sont permises.
+        pk:
+        - c01d0aa4-1052-5ef5-9090-82db3ebf57a3
+        type: table
+        columns:
+        - id: c01d0aa4-1052-5ef5-9090-82db3ebf57a3
+          name: element_code
+          type: VARCHAR(12)
+          description: ''
+          is_unique: true
+        - id: 2e422ad2-875f-5f37-8ac6-0acf297cd77d
+          name: label
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+        - id: 14621801-69fc-59e6-8903-36228f265560
+          name: element_type
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+        - id: 21207b9f-0177-5976-84fc-664dc572eb8d
+          name: onss_subject
+          type: BOOLEAN
+          description: ''
+          is_unique: false
+        - id: b4bbf0de-ddd7-576f-bd21-fdd4339435d0
+          name: taxable
+          type: BOOLEAN
+          description: ''
+          is_unique: false
+        - id: 77431236-8271-57b7-ac1e-c0ffdeaa17c8
+          name: gl_account
+          type: VARCHAR(6)
+          description: ''
+          is_unique: false
+      - id: 84fe8ade-b443-5955-9471-407eae8cf26e
+        name: payroll_runs
+        description: Calculs de paie (mensuels et corrections) Utiliser period_month
+          pour la période de paie et payment_date pour la date de paiement. Les charges
+          comptables peuvent comporter des écritures manuelles hors paie. Aucune rémunération,
+          commission ou fiche de paie individuelle n'est diffusée dans ce démonstrateur
+          sans identité RH vérifiée ; seules les statistiques agrégées sont permises.
+        pk:
+        - 6489990e-a302-5dea-9e9c-419ae1d6f6be
+        type: table
+        columns:
+        - id: 6489990e-a302-5dea-9e9c-419ae1d6f6be
+          name: run_id
+          type: INT
+          description: ''
+          is_unique: true
+        - id: c3e95d94-0df3-5b1f-a221-2de602da08b4
+          name: period_month
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 637c4e15-cf90-5bee-9468-139358615057
+          name: run_type
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 726c1f18-8cb5-5dfc-9648-f8ad65ebd0a2
+          name: run_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: b22f7198-df2d-55a5-8b30-70c9b2b8a28a
+          name: payment_date
+          type: DATE
+          description: ''
+          is_unique: false
+        - id: 44487ca9-8601-58bd-8884-35bb1f025258
+          name: description
+          type: VARCHAR(120)
+          description: ''
+          is_unique: false
+        - id: 64757789-3e2e-5d87-8a37-c9a5957005ee
+          name: status
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+      - id: 26db3233-0b4a-5a26-bc04-8b6c5bb134a2
+        name: payslips
+        description: Fiches de paie (le PDF est stocké en dehors de la base) Utiliser
+          period_month pour la période de paie et payment_date pour la date de paiement.
+          Les charges comptables peuvent comporter des écritures manuelles hors paie.
+          Aucune rémunération, commission ou fiche de paie individuelle n'est diffusée
+          dans ce démonstrateur sans identité RH vérifiée ; seules les statistiques
+          agrégées sont permises.
+        pk:
+        - 221f3db6-1a3b-58dd-8f82-7526e94660bc
+        type: table
+        columns:
+        - id: 221f3db6-1a3b-58dd-8f82-7526e94660bc
+          name: payslip_id
+          type: INT
+          description: ''
+          is_unique: true
+        - id: d8950334-e142-5829-b6ee-c2a6d42b4276
+          name: run_id
+          type: INT
+          description: ''
+          is_unique: false
+        - id: e7a37953-6a07-5f9c-a6b5-8c86746fcbbd
+          name: employee_id
+          type: VARCHAR(8)
+          description: ''
+          is_unique: false
+        - id: 4a7e3dff-860f-5cad-a42d-b2a29ad85a2c
+          name: contract_id
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 13820648-786b-5020-aa51-ee8447a11374
+          name: cost_center_code
+          type: VARCHAR(10)
+          description: ''
+          is_unique: false
+        - id: 21a17eb8-ed4d-521f-912c-7a6870f1252f
+          name: gross_amount
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: 7add0ca3-96ec-5d45-99b4-779ad3e50260
+          name: onss_employee
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: cd058176-ad26-560b-bc59-e2775883f93c
+          name: taxable_amount
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: 0b4412ef-367d-51f9-acc7-412e8788f0c0
+          name: withholding_tax
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: d31570a4-e0f5-53e5-a14a-8d495a0580a6
+          name: net_amount
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: 82a875a5-501d-5a66-9bf7-839e0231b05a
+          name: employer_onss
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: 21cc8264-3ae6-5534-bfa5-f071368a3192
+          name: pdf_path
+          type: VARCHAR(80)
+          description: ''
+          is_unique: false
+      - id: aaf1c820-3bba-5820-9e9e-c134ada019f4
+        name: payslip_lines
+        description: 'Lignes des fiches de paie (montants signés : retenues négatives)
+          Utiliser period_month pour la période de paie et payment_date pour la date
+          de paiement. Les charges comptables peuvent comporter des écritures manuelles
+          hors paie. Aucune rémunération, commission ou fiche de paie individuelle
+          n''est diffusée dans ce démonstrateur sans identité RH vérifiée ; seules
+          les statistiques agrégées sont permises.'
+        pk:
+        - e5b59bbd-8c2f-5e5b-a7ab-ab75e19729ce
+        type: table
+        columns:
+        - id: e5b59bbd-8c2f-5e5b-a7ab-ab75e19729ce
+          name: line_id
+          type: INT
+          description: ''
+          is_unique: true
+        - id: c7a4cf83-65be-5127-bd4e-f120afcaed47
+          name: payslip_id
+          type: INT
+          description: ''
+          is_unique: false
+        - id: 9e0f8830-dd35-5031-bd31-382a1522bbd5
+          name: element_code
+          type: VARCHAR(12)
+          description: ''
+          is_unique: false
+        - id: b2ed7c09-f384-5f2c-a1a8-9ee5e86691cd
+          name: quantity
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+        - id: 40593552-0ee7-5d41-a6ae-57b916e56e73
+          name: rate
+          type: DECIMAL(12, 4)
+          description: ''
+          is_unique: false
+        - id: d7e64546-9d56-5dd5-af9a-6bd97a3ff55d
+          name: amount
+          type: DECIMAL(12, 2)
+          description: ''
+          is_unique: false
+  foreign_keys:
+  - source_column_id: a9074713-85ee-5e5f-bf09-18ac11435982
+    target_column_id: ff0421bf-dd9f-5aea-9544-b97778000601
+  - source_column_id: c1e19866-6bac-5121-a477-3c3e4339e031
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: 42524e12-3cf3-55ef-84cd-a0742da73db2
+    target_column_id: e4f0d427-e1cb-5049-9075-efc4ac074ae6
+  - source_column_id: b06a106a-d31f-5fe9-881a-702b494bb9bb
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: f354b65a-1c93-5947-9a8a-1337227ed113
+    target_column_id: 5f4b43d2-87e3-5a07-a159-6a5263d21c6a
+  - source_column_id: 6acb2403-8670-5e4a-a105-aa0aa7a586ec
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: 5ddd3a1f-26af-52c7-892e-304c6ce546d2
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: 68ed15ed-f5d5-50b9-9950-b59402ea2114
+    target_column_id: 1da34798-c6d6-5838-b79b-37bbb81c6b1d
+  - source_column_id: 84a0f1ac-4fe2-56e0-a206-049b04a95666
+    target_column_id: 5f4b43d2-87e3-5a07-a159-6a5263d21c6a
+  - source_column_id: 5c25c8ab-29b5-5d9b-9d97-ad2138a0528c
+    target_column_id: 1da34798-c6d6-5838-b79b-37bbb81c6b1d
+  - source_column_id: 94756ca0-7aa7-5503-b070-5047bc194e56
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: c1e0047b-36ab-5b75-8eea-5c5f94f23bdc
+    target_column_id: 9c67c31c-1483-5fad-9c2d-97468d70f644
+  - source_column_id: 315a0edd-14e1-5cf1-903b-5b02e76a3e57
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: d6e35db6-77c4-5350-bd34-ccc6881638eb
+    target_column_id: 5f4b43d2-87e3-5a07-a159-6a5263d21c6a
+  - source_column_id: 9d918be4-a848-5dcb-8f37-8c15374f08c6
+    target_column_id: 9c67c31c-1483-5fad-9c2d-97468d70f644
+  - source_column_id: 77be6677-4a79-53a5-b7f4-bce50267d433
+    target_column_id: 108890cc-6f79-5235-9937-7e28c32e7c4d
+  - source_column_id: 3d975097-b1ff-5737-bee4-28cc8959a2dc
+    target_column_id: 108890cc-6f79-5235-9937-7e28c32e7c4d
+  - source_column_id: b3fde9fe-1480-59d4-84f4-08316aafb617
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: 4d70306a-084d-5a6d-ac9f-a9eceac0b464
+    target_column_id: bca846c9-d458-55ba-8f1b-d40500a1acf0
+  - source_column_id: e2d2b96c-a734-5101-832b-d3a5f40259c3
+    target_column_id: e4f0d427-e1cb-5049-9075-efc4ac074ae6
+  - source_column_id: 4bd11352-861f-5bfe-aecb-d400d25818d5
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: 507b3b60-2328-5bec-aa46-9ad3576927e9
+    target_column_id: 45ea08f4-04d5-50ca-9d2e-acda525e0c48
+  - source_column_id: 413d39b3-326b-5e08-95e7-3b86aaf2a55b
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: 621b9ada-fa0f-59e9-9f50-dd7cf15e1cdc
+    target_column_id: 45ea08f4-04d5-50ca-9d2e-acda525e0c48
+  - source_column_id: cc3e41b8-9e8c-52aa-bf79-549f3c66969b
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: 16f57963-fea3-5b9c-b3c8-f4bfd44a764b
+    target_column_id: 27e1f369-11e6-56f0-92c6-479f364ed9c8
+  - source_column_id: c05c2fb1-e219-516e-8fe4-49e99dcfaaec
+    target_column_id: 78c8046d-a55f-5bc8-a5fb-cbd23c70e081
+  - source_column_id: 74b74b90-aaaa-5121-9c48-03cf07c1e87a
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: ad3d875c-8123-52d6-9773-d0549d951882
+    target_column_id: e4f0d427-e1cb-5049-9075-efc4ac074ae6
+  - source_column_id: 2f531211-4b47-5d9e-946e-5b49f7f310e6
+    target_column_id: 45ea08f4-04d5-50ca-9d2e-acda525e0c48
+  - source_column_id: 6ec006ca-4bd9-51f1-8756-09202fdedeb6
+    target_column_id: 27e1f369-11e6-56f0-92c6-479f364ed9c8
+  - source_column_id: f959bb6b-cffc-5f67-9488-0924272bacd7
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: ad27f2f5-0cd9-5990-92ba-89888ecd0b5b
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: acbafcfc-4cb9-56df-be19-5807fa7be299
+    target_column_id: 9c67c31c-1483-5fad-9c2d-97468d70f644
+  - source_column_id: 33a2905b-5ed5-5712-b56e-f808ac02aad9
+    target_column_id: 108890cc-6f79-5235-9937-7e28c32e7c4d
+  - source_column_id: 3331cde9-623a-55f5-b594-f10b5c8857d2
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: bf51eb62-ffb6-591b-8a71-1aa36bc1e33b
+    target_column_id: 71ed8bea-7b63-5282-94a8-cf8436e93b49
+  - source_column_id: 77be5033-5e82-5f01-ad97-5d5dc7d9a7f4
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: 731e9e23-fc89-5b13-9e36-06aab8ea2550
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: a45466a3-3586-58c2-8370-06e6d4867853
+    target_column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+  - source_column_id: 7c431b79-5f82-514d-8d58-2483ba9f0cb5
+    target_column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+  - source_column_id: 219d3e7f-947b-5ff1-8b28-155c284ad71a
+    target_column_id: fb0ebc7c-6a05-5fb8-a605-b62719dde9e7
+  - source_column_id: 2e99c337-ea0b-599c-ad6f-dd60df0e4988
+    target_column_id: 96586592-ec27-5bd7-a4d0-344b93f49304
+  - source_column_id: d60cf8f5-c9b1-5099-9f80-610882318aae
+    target_column_id: 96586592-ec27-5bd7-a4d0-344b93f49304
+  - source_column_id: fa3ef4f3-c8b7-5cb9-b00f-0842343d69d4
+    target_column_id: 96586592-ec27-5bd7-a4d0-344b93f49304
+  - source_column_id: fd2000da-1f86-5930-a1ea-e9f28964f2b0
+    target_column_id: 564767e6-c38e-5f2e-997a-1055e4512af4
+  - source_column_id: 65e0430a-f190-5a3c-9ad2-bbf7d5bc4755
+    target_column_id: a24e62f8-bfb2-526a-9ad4-1790fecffcfe
+  - source_column_id: bf30b75e-18a7-5272-9bc7-91b1d041fff2
+    target_column_id: 4f6dd284-c549-5f07-9c10-c95affa54643
+  - source_column_id: 536b85ac-625e-5379-a29e-2daa308f00c1
+    target_column_id: 57e13351-2aaa-5207-9a08-968f0c10cae8
+  - source_column_id: e0573744-ed8a-5340-be80-247ab0adc442
+    target_column_id: 96586592-ec27-5bd7-a4d0-344b93f49304
+  - source_column_id: 86454361-ee51-5c37-adad-ee2958fadb86
+    target_column_id: 4f6dd284-c549-5f07-9c10-c95affa54643
+  - source_column_id: cd2b7865-6229-5d15-9ad4-99ee045345f3
+    target_column_id: 0c284de8-0316-5528-adf3-eb8df3f379f6
+  - source_column_id: f03c5f7d-cd15-5755-8ac8-200f529b6bae
+    target_column_id: e4853f31-cc77-53c6-a481-a25efdb9f876
+  - source_column_id: d0b18770-bda1-59ef-b261-06c4e5c88a63
+    target_column_id: fb0ebc7c-6a05-5fb8-a605-b62719dde9e7
+  - source_column_id: 9c275b28-e86f-5914-adb3-7f13493f085f
+    target_column_id: 96586592-ec27-5bd7-a4d0-344b93f49304
+  - source_column_id: f01522df-357b-544e-ac4c-6292d84e36a1
+    target_column_id: 0c284de8-0316-5528-adf3-eb8df3f379f6
+  - source_column_id: 597826b3-6d60-514f-a9d6-705c161b13e1
+    target_column_id: 96586592-ec27-5bd7-a4d0-344b93f49304
+  - source_column_id: 98d4f011-f819-5549-aaf7-27e17d37d8ef
+    target_column_id: 0c284de8-0316-5528-adf3-eb8df3f379f6
+  - source_column_id: 4c5a75d9-fd95-5795-b512-8f3423cf167b
+    target_column_id: 4f6dd284-c549-5f07-9c10-c95affa54643
+  - source_column_id: 3ab06c45-bf6a-587b-88ed-6ab446569362
+    target_column_id: 56f92a6f-ebc2-5692-843e-793cad313512
+  - source_column_id: 9ceb07c1-ff30-5372-9a3c-fecb225d2209
+    target_column_id: a24e62f8-bfb2-526a-9ad4-1790fecffcfe
+  - source_column_id: e9eb2e3e-1bb6-58b4-aa2a-4c76b23c6de9
+    target_column_id: 57e13351-2aaa-5207-9a08-968f0c10cae8
+  - source_column_id: 59d4e1e6-1484-5722-8442-56530a96a376
+    target_column_id: 3d01f070-34b6-5002-9722-e62616a5b884
+  - source_column_id: 8f2a8d50-e450-5b41-a278-e5d85e0be61c
+    target_column_id: 57e13351-2aaa-5207-9a08-968f0c10cae8
+  - source_column_id: e349f113-6258-5c77-bb7f-fae59ec33564
+    target_column_id: 0a2a5529-ad42-5c19-b19e-e26325718de9
+  - source_column_id: eadf8037-2fc9-5f5f-ae78-47c98aa5148d
+    target_column_id: 0a2a5529-ad42-5c19-b19e-e26325718de9
+  - source_column_id: bfcf8437-c744-5b43-8c7d-6cffcd79ff06
+    target_column_id: 975a7e69-228f-5922-b500-a16f34235d2a
+  - source_column_id: a13e61f1-4a72-5c52-bef9-3c7f06d0a72a
+    target_column_id: 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+  - source_column_id: b30b20bc-d216-568b-8d92-3a82f962a69c
+    target_column_id: 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+  - source_column_id: 38067b1a-b4de-539d-9422-4adda139d6fa
+    target_column_id: 8f3f7ec9-257b-5afb-adac-f46a9c69165d
+  - source_column_id: 2819d226-a2ef-5e3c-82a4-b910371c641a
+    target_column_id: 7b786b8b-f05a-54a7-97c2-9a5c7af42932
+  - source_column_id: 111bdaa6-c099-5ffa-b0b4-d7f99d4723fb
+    target_column_id: 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+  - source_column_id: e45fc75a-1a2c-54c7-b4eb-a1a76cc60bbd
+    target_column_id: 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+  - source_column_id: 2b1d7246-97b1-5232-b1ba-e1e31ea734fb
+    target_column_id: 69fd350c-0474-5703-8220-cf14ad84a721
+  - source_column_id: d8950334-e142-5829-b6ee-c2a6d42b4276
+    target_column_id: 6489990e-a302-5dea-9e9c-419ae1d6f6be
+  - source_column_id: e7a37953-6a07-5f9c-a6b5-8c86746fcbbd
+    target_column_id: 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+  - source_column_id: 4a7e3dff-860f-5cad-a42d-b2a29ad85a2c
+    target_column_id: f11c45ee-9841-596e-a40f-c26ff40698af
+  - source_column_id: 13820648-786b-5020-aa51-ee8447a11374
+    target_column_id: 975a7e69-228f-5922-b500-a16f34235d2a
+  - source_column_id: c7a4cf83-65be-5127-bd4e-f120afcaed47
+    target_column_id: 221f3db6-1a3b-58dd-8f82-7526e94660bc
+  - source_column_id: 9e0f8830-dd35-5031-bd31-382a1522bbd5
+    target_column_id: c01d0aa4-1052-5ef5-9090-82db3ebf57a3
+  joins: []
+semantic_layer:
+  terms:
+  - id: 4399c34b-a842-53ae-b499-e29925825531
+    name: erp.SOC_SITE
+    description: Table source erp.SOC_SITE ; définition à réviser. STK_ETAT est la
+      photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne
+      pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le
+      stock futur n'est pas disponible.
+    represents:
+    - 99d320bf-00d6-55d1-a4c1-ebcb2b025cb6
+    columns_attributes:
+    - id: 651fd941-49b0-5925-85ba-5058207e8c74
+      name: SIT_ID
+      description: ''
+      column_id: 052cd24d-ab86-5bab-9bc3-277fefc5f47b
+    - id: c345dd06-e831-56fc-b6b2-2de93c9eecea
+      name: SIT_CODE
+      description: ''
+      column_id: b7c8c839-9d04-53b6-b8e6-5005914e3c7a
+    - id: 96d30e00-51eb-53e1-8a73-b930fa007570
+      name: SIT_LIB
+      description: ''
+      column_id: d4d52d6c-1f09-55ba-92db-b40c6306f692
+    - id: 9ab2ede9-1b04-53d3-8290-450575f5396d
+      name: SIT_TYPE
+      description: ''
+      column_id: 07669630-d82e-5ca4-974d-2b1853da1054
+    - id: 238e8a8b-6be6-5340-b1b9-bf18641cb779
+      name: SIT_ADR
+      description: ''
+      column_id: fe1de325-b398-5500-bb92-b9007914f43f
+    - id: 6edc80a0-2e9d-53cc-b5a2-b07d9d9b7454
+      name: SIT_VILLE
+      description: ''
+      column_id: 217e2ac7-2b98-5b5b-ac84-baa8fe1fb9c8
+    - id: 96d142a3-8ab4-55e1-b34c-915e38ed1a76
+      name: SIT_PAYS
+      description: ''
+      column_id: af893a84-4ed0-50bd-aea0-090267662572
+    - id: deea7b8c-ba64-5108-9926-c465aeba7d3a
+      name: SIT_DT_OUV
+      description: ''
+      column_id: 9c627a62-6fa0-51e4-914f-6bea6d5b87ba
+    - id: 39514758-daa0-5889-9711-4edd0a0f1606
+      name: SIT_ACTIF
+      description: ''
+      column_id: 37e16ab5-7a32-59c6-bfc2-ef1b2487ea2d
+  - id: 818210fc-ac4c-5b5a-93d2-035c0221db54
+    name: erp.PAR_CODE
+    description: 'Table source erp.PAR_CODE ; définition à réviser. '
+    represents:
+    - 77cf910a-3c8d-54f2-95fb-41d42d17f760
+    columns_attributes:
+    - id: 5eb0bdb5-98b0-59b0-b928-d326c2f5b640
+      name: COD_TYPE
+      description: ''
+      column_id: d78efb07-08d1-5be2-b886-0549e19e6e68
+    - id: 4e1e35b3-a06e-5efb-850b-b759f1709340
+      name: COD_VAL
+      description: ''
+      column_id: a9c9429a-1325-5d3e-af44-0ee0da44b23f
+    - id: 36c29cbb-6af0-53b9-8bd8-0344788c2aa6
+      name: COD_LIB
+      description: ''
+      column_id: 5d1acdd5-20ea-5c3c-9687-66ee08629987
+    - id: 5e5ba40e-5608-5911-b674-99d5fd681750
+      name: COD_ORDRE
+      description: ''
+      column_id: efa6a69f-62af-5212-b5cb-607792183c6c
+  - id: 41afdb10-250f-5352-bd05-b30f4f33d79d
+    name: erp.ART_FAMILLE
+    description: 'Table source erp.ART_FAMILLE ; définition à réviser. '
+    represents:
+    - 033c99a6-3b61-54e6-a074-fbf732674912
+    columns_attributes:
+    - id: 566acb8c-a709-5544-b1fb-319389ee8a83
+      name: FAM_CODE
+      description: ''
+      column_id: ff0421bf-dd9f-5aea-9544-b97778000601
+    - id: 309c278f-ea34-5f45-a31b-a4550be5551d
+      name: FAM_LIB
+      description: ''
+      column_id: 5f5bbb35-b045-5089-b3cc-1b1a04020870
+    - id: 6325920d-e97c-5ae9-b455-e556899ebfa2
+      name: FAM_TYPE
+      description: ''
+      column_id: 4f3025fb-de43-55be-aa91-fc46fe5cb09f
+    - id: 8da52f3b-0b7b-515b-aa5e-1821ece013e2
+      name: FAM_GAMME
+      description: ''
+      column_id: 8e4158df-b985-57be-8b82-438bcf60cde7
+    - id: 751a1da0-150a-50c0-b630-88c1253e5108
+      name: FAM_CPT_VENTE
+      description: ''
+      column_id: 37666cd2-f349-5794-a046-9257d48ad2fd
+    - id: dece821c-1996-5313-bf1f-c4b48d6c2646
+      name: FAM_CPT_ACHAT
+      description: ''
+      column_id: 14c65f4d-09fb-5058-9558-b1e27ddb2529
+  - id: 32d9a911-b806-5282-8b8b-be90a6bc15e9
+    name: erp.FRN_FOURNISSEUR
+    description: 'Table source erp.FRN_FOURNISSEUR ; définition à réviser. '
+    represents:
+    - cf1f2c28-0df3-5bf1-9bb5-89d2545f34b0
+    columns_attributes:
+    - id: f5254972-3a37-5adc-b99c-8d531dfed2b3
+      name: FRN_ID
+      description: ''
+      column_id: e4f0d427-e1cb-5049-9075-efc4ac074ae6
+    - id: 0ded14b1-78a1-58a2-b2ee-f9101ddf3bdc
+      name: FRN_CODE
+      description: ''
+      column_id: fa849cfc-17a8-55f7-ba92-5b9fc9ab4fe0
+    - id: 1181292e-09ae-5e29-82dd-92df283885dd
+      name: FRN_NOM
+      description: ''
+      column_id: 1e2421bf-5923-5ca9-97e5-8a00152c536b
+    - id: 0400046c-8fe4-5729-87c7-f2cd06c79540
+      name: FRN_TVA
+      description: ''
+      column_id: 9dedbfb6-f3f3-5037-85cb-6df83eaccd43
+    - id: db2986d8-3c3a-5822-b070-1af4ce24bc51
+      name: FRN_PAYS
+      description: ''
+      column_id: 32c90465-efa2-58ec-8ecb-675b92ef5b67
+    - id: 929061cd-e3a8-585b-8cd4-72ecfdcb6c98
+      name: FRN_ADR
+      description: ''
+      column_id: c44a8bfc-d4ee-5227-8293-4728dada6fe2
+    - id: cf8642d5-e553-5cb2-ac6e-221b06874ce9
+      name: FRN_CP
+      description: ''
+      column_id: bdaf30f1-5f62-5c82-88a8-bf277c6de311
+    - id: 6232c8ea-1266-5def-9959-18da804b58cb
+      name: FRN_VILLE
+      description: ''
+      column_id: 110aaa40-7bb9-5f90-98e4-822cc9b2e06c
+    - id: e3f830a6-d0cf-537a-b676-dacfacd87ce0
+      name: FRN_COND_PAIE
+      description: ''
+      column_id: b1503b55-09b1-5b81-8025-872936f84a34
+    - id: b5f8ef9d-42ee-5db2-adf7-7db838e9b20d
+      name: FRN_DELAI_J
+      description: ''
+      column_id: 7c97587e-235c-5a28-9669-c24eb4698ca1
+    - id: bc9b96e3-5813-5367-8558-95876f306e64
+      name: FRN_DT_CREA
+      description: ''
+      column_id: bf44b4d5-2e35-54ce-8719-770281eb39bf
+    - id: 33150335-7850-5611-a354-7b58765a5d6f
+      name: FRN_ACTIF
+      description: ''
+      column_id: 308720cd-1321-5343-af7e-518333e2fdac
+  - id: 4848f03e-7497-5cd5-b3bb-af60a1d4bdc9
+    name: erp.ART_ARTICLE
+    description: Table source erp.ART_ARTICLE ; définition à réviser. STK_ETAT est
+      la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ;
+      ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12.
+      Le stock futur n'est pas disponible.
+    represents:
+    - 08d4f659-1515-5050-9bd8-5c4d3b78a41f
+    columns_attributes:
+    - id: 82a56b48-aeab-548b-ba74-7e714572a0ec
+      name: ART_ID
+      description: ''
+      column_id: abfb3aab-fe26-5ac6-b692-cfa1851f4313
+    - id: 2d08a1a8-a465-5ba0-8a89-890239724650
+      name: ART_CODE
+      description: ''
+      column_id: d16dbc55-3908-5449-846c-bdb6108a9fa8
+    - id: c06c0bfd-3489-5c76-8aa3-fe787eddd743
+      name: ART_LIB
+      description: ''
+      column_id: 670c5464-cf99-5384-9124-ae6b2a1624d0
+    - id: dd4d4d93-a096-5d77-bfb6-fdbe95164f7a
+      name: FAM_CODE
+      description: ''
+      column_id: a9074713-85ee-5e5f-bf09-18ac11435982
+    - id: d27972ec-0236-5a6d-8fd9-1ed3908ad2f4
+      name: ART_TYPE
+      description: ''
+      column_id: 411ebd3b-32df-51cf-9e4c-9e1977c20b25
+    - id: f34f5c4c-d420-5e9c-9e37-5fc3a9f42e0b
+      name: ART_UNITE
+      description: ''
+      column_id: 3c01b4c5-5ffa-5637-b5e4-12aea6e0ddc4
+    - id: d73a031c-6929-5c26-8365-660ffc6af1bb
+      name: ART_POIDS_KG
+      description: ''
+      column_id: 39e7f6b4-d2d0-593b-826a-3b5037854d06
+    - id: b62ab404-cf4d-550e-be46-01401c97d080
+      name: ART_PRIX_STD
+      description: ''
+      column_id: a44db94d-dc61-59be-8532-66c6cb91563b
+    - id: d17f5a53-328f-5bc3-87c1-ea4aef6651df
+      name: ART_VENDABLE
+      description: ''
+      column_id: 6efc88f7-2aaa-5473-8531-cddf0fb1648e
+    - id: 34f98a7d-5083-59cb-9796-23352b64229c
+      name: ART_STOCKE
+      description: ''
+      column_id: 32f5dc07-2b7a-56ac-8444-3cd2f5efb498
+    - id: f968edc7-4580-5917-b477-281873f99e88
+      name: SIT_ID_PROD
+      description: ''
+      column_id: c1e19866-6bac-5121-a477-3c3e4339e031
+    - id: f66e736f-7fe6-5b67-a2a5-c2258ae75911
+      name: ART_LIGNE
+      description: ''
+      column_id: 208dbd34-94ef-5765-bcee-a09ebe21f916
+    - id: 3e8bd22a-0734-57f8-847d-0a3ab6a14b4a
+      name: FRN_ID_PRINC
+      description: ''
+      column_id: 42524e12-3cf3-55ef-84cd-a0742da73db2
+    - id: 3523eeaf-1692-502e-aa7e-50f424914eb5
+      name: ART_COND
+      description: ''
+      column_id: abba546d-c7c3-545f-8c1e-154c5a4cc577
+    - id: a321bf27-1fd3-5f32-826d-1e6edede56ee
+      name: ART_DT_CREA
+      description: ''
+      column_id: 6907834e-74aa-5178-aabf-6c9b33dbf279
+    - id: c9258c65-5e97-5bfb-ba1d-21dbdafff20d
+      name: ART_ACTIF
+      description: ''
+      column_id: 1b688446-6825-5f62-b5a5-c8085ef0793b
+  - id: 1a948de8-8651-5362-a360-3d81bfd25aa1
+    name: erp.ART_TARIF
+    description: 'Table source erp.ART_TARIF ; définition à réviser. '
+    represents:
+    - 54ae2c40-2f21-5220-8eb1-af9d21b5be2c
+    columns_attributes:
+    - id: 8710730e-c33d-5f3d-a7aa-02c769c6fcfd
+      name: TAR_ID
+      description: ''
+      column_id: 0e839aa0-4b2d-57ca-aa7a-cc75b1798306
+    - id: a866f842-938e-5891-afd2-ef8196320051
+      name: ART_ID
+      description: ''
+      column_id: b06a106a-d31f-5fe9-881a-702b494bb9bb
+    - id: ac41a9b3-c534-507a-9c72-60977aae3da7
+      name: CLI_ID
+      description: ''
+      column_id: f354b65a-1c93-5947-9a8a-1337227ed113
+    - id: 5747cc3b-c67b-55e6-906c-0f2d5b22b843
+      name: TAR_PRIX
+      description: ''
+      column_id: 4929e307-a5a0-5227-b2fd-21ab65b5112f
+    - id: 9eb0c7c5-628c-5d7c-bc1b-c7d2ed7ae715
+      name: TAR_DT_DEB
+      description: ''
+      column_id: f4779a1e-7931-50c4-979f-8fb83275ed04
+    - id: 6182b831-7012-5eb1-8273-88e5176dd71f
+      name: TAR_DT_FIN
+      description: ''
+      column_id: dfb5d2fc-d74e-5fa7-81e4-180cbc68585f
+    - id: cce7ac50-4816-53d4-8778-da6d3f43ad8e
+      name: TAR_COMMENT
+      description: ''
+      column_id: fc7d909f-4aed-5806-9887-1fc21de47730
+  - id: cefab5d4-8c4a-5201-9231-ec1fef30ef23
+    name: erp.ART_NOMENC
+    description: 'Table source erp.ART_NOMENC ; définition à réviser. '
+    represents:
+    - bd1141b3-6bc1-53c8-80e8-113f8d552d6d
+    columns_attributes:
+    - id: c8c4acde-1209-5d48-a718-78483b8786ed
+      name: NOM_ID
+      description: ''
+      column_id: d03c1474-5708-5a08-971f-97f3822467f7
+    - id: 17778c0e-ca95-55f7-bc73-865e32ef003f
+      name: ART_ID_PF
+      description: ''
+      column_id: 6acb2403-8670-5e4a-a105-aa0aa7a586ec
+    - id: 5cb182a3-158a-52bd-8c1d-64cc3bed2742
+      name: ART_ID_COMP
+      description: ''
+      column_id: 5ddd3a1f-26af-52c7-892e-304c6ce546d2
+    - id: ea0871e6-e658-5751-8e28-db81900c6061
+      name: NOM_QTE
+      description: ''
+      column_id: c300519e-1b7b-5728-a943-ad03782a5e18
+    - id: 3ada0bc0-2bd0-5ccb-b402-1e5ed87f4b54
+      name: NOM_DT_DEB
+      description: ''
+      column_id: a50edf75-0d6e-5a92-86b6-0a84e423f233
+  - id: c21244da-8c35-5b82-b8a8-68c23476ef12
+    name: erp.VDR_VENDEUR
+    description: 'Table source erp.VDR_VENDEUR ; définition à réviser. '
+    represents:
+    - bc9a13c5-77a6-5d2d-98b5-9afc9265ef95
+    columns_attributes:
+    - id: 7edf33c9-55f1-50e9-b8a8-7cd95f5e1a67
+      name: VDR_ID
+      description: ''
+      column_id: 1da34798-c6d6-5838-b79b-37bbb81c6b1d
+    - id: c628554a-74cc-5f47-914f-8ea55a68c1fa
+      name: VDR_CODE
+      description: ''
+      column_id: 055fe79d-fd04-5cd8-aa79-6cf8eee2ae95
+    - id: e03aa704-6100-564f-b3c2-aa084cec6b7b
+      name: VDR_NOM
+      description: ''
+      column_id: 0314e293-6332-54b4-a0d9-359c1247b8a0
+    - id: 848574a1-2b22-5e5d-a53b-cac070f584cd
+      name: VDR_PRENOM
+      description: ''
+      column_id: f3d91f5f-532e-58b3-9a9e-62471335a16b
+    - id: a0430467-9c36-58f9-bc2b-54d4104ebb31
+      name: VDR_ZONE
+      description: ''
+      column_id: 74828a17-93ee-5e4b-bd11-f06095759649
+    - id: 2224a753-d973-5f01-a7a7-8d4b6cfbb714
+      name: VDR_MATRICULE
+      description: ''
+      column_id: eeef14bb-d76e-5cef-9225-7b43af6aec30
+    - id: e71ad04b-59d0-5031-9ebc-3a12627ea119
+      name: VDR_EMAIL
+      description: ''
+      column_id: f6c2d9c8-fbe4-5c8a-a7d0-2eb8ca0bda68
+    - id: aa68cdf4-75d3-5058-af6c-7bf1b6b1c3c8
+      name: VDR_DT_ENTREE
+      description: ''
+      column_id: ec5c4539-ed6b-5716-9fd7-33cda13ffd7e
+    - id: e523f01e-6544-51cb-bc98-f09cd079be5b
+      name: VDR_ACTIF
+      description: ''
+      column_id: 64d1b9e0-78ae-5e11-96e3-04a40c8bda29
+  - id: a250c615-94ba-5b5f-b42f-632c07f80ad2
+    name: erp.CLI_CLIENT
+    description: 'Table source erp.CLI_CLIENT ; définition à réviser. '
+    represents:
+    - 225452b1-399c-5942-beef-f21a49f353a5
+    columns_attributes:
+    - id: 7257c73c-c284-5427-bdb2-099a4ecb990e
+      name: CLI_ID
+      description: ''
+      column_id: 5f4b43d2-87e3-5a07-a159-6a5263d21c6a
+    - id: 65d7abd7-799f-533b-8ce8-71dec34d7ea7
+      name: CLI_CODE
+      description: ''
+      column_id: 8995f665-f869-5dc8-b53d-a04bd5c1b582
+    - id: 99b493eb-e7e9-5b33-98de-2888990bd2f9
+      name: CLI_NOM
+      description: ''
+      column_id: 34b53a53-5a34-513d-bc20-ec74ddd0c06d
+    - id: 908b4df4-f5ce-531d-8882-7143789d5ed5
+      name: CLI_TYPE
+      description: ''
+      column_id: 0e62e3b9-90bf-5f14-aaa8-07e9447c9087
+    - id: 992f07d2-0553-5ac2-8b98-6c49037a7a0b
+      name: CLI_TVA
+      description: ''
+      column_id: a9a2da5b-03fa-58ff-ba2c-b4cef661f3c4
+    - id: 6ed0e078-c599-5f13-af07-c5235ac1fb98
+      name: CLI_ADR
+      description: ''
+      column_id: c6b52583-8a31-5373-82f9-143a43119b16
+    - id: 0ae96dc4-933b-5b5c-bab6-f672492f520e
+      name: CLI_CP
+      description: ''
+      column_id: 233523fa-54c6-5c2f-a65a-e7a9541629ae
+    - id: dd577911-3fd3-5d22-85dd-16cf64a9d40e
+      name: CLI_VILLE
+      description: ''
+      column_id: 1530dc1c-4750-50e5-9c09-c0bdae9b205e
+    - id: e185c99a-49be-5a78-91c4-4c1c076e9700
+      name: CLI_PAYS
+      description: ''
+      column_id: 156a67b4-83af-57b6-b331-2bc573cad78c
+    - id: c9473ee8-333d-5f99-9ded-39d36525c69f
+      name: CLI_REGION
+      description: ''
+      column_id: 51c33888-bb06-5368-ae9c-322c583cd2b4
+    - id: 32ef6bc4-254f-5559-9ca7-3e7391a05260
+      name: VDR_ID
+      description: ''
+      column_id: 68ed15ed-f5d5-50b9-9950-b59402ea2114
+    - id: 5d02f77c-129f-5d02-a904-62b145c347d3
+      name: CLI_COND_PAIE
+      description: ''
+      column_id: f1f9b72c-72cb-5858-9270-42f213158b97
+    - id: bf97c303-559a-56fd-8a44-6352f5a1f88a
+      name: CLI_REMISE_PCT
+      description: ''
+      column_id: 372599b4-eb68-577f-a47e-56a04fba137a
+    - id: 78c2a07c-c31e-587c-8c81-5e3c2f1af7cb
+      name: CLI_PLAFOND
+      description: ''
+      column_id: 72199f9f-bff1-5e03-8bab-64d0ab1f2148
+    - id: 75b0e87c-6e85-5590-accb-ec3b422f3377
+      name: CLI_DT_CREA
+      description: ''
+      column_id: a7f89bc4-b67a-54e7-a9d9-9f6bacecaa76
+    - id: 22bdb44d-c440-567c-9879-2733b6f7dcc8
+      name: CLI_ACTIF
+      description: ''
+      column_id: 0ad42b98-c6d2-5a41-8133-806cab880563
+  - id: 333e4482-a98d-505b-8c92-eaee014a04d7
+    name: erp.VTE_CDE
+    description: 'Table source erp.VTE_CDE ; définition à réviser. '
+    represents:
+    - 03daab66-b039-5b96-baf9-88dc874ae2cb
+    columns_attributes:
+    - id: 983e3445-80ba-5cdf-9ab0-fdc72833900e
+      name: CDE_ID
+      description: ''
+      column_id: 9c67c31c-1483-5fad-9c2d-97468d70f644
+    - id: 7a44ff4f-4d9a-5f1a-b46f-b554d976a53e
+      name: CDE_NUM
+      description: ''
+      column_id: 08fa5652-776a-532d-9854-bb4bbc97fe48
+    - id: 48e9c6bc-a92c-56e0-810d-d18fbf6630ab
+      name: CDE_DT
+      description: ''
+      column_id: 0248a7bf-b493-5741-9771-b7deb95f1afd
+    - id: 57075e47-ec5d-55a3-8635-3ccf374cd2f3
+      name: CLI_ID
+      description: ''
+      column_id: 84a0f1ac-4fe2-56e0-a206-049b04a95666
+    - id: bb6fb880-c88f-52bd-9a77-15e78fe24134
+      name: VDR_ID
+      description: ''
+      column_id: 5c25c8ab-29b5-5d9b-9d97-ad2138a0528c
+    - id: 6d911b2f-6a27-554d-8569-0de103b00a20
+      name: CDE_REF_CLI
+      description: ''
+      column_id: 378cd1c3-89c9-554f-b4c1-ef09b06db784
+    - id: 47809920-71dc-5aeb-9191-737ed2c12981
+      name: CDE_DT_LIV_PREV
+      description: ''
+      column_id: d7741606-f6c5-5113-b9d1-4ff5e62de5da
+    - id: 4435c792-06f4-57a0-9800-34cf2306ca99
+      name: SIT_ID_EXP
+      description: ''
+      column_id: 94756ca0-7aa7-5503-b070-5047bc194e56
+    - id: 0c31bc01-b8ce-5fc9-b0eb-30196b8a8f60
+      name: CDE_STATUT
+      description: ''
+      column_id: cd6521cc-71c6-5566-a839-9d68e8d6a15a
+    - id: 097d28ae-1e38-5805-8a9c-2f49dcefbfd7
+      name: CDE_MT_HT
+      description: ''
+      column_id: 082834d4-98d0-5ce9-b93f-08c78f9464c6
+  - id: 8b8aa0ad-15e5-5f2c-a517-7a8009dde9d5
+    name: erp.VTE_CDE_LIG
+    description: 'Table source erp.VTE_CDE_LIG ; définition à réviser. '
+    represents:
+    - a2830aaf-06a9-5abd-9248-2df2226abccd
+    columns_attributes:
+    - id: fe165a62-fc4c-5fda-8b65-196fcee0c57c
+      name: LIG_ID
+      description: ''
+      column_id: bca846c9-d458-55ba-8f1b-d40500a1acf0
+    - id: 2c5e2f68-3da9-522f-b819-1c5b817369ee
+      name: CDE_ID
+      description: ''
+      column_id: c1e0047b-36ab-5b75-8eea-5c5f94f23bdc
+    - id: e73ac2a9-b4f7-5878-b03d-948b17097b2e
+      name: LIG_NO
+      description: ''
+      column_id: 29a24276-f149-5408-bd9f-a82cf9860763
+    - id: e396a5ea-0f08-5236-8559-a4c63c96f91d
+      name: ART_ID
+      description: ''
+      column_id: 315a0edd-14e1-5cf1-903b-5b02e76a3e57
+    - id: f1a8547e-64f4-545d-a29a-0db475e49b4d
+      name: LIG_QTE
+      description: ''
+      column_id: aa803b01-4673-5d46-8cad-25122d1117d8
+    - id: 8bc04a02-d528-554f-a4a1-1b9c15547545
+      name: LIG_PU
+      description: ''
+      column_id: 2688acac-20e6-5315-b4d0-88f076a119af
+    - id: 976b5976-7deb-55a3-80ae-d7684f107874
+      name: LIG_REMISE_PCT
+      description: ''
+      column_id: abbbf758-3a5b-5da4-a6ff-9c49acc89475
+    - id: ad7ce8cd-957e-592a-a153-9c9ab4828849
+      name: LIG_QTE_LIV
+      description: ''
+      column_id: b156d270-6937-5636-9e68-a36abd079e70
+  - id: 21d00bfd-fdd6-5e8f-87cf-e601f8d3de9d
+    name: erp.VTE_FACT
+    description: Table source erp.VTE_FACT ; définition à réviser. Les factures F
+      contribuent positivement et les avoirs A négativement. Les montants des avoirs
+      sont stockés positifs. Agréger les en-têtes OU les lignes, jamais leur montant
+      d'en-tête après une jointure un-à-plusieurs.
+    represents:
+    - 7fc864c1-70be-53fe-9478-09a43a0f0718
+    columns_attributes:
+    - id: ab0d284f-0755-52df-8c74-0133e391122b
+      name: FAC_ID
+      description: ''
+      column_id: 108890cc-6f79-5235-9937-7e28c32e7c4d
+    - id: 9e3d9990-6f9d-5bf3-91f0-52f76c6d6f4e
+      name: FAC_NUM
+      description: ''
+      column_id: b766d112-022c-5876-bd99-62b811c0a079
+    - id: 445792a4-866a-5d1d-961d-20a79db5e440
+      name: FAC_TYPE
+      description: ''
+      column_id: f0ea556a-7276-582c-9f6e-f18e9aa26ff5
+    - id: 459d5aef-70de-5731-90d0-dcecdf60568c
+      name: FAC_DT
+      description: ''
+      column_id: 4242f883-2681-5d1b-be1b-55e51d83fae6
+    - id: 5e6fc478-f930-5bd0-8c15-541573203a4d
+      name: FAC_DT_ECH
+      description: ''
+      column_id: 13ff26e7-2c66-5c37-8c79-319809d674db
+    - id: 00cbd624-0ccc-5e28-b17c-5df4fa513732
+      name: CLI_ID
+      description: ''
+      column_id: d6e35db6-77c4-5350-bd34-ccc6881638eb
+    - id: 94d66797-d34e-582b-9ce9-785b106d7b0c
+      name: CDE_ID
+      description: ''
+      column_id: 9d918be4-a848-5dcb-8f37-8c15374f08c6
+    - id: 988df871-2b62-5794-9a4a-8e0fef6927ae
+      name: FAC_ID_ORIG
+      description: ''
+      column_id: 77be6677-4a79-53a5-b7f4-bce50267d433
+    - id: 8136b5b4-b7e5-5568-905e-d813a7ea7d30
+      name: FAC_MOTIF
+      description: ''
+      column_id: b44b5a2c-3906-5a5a-af3b-61b6e074f9be
+    - id: 228fb609-d283-5052-bb10-f2a869badd1f
+      name: FAC_TX_TVA
+      description: ''
+      column_id: 6de80f71-753f-5f2d-91c6-23acbcc1f364
+    - id: 42833297-0d6b-5d0d-b703-be2dbf12bfab
+      name: FAC_MT_HT
+      description: ''
+      column_id: a6d66189-19e8-596a-a6bb-ae7e29fb11e4
+    - id: 37f2a3a7-53f9-5c54-bab4-da9c0e3291e5
+      name: FAC_MT_TVA
+      description: ''
+      column_id: 6fdacc38-1403-590e-b7d8-2457bf5a1cc6
+    - id: 573c20fb-8356-5a7f-81aa-5235cf973535
+      name: FAC_MT_TTC
+      description: ''
+      column_id: 50121de4-c068-5f88-9d76-2e523c939a7c
+    - id: c7e58ae0-a7e1-5b5d-a3e6-b9cb258adc0d
+      name: FAC_STATUT
+      description: ''
+      column_id: c63a8c63-fa4a-5e99-9ed6-c48481b05777
+  - id: 7d834294-9b57-549a-99d9-f0521af8f24b
+    name: erp.VTE_FACT_LIG
+    description: Table source erp.VTE_FACT_LIG ; définition à réviser. Les factures
+      F contribuent positivement et les avoirs A négativement. Les montants des avoirs
+      sont stockés positifs. Agréger les en-têtes OU les lignes, jamais leur montant
+      d'en-tête après une jointure un-à-plusieurs.
+    represents:
+    - 822b88b5-f02a-5084-a373-1c24b4f4b5ff
+    columns_attributes:
+    - id: 87b1ff53-24a7-50e0-9c20-54153c378262
+      name: FL_ID
+      description: ''
+      column_id: ab4b0d68-6365-5ead-90d9-a0d0422d5ae7
+    - id: 260a7667-0ed0-5eb7-987c-9ae1afc7db1f
+      name: FAC_ID
+      description: ''
+      column_id: 3d975097-b1ff-5737-bee4-28cc8959a2dc
+    - id: 5e0330d1-b9ed-5605-9fac-829e16aebb7c
+      name: FL_NO
+      description: ''
+      column_id: 1176c494-e6a3-5061-8f70-49d8599c5081
+    - id: 22d46713-3a61-587b-8052-56ef3ab174d6
+      name: ART_ID
+      description: ''
+      column_id: b3fde9fe-1480-59d4-84f4-08316aafb617
+    - id: be99d1d4-038d-56d8-be46-c527fd600c99
+      name: LIG_ID
+      description: ''
+      column_id: 4d70306a-084d-5a6d-ac9f-a9eceac0b464
+    - id: 17b12c49-17f1-5de3-9a3c-3c13987910e8
+      name: FL_QTE
+      description: ''
+      column_id: 88772829-3d10-5bfe-ae20-c27746978c37
+    - id: 1e66994a-843b-5b52-92a8-1c868252a6ea
+      name: FL_PU
+      description: ''
+      column_id: 8f98b6f2-1f35-5e19-b4af-e1ef201bffe1
+    - id: 1f8c5d99-ca01-5434-a47f-3f4a12bdc3fe
+      name: FL_REMISE_PCT
+      description: ''
+      column_id: 070782b1-bace-545c-8936-5d1c76ecd05f
+    - id: d75310f9-2bbe-5dd5-90b2-f4fad05d0866
+      name: FL_MT_HT
+      description: ''
+      column_id: ccaa4b31-3dc6-5ced-858c-3dfba25a79ce
+  - id: 8466b458-a353-5bd1-a1c7-26c4ea9f6e21
+    name: erp.ACH_CDE
+    description: 'Table source erp.ACH_CDE ; définition à réviser. '
+    represents:
+    - a283db26-18e6-596b-b7f0-4b5292138e52
+    columns_attributes:
+    - id: ea1cfcdb-1741-55ce-9afd-1bd410ff27b0
+      name: AC_ID
+      description: ''
+      column_id: 45ea08f4-04d5-50ca-9d2e-acda525e0c48
+    - id: 5f90cde4-ff3c-510d-8512-9f0c2687eeac
+      name: AC_NUM
+      description: ''
+      column_id: fb08ebdd-1b94-599a-90fb-1e3638028e81
+    - id: 6e7d402b-a590-54e9-85a7-444a3d066d4c
+      name: FRN_ID
+      description: ''
+      column_id: e2d2b96c-a734-5101-832b-d3a5f40259c3
+    - id: 4b546b02-9569-55dc-8178-1e470b15f05d
+      name: SIT_ID
+      description: ''
+      column_id: 4bd11352-861f-5bfe-aecb-d400d25818d5
+    - id: 3f64e742-ff84-5760-a5ec-e30a2ad11cf0
+      name: AC_DT
+      description: ''
+      column_id: 4095239e-8079-5ea9-b8cc-b19b67e8a506
+    - id: 8937d9d8-327d-585c-9867-ce32429f076d
+      name: AC_DT_LIV_PREV
+      description: ''
+      column_id: f4f83dc6-a5a8-5412-9f40-899e6e56c629
+    - id: fa143f13-7258-563c-8362-0aafeeb7ae63
+      name: AC_STATUT
+      description: ''
+      column_id: cbba6935-f73c-57fb-ac38-90a0c0ae921d
+    - id: 38143963-53ed-55a9-96fb-7f78ba72fa13
+      name: AC_MT_HT
+      description: ''
+      column_id: d26e11c8-012e-5f7e-8c7d-04ec1f06cb2e
+  - id: 2560d711-a066-5dc4-be85-4dec7001a77f
+    name: erp.ACH_CDE_LIG
+    description: 'Table source erp.ACH_CDE_LIG ; définition à réviser. '
+    represents:
+    - 320b9816-5661-5a3a-ba74-98e9ab7ac01b
+    columns_attributes:
+    - id: f689b4a9-79b5-501f-9087-bb12855079ec
+      name: ACL_ID
+      description: ''
+      column_id: 78c8046d-a55f-5bc8-a5fb-cbd23c70e081
+    - id: 9c4d3ada-43e2-5134-887c-738896ce29ea
+      name: AC_ID
+      description: ''
+      column_id: 507b3b60-2328-5bec-aa46-9ad3576927e9
+    - id: 8d404634-7185-542b-bd01-4b3d35857496
+      name: ACL_NO
+      description: ''
+      column_id: 5bca0489-bb64-52de-b1ed-a749b5ab8b47
+    - id: 4b0d24c2-4b6c-5c48-9baa-3fc1e2e617d6
+      name: ART_ID
+      description: ''
+      column_id: 413d39b3-326b-5e08-95e7-3b86aaf2a55b
+    - id: 4ea28acc-8e00-578d-9f0b-2c9043deceb4
+      name: ACL_QTE
+      description: ''
+      column_id: 989d2f7a-a155-5622-a718-ece939f80e9a
+    - id: 6d777946-c2f0-5b11-b399-2bf28a0be76b
+      name: ACL_PU
+      description: ''
+      column_id: 03954000-fd6b-59b8-b45f-86273afe4cf5
+    - id: afa2efd5-5a0d-5087-b416-431a6f23f7b9
+      name: ACL_QTE_RECUE
+      description: ''
+      column_id: dc5595cb-8bdf-5e22-838d-66ddc38233e9
+  - id: cf33fcd3-a236-54e7-9c0d-20c037f01b8c
+    name: erp.ACH_RECEP
+    description: 'Table source erp.ACH_RECEP ; définition à réviser. '
+    represents:
+    - 871355b0-6cf4-50f9-824c-10ecf999ab85
+    columns_attributes:
+    - id: 69edf624-e3a7-5c3e-ad00-7ceb6c71a9f1
+      name: REC_ID
+      description: ''
+      column_id: 27e1f369-11e6-56f0-92c6-479f364ed9c8
+    - id: b824cff5-0f7c-50bd-a552-50f38cad59a7
+      name: REC_NUM
+      description: ''
+      column_id: f5945e4c-d3e2-5c78-a3fb-417747c4702e
+    - id: 7a3e0073-c8ad-5f89-961c-696b9b7c2b09
+      name: AC_ID
+      description: ''
+      column_id: 621b9ada-fa0f-59e9-9f50-dd7cf15e1cdc
+    - id: 7f861a40-70c6-5591-8380-1fa9299582db
+      name: REC_DT
+      description: ''
+      column_id: 6565a5b6-0c0b-5c97-9f3c-8bd61761b03a
+    - id: 28b71dde-0cd2-5050-bc17-09f5e1e9fa2d
+      name: SIT_ID
+      description: ''
+      column_id: cc3e41b8-9e8c-52aa-bf79-549f3c66969b
+    - id: c4d366a5-5ba3-56ce-9f58-7298e6a9ae72
+      name: REC_BL_FRN
+      description: ''
+      column_id: bd14122e-05e8-5678-b343-9326ed8a2d36
+    - id: 4b91c9eb-2e0e-5fd9-b352-0acb29e9f890
+      name: REC_COMMENT
+      description: ''
+      column_id: a3524401-0c31-5704-8b3b-7dba1bc7219a
+  - id: 0cbcd3fd-ace1-5298-8fec-d2c0ed0668f7
+    name: erp.ACH_RECEP_LIG
+    description: 'Table source erp.ACH_RECEP_LIG ; définition à réviser. '
+    represents:
+    - 0e57e42b-6e75-5d08-bb5f-fce988bebfd8
+    columns_attributes:
+    - id: bd57958d-ae14-566a-8629-5837cbc42601
+      name: RL_ID
+      description: ''
+      column_id: 0920f427-7eec-5275-82f2-2830cf01fc8b
+    - id: c858e37e-96d9-5040-8913-e90d9cefec24
+      name: REC_ID
+      description: ''
+      column_id: 16f57963-fea3-5b9c-b3c8-f4bfd44a764b
+    - id: 9666bf86-6943-56a9-9b43-d3c06c5d19ec
+      name: ACL_ID
+      description: ''
+      column_id: c05c2fb1-e219-516e-8fe4-49e99dcfaaec
+    - id: d579ce51-0dcd-5a79-aa22-e456bd3c4f87
+      name: ART_ID
+      description: ''
+      column_id: 74b74b90-aaaa-5121-9c48-03cf07c1e87a
+    - id: 039df5ad-90f3-5159-ad78-41568a725891
+      name: RL_QTE_RECUE
+      description: ''
+      column_id: c4ff8d4b-b29b-5497-8461-7f6583d88f7b
+    - id: bd13ecf8-5e58-5fc6-b9ba-ff8eccd6dfe0
+      name: RL_QTE_REFUSEE
+      description: ''
+      column_id: 9cae9843-a30b-5255-a6b5-e813289516da
+    - id: 5e5f8bcf-edac-55bc-815e-990f72a72dde
+      name: RL_LOT
+      description: ''
+      column_id: e6097362-79dc-5499-a201-3aff4107e35f
+    - id: 9a9319ac-9c0d-5f71-9ade-cd32770def1f
+      name: RL_MOTIF_REFUS
+      description: ''
+      column_id: 3b60362e-11ae-5ec8-93f9-07941c566910
+  - id: 7b345f2a-a115-56fc-8729-64d3f3fbfa3a
+    name: erp.ACH_FACT
+    description: 'Table source erp.ACH_FACT ; définition à réviser. '
+    represents:
+    - fadea78c-619d-581f-9dad-68fed6612adf
+    columns_attributes:
+    - id: 5ef7fb6d-b90b-5713-8d6b-0560ae0b9ec9
+      name: AF_ID
+      description: ''
+      column_id: f0598563-1d0b-5b6a-afea-b2fe87d9a012
+    - id: 750cc175-5716-554f-9049-475a46b600cb
+      name: AF_NUM_FRN
+      description: ''
+      column_id: 9b64816f-46af-5626-8ac0-b99dddd5d199
+    - id: f905cd23-8c91-55e6-8539-faac89caaca5
+      name: FRN_ID
+      description: ''
+      column_id: ad3d875c-8123-52d6-9773-d0549d951882
+    - id: 9c0c99ea-0b15-5927-8a9a-b2cf0877d0ca
+      name: AC_ID
+      description: ''
+      column_id: 2f531211-4b47-5d9e-946e-5b49f7f310e6
+    - id: c2388e49-8fc9-5c83-85fe-bafdbee7e816
+      name: REC_ID
+      description: ''
+      column_id: 6ec006ca-4bd9-51f1-8756-09202fdedeb6
+    - id: be034265-5d6b-5849-aee4-18fb735d4861
+      name: AF_DT
+      description: ''
+      column_id: ef4fcd4c-42d4-5532-a71c-19691d985045
+    - id: 22804cb6-b476-5a9e-bdf2-45593de03e93
+      name: AF_DT_ECH
+      description: ''
+      column_id: 1ee27f2b-093d-50ed-bacf-9b634549cfae
+    - id: def9fd45-75ea-5377-9a4d-5ba6366102e9
+      name: AF_MT_HT
+      description: ''
+      column_id: e7706f96-a4a7-5a4b-ac78-1836472d69f8
+    - id: add4db62-2768-55ae-9062-4881778063d9
+      name: AF_MT_TVA
+      description: ''
+      column_id: 194d0945-25c2-5db6-9831-1ef5e2fc046e
+    - id: e3460025-3c23-58e8-99a6-a78b6704e11d
+      name: AF_MT_TTC
+      description: ''
+      column_id: 110daf74-8a5d-5ecd-8276-7bab7e5c83eb
+    - id: 52b8a37b-7124-5ecf-a8aa-95ac5c8bc4bc
+      name: AF_STATUT
+      description: ''
+      column_id: 1fae1d2a-278f-5ced-b12f-3f4404a023a7
+    - id: 7ad1b705-038f-55a5-919d-92fb59f4225b
+      name: AF_COMMENT
+      description: ''
+      column_id: 55de66da-690d-5453-b68e-eaff8c555645
+  - id: 89e742d2-96e1-5afd-877f-3ff482fcaf06
+    name: erp.PRD_OF
+    description: 'Table source erp.PRD_OF ; définition à réviser. '
+    represents:
+    - 2d39b602-6591-526e-a1fc-54c1b0f44f9b
+    columns_attributes:
+    - id: b538a9a0-bf76-5a16-ac95-a19469e7a7e5
+      name: OF_ID
+      description: ''
+      column_id: 55b07c0f-c091-5ecf-8b31-13e2fc7a89f6
+    - id: bf7e8bd4-ec6c-5319-91b5-f017fe623c88
+      name: OF_NUM
+      description: ''
+      column_id: 8f5565c3-2a58-536a-b6b1-21a9cc48db24
+    - id: 7902f2de-cfde-598a-9138-181bcac1eedc
+      name: ART_ID
+      description: ''
+      column_id: f959bb6b-cffc-5f67-9488-0924272bacd7
+    - id: 3298e78c-0fe3-5a5b-84a5-ca1eb77eb185
+      name: SIT_ID
+      description: ''
+      column_id: ad27f2f5-0cd9-5990-92ba-89888ecd0b5b
+    - id: fb0dac9c-d392-5b66-bb2b-eaa6cf7b3cf7
+      name: OF_LIGNE
+      description: ''
+      column_id: 6c3ea2e8-7ef2-5325-b1f7-807c3b223379
+    - id: 367cbb2e-513a-56c5-8923-9cdf3a43525f
+      name: OF_DT_DEB
+      description: ''
+      column_id: 3d394f55-6c53-5197-8208-7d7bd5b34327
+    - id: e867a6a5-af69-54f3-bb97-1c16c8b365c1
+      name: OF_DT_FIN
+      description: ''
+      column_id: 58eb8897-cef5-556b-aabf-3a9263405c79
+    - id: 4551547e-21c5-59f5-a631-fe8d58adf5ff
+      name: OF_QTE_PREV
+      description: ''
+      column_id: 303a0d16-78b4-5b9f-84b0-04814bdef0d5
+    - id: 18df1680-bd2f-5078-967e-5c196b470844
+      name: OF_QTE_REAL
+      description: ''
+      column_id: 94069e88-7763-5284-80b1-a13aab815e44
+    - id: 44720b6f-d447-5662-9734-24abf0807bfa
+      name: OF_QTE_REBUT
+      description: ''
+      column_id: 05c3fd26-b22d-5b8e-a29b-a8ba90c799e5
+    - id: 5c46bfe2-637c-5e86-8b60-d5ccc8009ce9
+      name: OF_STATUT
+      description: ''
+      column_id: 990fbdec-b9d6-5a3b-9ba4-bea78e038c53
+  - id: f365797d-e87e-5d37-92d6-d39015fd5d8f
+    name: erp.LOG_TRANSP
+    description: 'Table source erp.LOG_TRANSP ; définition à réviser. '
+    represents:
+    - 27516eac-e124-57e4-afc7-9f32bae584de
+    columns_attributes:
+    - id: 163b2d5b-ce7f-5357-8fed-69256fdde8ca
+      name: TRP_ID
+      description: ''
+      column_id: 71ed8bea-7b63-5282-94a8-cf8436e93b49
+    - id: 5086f231-d6a1-5796-800b-69d4bf87e8a2
+      name: TRP_CODE
+      description: ''
+      column_id: a1837433-d0c7-567f-a055-15d9599411a4
+    - id: 86292d89-ff9a-51e9-b3c0-cae382b32b60
+      name: TRP_NOM
+      description: ''
+      column_id: 9429d9ae-0ff6-54e5-8e42-1f820c805f08
+    - id: 3e0809ca-ccbe-5bd2-b255-6ffeaea53fae
+      name: TRP_TVA
+      description: ''
+      column_id: e2951fda-0a62-5d2b-9943-1cd3e64b638c
+    - id: b93b972c-d5a9-557f-8229-3c5a3fd2e4d9
+      name: TRP_PAYS
+      description: ''
+      column_id: 98fb4689-e494-5a82-bdba-7719cbc91685
+    - id: 4886d922-be8e-528f-b4f2-97ab36a3285e
+      name: TRP_TYPE
+      description: ''
+      column_id: 54436480-2015-507a-a5af-d66b78ed16d7
+    - id: d6ecb89e-3bac-5a99-ac96-54579a8bcf82
+      name: TRP_ACTIF
+      description: ''
+      column_id: 2eab115b-97ac-562d-aa1a-9a5d3c865ad6
+  - id: d3a3159c-2932-54d7-b1b9-519a5fe22dfc
+    name: erp.LOG_EXPED
+    description: 'Table source erp.LOG_EXPED ; définition à réviser. '
+    represents:
+    - 80c8329e-8825-5a10-a9f8-a590c5261e52
+    columns_attributes:
+    - id: 3309e358-0c2f-5931-a2cb-ba5d6e19a37d
+      name: EXP_ID
+      description: ''
+      column_id: 59fd8059-4952-5762-a241-e19f727496f5
+    - id: 3bf36f2e-f7fd-577a-92b7-ab757ac53704
+      name: EXP_NUM
+      description: ''
+      column_id: e16dfa17-d627-57eb-a9e3-ec46b79b7414
+    - id: 602db133-35d2-5be9-93b2-af812227b61d
+      name: CDE_ID
+      description: ''
+      column_id: acbafcfc-4cb9-56df-be19-5807fa7be299
+    - id: 44233117-fc05-5816-8d73-7240115fadb9
+      name: FAC_ID
+      description: ''
+      column_id: 33a2905b-5ed5-5712-b56e-f808ac02aad9
+    - id: 778d7726-ccbf-5d08-b2dd-29d05a5fba3b
+      name: SIT_ID
+      description: ''
+      column_id: 3331cde9-623a-55f5-b594-f10b5c8857d2
+    - id: b4d1fefb-fdc6-524c-ad8b-c4987278bb94
+      name: TRP_ID
+      description: ''
+      column_id: bf51eb62-ffb6-591b-8a71-1aa36bc1e33b
+    - id: fd950660-cdcb-55cf-b2ab-cb0d814f2643
+      name: EXP_DT
+      description: ''
+      column_id: 045036be-1f8d-5975-9608-51f89e13793e
+    - id: 517c55d7-8191-523a-bc37-158dbde61793
+      name: EXP_DT_LIV
+      description: ''
+      column_id: d1ca5300-361f-5b39-ae0a-462540ca91b9
+    - id: 1e4d7b82-295e-5cd4-a34a-74889e400f0e
+      name: EXP_NB_COLIS
+      description: ''
+      column_id: 513125c1-6643-5c89-ae3a-bcfa95907b48
+    - id: 28db3dac-463e-5576-8551-78656ba3ca17
+      name: EXP_POIDS_KG
+      description: ''
+      column_id: e47b3d23-e110-5ee3-b674-2b5e95077d32
+    - id: 28f6bb5f-7ae6-5afc-b242-3560da17484c
+      name: EXP_STATUT
+      description: ''
+      column_id: 9d362d7a-caec-5095-9df4-8ec1f281a1fc
+    - id: 028ad84b-c9b9-577d-b2b9-969ad27de552
+      name: EXP_INCIDENT
+      description: ''
+      column_id: 52427311-19c3-5580-9f16-74970aff40b4
+  - id: 420a7cbf-18ff-5920-b898-104ab048a9df
+    name: erp.STK_MVT
+    description: Table source erp.STK_MVT ; définition à réviser. STK_ETAT est la
+      photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne
+      pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le
+      stock futur n'est pas disponible.
+    represents:
+    - 8a5e2f59-ea1a-5bd6-9bd9-96b5af1b4f73
+    columns_attributes:
+    - id: 2b787e3f-88c9-5f10-9b35-eabc3da2c486
+      name: MVT_ID
+      description: ''
+      column_id: 29127d91-1f17-5c96-8686-5114af7c787b
+    - id: 17ac8fd1-170c-5127-b6ae-c7ac5a1bd242
+      name: MVT_DT
+      description: ''
+      column_id: 6e3a9f16-6739-5545-ab27-b90fb46b14a0
+    - id: 7e89843b-20b8-5041-bb05-cfe9d693d83e
+      name: MVT_TYPE
+      description: ''
+      column_id: f58db522-0f55-5dc9-b859-059ad7ba3348
+    - id: f8f77f4b-7645-505f-95c9-18f5155b46ae
+      name: ART_ID
+      description: ''
+      column_id: 77be5033-5e82-5f01-ad97-5d5dc7d9a7f4
+    - id: f1edf912-086c-5d4d-a402-45e39325f28c
+      name: SIT_ID
+      description: ''
+      column_id: 731e9e23-fc89-5b13-9e36-06aab8ea2550
+    - id: 3126fffd-cce5-599b-922e-15d65c7c1b21
+      name: MVT_QTE
+      description: ''
+      column_id: 04bebd0f-c6f8-526b-acd0-30dc66ace31a
+    - id: 4fc549fe-ffd1-580a-b20c-acb2246f1a7a
+      name: MVT_REF
+      description: ''
+      column_id: 542e133b-012a-583f-9f16-8e7fc1bd53af
+    - id: b9c6af04-1c68-5993-8d74-e140235aace7
+      name: MVT_LOT
+      description: ''
+      column_id: 370067ad-7254-59e7-baad-ad87729cb65b
+    - id: 0b3839a0-4da8-52d9-b52e-ad42c4ff0338
+      name: MVT_USER
+      description: ''
+      column_id: a54eda83-a268-57f9-abdd-0d8a3a780672
+  - id: 26053fde-7988-5db3-a349-0927c56bcf28
+    name: erp.STK_ETAT
+    description: Table source erp.STK_ETAT ; définition à réviser. STK_ETAT est la
+      photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne
+      pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le
+      stock futur n'est pas disponible.
+    represents:
+    - 6f28c105-ab02-5997-a01b-ea690914bd98
+    columns_attributes:
+    - id: 620aa792-8a89-5364-aa57-8d917ee4d81d
+      name: ART_ID
+      description: ''
+      column_id: a45466a3-3586-58c2-8370-06e6d4867853
+    - id: 1ad092b1-57c3-56df-a8f9-fee22f031cba
+      name: SIT_ID
+      description: ''
+      column_id: 7c431b79-5f82-514d-8d58-2483ba9f0cb5
+    - id: 2d7f1977-0b74-5323-9bba-51bb99bffb3e
+      name: STK_QTE
+      description: ''
+      column_id: 90ce2d45-fe45-5498-9e6f-0fd05dc85802
+    - id: 9939d14a-dbec-5e73-a66f-f3e7b05d489f
+      name: STK_SEUIL_MIN
+      description: ''
+      column_id: bcdb1a2c-e865-55ce-961b-ca66da2cd143
+    - id: eb7928a6-f69a-5472-ae97-1783b2fde8a0
+      name: STK_DT_DERN_MVT
+      description: ''
+      column_id: 3466a558-f54f-53f8-9733-af6aabea5661
+  - id: c14a37c0-3a8e-5766-ae9a-496de6fcaac4
+    name: compta.exercice
+    description: 'Exercices comptables '
+    represents:
+    - 64ec6edc-9883-5224-8746-66bec2ffc225
+    columns_attributes:
+    - id: aaed0724-d4c7-5ba4-a18e-67413598bcfb
+      name: code_exercice
+      description: Code de l'exercice (année)
+      column_id: fb0ebc7c-6a05-5fb8-a605-b62719dde9e7
+    - id: 755c0bdf-5632-53db-ad41-84c8739b0f41
+      name: libelle
+      description: Libellé
+      column_id: 0bde1931-f3cb-53ed-b1fb-692d4226a6f6
+    - id: 049f0502-0f57-5bce-9262-0d3eab7ad2b6
+      name: date_debut
+      description: Premier jour de l'exercice
+      column_id: 3311fe2b-d5ac-5406-9251-c21a6c99a96f
+    - id: af50854e-eade-562d-9b95-ece54d216958
+      name: date_fin
+      description: Dernier jour de l'exercice
+      column_id: 38a96fe3-6087-5631-a609-c0945da66977
+    - id: 0ac0b73a-a6b3-5511-82e1-705baa42a841
+      name: statut
+      description: OUVERT ou CLOTURE
+      column_id: 28405839-d987-54a9-ab81-dc2c301e3131
+    - id: 33cd2da4-7973-545a-8438-dccd9fcb4977
+      name: date_cloture
+      description: Date de clôture définitive
+      column_id: 3dd2d98a-0153-5277-bdec-c0bc3ec554aa
+  - id: abf2fb70-c69d-5a06-815d-357ee779ccc8
+    name: compta.periode
+    description: 'Périodes mensuelles '
+    represents:
+    - 45300689-5b7e-591f-9a10-43c81716ac97
+    columns_attributes:
+    - id: 6c51d531-dd76-55b3-bacd-d1a9933c83e2
+      name: code_periode
+      description: Code AAAA-MM
+      column_id: a24e62f8-bfb2-526a-9ad4-1790fecffcfe
+    - id: 7c16e64c-32a5-539b-a66c-e18198545464
+      name: code_exercice
+      description: Exercice
+      column_id: 219d3e7f-947b-5ff1-8b28-155c284ad71a
+    - id: 6be0e89f-2330-5e6c-a421-b6e6c001cfda
+      name: date_debut
+      description: Premier jour
+      column_id: 17bae3e7-a141-50b5-83db-3c481ee28a67
+    - id: 009b1056-61ae-5c73-8508-39ab56ba8aa3
+      name: date_fin
+      description: Dernier jour
+      column_id: 0ab8a8ed-8f4e-577a-b558-df91d6dd593d
+    - id: 061bfafd-9c1d-5565-ae4e-17af2cb119ed
+      name: statut
+      description: OUVERTE ou CLOTUREE (plus aucune écriture possible)
+      column_id: b35ebeee-7957-57e4-a5a8-06a47d801f92
+  - id: 5ab24673-8cb4-5f1d-b896-e44f13e58ec9
+    name: compta.plan_comptable
+    description: Plan comptable (PCMN belge, comptes à 6 chiffres) Somme credit-debit
+      des classes 6 et 7, hors comptes d'affectation 69 et 79. Inclure le bénéfice
+      à reporter 693000 annulerait artificiellement le résultat déjà affecté.
+    represents:
+    - 70034ec9-fb0b-5549-af17-6aeab9070cd0
+    columns_attributes:
+    - id: c244b4aa-1b09-562a-8a6b-0dc1ecde10b1
+      name: numero_compte
+      description: Numéro de compte
+      column_id: 96586592-ec27-5bd7-a4d0-344b93f49304
+    - id: a53ace12-388d-57e9-8c3e-3ff9bc3b5014
+      name: libelle
+      description: Libellé du compte
+      column_id: ad2625dc-3980-5114-ba66-a7888dce51bc
+    - id: da65426e-5fcb-5ea3-8ed7-2fe4f4b6a48a
+      name: classe
+      description: Classe du PCMN (1 à 7)
+      column_id: eb615202-1d4f-5acb-9cfc-b5c5e5c47ca8
+    - id: 9edad813-c46a-5748-9856-de0252ae7b60
+      name: type_compte
+      description: BILAN, CHARGE ou PRODUIT
+      column_id: 9788ac83-6257-53d6-9dd8-0d19b5eca0e5
+    - id: 0d4a5656-342d-55e4-848b-aadaf8181c1e
+      name: lettrable
+      description: Vrai si les lignes de ce compte sont lettrées (tiers)
+      column_id: eb07d959-6169-5b6a-abb8-5a4a4d6010b5
+    - id: b3d17541-7cc3-5e7e-ad30-e4e6b4e8fcfa
+      name: analytique_obligatoire
+      description: Vrai si un centre analytique est obligatoire
+      column_id: df091308-8747-5f6a-97fa-1591ed3a53e9
+    - id: 972f8e63-13fb-5357-970d-bd849f19bb46
+      name: actif
+      description: Vrai si le compte est utilisable
+      column_id: 1b9e8cd7-f6b4-58d2-83fe-17377f7e2fa3
+  - id: 45abbc2a-72cd-559a-8afb-e8070fd2fb73
+    name: compta.journal
+    description: 'Journaux comptables '
+    represents:
+    - cd431dfd-dc23-5535-896c-ec6f4f42a9bd
+    columns_attributes:
+    - id: ea05dd51-3bcc-5bdf-83ae-469685001a0d
+      name: code_journal
+      description: Code du journal
+      column_id: 564767e6-c38e-5f2e-997a-1055e4512af4
+    - id: f58f5684-8c3e-5201-b8cf-ed39eaf10ef5
+      name: libelle
+      description: Libellé
+      column_id: 0057ab91-9429-5105-a040-9f3bc40c024a
+    - id: 2eae9061-5bd7-5516-96e9-ae1775320b0a
+      name: type_journal
+      description: VENTES, ACHATS, FINANCIER, DIVERS, PAIE ou OUVERTURE
+      column_id: 70140f2a-a733-5d55-b82f-0f374e26250c
+  - id: df112a31-7416-54a0-a662-79ca1c5b650d
+    name: compta.tiers
+    description: 'Clients et fournisseurs '
+    represents:
+    - 378e1cca-ebea-59df-b27b-92cb7d17ac10
+    columns_attributes:
+    - id: 4717fec2-8e5e-5449-abc4-3ef6cf6deccd
+      name: id_tiers
+      description: Identifiant
+      column_id: 4f6dd284-c549-5f07-9c10-c95affa54643
+    - id: d51c932a-1df9-533b-b2b8-bf244acba07a
+      name: code_tiers
+      description: Code du tiers (C... client, F... fournisseur)
+      column_id: 508539f3-0289-58b4-ae81-9cef12250cb5
+    - id: 57d9b0b8-423c-598e-82b4-10680c5ae989
+      name: type_tiers
+      description: CLIENT ou FOURNISSEUR
+      column_id: 4711c6d7-b8b7-5e57-9469-9534ff1d7b7e
+    - id: 144acb44-1666-5c22-a6b3-64873c43c7c9
+      name: nom
+      description: Nom
+      column_id: cd3079ee-b1a1-551b-9f55-2375d5a03d51
+    - id: 549f1f2a-c385-55b4-98f8-635672afcc7f
+      name: numero_tva
+      description: Numéro de TVA au format 'BE 0123.456.789'
+      column_id: f7df60c0-2227-5759-90a3-179daaf04393
+    - id: 750ac8f6-e31e-5c25-8982-44814f269742
+      name: pays
+      description: Pays (ISO)
+      column_id: 6fd3d7b2-d8b9-5996-b397-0018ec10df54
+    - id: 0bdc2553-5061-527f-9cde-735e09e42071
+      name: compte_collectif
+      description: Compte collectif (400000 clients, 440000 fournisseurs)
+      column_id: 2e99c337-ea0b-599c-ad6f-dd60df0e4988
+    - id: 10a395e8-5f9a-5872-86d2-f2a010ee2e6b
+      name: conditions_paiement
+      description: Conditions de paiement
+      column_id: 8b4ecf18-f02d-58a3-b465-bbb092b2b8fe
+    - id: 23862f3b-aa32-5da7-b394-115153326b19
+      name: date_creation
+      description: Date de création dans le logiciel comptable
+      column_id: d90b2a3b-20a6-58e3-8187-24ba02291a0e
+    - id: ba304c31-7f07-5369-858c-f605a11648e3
+      name: actif
+      description: Vrai si actif
+      column_id: 7a8a563f-f40b-5561-9a50-1fa4145c5bc4
+  - id: cef3e28f-9bbe-544e-a260-e7c76898a0f8
+    name: compta.centre_analytique
+    description: 'Centres analytiques (centres de coût et de profit) '
+    represents:
+    - a1711086-9657-5bd5-beda-adccdcd0d65e
+    columns_attributes:
+    - id: b87176bb-2a9f-5065-b603-ae42855afed7
+      name: code_centre
+      description: Code du centre
+      column_id: 0c284de8-0316-5528-adf3-eb8df3f379f6
+    - id: 2e13ac06-fdc5-58f4-ae9d-10c11acf7e4d
+      name: libelle
+      description: Libellé
+      column_id: c93d44c3-b69d-5d11-9be5-a925a7870e05
+    - id: d80b634f-a240-53f5-b222-25dd2c602842
+      name: site
+      description: Site (NAM, SEN, GND, HRS, LIL ou vide)
+      column_id: 50b6879a-54f4-5e17-ad77-daa3de7b3013
+    - id: 90a5819a-dad3-5319-bd5d-3d445a4c1d2a
+      name: actif
+      description: Vrai si actif
+      column_id: 72c9c566-c7ca-5a1c-979a-e256b9f730a4
+  - id: 2c4f3bfd-69cd-52a2-8634-b948d9be067f
+    name: compta.taux_tva
+    description: 'Codes TVA '
+    represents:
+    - d87a7fa5-b407-5ac3-89fb-c06f350c9fb3
+    columns_attributes:
+    - id: df02ee76-2410-5cf7-8e87-9d9dd542cfa5
+      name: code_tva
+      description: Code
+      column_id: e4853f31-cc77-53c6-a481-a25efdb9f876
+    - id: a419a9f2-4ded-5552-a068-93d124661f71
+      name: libelle
+      description: Libellé
+      column_id: ebfc2d30-d925-583a-9fb8-62bee69cd589
+    - id: ff4394a1-cd5b-5da0-85bf-bda083a6f67d
+      name: taux
+      description: Taux en %
+      column_id: 76246046-41ec-552b-aeb7-e25ed92aeb87
+    - id: d544fb71-9f32-5bf2-b71c-4b52d749dadc
+      name: numero_compte
+      description: Compte de TVA
+      column_id: d60cf8f5-c9b1-5099-9f80-610882318aae
+  - id: 8c2685b6-cfc8-57c4-98aa-883388f6f49d
+    name: compta.compte_bancaire
+    description: 'Comptes bancaires '
+    represents:
+    - 013c640c-0c3f-5c47-bcec-666009099fae
+    columns_attributes:
+    - id: 9fe29ae0-d4d0-58f7-a83d-9e237338056c
+      name: code_banque
+      description: Code (journal financier)
+      column_id: 3d01f070-34b6-5002-9722-e62616a5b884
+    - id: e16c01c4-dcaa-5c52-ae02-a9ca583dfb82
+      name: libelle
+      description: Libellé
+      column_id: 51b000e4-084e-5204-a987-2366568513d0
+    - id: 7c3d7631-3779-5b2e-9bb0-1846484c56d5
+      name: numero_compte
+      description: Compte comptable
+      column_id: fa3ef4f3-c8b7-5cb9-b00f-0842343d69d4
+    - id: 654c0c65-1c15-5738-9f7c-7bac7b43fed5
+      name: devise
+      description: Devise
+      column_id: 3ea40d80-2572-527c-82a3-817f3d5c24c7
+  - id: 7c451a2b-62bd-5700-857d-d99e0416d732
+    name: compta.ecriture
+    description: Écritures comptables (en-têtes de pièces) Somme credit-debit des
+      comptes 70, à la période comptable. Les autres produits 74 ne sont pas du chiffre
+      d'affaires. Le facturé ERP et le comptabilisé peuvent différer. Somme credit-debit
+      des classes 6 et 7, hors comptes d'affectation 69 et 79. Inclure le bénéfice
+      à reporter 693000 annulerait artificiellement le résultat déjà affecté. Convention
+      vérifiée pour ce laboratoire ; somme credit-debit des produits 7 hors affectation
+      79 et des charges 60, 61, 62. Les dotations/reprises 63 et charges financières
+      65 sont exclues. Les autres produits 74 sont inclus dans EBITDA. Marge = EBITDA
+      / chiffre d'affaires 70, pas / tous les produits 7. Utiliser period_month pour
+      la période de paie et payment_date pour la date de paiement. Les charges comptables
+      peuvent comporter des écritures manuelles hors paie. Aucune rémunération, commission
+      ou fiche de paie individuelle n'est diffusée dans ce démonstrateur sans identité
+      RH vérifiée ; seules les statistiques agrégées sont permises.
+    represents:
+    - 2b2e1423-4e96-5ec2-bbbf-3bfd77237168
+    columns_attributes:
+    - id: 95fb0d7c-6bc3-502a-8ceb-1646d7f98dc4
+      name: id_ecriture
+      description: Identifiant
+      column_id: 57e13351-2aaa-5207-9a08-968f0c10cae8
+    - id: b3f72699-d163-5ae3-ba7c-74d341573630
+      name: code_journal
+      description: Journal
+      column_id: fd2000da-1f86-5930-a1ea-e9f28964f2b0
+    - id: bc7c8b14-4526-55dd-b8bd-41032492c2a3
+      name: numero_piece
+      description: Numéro de pièce (journal-année-numéro)
+      column_id: 521ab10e-1877-5c43-bf85-ebd8253da712
+    - id: d586ab54-b565-5b3d-be0d-2ba2e3020e5f
+      name: date_ecriture
+      description: Date comptable
+      column_id: f24e0849-4186-5104-83dd-c99c1936e683
+    - id: d3ea1034-2c1e-5e92-b4aa-f7a6f514ce6f
+      name: code_periode
+      description: Période
+      column_id: 65e0430a-f190-5a3c-9ad2-bbf7d5bc4755
+    - id: b56c16fb-78ef-5ed3-8639-0137c9333aaf
+      name: libelle
+      description: Libellé
+      column_id: 996a2cc8-977c-567b-92c0-9b65ed4fb0fb
+    - id: 4168c006-4667-5fc1-b797-e6510579d99e
+      name: reference_externe
+      description: Référence du document d'origine (numéro de facture ERP, numéro
+        de facture fournisseur, calcul de paie...)
+      column_id: 805ed650-0dca-5ac7-bf4e-45edf9069285
+    - id: e95522bf-aed1-54c4-be9b-43c0e23bcfc2
+      name: id_tiers
+      description: Tiers principal
+      column_id: bf30b75e-18a7-5272-9bc7-91b1d041fff2
+    - id: a3300f3f-7d3e-5c2b-be55-b487e968a748
+      name: date_echeance
+      description: Date d'échéance (factures)
+      column_id: adf6f3d7-56b8-580d-89aa-d07f741de1d1
+    - id: 031190b3-670d-5427-9e35-a8172fddf250
+      name: statut
+      description: VALIDEE ou BROUILLARD (provisoire)
+      column_id: cc0af0f3-7b6c-57e3-82f3-34e513db203c
+    - id: ac88a471-202f-5617-a91e-5ca6db80404f
+      name: date_saisie
+      description: Date et heure de saisie ou d'import
+      column_id: e05b595b-681d-5a88-9e93-4b763ccaa1fa
+    - id: 69ea7bc3-1ab0-57f2-9f60-3e275a63db0d
+      name: utilisateur
+      description: Utilisateur ou traitement d'import
+      column_id: bd6375e1-bc61-5de2-9ac2-cb921dfadbdc
+  - id: bf8ff3d2-4ea0-505c-b3dd-2d1e2197192a
+    name: compta.ligne_ecriture
+    description: Lignes d'écritures (débit et crédit positifs) Somme credit-debit
+      des comptes 70, à la période comptable. Les autres produits 74 ne sont pas du
+      chiffre d'affaires. Le facturé ERP et le comptabilisé peuvent différer. Somme
+      credit-debit des classes 6 et 7, hors comptes d'affectation 69 et 79. Inclure
+      le bénéfice à reporter 693000 annulerait artificiellement le résultat déjà affecté.
+      Convention vérifiée pour ce laboratoire ; somme credit-debit des produits 7
+      hors affectation 79 et des charges 60, 61, 62. Les dotations/reprises 63 et
+      charges financières 65 sont exclues. Les autres produits 74 sont inclus dans
+      EBITDA. Marge = EBITDA / chiffre d'affaires 70, pas / tous les produits 7. Utiliser
+      period_month pour la période de paie et payment_date pour la date de paiement.
+      Les charges comptables peuvent comporter des écritures manuelles hors paie.
+      Aucune rémunération, commission ou fiche de paie individuelle n'est diffusée
+      dans ce démonstrateur sans identité RH vérifiée ; seules les statistiques agrégées
+      sont permises.
+    represents:
+    - 53b9f518-8f1f-517c-aad0-4e315c8d33a2
+    columns_attributes:
+    - id: 5ce302a8-7e53-53cb-9759-68b2ffcc2a3a
+      name: id_ligne
+      description: Identifiant
+      column_id: 2dd13158-aa23-53db-9033-bfa74cfaed59
+    - id: ad212ec4-265e-5474-8458-530c9d969fdf
+      name: id_ecriture
+      description: Écriture
+      column_id: 536b85ac-625e-5379-a29e-2daa308f00c1
+    - id: 30552e1d-9da9-54ec-a72e-846e08ad4e95
+      name: numero_ligne
+      description: Numéro de ligne dans l'écriture
+      column_id: 59faeb7a-abde-5d3d-95f0-b741ed8b9e05
+    - id: 9372d2ed-98d4-5936-ade4-7263c570f363
+      name: numero_compte
+      description: Compte
+      column_id: e0573744-ed8a-5340-be80-247ab0adc442
+    - id: fa480b14-458b-5dda-8596-6ef7cca7e5c8
+      name: id_tiers
+      description: Tiers (comptes 400000 et 440000)
+      column_id: 86454361-ee51-5c37-adad-ee2958fadb86
+    - id: b1dce25a-ea22-52a1-9bd6-480adcaff8f6
+      name: libelle
+      description: Libellé de la ligne
+      column_id: 34c8a44a-6477-5882-81c0-c4f09f757c5a
+    - id: f027bf93-641a-5910-b9f5-6705fff94433
+      name: debit
+      description: Montant au débit
+      column_id: 76c0400f-b4b2-5d76-a8c9-07069a097dfd
+    - id: 14c23c26-d802-501c-a2d6-e7b5b2c1dd0c
+      name: credit
+      description: Montant au crédit
+      column_id: 7d24e50a-b1df-583e-b954-b0e485133248
+    - id: 7db2f1cc-6d01-5492-81e3-7cc856e785db
+      name: code_centre
+      description: Centre analytique
+      column_id: cd2b7865-6229-5d15-9ad4-99ee045345f3
+    - id: b3c1dbc7-65fa-5ba5-9baa-10b7f8f30ba0
+      name: code_tva
+      description: Code TVA de la base HT
+      column_id: f03c5f7d-cd15-5755-8ac8-200f529b6bae
+    - id: 24baefa4-68d6-55e6-a509-bd051c6434df
+      name: code_lettrage
+      description: Code de lettrage (facture et paiement qui se soldent)
+      column_id: 4ca6b5c6-ae98-53c3-802f-4246dc093b93
+    - id: 55389daa-0480-5177-b331-888ae2faf7df
+      name: date_lettrage
+      description: Date du lettrage
+      column_id: fa459c53-40c4-526f-87b5-8cf0b7a05877
+  - id: f94f7b9c-11bd-5490-bbc0-9522957628c6
+    name: compta.budget
+    description: 'Budget 2026 par compte et par mois (trois versions : V1, V2, FINAL) '
+    represents:
+    - f45daf31-9f6c-5b61-a915-ead5d555ff28
+    columns_attributes:
+    - id: 832b030e-58c8-5b7f-bae6-d6f0d83b012a
+      name: id_budget
+      description: Identifiant
+      column_id: 0226f5c6-e06d-5d4b-a491-f6ef5f9b9d72
+    - id: 52c798b5-e8a3-533e-a31c-68aa35b49165
+      name: code_exercice
+      description: Exercice
+      column_id: d0b18770-bda1-59ef-b261-06c4e5c88a63
+    - id: 96a5439d-75c3-5c00-87d1-4a4015e55444
+      name: version
+      description: 'Version du budget (V1, V2, FINAL : seule FINAL est approuvée)'
+      column_id: 750ee942-55d7-5a9b-a477-e6c504206786
+    - id: 5f03eda4-d39a-50f3-83df-58522988af42
+      name: numero_compte
+      description: Compte
+      column_id: 9c275b28-e86f-5914-adb3-7f13493f085f
+    - id: a24b4a49-b388-5430-82a9-bf5dc1e66ded
+      name: code_centre
+      description: Centre analytique (non utilisé, budget global)
+      column_id: f01522df-357b-544e-ac4c-6292d84e36a1
+    - id: 4d4599b3-d318-579d-87d5-2c48af11795c
+      name: mois
+      description: Mois (1 à 12)
+      column_id: e7a474bf-2a62-539c-a830-a4807af250a1
+    - id: c3a2390e-d302-532d-9236-12e90cc7e7a2
+      name: montant
+      description: Montant budgété, positif pour les charges comme pour les produits
+      column_id: 771beb6f-56bf-5750-97e9-60a2c53ac1da
+  - id: 333569eb-a633-54ce-90ce-18c1090317d9
+    name: compta.immobilisation
+    description: 'Registre des immobilisations '
+    represents:
+    - ff1f7f3d-dedc-5d76-b434-686925906506
+    columns_attributes:
+    - id: 7369aac0-67d0-507f-9f41-5bc8985d64a7
+      name: id_immo
+      description: Identifiant
+      column_id: 56f92a6f-ebc2-5692-843e-793cad313512
+    - id: 7b0bd684-d19e-52a5-8809-6917f81d4fd8
+      name: code_immo
+      description: Code
+      column_id: 16079393-1446-5686-a706-2403df20f0e4
+    - id: e2736d99-69cc-5d31-9c52-7721784748cb
+      name: libelle
+      description: Libellé
+      column_id: 8eb6a07c-2e7f-56b0-9d5d-94efd747cf6f
+    - id: 509138ff-a125-522f-bb6d-7b3ba7e545bc
+      name: numero_compte
+      description: Compte d'immobilisation
+      column_id: 597826b3-6d60-514f-a9d6-705c161b13e1
+    - id: a911b770-0f59-5828-a6f3-4e460d0c12b6
+      name: code_centre
+      description: Centre analytique
+      column_id: 98d4f011-f819-5549-aaf7-27e17d37d8ef
+    - id: c3f2850a-4079-5502-a567-d7c7b2ed5988
+      name: date_mise_service
+      description: Date de mise en service (vide si en cours)
+      column_id: 4aaf5f8c-803b-5e1a-9139-41910b1a6a51
+    - id: d0873b04-eac4-573e-b62f-59a035746c8e
+      name: valeur_acquisition
+      description: 'Valeur d''acquisition (pour les en-cours : montant engagé)'
+      column_id: 9c00c192-6180-550d-a436-bec864c6bad3
+    - id: 97e55bfd-54c1-5ee9-9a5b-5d7ed4a1b3be
+      name: duree_annees
+      description: Durée d'amortissement en années
+      column_id: 33287eb0-7ece-56ec-97c7-c0222e0679ae
+    - id: dbe62784-09ed-5fa5-aa86-1e4107c94855
+      name: methode
+      description: Méthode d'amortissement
+      column_id: 97c40869-5dc6-5670-95b6-1dbcabfddb36
+    - id: 25a012c6-906f-5a52-b259-8181cacf9678
+      name: id_tiers_fournisseur
+      description: Fournisseur
+      column_id: 4c5a75d9-fd95-5795-b512-8f3423cf167b
+    - id: a235fff9-2a8b-5d0f-9597-b9a9e5bb8b0b
+      name: statut
+      description: EN_SERVICE, EN_COURS ou AMORTI
+      column_id: b7a3c9e8-0338-5ee3-a22d-e784914d5c0d
+  - id: d95f15da-f33c-578a-8e40-359195d2f484
+    name: compta.amortissement
+    description: 'Dotations mensuelles aux amortissements par immobilisation '
+    represents:
+    - 999b57e4-1ea6-5243-8ce7-4e072b28652a
+    columns_attributes:
+    - id: 3b7697c0-46b1-52c4-8bb7-29dae52a441c
+      name: id_amortissement
+      description: Identifiant
+      column_id: bb7ea8c2-89fe-56be-8586-6bd63158af21
+    - id: b0a578fe-bba8-5ada-b138-70c29ab581ad
+      name: id_immo
+      description: Immobilisation
+      column_id: 3ab06c45-bf6a-587b-88ed-6ab446569362
+    - id: abadcdb5-21c5-5d4a-85c0-17bd2079a1fb
+      name: code_periode
+      description: Période
+      column_id: 9ceb07c1-ff30-5372-9a3c-fecb225d2209
+    - id: 41c2304f-526d-5318-9532-b04144cf15b3
+      name: montant
+      description: Dotation du mois
+      column_id: 3023a736-4d2c-5c5d-bfb4-cbbbb0eb73f4
+    - id: 66ad1d37-6b06-5afe-8571-51c04ac69d4f
+      name: id_ecriture
+      description: Écriture d'amortissement
+      column_id: e9eb2e3e-1bb6-58b4-aa2a-4c76b23c6de9
+  - id: 245404b5-33a8-541a-8cd5-8a897cfaff52
+    name: compta.mouvement_bancaire
+    description: 'Mouvements des extraits bancaires (CODA) et rapprochement '
+    represents:
+    - 73dbe54a-4a6b-5cdd-acbd-60d0239415bc
+    columns_attributes:
+    - id: 950e6a31-6398-54ab-9640-9e458ede9e40
+      name: id_mouvement
+      description: Identifiant
+      column_id: 8961e57c-466e-5d94-b518-9f6be5b2d031
+    - id: 1ec244b1-a129-562b-b238-5235e499522a
+      name: code_banque
+      description: Compte bancaire
+      column_id: 59d4e1e6-1484-5722-8442-56530a96a376
+    - id: 09d73f26-c5ce-5b80-97ed-df739a078798
+      name: date_operation
+      description: Date de l'opération
+      column_id: 78361111-127d-522d-86e4-329efc208d1e
+    - id: 8b46130e-aa1d-577f-abc3-aaa67592af4b
+      name: date_valeur
+      description: Date valeur
+      column_id: 3509a70a-b905-51c6-a685-36764b6bfc88
+    - id: d18bfa43-d744-50fb-80f7-77129fac010a
+      name: montant
+      description: Montant signé (positif = entrée d'argent)
+      column_id: e284c6c8-10ca-52c4-9a1c-ab5a1d97e3e3
+    - id: f1369043-4c9c-5aee-bf0a-6a69a8083a21
+      name: type_operation
+      description: Type d'opération bancaire
+      column_id: ff6005ec-719a-5013-9f0d-7b521ada4654
+    - id: e6a18040-16b6-5f11-9e21-d4e89c20f25f
+      name: contrepartie_nom
+      description: Nom de la contrepartie
+      column_id: f0d25e8c-abb7-5e26-a576-86a033c5f302
+    - id: 17cbae1f-f72d-5113-9e34-1d054ed20800
+      name: communication
+      description: Communication (libre ou structurée)
+      column_id: 8ea2a1f0-037d-54d4-ab70-5024fc92c6d6
+    - id: 07d78998-e0fc-543c-8eee-859119bdd408
+      name: id_ecriture
+      description: Écriture comptable liée (vide si pas encore comptabilisé)
+      column_id: 8f2a8d50-e450-5b41-a278-e5d85e0be61c
+    - id: 8baf2350-2c84-5338-b7c7-12d1076ada11
+      name: statut_rapprochement
+      description: RAPPROCHE ou NON_RAPPROCHE
+      column_id: 053971ba-df1f-5ac3-bc24-bc734c2f4ab3
+  - id: 5988f917-e97b-5ce6-bb82-5962ac137e7c
+    name: paie.work_sites
+    description: Lieux de travail COUNT DISTINCT employee_id pour start_date <= date
+      et end_date NULL ou >= date. Une personne peut avoir plusieurs avenants. Ce
+      nombre de personnes n'est pas une somme d'ETP ; celle-ci utilise work_regime.
+    represents:
+    - 76c0b2d6-9668-53d5-9a39-ce4705b2501e
+    columns_attributes:
+    - id: 6ec4152c-791b-5225-ab8c-202986b0c8e5
+      name: site_code
+      description: ''
+      column_id: 0a2a5529-ad42-5c19-b19e-e26325718de9
+    - id: 860da51b-fecc-594b-a10b-c1f06ef3ef68
+      name: name
+      description: ''
+      column_id: fac8af46-6488-5c4b-9ac5-53a0f2e9a34e
+    - id: 08b2d581-5800-5d5e-8e3d-75cf62b834b0
+      name: street
+      description: ''
+      column_id: a1fcc2fe-38cb-5828-8f36-9f3bb86e865b
+    - id: b10a6454-152d-5bc3-8c15-67c6fc3cefe3
+      name: postal_code
+      description: ''
+      column_id: 79a595ae-0efe-5000-86cb-36a33f5a729a
+    - id: d976a0da-e010-5d1e-b473-d16043e52d47
+      name: city
+      description: ''
+      column_id: 450560a8-d8ba-570c-830e-5476373a40bd
+    - id: f10606b5-dbad-5526-a118-7ff845eec119
+      name: opened_on
+      description: ''
+      column_id: d27cb8b6-6e83-5e20-a8da-7e0f5ee1592e
+  - id: e23de4e1-f880-53de-8420-ce6a7f3e8a9f
+    name: paie.cost_centers
+    description: 'Centres de coût de la paie et correspondance avec la comptabilité '
+    represents:
+    - 083fe67b-8ed6-50e3-9bcd-0df7067b6eac
+    columns_attributes:
+    - id: 0541c735-f02d-5c79-b6b9-73736eabdfb8
+      name: cost_center_code
+      description: ''
+      column_id: 975a7e69-228f-5922-b500-a16f34235d2a
+    - id: 633a88fb-50a6-5452-a373-533f0866cd1d
+      name: name
+      description: ''
+      column_id: 8cb47cc9-bda0-5d86-a5c3-6748a2fc03e0
+    - id: b300144b-f2aa-564e-8197-2a5134913151
+      name: site_code
+      description: ''
+      column_id: e349f113-6258-5c77-bb7f-fae59ec33564
+    - id: 36fb5133-4058-5e09-94ce-db49cff06a60
+      name: gl_cost_center
+      description: ''
+      column_id: 9f306379-aa0c-5edb-8f54-8762f063054f
+  - id: 6be7d725-4c25-54d7-a847-5393f24dafe3
+    name: paie.departments
+    description: Départements COUNT DISTINCT employee_id pour start_date <= date et
+      end_date NULL ou >= date. Une personne peut avoir plusieurs avenants. Ce nombre
+      de personnes n'est pas une somme d'ETP ; celle-ci utilise work_regime.
+    represents:
+    - e1cce8cd-cfb6-50ce-9daf-09f4ab95020c
+    columns_attributes:
+    - id: 90858150-9b85-5b8f-b97d-1d00923e837b
+      name: department_code
+      description: ''
+      column_id: 8f3f7ec9-257b-5afb-adac-f46a9c69165d
+    - id: f4d43162-2cd0-5fd2-90a9-9142f4be381a
+      name: name
+      description: ''
+      column_id: 7b8668ce-ce87-5b06-89e1-514920060eef
+    - id: 07187474-7a79-59cb-858a-d89a08002065
+      name: site_code
+      description: ''
+      column_id: eadf8037-2fc9-5f5f-ae78-47c98aa5148d
+    - id: 50986190-45e9-5eb4-ba84-a50ee0b1c6df
+      name: cost_center_code
+      description: ''
+      column_id: bfcf8437-c744-5b43-8c7d-6cffcd79ff06
+    - id: 52a59741-9fca-5a04-81d2-0c3dafcd446e
+      name: head_employee_id
+      description: ''
+      column_id: fd1ee982-4b21-5e20-9f16-70cfde824a3f
+  - id: ece80fed-134c-50b7-9762-6dfd036c2323
+    name: paie.job_positions
+    description: 'Fonctions '
+    represents:
+    - e86f645d-3716-5a41-bd9d-b89041efd886
+    columns_attributes:
+    - id: 758894bd-81d9-531c-b1b5-3a505c7869c5
+      name: position_code
+      description: ''
+      column_id: 7b786b8b-f05a-54a7-97c2-9a5c7af42932
+    - id: 89103fc6-0aed-52e5-93c2-9a6cb40d601e
+      name: title
+      description: ''
+      column_id: caa1d3ab-8e00-5920-a327-c2c359c70dc4
+    - id: 473145cb-61ba-5ba2-9089-a3d2e3699225
+      name: category
+      description: ''
+      column_id: ef15e0e2-363d-57ee-a09e-de1db92cff04
+    - id: bfb93ce3-3f54-5a70-bc9d-637e3dc7ed35
+      name: joint_committee
+      description: ''
+      column_id: a31e1887-3df7-5d1e-b8b6-cb62e8782e02
+    - id: 13d22eec-38ad-503f-9995-0f3ba37cb47e
+      name: salary_class
+      description: ''
+      column_id: c36b7d87-7046-50b0-9971-ebf99c573150
+  - id: 2d53a7c0-2674-51fb-bfb6-c8be25eb2c3b
+    name: paie.salary_scales
+    description: 'Barèmes mensuels minimum et maximum par classe '
+    represents:
+    - 608c048c-a26f-5699-a84c-a2c713863876
+    columns_attributes:
+    - id: 55d03f95-f6c5-572b-9b63-5acf032fa1e7
+      name: salary_class
+      description: ''
+      column_id: 68da977c-462e-5950-9c7a-66a716df40c8
+    - id: c1b3dbd5-43d4-5f07-8faf-387e523e3865
+      name: valid_from
+      description: ''
+      column_id: ede48112-29ac-5594-ac6c-a416c7259edd
+    - id: a52b9102-19eb-5012-92d5-fd03806f2650
+      name: min_monthly
+      description: ''
+      column_id: 2bdf525e-f3fe-5695-ae3d-79b6f0a652ab
+    - id: e25ae0cc-ebd8-567f-a99a-c9f6540f4567
+      name: max_monthly
+      description: ''
+      column_id: 3e09b798-c0e2-501f-9dcc-7aa36269bcd6
+  - id: 39e92f77-3944-56b8-9980-ab789e3d85c2
+    name: paie.employees
+    description: 'Travailleurs (données personnelles : numéro national, IBAN, adresse) '
+    represents:
+    - 4fd2f43d-b1eb-55ff-925f-97b675e18e56
+    columns_attributes:
+    - id: 0c0c9917-27ef-579d-876d-c7f8ec5d05c0
+      name: employee_id
+      description: ''
+      column_id: 07cd3224-a0a2-59fd-bd6d-972e4a27aa3a
+    - id: 7c8f1818-c5e9-57af-9c67-744115ca9bd3
+      name: last_name
+      description: ''
+      column_id: 2182b800-fb91-5494-bf5c-987121541300
+    - id: e18ee384-1a15-598d-a364-83de7ca3645d
+      name: first_name
+      description: ''
+      column_id: 49a2dc9f-de1f-57e8-8115-9d3225ce39c7
+    - id: 26359758-6bee-5a61-b7f7-ce2606a9c92b
+      name: gender
+      description: ''
+      column_id: 8ff42504-c0a8-5486-8e15-a6372a16f746
+    - id: 975c5a59-d6b2-5212-a342-e19014e511b3
+      name: postal_code
+      description: ''
+      column_id: 70833408-f83a-5408-86fc-6529d13977aa
+    - id: e3d9d4a2-367c-59ed-ada2-50d4ae741de4
+      name: city
+      description: ''
+      column_id: 509fd297-f7dd-5937-87e2-8c415286a62d
+    - id: 9fdace58-5a6b-5591-8c4b-ac4818ab54b1
+      name: hire_date
+      description: ''
+      column_id: efad59d2-382c-5dc3-9d7c-f266b2a90aa7
+    - id: 9169c449-328b-54b6-a60b-0c5707a8ae75
+      name: exit_date
+      description: ''
+      column_id: 2e2eaa4e-da85-5e5a-adb5-ad89439a9349
+    - id: 0ea3a3f7-3109-5389-a176-a8ebc44bce17
+      name: exit_reason
+      description: ''
+      column_id: 175bff6b-6170-5309-b1ab-e0bfd4db27ab
+    - id: 0f730dc3-962a-5b59-bd79-9ec50154d76d
+      name: manager_id
+      description: ''
+      column_id: a13e61f1-4a72-5c52-bef9-3c7f06d0a72a
+  - id: ee69a7b4-6f38-5f9e-901c-d3831e94b342
+    name: paie.contracts
+    description: Contrats et avenants (une ligne par période) COUNT DISTINCT employee_id
+      pour start_date <= date et end_date NULL ou >= date. Une personne peut avoir
+      plusieurs avenants. Ce nombre de personnes n'est pas une somme d'ETP ; celle-ci
+      utilise work_regime.
+    represents:
+    - 30ef4bd6-6a17-5070-9228-711087390bf6
+    columns_attributes:
+    - id: 8a05e600-5340-599e-a8cc-b9a07c5a482b
+      name: contract_id
+      description: ''
+      column_id: f11c45ee-9841-596e-a40f-c26ff40698af
+    - id: 9cb35695-8ccd-5d1f-a9a8-9608fd350d05
+      name: employee_id
+      description: ''
+      column_id: b30b20bc-d216-568b-8d92-3a82f962a69c
+    - id: 06a7869e-5975-55c1-997f-ff6434a1e8eb
+      name: contract_type
+      description: ''
+      column_id: 948025d8-0e1b-595a-aa32-373e918af0af
+    - id: 247d02c1-7232-594d-a688-b0f486b70436
+      name: start_date
+      description: ''
+      column_id: 47cbb0fb-f847-575e-b4bf-87354a2b797f
+    - id: 1cc41122-2fe5-54a6-b12e-e972b74a67b9
+      name: end_date
+      description: ''
+      column_id: de6ed2b5-6945-5609-909a-0046f8e81f19
+    - id: d23fad9d-32bd-5f85-8ce2-48d7cc030333
+      name: planned_end_date
+      description: ''
+      column_id: 6b883cf2-f040-5cc7-b773-898cf014f060
+    - id: e51facc0-6edf-5875-9a22-256ff76d46f2
+      name: department_code
+      description: ''
+      column_id: 38067b1a-b4de-539d-9422-4adda139d6fa
+    - id: b624e632-3ab0-5293-a5eb-fabe00a7c358
+      name: position_code
+      description: ''
+      column_id: 2819d226-a2ef-5e3c-82a4-b910371c641a
+    - id: e43f1a06-3509-55ef-9b66-8ca94e705a68
+      name: work_regime
+      description: ''
+      column_id: 2c6c5d87-8a19-5cd2-8544-55370839967c
+    - id: 2394aece-be93-5763-91c5-0491e5d5a40d
+      name: weekly_hours
+      description: ''
+      column_id: b4048d9f-7757-5857-b64f-81a4dd80f233
+    - id: 4c6ed392-0521-5720-9128-fd07b3808c1b
+      name: shift_pattern
+      description: ''
+      column_id: 91ff4032-9dec-58ec-b33f-4e96bd42e05b
+    - id: c3bb7a40-1a9e-5c29-8959-72f574cf2851
+      name: telework_allowed
+      description: ''
+      column_id: 61a9c748-0bdb-5b0f-82bf-6434d3afa39b
+  - id: d8eaeafb-1b7f-5386-a2d5-8466336ade72
+    name: paie.salary_history
+    description: 'Historique des salaires (mensuel pour les employés, horaire pour
+      les ouvriers) '
+    represents:
+    - 3ef1af09-2d0b-5836-b1dc-7e8989ba3314
+    columns_attributes:
+    - id: 1c54a4d7-e8ba-5f79-bde3-bc35ad13685b
+      name: salary_id
+      description: ''
+      column_id: ec0f5525-554e-517a-b81b-56b143bb02f7
+    - id: c2c5d636-635d-5bd3-906a-0457958a5b85
+      name: employee_id
+      description: ''
+      column_id: 111bdaa6-c099-5ffa-b0b4-d7f99d4723fb
+    - id: 08fa37bc-490c-5e7d-923f-27d722cfdae5
+      name: valid_from
+      description: ''
+      column_id: 8772630c-e55c-5416-a0f5-02b8b2f78f2d
+    - id: e566f733-f5d5-5cde-80d5-a249deb92693
+      name: monthly_gross
+      description: ''
+      column_id: 904918b3-8084-5f00-969d-c212a2e43726
+    - id: 546a38c8-941a-59a2-8705-94cac940c4ba
+      name: hourly_rate
+      description: ''
+      column_id: a9673d82-7ecf-5de7-befe-95d0442cf06b
+    - id: ef62bd08-38e3-5738-aff3-90ffd33a3995
+      name: reason
+      description: ''
+      column_id: 78bca804-848b-5c08-a50b-b64a6f409adc
+  - id: 38cd0b00-0f23-5310-85ab-bbb81b82012d
+    name: paie.absence_types
+    description: Codes d'absence Une ligne de timesheets décrit un jour ouvré pour
+      une personne. work_location TELE signifie télétravail. ACC désigne accident
+      du travail. Ne pas confondre jours calendaires, jours ouvrés et heures d'absence.
+    represents:
+    - b316a66b-1441-54bb-aac4-751c02eeaa15
+    columns_attributes:
+    - id: 96702cfd-ed57-52c0-a261-213bea620941
+      name: absence_code
+      description: ''
+      column_id: 69fd350c-0474-5703-8220-cf14ad84a721
+    - id: 46eebb7e-af62-5c14-9e6f-5c71238fdb5f
+      name: label
+      description: ''
+      column_id: a66a3e7d-0eef-5656-b33c-b4de799fea40
+    - id: d3448c06-ef34-593f-8dd8-adef6077a01c
+      name: paid_by_employer
+      description: ''
+      column_id: 64127b34-378f-531f-b1d8-63a3f4a004b5
+    - id: c112f6a6-d8ee-59bc-b71a-1f1c87af1051
+      name: meal_voucher
+      description: ''
+      column_id: 6df20f12-6ebb-5968-89eb-d06c7e0cdd8a
+  - id: 03b98eb9-6dd4-5207-8906-999626b8a86e
+    name: paie.timesheets
+    description: Prestations journalières Une ligne de timesheets décrit un jour ouvré
+      pour une personne. work_location TELE signifie télétravail. ACC désigne accident
+      du travail. Ne pas confondre jours calendaires, jours ouvrés et heures d'absence.
+    represents:
+    - 617ae2a5-7d45-50ec-bf1d-0af6ecc0e69d
+    columns_attributes:
+    - id: 0b8bf0e4-1cdf-5c79-94c8-ef1cc1aaff87
+      name: timesheet_id
+      description: ''
+      column_id: e63e0cf8-fdc0-5a05-a3dc-f16b06c68ae3
+    - id: 74dc6c0e-b0a0-5f53-9711-bcadca5c14d9
+      name: employee_id
+      description: ''
+      column_id: e45fc75a-1a2c-54c7-b4eb-a1a76cc60bbd
+    - id: 84e0eb08-51f8-5c1e-8688-763e00544b64
+      name: work_date
+      description: ''
+      column_id: dbf467c9-2cb0-5755-a4bd-0f7e5c1cd237
+    - id: 2784868f-f4eb-52ca-8ab2-f52edb8c1508
+      name: planned_hours
+      description: ''
+      column_id: b5bc0736-e1e3-55bc-9af1-d51c0b95fb41
+    - id: f323d456-fab1-563c-9046-5f5a8bacff34
+      name: worked_hours
+      description: ''
+      column_id: 2d40abd1-78b4-53bd-a421-96b5e2037486
+    - id: b00f94fa-39a0-5a18-853d-66b111db6bd1
+      name: overtime_hours
+      description: ''
+      column_id: 1e591eea-ae8b-574d-8f13-3245854e89d4
+    - id: f497d7a5-018b-56ce-9434-d72d4e3b3699
+      name: absence_code
+      description: ''
+      column_id: 2b1d7246-97b1-5232-b1ba-e1e31ea734fb
+    - id: 957fc5c7-2aac-5aaa-b195-7838ec8621c6
+      name: absence_hours
+      description: ''
+      column_id: e7b1770a-dfb7-5483-afa3-4372c083244f
+    - id: c5636c65-9b66-55e6-9ea8-b973a9d6a67d
+      name: work_location
+      description: ''
+      column_id: 370c175f-bebd-5eb3-82b4-dceefeec7709
+    - id: bf14214d-0b19-5b5e-8e0d-059780694558
+      name: shift
+      description: ''
+      column_id: 3af2dc45-0f0a-5111-858b-f28355a0bc66
+    - id: 0e5d86eb-3ac0-5930-9640-dbe12c24adbd
+      name: validated
+      description: ''
+      column_id: 5e028bc6-0e9c-5f79-9de3-f29be1166b72
+  - id: aaba91b9-fb52-5374-b20a-af98859f4797
+    name: paie.pay_elements
+    description: Éléments de paie et compte comptable Utiliser period_month pour la
+      période de paie et payment_date pour la date de paiement. Les charges comptables
+      peuvent comporter des écritures manuelles hors paie. Aucune rémunération, commission
+      ou fiche de paie individuelle n'est diffusée dans ce démonstrateur sans identité
+      RH vérifiée ; seules les statistiques agrégées sont permises.
+    represents:
+    - ef305bb3-d229-5b83-adc5-f8b8eb890d51
+    columns_attributes:
+    - id: d54bab4b-a0bd-5441-b3a6-d5eff88ef822
+      name: element_code
+      description: ''
+      column_id: c01d0aa4-1052-5ef5-9090-82db3ebf57a3
+    - id: 00b516bb-0268-5bdb-8192-69b9b8520bd1
+      name: label
+      description: ''
+      column_id: 2e422ad2-875f-5f37-8ac6-0acf297cd77d
+    - id: eee131c9-9b8c-5419-b565-9bffb0b1be71
+      name: element_type
+      description: ''
+      column_id: 14621801-69fc-59e6-8903-36228f265560
+    - id: 4e1d4671-a8cc-5c88-adf5-a4731a7a9129
+      name: onss_subject
+      description: ''
+      column_id: 21207b9f-0177-5976-84fc-664dc572eb8d
+    - id: d4428b68-9297-5dfd-89d4-cb5857fe47a0
+      name: taxable
+      description: ''
+      column_id: b4bbf0de-ddd7-576f-bd21-fdd4339435d0
+    - id: b1cb20b0-e525-57de-8d2c-e57946498385
+      name: gl_account
+      description: ''
+      column_id: 77431236-8271-57b7-ac1e-c0ffdeaa17c8
+  - id: 40e48596-255b-56f8-a832-b1f29bc10ba0
+    name: paie.payroll_runs
+    description: Calculs de paie (mensuels et corrections) Utiliser period_month pour
+      la période de paie et payment_date pour la date de paiement. Les charges comptables
+      peuvent comporter des écritures manuelles hors paie. Aucune rémunération, commission
+      ou fiche de paie individuelle n'est diffusée dans ce démonstrateur sans identité
+      RH vérifiée ; seules les statistiques agrégées sont permises.
+    represents:
+    - 84fe8ade-b443-5955-9471-407eae8cf26e
+    columns_attributes:
+    - id: 56d273aa-3f0c-5c97-96d9-20fc4ec94b9a
+      name: run_id
+      description: ''
+      column_id: 6489990e-a302-5dea-9e9c-419ae1d6f6be
+    - id: 43c20aae-41ab-5ab0-8076-7784088f6b53
+      name: period_month
+      description: ''
+      column_id: c3e95d94-0df3-5b1f-a221-2de602da08b4
+    - id: 0a0b9803-24a2-5fb1-9aac-19d703947c8b
+      name: run_type
+      description: ''
+      column_id: 637c4e15-cf90-5bee-9468-139358615057
+    - id: 2655086c-0460-5ffd-a4c1-9ceb88b00c31
+      name: run_date
+      description: ''
+      column_id: 726c1f18-8cb5-5dfc-9648-f8ad65ebd0a2
+    - id: cc73d6a2-a9c8-581d-ae1e-3b9187cbce66
+      name: payment_date
+      description: ''
+      column_id: b22f7198-df2d-55a5-8b30-70c9b2b8a28a
+    - id: 82ceb086-736d-50f7-80c6-17b8d661a176
+      name: description
+      description: ''
+      column_id: 44487ca9-8601-58bd-8884-35bb1f025258
+    - id: 0c3374ca-c410-5d50-ae61-74198f67d0ba
+      name: status
+      description: ''
+      column_id: 64757789-3e2e-5d87-8a37-c9a5957005ee
+  - id: 5b185ea9-60c4-57b2-b750-663bb64bada9
+    name: paie.payslips
+    description: Fiches de paie (le PDF est stocké en dehors de la base) Utiliser
+      period_month pour la période de paie et payment_date pour la date de paiement.
+      Les charges comptables peuvent comporter des écritures manuelles hors paie.
+      Aucune rémunération, commission ou fiche de paie individuelle n'est diffusée
+      dans ce démonstrateur sans identité RH vérifiée ; seules les statistiques agrégées
+      sont permises.
+    represents:
+    - 26db3233-0b4a-5a26-bc04-8b6c5bb134a2
+    columns_attributes:
+    - id: 9dbfd569-5ff9-540d-aa36-f49caca37da4
+      name: payslip_id
+      description: ''
+      column_id: 221f3db6-1a3b-58dd-8f82-7526e94660bc
+    - id: 880d1d2b-cc9d-5e66-9d75-c3975d369c36
+      name: run_id
+      description: ''
+      column_id: d8950334-e142-5829-b6ee-c2a6d42b4276
+    - id: 0f28dd68-18b9-591c-8fff-7ed274c52bad
+      name: employee_id
+      description: ''
+      column_id: e7a37953-6a07-5f9c-a6b5-8c86746fcbbd
+    - id: f2e3e6be-cc30-504f-8555-3a0e951e45e4
+      name: contract_id
+      description: ''
+      column_id: 4a7e3dff-860f-5cad-a42d-b2a29ad85a2c
+    - id: 89247105-dcb3-597c-8b9c-5bc9f2d79387
+      name: cost_center_code
+      description: ''
+      column_id: 13820648-786b-5020-aa51-ee8447a11374
+    - id: a9db2728-cb02-594d-b5fa-c1616dbfcaea
+      name: gross_amount
+      description: ''
+      column_id: 21a17eb8-ed4d-521f-912c-7a6870f1252f
+    - id: 95e6f8b5-a592-57e1-976d-62e2b4690651
+      name: onss_employee
+      description: ''
+      column_id: 7add0ca3-96ec-5d45-99b4-779ad3e50260
+    - id: 163286e1-6990-5dfb-abdc-9b1050e74a65
+      name: taxable_amount
+      description: ''
+      column_id: cd058176-ad26-560b-bc59-e2775883f93c
+    - id: 00f886f1-904a-510c-9fa3-d3e5406dff78
+      name: withholding_tax
+      description: ''
+      column_id: 0b4412ef-367d-51f9-acc7-412e8788f0c0
+    - id: e7f9fd0f-4834-55e0-9869-88009826fc5f
+      name: net_amount
+      description: ''
+      column_id: d31570a4-e0f5-53e5-a14a-8d495a0580a6
+    - id: 56fb0593-5a1a-5eac-8e4b-875be0cc4b23
+      name: employer_onss
+      description: ''
+      column_id: 82a875a5-501d-5a66-9bf7-839e0231b05a
+    - id: f513affe-7d63-5def-b274-182215429d21
+      name: pdf_path
+      description: ''
+      column_id: 21cc8264-3ae6-5534-bfa5-f071368a3192
+  - id: 40c39bdc-d83b-5903-9434-b9849a610485
+    name: paie.payslip_lines
+    description: 'Lignes des fiches de paie (montants signés : retenues négatives)
+      Utiliser period_month pour la période de paie et payment_date pour la date de
+      paiement. Les charges comptables peuvent comporter des écritures manuelles hors
+      paie. Aucune rémunération, commission ou fiche de paie individuelle n''est diffusée
+      dans ce démonstrateur sans identité RH vérifiée ; seules les statistiques agrégées
+      sont permises.'
+    represents:
+    - aaf1c820-3bba-5820-9e9e-c134ada019f4
+    columns_attributes:
+    - id: 9a5d7dfb-5d42-5f6e-bbec-a22a7de4ad91
+      name: line_id
+      description: ''
+      column_id: e5b59bbd-8c2f-5e5b-a7ab-ab75e19729ce
+    - id: 5948e54e-17a9-55b6-926f-b46a6c570746
+      name: payslip_id
+      description: ''
+      column_id: c7a4cf83-65be-5127-bd4e-f120afcaed47
+    - id: 54cf74c6-14a8-568b-b878-b69648ead055
+      name: element_code
+      description: ''
+      column_id: 9e0f8830-dd35-5031-bd31-382a1522bbd5
+    - id: fb38ebce-793f-5fb1-a0d3-e6afd633d16c
+      name: quantity
+      description: ''
+      column_id: b2ed7c09-f384-5f2c-a1a8-9ee5e86691cd
+    - id: f0b4214e-7003-5161-ba03-5a3768e5160f
+      name: rate
+      description: ''
+      column_id: 40593552-0ee7-5d41-a6ae-57b916e56e73
+    - id: f46148f1-3faf-5950-8d5e-c1d6c60be4af
+      name: amount
+      description: ''
+      column_id: d7e64546-9d56-5dd5-af9a-6bd97a3ff55d
+  concepts: []
+  semantic_fks: []
+  sql_attributes:
+    manual: []
+    table: []
+    sql: []
+    bridge_table: []
+  custom_analyses: []
+zones: []

@@ -1,0 +1,3032 @@
+{
+  "sources": {
+    "erp": {
+      "database": "GESPRO",
+      "dialect": "tsql",
+      "schema": "dbo",
+      "port_setting": "erp_port",
+      "tables": {
+        "SOC_SITE": {
+          "name": "SOC_SITE",
+          "description": "",
+          "columns": {
+            "SIT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "SIT_CODE": {
+              "type": "VARCHAR(3)",
+              "description": ""
+            },
+            "SIT_LIB": {
+              "type": "VARCHAR(60)",
+              "description": ""
+            },
+            "SIT_TYPE": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "SIT_ADR": {
+              "type": "VARCHAR(120)",
+              "description": ""
+            },
+            "SIT_VILLE": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "SIT_PAYS": {
+              "type": "VARCHAR(2)",
+              "description": ""
+            },
+            "SIT_DT_OUV": {
+              "type": "DATE",
+              "description": ""
+            },
+            "SIT_ACTIF": {
+              "type": "BIT",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "SIT_ID"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "PAR_CODE": {
+          "name": "PAR_CODE",
+          "description": "",
+          "columns": {
+            "COD_TYPE": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "COD_VAL": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "COD_LIB": {
+              "type": "VARCHAR(100)",
+              "description": ""
+            },
+            "COD_ORDRE": {
+              "type": "INT",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "COD_TYPE",
+            "COD_VAL"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "ART_FAMILLE": {
+          "name": "ART_FAMILLE",
+          "description": "",
+          "columns": {
+            "FAM_CODE": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            },
+            "FAM_LIB": {
+              "type": "VARCHAR(60)",
+              "description": ""
+            },
+            "FAM_TYPE": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "FAM_GAMME": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "FAM_CPT_VENTE": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            },
+            "FAM_CPT_ACHAT": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "FAM_CODE"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "FRN_FOURNISSEUR": {
+          "name": "FRN_FOURNISSEUR",
+          "description": "",
+          "columns": {
+            "FRN_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "FRN_CODE": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "FRN_NOM": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "FRN_TVA": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "FRN_PAYS": {
+              "type": "VARCHAR(2)",
+              "description": ""
+            },
+            "FRN_ADR": {
+              "type": "VARCHAR(120)",
+              "description": ""
+            },
+            "FRN_CP": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "FRN_VILLE": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "FRN_COND_PAIE": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            },
+            "FRN_DELAI_J": {
+              "type": "INT",
+              "description": ""
+            },
+            "FRN_DT_CREA": {
+              "type": "DATE",
+              "description": ""
+            },
+            "FRN_ACTIF": {
+              "type": "BIT",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "FRN_ID"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "ART_ARTICLE": {
+          "name": "ART_ARTICLE",
+          "description": "",
+          "columns": {
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_CODE": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "ART_LIB": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "FAM_CODE": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            },
+            "ART_TYPE": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "ART_UNITE": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "ART_POIDS_KG": {
+              "type": "DECIMAL(10, 3)",
+              "description": ""
+            },
+            "ART_PRIX_STD": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "ART_VENDABLE": {
+              "type": "BIT",
+              "description": ""
+            },
+            "ART_STOCKE": {
+              "type": "BIT",
+              "description": ""
+            },
+            "SIT_ID_PROD": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_LIGNE": {
+              "type": "VARCHAR(3)",
+              "description": ""
+            },
+            "FRN_ID_PRINC": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_COND": {
+              "type": "DECIMAL(10, 3)",
+              "description": ""
+            },
+            "ART_DT_CREA": {
+              "type": "DATE",
+              "description": ""
+            },
+            "ART_ACTIF": {
+              "type": "BIT",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "ART_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "FAM_CODE"
+              ],
+              "target_table": "ART_FAMILLE",
+              "target_columns": [
+                "FAM_CODE"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID_PROD"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            },
+            {
+              "columns": [
+                "FRN_ID_PRINC"
+              ],
+              "target_table": "FRN_FOURNISSEUR",
+              "target_columns": [
+                "FRN_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ART_TARIF": {
+          "name": "ART_TARIF",
+          "description": "",
+          "columns": {
+            "TAR_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "CLI_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "TAR_PRIX": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "TAR_DT_DEB": {
+              "type": "DATE",
+              "description": ""
+            },
+            "TAR_DT_FIN": {
+              "type": "DATE",
+              "description": ""
+            },
+            "TAR_COMMENT": {
+              "type": "VARCHAR(100)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "TAR_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            },
+            {
+              "columns": [
+                "CLI_ID"
+              ],
+              "target_table": "CLI_CLIENT",
+              "target_columns": [
+                "CLI_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ART_NOMENC": {
+          "name": "ART_NOMENC",
+          "description": "",
+          "columns": {
+            "NOM_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_ID_PF": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_ID_COMP": {
+              "type": "INT",
+              "description": ""
+            },
+            "NOM_QTE": {
+              "type": "DECIMAL(10, 3)",
+              "description": ""
+            },
+            "NOM_DT_DEB": {
+              "type": "DATE",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "NOM_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "ART_ID_PF"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            },
+            {
+              "columns": [
+                "ART_ID_COMP"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "VDR_VENDEUR": {
+          "name": "VDR_VENDEUR",
+          "description": "",
+          "columns": {
+            "VDR_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "VDR_CODE": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            },
+            "VDR_NOM": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "VDR_PRENOM": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "VDR_ZONE": {
+              "type": "VARCHAR(3)",
+              "description": ""
+            },
+            "VDR_MATRICULE": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "VDR_EMAIL": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "VDR_DT_ENTREE": {
+              "type": "DATE",
+              "description": ""
+            },
+            "VDR_ACTIF": {
+              "type": "BIT",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "VDR_ID"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "CLI_CLIENT": {
+          "name": "CLI_CLIENT",
+          "description": "",
+          "columns": {
+            "CLI_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "CLI_CODE": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "CLI_NOM": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "CLI_TYPE": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "CLI_TVA": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "CLI_ADR": {
+              "type": "VARCHAR(120)",
+              "description": ""
+            },
+            "CLI_CP": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "CLI_VILLE": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "CLI_PAYS": {
+              "type": "VARCHAR(2)",
+              "description": ""
+            },
+            "CLI_REGION": {
+              "type": "VARCHAR(3)",
+              "description": ""
+            },
+            "VDR_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "CLI_COND_PAIE": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            },
+            "CLI_REMISE_PCT": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "CLI_PLAFOND": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "CLI_DT_CREA": {
+              "type": "DATE",
+              "description": ""
+            },
+            "CLI_ACTIF": {
+              "type": "BIT",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "CLI_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "VDR_ID"
+              ],
+              "target_table": "VDR_VENDEUR",
+              "target_columns": [
+                "VDR_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "VTE_CDE": {
+          "name": "VTE_CDE",
+          "description": "",
+          "columns": {
+            "CDE_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "CDE_NUM": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "CDE_DT": {
+              "type": "DATE",
+              "description": ""
+            },
+            "CLI_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "VDR_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "CDE_REF_CLI": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "CDE_DT_LIV_PREV": {
+              "type": "DATE",
+              "description": ""
+            },
+            "SIT_ID_EXP": {
+              "type": "INT",
+              "description": ""
+            },
+            "CDE_STATUT": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "CDE_MT_HT": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "CDE_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "CLI_ID"
+              ],
+              "target_table": "CLI_CLIENT",
+              "target_columns": [
+                "CLI_ID"
+              ]
+            },
+            {
+              "columns": [
+                "VDR_ID"
+              ],
+              "target_table": "VDR_VENDEUR",
+              "target_columns": [
+                "VDR_ID"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID_EXP"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "VTE_CDE_LIG": {
+          "name": "VTE_CDE_LIG",
+          "description": "",
+          "columns": {
+            "LIG_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "CDE_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "LIG_NO": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "LIG_QTE": {
+              "type": "DECIMAL(10, 2)",
+              "description": ""
+            },
+            "LIG_PU": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "LIG_REMISE_PCT": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "LIG_QTE_LIV": {
+              "type": "DECIMAL(10, 2)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "LIG_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "CDE_ID"
+              ],
+              "target_table": "VTE_CDE",
+              "target_columns": [
+                "CDE_ID"
+              ]
+            },
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "VTE_FACT": {
+          "name": "VTE_FACT",
+          "description": "",
+          "columns": {
+            "FAC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "FAC_NUM": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "FAC_TYPE": {
+              "type": "VARCHAR(1)",
+              "description": ""
+            },
+            "FAC_DT": {
+              "type": "DATE",
+              "description": ""
+            },
+            "FAC_DT_ECH": {
+              "type": "DATE",
+              "description": ""
+            },
+            "CLI_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "CDE_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "FAC_ID_ORIG": {
+              "type": "INT",
+              "description": ""
+            },
+            "FAC_MOTIF": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "FAC_TX_TVA": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "FAC_MT_HT": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            },
+            "FAC_MT_TVA": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            },
+            "FAC_MT_TTC": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            },
+            "FAC_STATUT": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "FAC_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "CLI_ID"
+              ],
+              "target_table": "CLI_CLIENT",
+              "target_columns": [
+                "CLI_ID"
+              ]
+            },
+            {
+              "columns": [
+                "CDE_ID"
+              ],
+              "target_table": "VTE_CDE",
+              "target_columns": [
+                "CDE_ID"
+              ]
+            },
+            {
+              "columns": [
+                "FAC_ID_ORIG"
+              ],
+              "target_table": "VTE_FACT",
+              "target_columns": [
+                "FAC_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "VTE_FACT_LIG": {
+          "name": "VTE_FACT_LIG",
+          "description": "",
+          "columns": {
+            "FL_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "FAC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "FL_NO": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "LIG_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "FL_QTE": {
+              "type": "DECIMAL(10, 2)",
+              "description": ""
+            },
+            "FL_PU": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "FL_REMISE_PCT": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "FL_MT_HT": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "FL_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "FAC_ID"
+              ],
+              "target_table": "VTE_FACT",
+              "target_columns": [
+                "FAC_ID"
+              ]
+            },
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            },
+            {
+              "columns": [
+                "LIG_ID"
+              ],
+              "target_table": "VTE_CDE_LIG",
+              "target_columns": [
+                "LIG_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ACH_CDE": {
+          "name": "ACH_CDE",
+          "description": "",
+          "columns": {
+            "AC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "AC_NUM": {
+              "type": "VARCHAR(14)",
+              "description": ""
+            },
+            "FRN_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "SIT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "AC_DT": {
+              "type": "DATE",
+              "description": ""
+            },
+            "AC_DT_LIV_PREV": {
+              "type": "DATE",
+              "description": ""
+            },
+            "AC_STATUT": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "AC_MT_HT": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "AC_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "FRN_ID"
+              ],
+              "target_table": "FRN_FOURNISSEUR",
+              "target_columns": [
+                "FRN_ID"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ACH_CDE_LIG": {
+          "name": "ACH_CDE_LIG",
+          "description": "",
+          "columns": {
+            "ACL_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "AC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "ACL_NO": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "ACL_QTE": {
+              "type": "DECIMAL(12, 3)",
+              "description": ""
+            },
+            "ACL_PU": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "ACL_QTE_RECUE": {
+              "type": "DECIMAL(12, 3)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "ACL_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "AC_ID"
+              ],
+              "target_table": "ACH_CDE",
+              "target_columns": [
+                "AC_ID"
+              ]
+            },
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ACH_RECEP": {
+          "name": "ACH_RECEP",
+          "description": "",
+          "columns": {
+            "REC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "REC_NUM": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "AC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "REC_DT": {
+              "type": "DATE",
+              "description": ""
+            },
+            "SIT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "REC_BL_FRN": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "REC_COMMENT": {
+              "type": "VARCHAR(200)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "REC_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "AC_ID"
+              ],
+              "target_table": "ACH_CDE",
+              "target_columns": [
+                "AC_ID"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ACH_RECEP_LIG": {
+          "name": "ACH_RECEP_LIG",
+          "description": "",
+          "columns": {
+            "RL_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "REC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "ACL_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "RL_QTE_RECUE": {
+              "type": "DECIMAL(12, 3)",
+              "description": ""
+            },
+            "RL_QTE_REFUSEE": {
+              "type": "DECIMAL(12, 3)",
+              "description": ""
+            },
+            "RL_LOT": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "RL_MOTIF_REFUS": {
+              "type": "VARCHAR(100)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "RL_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "REC_ID"
+              ],
+              "target_table": "ACH_RECEP",
+              "target_columns": [
+                "REC_ID"
+              ]
+            },
+            {
+              "columns": [
+                "ACL_ID"
+              ],
+              "target_table": "ACH_CDE_LIG",
+              "target_columns": [
+                "ACL_ID"
+              ]
+            },
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ACH_FACT": {
+          "name": "ACH_FACT",
+          "description": "",
+          "columns": {
+            "AF_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "AF_NUM_FRN": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "FRN_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "AC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "REC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "AF_DT": {
+              "type": "DATE",
+              "description": ""
+            },
+            "AF_DT_ECH": {
+              "type": "DATE",
+              "description": ""
+            },
+            "AF_MT_HT": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            },
+            "AF_MT_TVA": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            },
+            "AF_MT_TTC": {
+              "type": "DECIMAL(14, 2)",
+              "description": ""
+            },
+            "AF_STATUT": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "AF_COMMENT": {
+              "type": "VARCHAR(200)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "AF_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "FRN_ID"
+              ],
+              "target_table": "FRN_FOURNISSEUR",
+              "target_columns": [
+                "FRN_ID"
+              ]
+            },
+            {
+              "columns": [
+                "AC_ID"
+              ],
+              "target_table": "ACH_CDE",
+              "target_columns": [
+                "AC_ID"
+              ]
+            },
+            {
+              "columns": [
+                "REC_ID"
+              ],
+              "target_table": "ACH_RECEP",
+              "target_columns": [
+                "REC_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "PRD_OF": {
+          "name": "PRD_OF",
+          "description": "",
+          "columns": {
+            "OF_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "OF_NUM": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "SIT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "OF_LIGNE": {
+              "type": "VARCHAR(3)",
+              "description": ""
+            },
+            "OF_DT_DEB": {
+              "type": "DATE",
+              "description": ""
+            },
+            "OF_DT_FIN": {
+              "type": "DATE",
+              "description": ""
+            },
+            "OF_QTE_PREV": {
+              "type": "INT",
+              "description": ""
+            },
+            "OF_QTE_REAL": {
+              "type": "INT",
+              "description": ""
+            },
+            "OF_QTE_REBUT": {
+              "type": "INT",
+              "description": ""
+            },
+            "OF_STATUT": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "OF_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "LOG_TRANSP": {
+          "name": "LOG_TRANSP",
+          "description": "",
+          "columns": {
+            "TRP_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "TRP_CODE": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            },
+            "TRP_NOM": {
+              "type": "VARCHAR(60)",
+              "description": ""
+            },
+            "TRP_TVA": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "TRP_PAYS": {
+              "type": "VARCHAR(2)",
+              "description": ""
+            },
+            "TRP_TYPE": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "TRP_ACTIF": {
+              "type": "BIT",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "TRP_ID"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "LOG_EXPED": {
+          "name": "LOG_EXPED",
+          "description": "",
+          "columns": {
+            "EXP_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "EXP_NUM": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "CDE_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "FAC_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "SIT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "TRP_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "EXP_DT": {
+              "type": "DATE",
+              "description": ""
+            },
+            "EXP_DT_LIV": {
+              "type": "DATE",
+              "description": ""
+            },
+            "EXP_NB_COLIS": {
+              "type": "INT",
+              "description": ""
+            },
+            "EXP_POIDS_KG": {
+              "type": "DECIMAL(10, 1)",
+              "description": ""
+            },
+            "EXP_STATUT": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "EXP_INCIDENT": {
+              "type": "VARCHAR(200)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "EXP_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "CDE_ID"
+              ],
+              "target_table": "VTE_CDE",
+              "target_columns": [
+                "CDE_ID"
+              ]
+            },
+            {
+              "columns": [
+                "FAC_ID"
+              ],
+              "target_table": "VTE_FACT",
+              "target_columns": [
+                "FAC_ID"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            },
+            {
+              "columns": [
+                "TRP_ID"
+              ],
+              "target_table": "LOG_TRANSP",
+              "target_columns": [
+                "TRP_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "STK_MVT": {
+          "name": "STK_MVT",
+          "description": "",
+          "columns": {
+            "MVT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "MVT_DT": {
+              "type": "TIMESTAMP(0)",
+              "description": ""
+            },
+            "MVT_TYPE": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "SIT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "MVT_QTE": {
+              "type": "DECIMAL(12, 3)",
+              "description": ""
+            },
+            "MVT_REF": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "MVT_LOT": {
+              "type": "VARCHAR(20)",
+              "description": ""
+            },
+            "MVT_USER": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "MVT_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "STK_ETAT": {
+          "name": "STK_ETAT",
+          "description": "",
+          "columns": {
+            "ART_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "SIT_ID": {
+              "type": "INT",
+              "description": ""
+            },
+            "STK_QTE": {
+              "type": "DECIMAL(12, 3)",
+              "description": ""
+            },
+            "STK_SEUIL_MIN": {
+              "type": "DECIMAL(12, 3)",
+              "description": ""
+            },
+            "STK_DT_DERN_MVT": {
+              "type": "TIMESTAMP(0)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "ART_ID",
+            "SIT_ID"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "ART_ID"
+              ],
+              "target_table": "ART_ARTICLE",
+              "target_columns": [
+                "ART_ID"
+              ]
+            },
+            {
+              "columns": [
+                "SIT_ID"
+              ],
+              "target_table": "SOC_SITE",
+              "target_columns": [
+                "SIT_ID"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        }
+      }
+    },
+    "compta": {
+      "database": "compta",
+      "dialect": "postgres",
+      "schema": "public",
+      "port_setting": "compta_port",
+      "tables": {
+        "exercice": {
+          "name": "exercice",
+          "description": "Exercices comptables",
+          "columns": {
+            "code_exercice": {
+              "type": "VARCHAR(4)",
+              "description": "Code de l'exercice (année)"
+            },
+            "libelle": {
+              "type": "VARCHAR(40)",
+              "description": "Libellé"
+            },
+            "date_debut": {
+              "type": "DATE",
+              "description": "Premier jour de l'exercice"
+            },
+            "date_fin": {
+              "type": "DATE",
+              "description": "Dernier jour de l'exercice"
+            },
+            "statut": {
+              "type": "VARCHAR(10)",
+              "description": "OUVERT ou CLOTURE"
+            },
+            "date_cloture": {
+              "type": "DATE",
+              "description": "Date de clôture définitive"
+            }
+          },
+          "primary_key": [
+            "code_exercice"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "periode": {
+          "name": "periode",
+          "description": "Périodes mensuelles",
+          "columns": {
+            "code_periode": {
+              "type": "VARCHAR(7)",
+              "description": "Code AAAA-MM"
+            },
+            "code_exercice": {
+              "type": "VARCHAR(4)",
+              "description": "Exercice"
+            },
+            "date_debut": {
+              "type": "DATE",
+              "description": "Premier jour"
+            },
+            "date_fin": {
+              "type": "DATE",
+              "description": "Dernier jour"
+            },
+            "statut": {
+              "type": "VARCHAR(10)",
+              "description": "OUVERTE ou CLOTUREE (plus aucune écriture possible)"
+            }
+          },
+          "primary_key": [
+            "code_periode"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "code_exercice"
+              ],
+              "target_table": "exercice",
+              "target_columns": [
+                "code_exercice"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "plan_comptable": {
+          "name": "plan_comptable",
+          "description": "Plan comptable (PCMN belge, comptes à 6 chiffres)",
+          "columns": {
+            "numero_compte": {
+              "type": "VARCHAR(6)",
+              "description": "Numéro de compte"
+            },
+            "libelle": {
+              "type": "VARCHAR(100)",
+              "description": "Libellé du compte"
+            },
+            "classe": {
+              "type": "INT",
+              "description": "Classe du PCMN (1 à 7)"
+            },
+            "type_compte": {
+              "type": "VARCHAR(8)",
+              "description": "BILAN, CHARGE ou PRODUIT"
+            },
+            "lettrable": {
+              "type": "BOOLEAN",
+              "description": "Vrai si les lignes de ce compte sont lettrées (tiers)"
+            },
+            "analytique_obligatoire": {
+              "type": "BOOLEAN",
+              "description": "Vrai si un centre analytique est obligatoire"
+            },
+            "actif": {
+              "type": "BOOLEAN",
+              "description": "Vrai si le compte est utilisable"
+            }
+          },
+          "primary_key": [
+            "numero_compte"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "journal": {
+          "name": "journal",
+          "description": "Journaux comptables",
+          "columns": {
+            "code_journal": {
+              "type": "VARCHAR(4)",
+              "description": "Code du journal"
+            },
+            "libelle": {
+              "type": "VARCHAR(80)",
+              "description": "Libellé"
+            },
+            "type_journal": {
+              "type": "VARCHAR(10)",
+              "description": "VENTES, ACHATS, FINANCIER, DIVERS, PAIE ou OUVERTURE"
+            }
+          },
+          "primary_key": [
+            "code_journal"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "tiers": {
+          "name": "tiers",
+          "description": "Clients et fournisseurs",
+          "columns": {
+            "id_tiers": {
+              "type": "INT",
+              "description": "Identifiant"
+            },
+            "code_tiers": {
+              "type": "VARCHAR(8)",
+              "description": "Code du tiers (C... client, F... fournisseur)"
+            },
+            "type_tiers": {
+              "type": "VARCHAR(12)",
+              "description": "CLIENT ou FOURNISSEUR"
+            },
+            "nom": {
+              "type": "VARCHAR(80)",
+              "description": "Nom"
+            },
+            "numero_tva": {
+              "type": "VARCHAR(20)",
+              "description": "Numéro de TVA au format 'BE 0123.456.789'"
+            },
+            "pays": {
+              "type": "VARCHAR(2)",
+              "description": "Pays (ISO)"
+            },
+            "iban": {
+              "type": "VARCHAR(40)",
+              "description": "IBAN"
+            },
+            "compte_collectif": {
+              "type": "VARCHAR(6)",
+              "description": "Compte collectif (400000 clients, 440000 fournisseurs)"
+            },
+            "conditions_paiement": {
+              "type": "VARCHAR(6)",
+              "description": "Conditions de paiement"
+            },
+            "date_creation": {
+              "type": "DATE",
+              "description": "Date de création dans le logiciel comptable"
+            },
+            "actif": {
+              "type": "BOOLEAN",
+              "description": "Vrai si actif"
+            }
+          },
+          "primary_key": [
+            "id_tiers"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "compte_collectif"
+              ],
+              "target_table": "plan_comptable",
+              "target_columns": [
+                "numero_compte"
+              ]
+            }
+          ],
+          "restricted_columns": [
+            "iban"
+          ]
+        },
+        "centre_analytique": {
+          "name": "centre_analytique",
+          "description": "Centres analytiques (centres de coût et de profit)",
+          "columns": {
+            "code_centre": {
+              "type": "VARCHAR(12)",
+              "description": "Code du centre"
+            },
+            "libelle": {
+              "type": "VARCHAR(80)",
+              "description": "Libellé"
+            },
+            "site": {
+              "type": "VARCHAR(3)",
+              "description": "Site (NAM, SEN, GND, HRS, LIL ou vide)"
+            },
+            "actif": {
+              "type": "BOOLEAN",
+              "description": "Vrai si actif"
+            }
+          },
+          "primary_key": [
+            "code_centre"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "taux_tva": {
+          "name": "taux_tva",
+          "description": "Codes TVA",
+          "columns": {
+            "code_tva": {
+              "type": "VARCHAR(5)",
+              "description": "Code"
+            },
+            "libelle": {
+              "type": "VARCHAR(80)",
+              "description": "Libellé"
+            },
+            "taux": {
+              "type": "DECIMAL(5, 2)",
+              "description": "Taux en %"
+            },
+            "numero_compte": {
+              "type": "VARCHAR(6)",
+              "description": "Compte de TVA"
+            }
+          },
+          "primary_key": [
+            "code_tva"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "numero_compte"
+              ],
+              "target_table": "plan_comptable",
+              "target_columns": [
+                "numero_compte"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "compte_bancaire": {
+          "name": "compte_bancaire",
+          "description": "Comptes bancaires",
+          "columns": {
+            "code_banque": {
+              "type": "VARCHAR(4)",
+              "description": "Code (journal financier)"
+            },
+            "libelle": {
+              "type": "VARCHAR(60)",
+              "description": "Libellé"
+            },
+            "iban": {
+              "type": "VARCHAR(40)",
+              "description": "IBAN"
+            },
+            "numero_compte": {
+              "type": "VARCHAR(6)",
+              "description": "Compte comptable"
+            },
+            "devise": {
+              "type": "VARCHAR(3)",
+              "description": "Devise"
+            }
+          },
+          "primary_key": [
+            "code_banque"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "numero_compte"
+              ],
+              "target_table": "plan_comptable",
+              "target_columns": [
+                "numero_compte"
+              ]
+            }
+          ],
+          "restricted_columns": [
+            "iban"
+          ]
+        },
+        "ecriture": {
+          "name": "ecriture",
+          "description": "Écritures comptables (en-têtes de pièces)",
+          "columns": {
+            "id_ecriture": {
+              "type": "INT",
+              "description": "Identifiant"
+            },
+            "code_journal": {
+              "type": "VARCHAR(4)",
+              "description": "Journal"
+            },
+            "numero_piece": {
+              "type": "VARCHAR(16)",
+              "description": "Numéro de pièce (journal-année-numéro)"
+            },
+            "date_ecriture": {
+              "type": "DATE",
+              "description": "Date comptable"
+            },
+            "code_periode": {
+              "type": "VARCHAR(7)",
+              "description": "Période"
+            },
+            "libelle": {
+              "type": "VARCHAR(200)",
+              "description": "Libellé"
+            },
+            "reference_externe": {
+              "type": "VARCHAR(40)",
+              "description": "Référence du document d'origine (numéro de facture ERP, numéro de facture fournisseur, calcul de paie...)"
+            },
+            "id_tiers": {
+              "type": "INT",
+              "description": "Tiers principal"
+            },
+            "date_echeance": {
+              "type": "DATE",
+              "description": "Date d'échéance (factures)"
+            },
+            "statut": {
+              "type": "VARCHAR(10)",
+              "description": "VALIDEE ou BROUILLARD (provisoire)"
+            },
+            "date_saisie": {
+              "type": "TIMESTAMP",
+              "description": "Date et heure de saisie ou d'import"
+            },
+            "utilisateur": {
+              "type": "VARCHAR(12)",
+              "description": "Utilisateur ou traitement d'import"
+            }
+          },
+          "primary_key": [
+            "id_ecriture"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "code_journal"
+              ],
+              "target_table": "journal",
+              "target_columns": [
+                "code_journal"
+              ]
+            },
+            {
+              "columns": [
+                "code_periode"
+              ],
+              "target_table": "periode",
+              "target_columns": [
+                "code_periode"
+              ]
+            },
+            {
+              "columns": [
+                "id_tiers"
+              ],
+              "target_table": "tiers",
+              "target_columns": [
+                "id_tiers"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "ligne_ecriture": {
+          "name": "ligne_ecriture",
+          "description": "Lignes d'écritures (débit et crédit positifs)",
+          "columns": {
+            "id_ligne": {
+              "type": "INT",
+              "description": "Identifiant"
+            },
+            "id_ecriture": {
+              "type": "INT",
+              "description": "Écriture"
+            },
+            "numero_ligne": {
+              "type": "INT",
+              "description": "Numéro de ligne dans l'écriture"
+            },
+            "numero_compte": {
+              "type": "VARCHAR(6)",
+              "description": "Compte"
+            },
+            "id_tiers": {
+              "type": "INT",
+              "description": "Tiers (comptes 400000 et 440000)"
+            },
+            "libelle": {
+              "type": "VARCHAR(200)",
+              "description": "Libellé de la ligne"
+            },
+            "debit": {
+              "type": "DECIMAL(14, 2)",
+              "description": "Montant au débit"
+            },
+            "credit": {
+              "type": "DECIMAL(14, 2)",
+              "description": "Montant au crédit"
+            },
+            "code_centre": {
+              "type": "VARCHAR(12)",
+              "description": "Centre analytique"
+            },
+            "code_tva": {
+              "type": "VARCHAR(5)",
+              "description": "Code TVA de la base HT"
+            },
+            "code_lettrage": {
+              "type": "VARCHAR(8)",
+              "description": "Code de lettrage (facture et paiement qui se soldent)"
+            },
+            "date_lettrage": {
+              "type": "DATE",
+              "description": "Date du lettrage"
+            }
+          },
+          "primary_key": [
+            "id_ligne"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "id_ecriture"
+              ],
+              "target_table": "ecriture",
+              "target_columns": [
+                "id_ecriture"
+              ]
+            },
+            {
+              "columns": [
+                "numero_compte"
+              ],
+              "target_table": "plan_comptable",
+              "target_columns": [
+                "numero_compte"
+              ]
+            },
+            {
+              "columns": [
+                "id_tiers"
+              ],
+              "target_table": "tiers",
+              "target_columns": [
+                "id_tiers"
+              ]
+            },
+            {
+              "columns": [
+                "code_centre"
+              ],
+              "target_table": "centre_analytique",
+              "target_columns": [
+                "code_centre"
+              ]
+            },
+            {
+              "columns": [
+                "code_tva"
+              ],
+              "target_table": "taux_tva",
+              "target_columns": [
+                "code_tva"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "budget": {
+          "name": "budget",
+          "description": "Budget 2026 par compte et par mois (trois versions : V1, V2, FINAL)",
+          "columns": {
+            "id_budget": {
+              "type": "INT",
+              "description": "Identifiant"
+            },
+            "code_exercice": {
+              "type": "VARCHAR(4)",
+              "description": "Exercice"
+            },
+            "version": {
+              "type": "VARCHAR(6)",
+              "description": "Version du budget (V1, V2, FINAL : seule FINAL est approuvée)"
+            },
+            "numero_compte": {
+              "type": "VARCHAR(6)",
+              "description": "Compte"
+            },
+            "code_centre": {
+              "type": "VARCHAR(12)",
+              "description": "Centre analytique (non utilisé, budget global)"
+            },
+            "mois": {
+              "type": "INT",
+              "description": "Mois (1 à 12)"
+            },
+            "montant": {
+              "type": "DECIMAL(14, 2)",
+              "description": "Montant budgété, positif pour les charges comme pour les produits"
+            }
+          },
+          "primary_key": [
+            "id_budget"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "code_exercice"
+              ],
+              "target_table": "exercice",
+              "target_columns": [
+                "code_exercice"
+              ]
+            },
+            {
+              "columns": [
+                "numero_compte"
+              ],
+              "target_table": "plan_comptable",
+              "target_columns": [
+                "numero_compte"
+              ]
+            },
+            {
+              "columns": [
+                "code_centre"
+              ],
+              "target_table": "centre_analytique",
+              "target_columns": [
+                "code_centre"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "immobilisation": {
+          "name": "immobilisation",
+          "description": "Registre des immobilisations",
+          "columns": {
+            "id_immo": {
+              "type": "INT",
+              "description": "Identifiant"
+            },
+            "code_immo": {
+              "type": "VARCHAR(10)",
+              "description": "Code"
+            },
+            "libelle": {
+              "type": "VARCHAR(100)",
+              "description": "Libellé"
+            },
+            "numero_compte": {
+              "type": "VARCHAR(6)",
+              "description": "Compte d'immobilisation"
+            },
+            "code_centre": {
+              "type": "VARCHAR(12)",
+              "description": "Centre analytique"
+            },
+            "date_mise_service": {
+              "type": "DATE",
+              "description": "Date de mise en service (vide si en cours)"
+            },
+            "valeur_acquisition": {
+              "type": "DECIMAL(14, 2)",
+              "description": "Valeur d'acquisition (pour les en-cours : montant engagé)"
+            },
+            "duree_annees": {
+              "type": "INT",
+              "description": "Durée d'amortissement en années"
+            },
+            "methode": {
+              "type": "VARCHAR(10)",
+              "description": "Méthode d'amortissement"
+            },
+            "id_tiers_fournisseur": {
+              "type": "INT",
+              "description": "Fournisseur"
+            },
+            "statut": {
+              "type": "VARCHAR(10)",
+              "description": "EN_SERVICE, EN_COURS ou AMORTI"
+            }
+          },
+          "primary_key": [
+            "id_immo"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "numero_compte"
+              ],
+              "target_table": "plan_comptable",
+              "target_columns": [
+                "numero_compte"
+              ]
+            },
+            {
+              "columns": [
+                "code_centre"
+              ],
+              "target_table": "centre_analytique",
+              "target_columns": [
+                "code_centre"
+              ]
+            },
+            {
+              "columns": [
+                "id_tiers_fournisseur"
+              ],
+              "target_table": "tiers",
+              "target_columns": [
+                "id_tiers"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "amortissement": {
+          "name": "amortissement",
+          "description": "Dotations mensuelles aux amortissements par immobilisation",
+          "columns": {
+            "id_amortissement": {
+              "type": "INT",
+              "description": "Identifiant"
+            },
+            "id_immo": {
+              "type": "INT",
+              "description": "Immobilisation"
+            },
+            "code_periode": {
+              "type": "VARCHAR(7)",
+              "description": "Période"
+            },
+            "montant": {
+              "type": "DECIMAL(14, 2)",
+              "description": "Dotation du mois"
+            },
+            "id_ecriture": {
+              "type": "INT",
+              "description": "Écriture d'amortissement"
+            }
+          },
+          "primary_key": [
+            "id_amortissement"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "id_immo"
+              ],
+              "target_table": "immobilisation",
+              "target_columns": [
+                "id_immo"
+              ]
+            },
+            {
+              "columns": [
+                "code_periode"
+              ],
+              "target_table": "periode",
+              "target_columns": [
+                "code_periode"
+              ]
+            },
+            {
+              "columns": [
+                "id_ecriture"
+              ],
+              "target_table": "ecriture",
+              "target_columns": [
+                "id_ecriture"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "mouvement_bancaire": {
+          "name": "mouvement_bancaire",
+          "description": "Mouvements des extraits bancaires (CODA) et rapprochement",
+          "columns": {
+            "id_mouvement": {
+              "type": "INT",
+              "description": "Identifiant"
+            },
+            "code_banque": {
+              "type": "VARCHAR(4)",
+              "description": "Compte bancaire"
+            },
+            "date_operation": {
+              "type": "DATE",
+              "description": "Date de l'opération"
+            },
+            "date_valeur": {
+              "type": "DATE",
+              "description": "Date valeur"
+            },
+            "montant": {
+              "type": "DECIMAL(14, 2)",
+              "description": "Montant signé (positif = entrée d'argent)"
+            },
+            "type_operation": {
+              "type": "VARCHAR(30)",
+              "description": "Type d'opération bancaire"
+            },
+            "contrepartie_nom": {
+              "type": "VARCHAR(80)",
+              "description": "Nom de la contrepartie"
+            },
+            "contrepartie_iban": {
+              "type": "VARCHAR(40)",
+              "description": "IBAN de la contrepartie"
+            },
+            "communication": {
+              "type": "VARCHAR(200)",
+              "description": "Communication (libre ou structurée)"
+            },
+            "id_ecriture": {
+              "type": "INT",
+              "description": "Écriture comptable liée (vide si pas encore comptabilisé)"
+            },
+            "statut_rapprochement": {
+              "type": "VARCHAR(14)",
+              "description": "RAPPROCHE ou NON_RAPPROCHE"
+            }
+          },
+          "primary_key": [
+            "id_mouvement"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "code_banque"
+              ],
+              "target_table": "compte_bancaire",
+              "target_columns": [
+                "code_banque"
+              ]
+            },
+            {
+              "columns": [
+                "id_ecriture"
+              ],
+              "target_table": "ecriture",
+              "target_columns": [
+                "id_ecriture"
+              ]
+            }
+          ],
+          "restricted_columns": [
+            "contrepartie_iban"
+          ]
+        }
+      }
+    },
+    "paie": {
+      "database": "paie",
+      "dialect": "postgres",
+      "schema": "public",
+      "port_setting": "paie_port",
+      "tables": {
+        "work_sites": {
+          "name": "work_sites",
+          "description": "Lieux de travail",
+          "columns": {
+            "site_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "name": {
+              "type": "VARCHAR(60)",
+              "description": ""
+            },
+            "street": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "postal_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "city": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "opened_on": {
+              "type": "DATE",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "site_code"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "cost_centers": {
+          "name": "cost_centers",
+          "description": "Centres de coût de la paie et correspondance avec la comptabilité",
+          "columns": {
+            "cost_center_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "name": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "site_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "gl_cost_center": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "cost_center_code"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "site_code"
+              ],
+              "target_table": "work_sites",
+              "target_columns": [
+                "site_code"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "departments": {
+          "name": "departments",
+          "description": "Départements",
+          "columns": {
+            "department_code": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "name": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "site_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "cost_center_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "head_employee_id": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "department_code"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "site_code"
+              ],
+              "target_table": "work_sites",
+              "target_columns": [
+                "site_code"
+              ]
+            },
+            {
+              "columns": [
+                "cost_center_code"
+              ],
+              "target_table": "cost_centers",
+              "target_columns": [
+                "cost_center_code"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "job_positions": {
+          "name": "job_positions",
+          "description": "Fonctions",
+          "columns": {
+            "position_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "title": {
+              "type": "VARCHAR(60)",
+              "description": ""
+            },
+            "category": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "joint_committee": {
+              "type": "VARCHAR(5)",
+              "description": ""
+            },
+            "salary_class": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "position_code"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "salary_scales": {
+          "name": "salary_scales",
+          "description": "Barèmes mensuels minimum et maximum par classe",
+          "columns": {
+            "salary_class": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "valid_from": {
+              "type": "DATE",
+              "description": ""
+            },
+            "min_monthly": {
+              "type": "DECIMAL(10, 2)",
+              "description": ""
+            },
+            "max_monthly": {
+              "type": "DECIMAL(10, 2)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "salary_class",
+            "valid_from"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "employees": {
+          "name": "employees",
+          "description": "Travailleurs (données personnelles : numéro national, IBAN, adresse)",
+          "columns": {
+            "employee_id": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            },
+            "last_name": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "first_name": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "gender": {
+              "type": "VARCHAR(1)",
+              "description": ""
+            },
+            "birth_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "national_number": {
+              "type": "VARCHAR(15)",
+              "description": ""
+            },
+            "iban": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "street_address": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "postal_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "city": {
+              "type": "VARCHAR(40)",
+              "description": ""
+            },
+            "work_email": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "hire_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "exit_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "exit_reason": {
+              "type": "VARCHAR(30)",
+              "description": ""
+            },
+            "manager_id": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "employee_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "manager_id"
+              ],
+              "target_table": "employees",
+              "target_columns": [
+                "employee_id"
+              ]
+            }
+          ],
+          "restricted_columns": [
+            "birth_date",
+            "national_number",
+            "iban",
+            "street_address",
+            "work_email"
+          ]
+        },
+        "contracts": {
+          "name": "contracts",
+          "description": "Contrats et avenants (une ligne par période)",
+          "columns": {
+            "contract_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "employee_id": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            },
+            "contract_type": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "start_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "end_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "planned_end_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "department_code": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "position_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "work_regime": {
+              "type": "DECIMAL(4, 2)",
+              "description": ""
+            },
+            "weekly_hours": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "shift_pattern": {
+              "type": "VARCHAR(5)",
+              "description": ""
+            },
+            "telework_allowed": {
+              "type": "BOOLEAN",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "contract_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "employee_id"
+              ],
+              "target_table": "employees",
+              "target_columns": [
+                "employee_id"
+              ]
+            },
+            {
+              "columns": [
+                "department_code"
+              ],
+              "target_table": "departments",
+              "target_columns": [
+                "department_code"
+              ]
+            },
+            {
+              "columns": [
+                "position_code"
+              ],
+              "target_table": "job_positions",
+              "target_columns": [
+                "position_code"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "salary_history": {
+          "name": "salary_history",
+          "description": "Historique des salaires (mensuel pour les employés, horaire pour les ouvriers)",
+          "columns": {
+            "salary_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "employee_id": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            },
+            "valid_from": {
+              "type": "DATE",
+              "description": ""
+            },
+            "monthly_gross": {
+              "type": "DECIMAL(10, 2)",
+              "description": ""
+            },
+            "hourly_rate": {
+              "type": "DECIMAL(10, 4)",
+              "description": ""
+            },
+            "reason": {
+              "type": "VARCHAR(15)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "salary_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "employee_id"
+              ],
+              "target_table": "employees",
+              "target_columns": [
+                "employee_id"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "absence_types": {
+          "name": "absence_types",
+          "description": "Codes d'absence",
+          "columns": {
+            "absence_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "label": {
+              "type": "VARCHAR(60)",
+              "description": ""
+            },
+            "paid_by_employer": {
+              "type": "BOOLEAN",
+              "description": ""
+            },
+            "meal_voucher": {
+              "type": "BOOLEAN",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "absence_code"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "timesheets": {
+          "name": "timesheets",
+          "description": "Prestations journalières",
+          "columns": {
+            "timesheet_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "employee_id": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            },
+            "work_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "planned_hours": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "worked_hours": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "overtime_hours": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "absence_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "absence_hours": {
+              "type": "DECIMAL(5, 2)",
+              "description": ""
+            },
+            "work_location": {
+              "type": "VARCHAR(4)",
+              "description": ""
+            },
+            "shift": {
+              "type": "VARCHAR(5)",
+              "description": ""
+            },
+            "validated": {
+              "type": "BOOLEAN",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "timesheet_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "employee_id"
+              ],
+              "target_table": "employees",
+              "target_columns": [
+                "employee_id"
+              ]
+            },
+            {
+              "columns": [
+                "absence_code"
+              ],
+              "target_table": "absence_types",
+              "target_columns": [
+                "absence_code"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "pay_elements": {
+          "name": "pay_elements",
+          "description": "Éléments de paie et compte comptable",
+          "columns": {
+            "element_code": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "label": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            },
+            "element_type": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            },
+            "onss_subject": {
+              "type": "BOOLEAN",
+              "description": ""
+            },
+            "taxable": {
+              "type": "BOOLEAN",
+              "description": ""
+            },
+            "gl_account": {
+              "type": "VARCHAR(6)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "element_code"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "payroll_runs": {
+          "name": "payroll_runs",
+          "description": "Calculs de paie (mensuels et corrections)",
+          "columns": {
+            "run_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "period_month": {
+              "type": "DATE",
+              "description": ""
+            },
+            "run_type": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "run_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "payment_date": {
+              "type": "DATE",
+              "description": ""
+            },
+            "description": {
+              "type": "VARCHAR(120)",
+              "description": ""
+            },
+            "status": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "run_id"
+          ],
+          "foreign_keys": [],
+          "restricted_columns": []
+        },
+        "payslips": {
+          "name": "payslips",
+          "description": "Fiches de paie (le PDF est stocké en dehors de la base)",
+          "columns": {
+            "payslip_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "run_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "employee_id": {
+              "type": "VARCHAR(8)",
+              "description": ""
+            },
+            "contract_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "cost_center_code": {
+              "type": "VARCHAR(10)",
+              "description": ""
+            },
+            "gross_amount": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "onss_employee": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "taxable_amount": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "withholding_tax": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "net_amount": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "employer_onss": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "pdf_path": {
+              "type": "VARCHAR(80)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "payslip_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "run_id"
+              ],
+              "target_table": "payroll_runs",
+              "target_columns": [
+                "run_id"
+              ]
+            },
+            {
+              "columns": [
+                "employee_id"
+              ],
+              "target_table": "employees",
+              "target_columns": [
+                "employee_id"
+              ]
+            },
+            {
+              "columns": [
+                "contract_id"
+              ],
+              "target_table": "contracts",
+              "target_columns": [
+                "contract_id"
+              ]
+            },
+            {
+              "columns": [
+                "cost_center_code"
+              ],
+              "target_table": "cost_centers",
+              "target_columns": [
+                "cost_center_code"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        },
+        "payslip_lines": {
+          "name": "payslip_lines",
+          "description": "Lignes des fiches de paie (montants signés : retenues négatives)",
+          "columns": {
+            "line_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "payslip_id": {
+              "type": "INT",
+              "description": ""
+            },
+            "element_code": {
+              "type": "VARCHAR(12)",
+              "description": ""
+            },
+            "quantity": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            },
+            "rate": {
+              "type": "DECIMAL(12, 4)",
+              "description": ""
+            },
+            "amount": {
+              "type": "DECIMAL(12, 2)",
+              "description": ""
+            }
+          },
+          "primary_key": [
+            "line_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "payslip_id"
+              ],
+              "target_table": "payslips",
+              "target_columns": [
+                "payslip_id"
+              ]
+            },
+            {
+              "columns": [
+                "element_code"
+              ],
+              "target_table": "pay_elements",
+              "target_columns": [
+                "element_code"
+              ]
+            }
+          ],
+          "restricted_columns": []
+        }
+      }
+    }
+  },
+  "source_fingerprints": {
+    "01_erp_gespro_sqlserver.sql": "82d3dff2fd4ddf417ad2c9b3009d28481f5189323ae179d10982e9703dffefe0",
+    "02_compta_postgres.sql": "3ee44e28dec5b61a8156308e8fe7084c89546b6fe28c33fdf7e0d6180c84883c",
+    "03_paie_postgres.sql": "ccddc04235550a8594cb74c32deccb62c0c1d8c4f1b8d8ecc59a71fee0cc906a"
+  }
+}

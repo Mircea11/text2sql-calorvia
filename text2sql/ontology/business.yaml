@@ -1,0 +1,66 @@
+status: draft_ai_reviewed_not_human_certified
+source: présentation officielle, DDL et vérifications CPU sur les données fournies
+snapshot: '2026-05-31'
+terms:
+  - name: Chiffre d'affaires net facturé HT
+    synonyms: [CA, ventes, revenu, factures, avoirs]
+    tables: [erp.VTE_FACT, erp.VTE_FACT_LIG]
+    definition: Les factures F contribuent positivement et les avoirs A négativement. Les montants des avoirs sont stockés positifs. Agréger les en-têtes OU les lignes, jamais leur montant d'en-tête après une jointure un-à-plusieurs.
+    calculation: "SUM(CASE WHEN FAC_TYPE='A' THEN -FAC_MT_HT ELSE FAC_MT_HT END)"
+    time: FAC_DT, bornes de début incluses et de fin exclues
+  - name: Chiffre d'affaires comptabilisé
+    synonyms: [CA, ventes, comptabilité, écart, rapprochement]
+    tables: [compta.ecriture, compta.ligne_ecriture]
+    definition: Somme credit-debit des comptes 70, à la période comptable. Les autres produits 74 ne sont pas du chiffre d'affaires. Le facturé ERP et le comptabilisé peuvent différer.
+    calculation: "SUM(credit-debit), numero_compte LIKE '70%'"
+    time: code_periode
+  - name: Résultat net avant affectation
+    synonyms: [bénéfice, exercice, annuel, résultat]
+    tables: [compta.ecriture, compta.ligne_ecriture, compta.plan_comptable]
+    definition: Somme credit-debit des classes 6 et 7, hors comptes d'affectation 69 et 79. Inclure le bénéfice à reporter 693000 annulerait artificiellement le résultat déjà affecté.
+    calculation: "classes 6/7, numero_compte NOT LIKE '69%' AND numero_compte NOT LIKE '79%'"
+    time: code_periode, exercice concerné
+  - name: EBITDA et marge d'EBITDA
+    synonyms: [EBITDA, marge, rentabilité]
+    tables: [compta.ecriture, compta.ligne_ecriture]
+    definition: Convention vérifiée pour ce laboratoire ; somme credit-debit des produits 7 hors affectation 79 et des charges 60, 61, 62. Les dotations/reprises 63 et charges financières 65 sont exclues. Les autres produits 74 sont inclus dans EBITDA. Marge = EBITDA / chiffre d'affaires 70, pas / tous les produits 7.
+    calculation: "SUM(credit-debit) sur 7 hors 79, 60,61,62 ; ratio calculé avec Decimal"
+    time: code_periode
+  - name: Stock à la date d'extraction
+    synonyms: [stock, disponible, quantité, Aéris, Aeris, Ventis]
+    tables: [erp.STK_ETAT, erp.STK_MVT, erp.ART_ARTICLE, erp.SOC_SITE]
+    definition: STK_ETAT est la photographie au 31/05/2026. STK_MVT contient des quantités déjà signées ; ne pas signer une seconde fois les retours ou sorties. AE12 désigne Aéris 12. Le stock futur n'est pas disponible.
+  - name: Effectif sous contrat
+    synonyms: [personnes, effectif, employés, contrat, site]
+    tables: [paie.contracts, paie.departments, paie.work_sites]
+    definition: COUNT DISTINCT employee_id pour start_date <= date et end_date NULL ou >= date. Une personne peut avoir plusieurs avenants. Ce nombre de personnes n'est pas une somme d'ETP ; celle-ci utilise work_regime.
+    time: start_date et end_date
+  - name: Prestations et télétravail
+    synonyms: [jours, télétravail, absence, accident, heures]
+    tables: [paie.timesheets, paie.absence_types]
+    definition: Une ligne de timesheets décrit un jour ouvré pour une personne. work_location TELE signifie télétravail. ACC désigne accident du travail. Ne pas confondre jours calendaires, jours ouvrés et heures d'absence.
+    time: work_date
+  - name: Charges de personnel et rémunérations
+    synonyms: [paie, salaire, rémunération, cotisations, commission, personnel]
+    tables: [paie.payroll_runs, paie.payslips, paie.payslip_lines, paie.pay_elements, compta.ecriture, compta.ligne_ecriture]
+    definition: Utiliser period_month pour la période de paie et payment_date pour la date de paiement. Les charges comptables peuvent comporter des écritures manuelles hors paie. Aucune rémunération, commission ou fiche de paie individuelle n'est diffusée dans ce démonstrateur sans identité RH vérifiée ; seules les statistiques agrégées sont permises.
+cross_source_links:
+  - object: client ou fournisseur
+    left: erp.CLI_CLIENT.CLI_TVA / erp.FRN_FOURNISSEUR.FRN_TVA
+    right: compta.tiers.numero_tva
+    normalization: vat, majuscules et suppression des séparateurs ; vérifier l'unicité
+  - object: facture client
+    left: erp.VTE_FACT.FAC_NUM
+    right: compta.ecriture.reference_externe
+    filter: code_journal VEN
+  - object: commercial / travailleur
+    left: erp.VDR_VENDEUR.VDR_MATRICULE
+    right: paie.employees.employee_id
+    normalization: employee, chiffres du matricule ; aucune rémunération individuelle
+  - object: centre de coût
+    left: compta.centre_analytique.code_centre
+    right: paie.cost_centers.gl_cost_center
+  - object: calcul de paie
+    left: compta.ecriture.reference_externe
+    right: paie.payroll_runs.run_id
+    filter: code_journal SAL
