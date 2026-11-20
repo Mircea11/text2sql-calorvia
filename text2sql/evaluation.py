@@ -373,7 +373,10 @@ def number_set(text: str) -> list[Decimal]:
 def numeric_score(question: dict, answer_text: str) -> bool | None:
     if not question["references"]:
         return None
-    numbers = number_set(answer_text.split("```sql")[0])
+    # Qwen peut placer le SQL avant la réponse. Exclure les blocs de code,
+    # y compris un dernier bloc non refermé, tout en gardant la prose suivante.
+    prose = re.sub(r"```.*?(?:```|\Z)", " ", answer_text, flags=re.DOTALL)
+    numbers = number_set(prose)
     expected = []
     for reference in question["references"]:
         for row in reference["expected_rows"]:
@@ -389,8 +392,8 @@ def numeric_score(question: dict, answer_text: str) -> bool | None:
     )
 
 
-def verify_native_references() -> dict:
-    """Références sur les moteurs natifs ; ceci ne mesure pas l'agent."""
+def verify_native_references(output_dir: Path | None = None) -> dict:
+    """Vérifie le jeu sur les trois moteurs et écrit le rapport dans output_dir ou results/."""
     from .sources import SourceService
 
     service = SourceService(Settings.load(), load_catalog())
@@ -417,14 +420,9 @@ def verify_native_references() -> dict:
         "checks": checks,
         "dataset_sha256": hashlib.sha256(DATASET.read_bytes()).hexdigest(),
     }
-    path = (
-        HERE
-        / "results"
-        / (
-            datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
-            + "_native_references.json"
-        )
-    )
+    directory = output_dir if output_dir is not None else HERE / "results"
+    directory.mkdir(parents=True, exist_ok=True)
+    path = directory / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "_native_references.json")
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     return payload
 

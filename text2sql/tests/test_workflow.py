@@ -220,3 +220,10 @@ def test_interrupted_baseline_resumes_in_clean_worktree(tmp_path, monkeypatch):
     review.write_text("Revue humaine conservée\n")
     asyncio.run(evaluation.evaluate_live(False, resume=path))
     assert review.read_text() == "Revue humaine conservée\n"
+
+def test_numeric_answer_after_sql():
+    q = {"type": "simple", "references": [{"expected_rows": [["1320"]]}]}
+    query = "```sql\nSELECT COUNT(*) FROM ecriture LIMIT 200\n```"
+    assert numeric_score(q, query + "\nRésultat : 1 320 écritures.\n" + query)
+    assert not numeric_score(q, "Résultat indisponible.\n```sql\nSELECT 1320\n```")
+    assert not numeric_score(q, "Résultat indisponible.\n```sql\nSELECT 1320")

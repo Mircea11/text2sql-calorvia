@@ -2,6 +2,10 @@
 
 **Statut : code et vérifications locales disponibles ; rendu natif incomplet.** Les résultats ci-dessous ne mesurent pas encore la précision d'un agent utilisant les serveurs du cours.
 
+## Essai natif sans ontologie sur le Z4
+
+Mi a exécuté le carnet avec le routeur Qwen existant et les sources restaurées. Pour avril 2026, l’agent a consulté les tables, lu la fiche, validé puis exécuté un COUNT(*) sur compta.ecriture avec date_ecriture du 1er avril inclus au 1er mai exclu. PostgreSQL et la réponse finale donnent 1 320, comme la référence indépendante sur la copie des données fournies. LIMIT 200 porte sur les lignes de sortie de l’agrégat. Trace locale : `data/text2sql/comptage_avril_z4_20261120_154339_111742.json`. Le résultat est consigné d’après la sortie du carnet. Ce contrôle individuel précède les campagnes officielles.
+
 ## Architecture retenue
 
 Un agent LangGraph utilise six outils d'un serveur MCP stdio. Seul ce processus possède les connexions aux sources. Il utilise `agent_ro`, valide chaque requête dans son dialecte, impose une limite et annule les transactions. Un journal PostgreSQL séparé des sources enregistre les requêtes. Les réponses montrent le SQL réellement exécuté. Les rapprochements passent par des résultats identifiés et par `Decimal` ; les clés dupliquées ou résultats tronqués sont refusés.
@@ -58,7 +62,7 @@ L'analyse finale doit sélectionner cinq questions réellement ratées et locali
 
 ## Obligations restant à terminer
 
-- Restaurer/vérifier les trois bases et exécuter les tests d'ACL natifs.
+- Vérifier les 37 requêtes de référence sur les moteurs natifs. Les trois restaurations et les quatre tests d’ACL sont confirmés sur le Z4.
 - Vérifier les endpoints partagés et la sortie structurée attendue par NVIDIA.
 - Compiler réellement, exporter puis faire réviser/certifier les termes importants.
 - Mesurer deux expériences complètes et comparables avec commit Git propre ; journaliser/exporter les résultats.
@@ -69,4 +73,4 @@ Le travail de code et de test de cette préparation est assisté par IA. La comp
 
 ## Point de reprise 2
 
-Les sauvegardes JSON atomiques et PostgreSQL interviennent après chaque question. Un verrou interprocessus exclut deux traitements Task 2 simultanés ; il ne connaît pas la charge du RAG. Les versions, le modèle, les données et les réglages sont conservés pour la reprise. Les métriques numériques sont des candidats à réviser, pas des scores sémantiques validés. Le poste réel reste nécessaire pour toutes les preuves natives.
+Les sauvegardes JSON atomiques et PostgreSQL interviennent après chaque question. Un verrou interprocessus exclut deux traitements Task 2 simultanés ; il ne connaît pas la charge du RAG. Les versions, le modèle, les données et les réglages sont conservés pour la reprise. Les métriques numériques sont des candidats à réviser, pas des scores sémantiques validés. Les campagnes complètes restent à exécuter sur le Z4.
