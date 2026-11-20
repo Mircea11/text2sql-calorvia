@@ -1,6 +1,6 @@
 {
-  "checkpoint": 4,
-  "status": "dependances_installees_sur_Z4_tests_CPU_du_poste_en_attente",
+  "checkpoint": 5,
+  "status": "tests_cpu_Z4_valides_controle_des_sources_externes_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -38,7 +38,7 @@
   },
   "next_actions": [
     "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
-    "Sur le Z4, lancer les tests CPU de la révision locale avec T2SQL_LIVE=0, relever le commit, les réussites, les échecs et les motifs des tests ignorés.",
+    "Contrôler le catalogue et les empreintes des trois fichiers SQL dans le dossier externe déjà repéré sur le Z4.",
     "Contrôler les SQL officiels, restaurer les sources si nécessaire, vérifier les ACL et références natives.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
@@ -60,7 +60,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T08:48:43.102297+00:00",
+  "saved_at": "2026-11-20T08:53:12.583002+00:00",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -68,7 +68,7 @@
     "preserved_rag_commit": "9fb85bb247461d1698357bf066c1c9193d11b926"
   },
   "workstation": {
-    "evidence": "Source : sorties de terminal transmises dans la conversation. Le diagnostic inspecte l'environnement et GET /v1/models lit un catalogue. Aucune observation directe du Z4 par l'IA. Mi confirme ne pas avoir lancé le laboratoire 2 sur son poste.",
+    "evidence": "Sources : diagnostics, sortie d'installation et sortie pytest communiqués par Mi depuis le Z4.",
     "shared_python": "~/labo/calorvia_rag/.venv/bin/python",
     "python_version": "3.12.14",
     "source_directory": "~/labo/calorvia_t2sql/sources_calorvia",
@@ -86,7 +86,6 @@
     "task2_api_candidate_port": 9001,
     "generation_tested": false,
     "tool_calling_tested": false,
-    "task2_started_by_user": false,
     "installation": {
       "source": "Sortie du terminal Z4 fournie par Mi",
       "additions": {
@@ -107,8 +106,20 @@
         "before": 214,
         "after": 214
       },
-      "task1_preexisting_issue": "statuts_rappel : SELECT direct décodé (2 groupes), COPY TO STDOUT non décodable avant installation.",
-      "local_task2_tests": "en attente"
+      "task1_preexisting_issue": "statuts_rappel : SELECT direct décodé (2 groupes), COPY TO STDOUT non décodable avant installation."
+    },
+    "cpu_tests": {
+      "commit": "47a4f45",
+      "command": "T2SQL_LIVE=0 .venv/bin/python -m pytest text2sql/tests -q -rs",
+      "passed": 62,
+      "skipped": 5,
+      "failed": 0,
+      "errors": 0,
+      "seconds": 5.85,
+      "skips": {
+        "live_permissions_disabled": 4,
+        "official_sql_absent_from_test_path": 1
+      }
     }
   }
 }

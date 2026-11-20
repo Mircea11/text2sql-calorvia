@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 4 — 20 novembre 2026. Installation des dépendances confirmée sur le Z4. Tests CPU du poste en attente.**
+**Checkpoint 5 — 20 novembre 2026. Tests CPU du Z4 au commit 47a4f45 : 62 réussis, 5 ignorés en 5,85 s.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -155,9 +155,9 @@ D’après les sorties de terminal transmises par Mi, le diagnostic utilisait `~
 | Service sur 9000 | GET /v1/models, HTTP 400. Identité inconnue | Laisser ce port au service existant |
 | API Text-to-SQL | Port proposé 9001, disponibilité à vérifier | `T2SQL_API_PORT` règle à la fois FastAPI et l'URL de reranking de NVIDIA |
 
-Mi confirme n’avoir lancé aucun service du laboratoire 2 sur le Z4. Les appels GET ci-dessus lisent les catalogues des services qui répondaient déjà. Les 65 tests et les 37 requêtes de référence ont été exécutés dans l’environnement de vérification de l’IA. Le test de reprise interrompt un modèle simulé dans un dépôt temporaire. Aucune évaluation Qwen ni mesure de précision sur le Z4 n’est disponible.
+Le Z4 a exécuté les tests CPU. La mise en service de l’agent avec les bases natives reste à vérifier. Les appels GET ci-dessus lisent les catalogues des services qui répondaient déjà. Les 65 tests et les 37 requêtes de référence ont été exécutés dans l’environnement de vérification de l’IA. Le test de reprise interrompt un modèle simulé dans un dépôt temporaire. Aucune évaluation Qwen ni mesure de précision sur le Z4 n’est disponible.
 
-La PR nº 2 a intégré le checkpoint 2 dans `main` au commit `47a4f45`. La suite est sur `feat/text2sql-calorvia`. Le travail RAG en cours garde la priorité sur les ressources du poste. Mi a installé les six ajouts prévus dans le Python partagé du Z4. L'audit final donne zéro dépendance manquante et zéro incompatibilité. Le comptage RAG sur `rappel_aeris12` renvoie 214 lignes avant et après. Le défaut de décodage JSON de `statuts_rappel` sur plusieurs lignes existait avant cette installation. Prochain contrôle sur le Z4 : `T2SQL_LIVE=0 .venv/bin/python -m pytest text2sql/tests -q -rs`. Conserver le commit testé et les motifs des tests ignorés. Configurer les identifiants précis des modèles indiqués dans `.env.example` dans le seul environnement du laboratoire 2.
+La PR nº 2 a intégré le checkpoint 2 dans `main` au commit `47a4f45`. La suite est sur `feat/text2sql-calorvia`. Le travail RAG en cours garde la priorité sur les ressources du poste. Mi a installé les six ajouts prévus dans le Python partagé du Z4. L'audit final donne zéro dépendance manquante et zéro incompatibilité. Le comptage RAG sur `rappel_aeris12` renvoie 214 lignes avant et après. Le défaut de décodage JSON de `statuts_rappel` sur plusieurs lignes existait avant cette installation. Mi a exécuté la suite sur le Z4 au commit `47a4f45` avec `T2SQL_LIVE=0`. Quatre contrôles de permissions étaient désactivés. Le test du catalogue et du cache a ignoré le dossier externe, car il cherche les SQL sous `data/text2sql/sources_calorvia/sql`. Prochain contrôle : comparer `build_catalog(Path.home() / "labo/calorvia_t2sql/sources_calorvia/sql")` à `load_catalog()`. La comparaison vérifie les empreintes des scripts et les métadonnées des 51 tables. Configurer les identifiants précis des modèles indiqués dans `.env.example` dans le seul environnement du laboratoire 2.
 
 Les vérifications et le code sont réalisés par l'IA. Ils ne prouvent aucune
 compétence indépendante de Mi. La certification humaine, les cinq échecs réellement
