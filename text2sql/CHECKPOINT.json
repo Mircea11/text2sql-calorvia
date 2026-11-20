@@ -1,6 +1,6 @@
 {
-  "checkpoint": 3,
-  "status": "code_et_tests_cpu_verifies_aucun_lancement_du_laboratoire_2_sur_le_Z4",
+  "checkpoint": 4,
+  "status": "dependances_installees_sur_Z4_tests_CPU_du_poste_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -32,13 +32,13 @@
     "ontology_mock_contract": true,
     "cross_process_lock": true,
     "openai_json_and_sse": true,
-    "task1_shared_dependencies_changed": false,
+    "task1_shared_dependencies_changed": true,
     "resume_after_simulated_interruption": true,
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
     "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
-    "Auditer les dépendances avec le Python partagé, installer les seuls ajouts compatibles, puis vérifier Task 1.",
+    "Sur le Z4, lancer les tests CPU de la révision locale avec T2SQL_LIVE=0, relever le commit, les réussites, les échecs et les motifs des tests ignorés.",
     "Contrôler les SQL officiels, restaurer les sources si nécessaire, vérifier les ACL et références natives.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
@@ -60,7 +60,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T08:05:29.464351+00:00",
+  "saved_at": "2026-11-20T08:48:43.102297+00:00",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -86,6 +86,29 @@
     "task2_api_candidate_port": 9001,
     "generation_tested": false,
     "tool_calling_tested": false,
-    "task2_started_by_user": false
+    "task2_started_by_user": false,
+    "installation": {
+      "source": "Sortie du terminal Z4 fournie par Mi",
+      "additions": {
+        "duckdb": "2.0.0",
+        "fastapi": "0.165.0",
+        "iniconfig": "2.3.1",
+        "pymssql": "2.4.6",
+        "pytest": "9.2.0",
+        "sqlglot": "30.33.0"
+      },
+      "final_audit": {
+        "missing": [],
+        "incompatible": [],
+        "existing_versions_preserved": true
+      },
+      "task1_single_count": {
+        "table": "calorvia_structured.rappel_aeris12",
+        "before": 214,
+        "after": 214
+      },
+      "task1_preexisting_issue": "statuts_rappel : SELECT direct décodé (2 groupes), COPY TO STDOUT non décodable avant installation.",
+      "local_task2_tests": "en attente"
+    }
   }
 }
