@@ -72,7 +72,11 @@ class SourceService:
                         options=f"-c default_transaction_read_only=on -c statement_timeout={self.settings.timeout_s * 1000}",
                     )
                     cur = con.cursor()
-                cur.execute(sql, params)
+                # Sans paramètres, conserver les % littéraux des motifs LIKE.
+                if params:
+                    cur.execute(sql, params)
+                else:
+                    cur.execute(sql)
                 columns = [c[0] for c in cur.description] if cur.description else []
                 records = cur.fetchmany(limit + 1)
                 truncated = len(records) > limit

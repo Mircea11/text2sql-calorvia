@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 19 — Un seul carnet de travail sur le Z4 : `data/text2sql/Text2SQL_travail.ipynb`. Les sections 5 et 6 démarrent Python dans le worktree pour que le cache d’importation de Jupyter ne sélectionne pas le module de main. Le contrôle natif des 37 références reste à exécuter.**
+**Checkpoint 21 — Le carnet version 20 du Z4 charge le code du worktree. Le contrôle natif a révélé une erreur de traitement des motifs LIKE par le pilote. Après mise à jour du worktree, reprendre à la section 5 du même carnet.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.

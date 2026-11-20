@@ -1,6 +1,6 @@
 {
-  "checkpoint": 20,
-  "status": "SQL_avril_valide_sur_Z4_campagne_sans_ontologie_a_lancer",
+  "checkpoint": 21,
+  "status": "module_campagne_confirme_correction_pourcent_psycopg_a_retester_sur_Z4",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T15:14:42.342Z",
+  "saved_at": "2026-11-20T15:18:47.591Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -270,11 +270,16 @@
       "result": "TypeError avant la vérification des références ; aucun résultat natif pour cet essai.",
       "fix": "Sections 5 et 6 en processus Python distinct, code du worktree explicitement sélectionné. Exécution Z4 attendue."
     },
-    "notebook_sync_check": "Source des 12 cellules officielles relue après écriture, titre visible version 20. Résultat sur le Z4 à confirmer."
+    "notebook_sync_check": "Source des 12 cellules officielles relue après écriture, titre visible version 20. Résultat sur le Z4 à confirmer.",
+    "native_reference_attempt_v20": {
+      "evidence": "Sorties enregistrées dans le carnet Text2SQL_travail(2).ipynb fourni par Mi. Le sous-processus de la section 5 a chargé evaluation.py dans le worktree. Arrêt de psycopg au moment de cur.execute, pas de bilan complet.",
+      "cause": "Un tuple vide déclenchait l’interprétation des marqueurs % dans les requêtes SQL non paramétrées.",
+      "verification": "Erreur reproduite avec le convertisseur psycopg. 23 références PostgreSQL converties avec succès après correction, 37 références conformes sur la copie hors ligne. Vérification native Z4 en attente."
+    }
   },
   "rag_compatibility": {
     "main_reviewed": "c7196427d077a5ab87bd325a36cdf2fe87c88e90",
-    "feature_reviewed": "10982842be70f77ed4b0c884b6389cb847927c0c",
+    "feature_reviewed": "841da138ce7e2dfceadfb0592a7d14d7091a4bdd",
     "merge_base": "8e015111637004e7964ea55e971bf4be1ac3263b",
     "overlapping_changed_paths": [],
     "scope": "Comparaison des deux historiques depuis leur ancêtre commun ; fichiers suivis uniquement.",

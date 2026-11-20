@@ -1,7 +1,9 @@
 """Contrats de sécurité, indépendants d'un LLM et des services de la machine."""
 
 import ast
+from contextlib import nullcontext
 from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -145,3 +147,22 @@ def test_agent_has_no_database_driver_or_gpu_loader():
             in {"psycopg", "pymssql", "torch", "transformers", "sources"}
             for v in imports
         )
+
+def test_postgres_literal_like_and_bound_value(monkeypatch):
+    """Les SQL validés gardent leurs motifs LIKE ; find_values lie sa valeur."""
+    connection = MagicMock()
+    cursor = connection.cursor.return_value
+    cursor.description = [("value",)]
+    cursor.fetchmany.return_value = [(1,)]
+    monkeypatch.setattr("text2sql.sources.psycopg.connect", lambda **kwargs: connection)
+    journal = MagicMock()
+    journal.access.side_effect = lambda *args: nullcontext({})
+    service = SourceService(Settings(source_password="test"), load_catalog(), journal)
+
+    result = service.execute_sql("compta", "SELECT COUNT(*) FROM ecriture WHERE code_periode LIKE '2025-%'")
+    assert result["valid"] and "2025-%" in result["sql"]
+    cursor.execute.assert_called_once_with(result["sql"])
+
+    service.find_values("compta", "ecriture", "code_periode", "2025-")
+    bound_sql, values = cursor.execute.call_args.args
+    assert "ILIKE %s" in bound_sql and values == ("%2025-%",)
