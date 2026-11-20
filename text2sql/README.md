@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 17 — Sur le Z4, Qwen a produit et exécuté un comptage filtré sur `compta.ecriture`. Résultat conforme : 1 320 en avril 2026. Les 45 questions sans ontologie restent à mesurer.**
+**Checkpoint 18 — Un seul carnet de travail sur le Z4 : `data/text2sql/Text2SQL_travail.ipynb`. Le comptage d’avril est validé, les sections 5 et 6 sont prêtes pour la campagne.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -20,7 +20,7 @@ Le catalogue décrit les 51 tables métier. L’ontologie ajoute les définition
 
 Le 20 novembre, le carnet a renvoyé **20 562** écritures via `list_tables` seul. Ce test vérifie le chemin Qwen → MCP → PostgreSQL. Pour contrôler le SQL généré, la cellule 4 demande le nombre d’en-têtes dont `date_ecriture` tombe en avril 2026. La référence CPU vaut **1 320** sur la copie officielle après contrôle du manifeste. La sortie Z4 confirme le même nombre et les appels list_tables, get_table_card, validate_sql et execute_sql. Ce nombre est resté hors du message envoyé à Qwen. Aucun de ces contrôles ponctuels ne constitue un score sur les 45 questions.
 
-Pour les cellules 5 et 6, ouvrir une copie du carnet dans le dossier ignoré `data/carnets/` du worktree de campagne, avec le noyau Python partagé du Z4. Le dossier `data/text2sql` de ce worktree doit pointer vers celui du dépôt de travail pour retrouver le journal, les rapports, les lots et leur verrou. Exécuter 1, 2 et 5, puis 6 dans un créneau libre. Les 37 requêtes de référence couvrent les questions pour lesquelles du SQL de référence existe. La campagne comporte 45 questions et s’enregistre après chacune. Reprendre dans le même worktree et aux mêmes réglages. Les scores numériques sont des indicateurs provisoires à compléter par une revue sémantique.
+Pour toutes les sections, ouvrir `data/text2sql/Text2SQL_travail.ipynb` avec le noyau Python partagé du Z4. Le carnet importe le code du worktree de campagne préparé au checkpoint 17. Pour synchroniser le carnet depuis la racine du dépôt après un fetch : `git show <révision>:text2sql/local_check.py | .venv/bin/python - --sync-notebook <révision>`. Fermer les carnets avant la commande. Les sorties locales sont conservées ; seules les copies reconnues comme redondantes sont retirées. Le dossier `data/text2sql` de ce worktree doit pointer vers celui du dépôt de travail pour retrouver le journal, les rapports, les lots et leur verrou. Exécuter 1, 2 et 5, puis 6 dans un créneau libre. Les 37 requêtes de référence couvrent les questions pour lesquelles du SQL de référence existe. La campagne comporte 45 questions et s’enregistre après chacune. Reprendre dans le même worktree et aux mêmes réglages. Les scores numériques sont des indicateurs provisoires à compléter par une revue sémantique.
 
 ## Coexistence avec le RAG
 

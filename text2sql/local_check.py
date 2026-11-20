@@ -178,5 +178,91 @@ def main():
     )
 
 
+
+def sync_notebook(revision: str) -> None:
+    """Installe le carnet Git dans data/text2sql en conservant les cellules de travail.
+
+    Les anciens modèles Git permettent de distinguer une mise à jour officielle
+    d'une cellule modifiée localement. Une sauvegarde avec un contenu unique reste
+    sur disque. Exécuter depuis le dépôt principal après fermeture des carnets.
+    """
+    import re
+    from tempfile import NamedTemporaryFile
+
+    root = Path(subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip())
+    path = "text2sql/Text2SQL_travail.ipynb"
+    folder = root / "data/text2sql"
+    target = folder / "Text2SQL_travail.ipynb"
+    other = root / "data/text2sql_eval_z4/data/carnets/Text2SQL_evaluation.ipynb"
+    if not (root / "data/text2sql_eval_z4/text2sql/evaluation.py").is_file():
+        raise SystemExit("Le worktree de campagne préparé au checkpoint 17 est introuvable.")
+
+    def git(*args):
+        return subprocess.check_output(["git", *args], cwd=root)
+
+    def signature(cell):
+        return cell["cell_type"], "".join(cell["source"])
+
+    template = json.loads(git("show", f"{revision}:{path}"))
+    versions = git("log", "--format=%H", revision, "--", path).decode().splitlines()
+    originals = {git("show", f"{v}:{path}") for v in versions}
+    known = {(c.get("id"), signature(c)) for raw in originals for c in json.loads(raw)["cells"]}
+    result = json.loads(target.read_bytes()) if target.exists() else template
+    by_id = {c.get("id"): c for c in result["cells"]}
+    for new in template["cells"]:
+        old = by_id.get(new["id"])
+        if old is None:
+            result["cells"].append(new)
+            by_id[new["id"]] = new
+        elif signature(old) != signature(new):
+            if (old.get("id"), signature(old)) not in known:
+                raise SystemExit(f"Cellule modifiée localement : {new['id']}. Carnet conservé.")
+            old["source"] = new["source"]
+
+    # Seules les copies dont le contenu est déjà représenté peuvent disparaître.
+    candidates = [other, *sorted(folder.glob("Text2SQL_travail.ipynb.~*~"))]
+    removable = []
+    for copy in candidates:
+        if not copy.is_file() or copy.is_symlink():
+            continue
+        if copy != other and not re.fullmatch(r"Text2SQL_travail\.ipynb\.~\d+~", copy.name):
+            continue
+        raw = copy.read_bytes()
+        if raw in originals or (target.exists() and raw == target.read_bytes()):
+            removable.append((copy, raw))
+            continue
+        # Un résultat, une annotation ou un format de copie inconnu reste récupérable.
+        try:
+            saved = json.loads(raw)
+            duplicate = (saved.get("metadata") == result.get("metadata") and
+                         all(c in result["cells"] for c in saved["cells"]))
+        except (ValueError, KeyError, TypeError):
+            duplicate = False
+        if duplicate:
+            removable.append((copy, raw))
+        else:
+            print("Copie conservée (contenu distinct) :", copy)
+
+    folder.mkdir(parents=True, exist_ok=True)
+    with NamedTemporaryFile(mode="w", encoding="utf-8", dir=folder, delete=False) as tmp:
+        json.dump(result, tmp, ensure_ascii=False, indent=1)
+        tmp.write("\n")
+    staged = Path(tmp.name)
+    try:
+        json.loads(staged.read_text())
+        staged.replace(target)
+    finally:
+        staged.unlink(missing_ok=True)
+    for copy, raw in removable:
+        if copy.read_bytes() == raw:
+            copy.unlink()
+            print("Copie redondante retirée :", copy.name)
+    print("Carnet de travail :", target)
+    print("Sections 5 et 6 disponibles.")
+
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) == 3 and sys.argv[1] == "--sync-notebook":
+        sync_notebook(sys.argv[2])
+    else:
+        main()
