@@ -1,9 +1,22 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 13 — Sur le Z4, le rôle RAG ne peut pas créer de schéma dans `calorvia_rag`. Le [carnet Text-to-SQL](Text2SQL_travail.ipynb) prépare une base distincte sur le PostgreSQL du labo 2, puis teste une question. Exécution Z4 en attente.**
+**Checkpoint 14 — Journal dédié vérifié sur le Z4. Le carnet a ouvert la session MCP et vérifié les six outils. La connexion HTTP au modèle de génération a échoué.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
+
+## Architecture en service et première question
+
+Le carnet appelle l’agent LangGraph. Il ouvre un serveur MCP local par entrée/sortie standard et présente les six outils à Qwen via une API locale compatible OpenAI. Qwen propose les appels. Le serveur MCP valide le SQL et interroge les sources avec `agent_ro`. Les résultats reviennent au modèle pour la rédaction de la réponse. L’API FastAPI du laboratoire (port prévu 9001) constitue une autre entrée vers le même agent.
+
+| Base | Serveur du Z4 | Rôle et contenu |
+|---|---|---|
+| GESPRO | SQL Server 14330 | 23 tables ERP, notamment VTE_FACT et VTE_FACT_LIG |
+| compta | PostgreSQL 5433 | 14 tables comptables, dont ecriture et ligne_ecriture |
+| paie | PostgreSQL 5434 | 14 tables de paie, dont payslips et payslip_lines |
+| calorvia_text2sql_journal | PostgreSQL 5433 | Base distincte sur le même serveur que compta. Le compte text2sql_writer écrit les événements et expériences dans le schéma text2sql_journal. |
+
+Le catalogue décrit les 51 tables métier. L’ontologie ajoute les définitions métier. Sa compilation NVIDIA réelle et sa certification humaine restent à effectuer. Le test courant utilise Qwen seul pour la génération, sans ontologie. BGE-M3 sur 8000 fournit des embeddings au workflow d’ontologie. Le numéro 8001 est l’adresse de génération constatée précédemment ; sa disponibilité actuelle reste à contrôler depuis le noyau du Z4. Les comptages natifs constituent les références de vérification.
 
 ## Coexistence avec le RAG
 
@@ -139,8 +152,8 @@ manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 | catalog.py, ontology/catalog.json | Catalogue des DDL | Trois SQL officiels, sqlglot | 51 fiches pour MCP/ontologie | tests/test_workflow.py | Types, PK/FK, commentaires ; vérifiés contre les fichiers |
 | validation.py | SELECT borné et confidentialité | SQL, dialecte, catalogue | SQL validé vers sources.py | tests/test_safety.py | Écritures, noms inconnus, fonctions dangereuses refusés ; testé |
 | sources.py | Accès agent_ro et rollback | Pilotes natifs, Settings, Journal | Colonnes/lignes/troncature vers MCP | verify-sources, native-check | Code vérifié ; moteurs réels non testés |
-| Text2SQL_travail.ipynb | Journal dédié et première question | Python du labo, PostgreSQL compta 5433, Qwen 8001 | Schéma et trace JSON dans data/text2sql/ | Cellules 1 puis 2 | Création, reprise et collision simulées ; essai natif à effectuer |
-| journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Refus CREATE sur la base RAG confirmé ; DSN du labo 2 à vérifier |
+| Text2SQL_travail.ipynb | Journal dédié et première question | Python du labo, PostgreSQL compta 5433, Qwen 8001 | Schéma et trace JSON dans data/text2sql/ | Cellules 1 puis 2 | Journal natif vérifié sur le Z4 ; connexion au modèle en échec |
+| journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Écriture de contrôle annulée avec text2sql_writer sur le Z4 |
 | mcp_server.py | Six outils stdio | SourceService | Outils pour agent.py | tests/test_protocol.py | Échange MCP réel sans bases ; passé |
 | agent.py | Boucle LangGraph et rapprochement | LLM HTTP, MCP, ontologie | Réponse, SQL, traces et Decimal vers API/évaluation | ask --question «…» | Boucle/rapprochement simulés passés ; LLM réel en attente |
 | api.py | Façade OpenAI authentifiée | Agent, clé API | JSON/SSE vers SDK/Open WebUI | serve, tests/test_protocol.py | SDK officiel JSON/SSE et rerank CPU passés |
