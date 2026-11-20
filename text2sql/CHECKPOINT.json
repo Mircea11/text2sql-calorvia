@@ -1,6 +1,6 @@
 {
-  "checkpoint": 8,
-  "status": "compta_native_verifiee_sur_Z4_paie_et_ERP_en_attente",
+  "checkpoint": 9,
+  "status": "compta_et_paie_verifiees_sur_Z4_ERP_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -38,13 +38,13 @@
   },
   "next_actions": [
     "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
-    "Utiliser le même script avec paie sur 5434, vérifier 7 298 fiches, puis restaurer l’ERP séparément.",
+    "Démarrer seulement GESPRO entre deux lots RAG, puis vérifier 10 185 lignes dans dbo.VTE_FACT avec agent_ro.",
     "Contrôler les SQL officiels, restaurer les sources si nécessaire, vérifier les ACL et références natives.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
   "pending_live": [
-    "Restauration de paie et de GESPRO, tests natifs des privilèges sur les trois bases, journalisation et accès MCP aux sources",
+    "Restauration et lecture de GESPRO, contrôles natifs des permissions sur les trois sources, journalisation et accès MCP",
     "Inférence Qwen et appel d’outil MCP, puis embeddings NVIDIA ; catalogues HTTP déjà observés",
     "Actual NVIDIA compilation and export",
     "Human certification of important terms",
@@ -60,7 +60,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T10:23:11.207504+00:00",
+  "saved_at": "2026-11-20T10:30:40.168321+00:00",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -152,12 +152,24 @@
         "table": "ecriture",
         "rows": 20562,
         "permission_denial_tested": false
+      },
+      "paie": {
+        "source": "Sortie terminal Z4 communiquée par Mi",
+        "helper_commit": "1df335d",
+        "port": 5434,
+        "container": "calorvia-paie",
+        "health": "healthy",
+        "user": "agent_ro",
+        "transaction_read_only": "on",
+        "table": "payslips",
+        "rows": 7298,
+        "permission_denial_tested": false
       }
     }
   },
   "rag_compatibility": {
     "main_reviewed": "70cb7fd90fbd498e8891a858979670280f27536f",
-    "feature_reviewed": "fd32e792779340886247333f28a4b407b30eb803",
+    "feature_reviewed": "975cbb7f953490dbdd3faa24d06f1dca95ae641b",
     "merge_base": "8e015111637004e7964ea55e971bf4be1ac3263b",
     "overlapping_changed_paths": [],
     "scope": "Comparaison des deux historiques depuis leur ancêtre commun ; fichiers suivis uniquement.",

@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 8 — 20 novembre 2026. Tests CPU du Z4 au commit 47a4f45 : 62 réussis, 5 ignorés en 5,85 s.**
+**Checkpoint 9 — 20 novembre 2026. Tests CPU du Z4 au commit 47a4f45 : 62 réussis, 5 ignorés en 5,85 s.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -18,7 +18,7 @@ pas utilisée. La réserve du formateur n'a pas été consultée.
 
 | Exigence obligatoire | Test d'acceptation | État |
 |---|---|---|
-| Trois bases : GESPRO/SQL Server, compta/PostgreSQL, paie/PostgreSQL | agent_ro ; 10 185 factures, 20 562 écritures, 7 298 fiches | Compta native : 20 562 écritures vérifiées ; ERP et paie vérifiés sur copies CPU |
+| Trois bases : GESPRO/SQL Server, compta/PostgreSQL, paie/PostgreSQL | agent_ro ; 10 185 factures, 20 562 écritures, 7 298 fiches | Lectures natives sur le Z4 : 20 562 écritures et 7 298 fiches ; ERP en attente |
 | Ontologie NVIDIA auto-ontology | Génération réelle, export YAML des 51 tables et liens ; définitions testées et certifiées humainement | Brouillon natif, graphes et protocole testés ; génération et certification en attente |
 | Comparer ≥2 solutions pour SQL Server | Note argumentée Trino / copie / import YAML | Dans RAPPORT.md ; import YAML retenu sous réserve du test natif |
 | Six outils MCP | list_sources, list_tables, get_table_card, find_values, validate_sql, execute_sql | Découverte stdio et validation testées ; accès natifs en attente |
@@ -72,7 +72,7 @@ Après inventaire, démarrer les sources une par une. Pour la comptabilité sur 
 .venv/bin/python text2sql/restore_postgres.py ~/labo/calorvia_t2sql/sources_calorvia/docker compta
 ```
 
-Le script conserve les identifiants locaux dans le `.env` Docker et limite la publication au loopback. Le contrôle TCP utilise `agent_ro`. Le même script accepte `paie` pour une étape ultérieure. L'ERP utilise le service de restauration SQL Server du guide fourni. Les trois bases natives et leurs ACL exigent des preuves distinctes.
+Le script conserve les identifiants locaux dans le `.env` Docker et limite la publication au loopback. Le contrôle TCP utilise `agent_ro`. Le même script avec `paie` a vérifié les 7 298 fiches avec `agent_ro` en transaction de lecture seule. Pour GESPRO, utiliser `.venv/bin/python text2sql/restore_erp.py ~/labo/calorvia_t2sql/sources_calorvia/docker` entre deux lots RAG. Le script limite la mémoire interne du nouveau moteur à 2 048 Mo, garde le port 14330 sur loopback et appelle le service officiel avec FORCE_RESTORE=0. Les trois bases natives et leurs ACL exigent des preuves distinctes.
 
 ### Ontologie
 
@@ -145,7 +145,8 @@ manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 | runtime.py | Exclusion des traitements Task 2 | Verrou local interprocessus | API, agent, compilation, évaluation | tests/test_workflow.py | Concurrence Task 2 refusée ; ne détecte pas Task 1 |
 | offline.py | Copies de vérification CPU | SQL officiels, DuckDB, empreintes | data/text2sql/offline vers références | offline-build / offline-check | 457 965 lignes ; copies et références vérifiées |
 | evaluation.py, evaluation/questions.json | Jeu et campagnes reprenables | 45 questions, réponses attendues séparées, agent | JSON/CSV et journal PostgreSQL | evaluate / compare | 37 références CPU passées ; aucune mesure LLM réelle |
-| restore_postgres.py | Restaurer une source PostgreSQL | Compose officiel, .env privé, Docker et psycopg | Volume compta ou paie et contrôle SQL local | Voir commande ci-dessus | Compta vérifiée sur le Z4 ; paie en attente |
+| restore_erp.py | Démarrage et lecture ERP | Docker, .env du cours, sqlcmd, pymssql | GESPRO et compte de factures | Commande ERP ci-dessus | Contrôle simulé, résultat Z4 en attente |
+| restore_postgres.py | Restaurer une source PostgreSQL | Compose officiel, .env privé, Docker et psycopg | Volume compta ou paie et contrôle SQL local | Voir commande ci-dessus | Compta et paie vérifiées sur le Z4 |
 | local_check.py | Diagnostic avant installation | Bibliothèque standard, état local | data/text2sql/local_environment.json | python text2sql/local_check.py | Aucun secret affiché, aucune inférence |
 | preflight.py, cli.py, __main__.py | Commandes et diagnostic après installation | Modules Task 2 et paquets installés | État et contrôles opérateur | python -m text2sql --help | CLI et diagnostic exécutés ici |
 | tests/ | Contrats et ACL indépendantes | Données officielles optionnelles ; moteurs pour ACL | Résultats de tests | pytest text2sql/tests -q | 65 tests CPU réussis, dont une interruption/reprise simulée ; 4 tests natifs en attente |
