@@ -1,6 +1,6 @@
 {
-  "checkpoint": 7,
-  "status": "inventaire_docker_Z4_effectue_restauration_compta_en_attente",
+  "checkpoint": 8,
+  "status": "compta_native_verifiee_sur_Z4_paie_et_ERP_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -38,13 +38,13 @@
   },
   "next_actions": [
     "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
-    "Restaurer d’abord compta avec restore_postgres.py, vérifier la lecture TCP agent_ro et le compte de 20 562 écritures.",
+    "Utiliser le même script avec paie sur 5434, vérifier 7 298 fiches, puis restaurer l’ERP séparément.",
     "Contrôler les SQL officiels, restaurer les sources si nécessaire, vérifier les ACL et références natives.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
   "pending_live": [
-    "Docker/source restoration and agent_ro database privileges",
+    "Restauration de paie et de GESPRO, tests natifs des privilèges sur les trois bases, journalisation et accès MCP aux sources",
     "Inférence Qwen et appel d’outil MCP, puis embeddings NVIDIA ; catalogues HTTP déjà observés",
     "Actual NVIDIA compilation and export",
     "Human certification of important terms",
@@ -60,7 +60,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T10:01:46.137574+00:00",
+  "saved_at": "2026-11-20T10:23:11.207504+00:00",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -139,6 +139,20 @@
       "matching_containers": [],
       "matching_volumes": [],
       "listeners_on_requested_ports": []
+    },
+    "native_reads": {
+      "compta": {
+        "source": "Sortie du terminal Z4 communiquée par Mi",
+        "helper_commit": "1df335d",
+        "port": 5433,
+        "container": "calorvia-compta",
+        "health": "healthy",
+        "user": "agent_ro",
+        "transaction_read_only": "on",
+        "table": "ecriture",
+        "rows": 20562,
+        "permission_denial_tested": false
+      }
     }
   }
 }
