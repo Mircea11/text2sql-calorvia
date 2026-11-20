@@ -5,6 +5,10 @@ Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
 
+## Coexistence avec le RAG
+
+Avant chaque changement ou commande susceptible d’affecter le RAG, comparer `origin/main` et `origin/feat/text2sql-calorvia` depuis leur ancêtre commun dans les deux sens. Examiner les chemins modifiés ainsi que les dépendances, ports, volumes, collections, résultats et endpoints de modèles touchés par l’étape. Avant une intégration sur le Z4, vérifier les fichiers locaux avec `git status --short` et effectuer un essai de fusion avec `git merge-tree --write-tree` sur les références actualisées. Les révisions du dernier contrôle figurent dans `CHECKPOINT.json`.
+
 ## Destination vérifiée
 
 L'énoncé intégral est `data/text2sql/projet_text2sql_enonce.md`. Guide, présentation,
