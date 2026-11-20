@@ -1,5 +1,5 @@
 {
-  "checkpoint": 19,
+  "checkpoint": 20,
   "status": "SQL_avril_valide_sur_Z4_campagne_sans_ontologie_a_lancer",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T15:10:23.543Z",
+  "saved_at": "2026-11-20T15:14:42.342Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -269,7 +269,8 @@
       "signature": "() -> 'dict'",
       "result": "TypeError avant la vérification des références ; aucun résultat natif pour cet essai.",
       "fix": "Sections 5 et 6 en processus Python distinct, code du worktree explicitement sélectionné. Exécution Z4 attendue."
-    }
+    },
+    "notebook_sync_check": "Source des 12 cellules officielles relue après écriture, titre visible version 20. Résultat sur le Z4 à confirmer."
   },
   "rag_compatibility": {
     "main_reviewed": "c7196427d077a5ab87bd325a36cdf2fe87c88e90",

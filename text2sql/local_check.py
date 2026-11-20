@@ -209,6 +209,8 @@ def sync_notebook(revision: str) -> None:
     known = {(c.get("id"), signature(c)) for raw in originals for c in json.loads(raw)["cells"]}
     result = json.loads(target.read_bytes()) if target.exists() else template
     by_id = {c.get("id"): c for c in result["cells"]}
+    if len(by_id) != len(result["cells"]):
+        raise SystemExit("Identifiants de cellules en double. Carnet conservé.")
     for new in template["cells"]:
         old = by_id.get(new["id"])
         if old is None:
@@ -253,12 +255,37 @@ def sync_notebook(revision: str) -> None:
         staged.replace(target)
     finally:
         staged.unlink(missing_ok=True)
+    # Relire le chemin final et confronter le contenu de chaque cellule officielle à Git.
+    installed = json.loads(target.read_bytes())
+    installed_cells = {c.get("id"): c for c in installed["cells"]}
+    for official in template["cells"]:
+        observed = installed_cells.get(official["id"])
+        if observed is None or signature(observed) != signature(official):
+            raise SystemExit(f"Écart après relecture de {target} : {official['id']}")
     for copy, raw in removable:
         if copy.read_bytes() == raw:
             copy.unlink()
             print("Copie redondante retirée :", copy.name)
     print("Carnet de travail :", target)
-    print("Sections 5 et 6 disponibles.")
+    print("Relu sur disque :", revision[:8], "|", len(template["cells"]), "cellules officielles identiques à Git")
+    print("Titre à l’ouverture :", "".join(installed_cells["intro"]["source"]).splitlines()[0].lstrip("# "))
+    # Le navigateur Jupyter exprime les chemins relativement à la racine de son serveur.
+    try:
+        from jupyter_server.serverapp import list_running_servers
+    except ImportError:
+        return
+    from urllib.parse import quote
+    for server in list_running_servers():
+        server_root = server.get("root_dir")
+        if server_root and target.is_relative_to(Path(server_root)):
+            relative = target.relative_to(server_root).as_posix()
+            print("Ouvrir depuis le navigateur Jupyter :", relative)
+            url = urlsplit(server.get("url", ""))
+            if url.scheme in {"http", "https"} and url.netloc and not url.username and not url.password:
+                base = url._replace(query="", fragment="").geturl().rstrip("/")
+                print("Lien du carnet sur ce serveur :", base + "/lab/tree/" + quote(relative))
+
+
 
 
 if __name__ == "__main__":
