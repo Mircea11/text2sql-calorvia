@@ -1,6 +1,6 @@
 {
-  "checkpoint": 9,
-  "status": "compta_et_paie_verifiees_sur_Z4_ERP_en_attente",
+  "checkpoint": 10,
+  "status": "trois_sources_natives_lues_sur_Z4_tests_de_permissions_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -38,13 +38,12 @@
   },
   "next_actions": [
     "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
-    "Démarrer seulement GESPRO entre deux lots RAG, puis vérifier 10 185 lignes dans dbo.VTE_FACT avec agent_ro.",
-    "Contrôler les SQL officiels, restaurer les sources si nécessaire, vérifier les ACL et références natives.",
+    "Exécuter les quatre tests natifs de permissions sur le Z4, avec les trois ports dédiés, puis vérifier le journal et les lectures via MCP.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
   "pending_live": [
-    "Restauration et lecture de GESPRO, contrôles natifs des permissions sur les trois sources, journalisation et accès MCP",
+    "Tests natifs de refus, journal PostgreSQL et lectures via MCP",
     "Inférence Qwen et appel d’outil MCP, puis embeddings NVIDIA ; catalogues HTTP déjà observés",
     "Actual NVIDIA compilation and export",
     "Human certification of important terms",
@@ -60,7 +59,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T10:30:40.168321+00:00",
+  "saved_at": "2026-11-20T10:34:51.191221+00:00",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -164,15 +163,28 @@
         "table": "payslips",
         "rows": 7298,
         "permission_denial_tested": false
+      },
+      "erp": {
+        "source": "Sortie du terminal Z4 communiquée par Mi",
+        "helper_commit": "271f69a",
+        "container": "calorvia-erp",
+        "health": "healthy",
+        "port": 14330,
+        "database": "GESPRO",
+        "user": "agent_ro",
+        "table": "dbo.VTE_FACT",
+        "rows": 10185,
+        "permission_denial_tested": false
       }
     }
   },
   "rag_compatibility": {
     "main_reviewed": "70cb7fd90fbd498e8891a858979670280f27536f",
-    "feature_reviewed": "975cbb7f953490dbdd3faa24d06f1dca95ae641b",
+    "feature_reviewed": "271f69a7b84a5f0aa31a63426ef86e4a19f789e7",
     "merge_base": "8e015111637004e7964ea55e971bf4be1ac3263b",
     "overlapping_changed_paths": [],
     "scope": "Comparaison des deux historiques depuis leur ancêtre commun ; fichiers suivis uniquement.",
-    "repeat": "Actualiser les deux références et comparer dans les deux sens avant chaque modification ou commande susceptible de toucher le RAG. Contrôler aussi les dépendances, ports, services, modèles et chemins utilisés. Avant toute intégration locale, vérifier git status et simuler la fusion sur les références fraîches."
+    "repeat": "Actualiser les deux références et comparer dans les deux sens avant chaque modification ou commande susceptible de toucher le RAG. Contrôler aussi les dépendances, ports, services, modèles et chemins utilisés. Avant toute intégration locale, vérifier git status et simuler la fusion sur les références fraîches.",
+    "local_z4": "Le statut communiqué montre un notebook RAG modifié et des fichiers C102 et résultats non suivis. Aucun de ces chemins ne figure dans les changements du laboratoire 2."
   }
 }
