@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 3 — 20 novembre 2026. Endpoints du poste identifiés. Essais natifs en attente.**
+**Checkpoint 3 — 20 novembre 2026. Code vérifié dans l’environnement de l’IA. Laboratoire 2 non lancé sur le Z4.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -146,16 +146,18 @@ manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 
 ## Limites et prochaine intervention
 
-Le poste de cours a exécuté le diagnostic avec `~/labo/calorvia_rag/.venv/bin/python` (3.12.14). Les scripts fournis sont sous `~/labo/calorvia_t2sql/sources_calorvia/sql/`. Les ports 14330, 5433 et 5434 ne répondaient pas. Le PostgreSQL du RAG répondait sur 5432.
+D’après les sorties de terminal transmises par Mi, le diagnostic utilisait `~/labo/calorvia_rag/.venv/bin/python` (3.12.14). Les scripts fournis sont sous `~/labo/calorvia_t2sql/sources_calorvia/sql/`. Les ports 14330, 5433 et 5434 ne répondaient pas. Le PostgreSQL du RAG répondait sur 5432.
 
-| Service sur le poste | Observation réelle | Réglage du laboratoire 2 |
+| Service sur le poste | Sortie communiquée par Mi | Réglage du laboratoire 2 |
 |---|---|---|
 | BGE-M3 | GET /v1/models sur 8000, HTTP 200 | Embeddings locaux sur 8000 |
 | Qwen3.5-9B, GGUF Q4_K_XL | GET /v1/models sur 8001, HTTP 200 | LLM existant sur 8001. Appel d'outil à vérifier |
 | Service sur 9000 | GET /v1/models, HTTP 400. Identité inconnue | Laisser ce port au service existant |
 | API Text-to-SQL | Port proposé 9001, disponibilité à vérifier | `T2SQL_API_PORT` règle à la fois FastAPI et l'URL de reranking de NVIDIA |
 
-La PR nº 2 a intégré le checkpoint 2 dans `main` au commit `47a4f45`. La suite est sur `feat/text2sql-calorvia`. Priorité au RAG après C98, puis à son juge. À la reprise du laboratoire 2, la première commande locale est `.venv/bin/python -m text2sql dependencies`. Le diagnostic signalait cinq paquets absents parmi ceux sondés (pymssql, sqlglot, fastapi, pytest et duckdb). L'audit complet précède l'installation. Configurer les identifiants précis des modèles indiqués dans `.env.example` dans le seul environnement du laboratoire 2.
+Mi confirme n’avoir lancé aucun service du laboratoire 2 sur le Z4. Les appels GET ci-dessus lisent les catalogues des services qui répondaient déjà. Les 65 tests et les 37 requêtes de référence ont été exécutés dans l’environnement de vérification de l’IA. Le test de reprise interrompt un modèle simulé dans un dépôt temporaire. Aucune évaluation Qwen ni mesure de précision sur le Z4 n’est disponible.
+
+La PR nº 2 a intégré le checkpoint 2 dans `main` au commit `47a4f45`. La suite est sur `feat/text2sql-calorvia`. Le travail RAG en cours garde la priorité sur les ressources du poste. À la reprise du laboratoire 2, la première commande locale est `.venv/bin/python -m text2sql dependencies`. Le diagnostic signalait cinq paquets absents parmi ceux sondés (pymssql, sqlglot, fastapi, pytest et duckdb). L'audit complet précède l'installation. Configurer les identifiants précis des modèles indiqués dans `.env.example` dans le seul environnement du laboratoire 2.
 
 Les vérifications et le code sont réalisés par l'IA. Ils ne prouvent aucune
 compétence indépendante de Mi. La certification humaine, les cinq échecs réellement

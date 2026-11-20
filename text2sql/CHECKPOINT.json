@@ -1,6 +1,6 @@
 {
   "checkpoint": 3,
-  "status": "endpoints_identified_cpu_resume_verified_native_runs_deferred",
+  "status": "code_et_tests_cpu_verifies_aucun_lancement_du_laboratoire_2_sur_le_Z4",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -33,10 +33,11 @@
     "cross_process_lock": true,
     "openai_json_and_sse": true,
     "task1_shared_dependencies_changed": false,
-    "resume_after_simulated_interruption": true
+    "resume_after_simulated_interruption": true,
+    "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Priorité au RAG après C98, puis à son juge. Reprendre le laboratoire 2 sur le créneau suivant.",
+    "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
     "Auditer les dépendances avec le Python partagé, installer les seuls ajouts compatibles, puis vérifier Task 1.",
     "Contrôler les SQL officiels, restaurer les sources si nécessaire, vérifier les ACL et références natives.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
@@ -67,7 +68,7 @@
     "preserved_rag_commit": "9fb85bb247461d1698357bf066c1c9193d11b926"
   },
   "workstation": {
-    "evidence": "Diagnostic et GET /v1/models exécutés par Mi sur son poste",
+    "evidence": "Source : sorties de terminal transmises dans la conversation. Le diagnostic inspecte l'environnement et GET /v1/models lit un catalogue. Aucune observation directe du Z4 par l'IA. Mi confirme ne pas avoir lancé le laboratoire 2 sur son poste.",
     "shared_python": "~/labo/calorvia_rag/.venv/bin/python",
     "python_version": "3.12.14",
     "source_directory": "~/labo/calorvia_t2sql/sources_calorvia",
@@ -84,6 +85,7 @@
     "9000": "HTTP 400 sur GET /v1/models, service inconnu",
     "task2_api_candidate_port": 9001,
     "generation_tested": false,
-    "tool_calling_tested": false
+    "tool_calling_tested": false,
+    "task2_started_by_user": false
   }
 }
