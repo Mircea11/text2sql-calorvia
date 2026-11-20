@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 14 — Journal dédié vérifié sur le Z4. Le carnet a ouvert la session MCP et vérifié les six outils. La connexion HTTP au modèle de génération a échoué.**
+**Checkpoint 15 — Journal et catalogue du routeur vérifiés sur le Z4. Le carnet utilise `http://127.0.0.1:8002/v1` et `calorvia_qwen`. La première génération via ce routeur reste à vérifier.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -16,7 +16,7 @@ Le carnet appelle l’agent LangGraph. Il ouvre un serveur MCP local par entrée
 | paie | PostgreSQL 5434 | 14 tables de paie, dont payslips et payslip_lines |
 | calorvia_text2sql_journal | PostgreSQL 5433 | Base distincte sur le même serveur que compta. Le compte text2sql_writer écrit les événements et expériences dans le schéma text2sql_journal. |
 
-Le catalogue décrit les 51 tables métier. L’ontologie ajoute les définitions métier. Sa compilation NVIDIA réelle et sa certification humaine restent à effectuer. Le test courant utilise Qwen seul pour la génération, sans ontologie. BGE-M3 sur 8000 fournit des embeddings au workflow d’ontologie. Le numéro 8001 est l’adresse de génération constatée précédemment ; sa disponibilité actuelle reste à contrôler depuis le noyau du Z4. Les comptages natifs constituent les références de vérification.
+Le catalogue décrit les 51 tables métier. L’ontologie ajoute les définitions métier. Sa compilation NVIDIA réelle et sa certification humaine restent à effectuer. Le test courant utilise Qwen seul pour la génération, sans ontologie. BGE-M3 sur 8000 fournit des embeddings au workflow d’ontologie. Le routeur partagé répond sur le port 8002. Le carnet consulte son catalogue avant la question. Au contrôle du Z4, Gemma était chargé et Qwen déchargé. Les comptages natifs constituent les références de vérification.
 
 ## Coexistence avec le RAG
 
@@ -152,7 +152,7 @@ manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 | catalog.py, ontology/catalog.json | Catalogue des DDL | Trois SQL officiels, sqlglot | 51 fiches pour MCP/ontologie | tests/test_workflow.py | Types, PK/FK, commentaires ; vérifiés contre les fichiers |
 | validation.py | SELECT borné et confidentialité | SQL, dialecte, catalogue | SQL validé vers sources.py | tests/test_safety.py | Écritures, noms inconnus, fonctions dangereuses refusés ; testé |
 | sources.py | Accès agent_ro et rollback | Pilotes natifs, Settings, Journal | Colonnes/lignes/troncature vers MCP | verify-sources, native-check | Code vérifié ; moteurs réels non testés |
-| Text2SQL_travail.ipynb | Journal dédié et première question | Python du labo, PostgreSQL compta 5433, Qwen 8001 | Schéma et trace JSON dans data/text2sql/ | Cellules 1 puis 2 | Journal natif vérifié sur le Z4 ; connexion au modèle en échec |
+| Text2SQL_travail.ipynb | Journal dédié et première question | Python du labo, PostgreSQL compta 5433, routeur Qwen 8002 | Schéma et trace JSON dans data/text2sql/ | Cellules 1, 2 puis 3 hors lot RAG | Journal et catalogue vérifiés sur le Z4 ; inférence en attente |
 | journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Écriture de contrôle annulée avec text2sql_writer sur le Z4 |
 | mcp_server.py | Six outils stdio | SourceService | Outils pour agent.py | tests/test_protocol.py | Échange MCP réel sans bases ; passé |
 | agent.py | Boucle LangGraph et rapprochement | LLM HTTP, MCP, ontologie | Réponse, SQL, traces et Decimal vers API/évaluation | ask --question «…» | Boucle/rapprochement simulés passés ; LLM réel en attente |
@@ -177,7 +177,7 @@ D’après les sorties de terminal transmises par Mi, le diagnostic utilisait `~
 | Service sur le poste | Sortie communiquée par Mi | Réglage du laboratoire 2 |
 |---|---|---|
 | BGE-M3 | GET /v1/models sur 8000, HTTP 200 | Embeddings locaux sur 8000 |
-| Qwen3.5-9B, GGUF Q4_K_XL | GET /v1/models sur 8001, HTTP 200 | LLM existant sur 8001. Appel d'outil à vérifier |
+| Qwen3.5-9B, GGUF Q4_K_XL | GET /v1/models sur 8002, HTTP 200 | Alias calorvia_qwen disponible, déchargé lors du contrôle. Appel d’outil à vérifier |
 | Service sur 9000 | GET /v1/models, HTTP 400. Identité inconnue | Laisser ce port au service existant |
 | API Text-to-SQL | Port proposé 9001, disponibilité à vérifier | `T2SQL_API_PORT` règle à la fois FastAPI et l'URL de reranking de NVIDIA |
 

@@ -1,6 +1,6 @@
 {
-  "checkpoint": 14,
-  "status": "journal_dedie_verifie_sur_Z4_connexion_Qwen_en_echec",
+  "checkpoint": 15,
+  "status": "routeur_8002_verifie_qwen_annonce_premiere_inference_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,7 +37,7 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Depuis le noyau du Z4, contrôler GET /v1/models sur le port 8001. Confirmer l’adresse et l’identifiant du service de génération existant avant de reprendre la question hors lot RAG.",
+    "Sur un créneau libre du RAG, exécuter une question via le routeur 8002 avec calorvia_qwen. Contrôler execute_sql, la source compta, le comptage dans ecriture et la réponse.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T13:41:20.684Z",
+  "saved_at": "2026-11-20T13:54:57.236Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -217,11 +217,21 @@
       "llm_url": "http://127.0.0.1:8001/v1",
       "error": "httpcore.ConnectError: All connection attempts failed",
       "evidence": "Trace IPython transmise par Mi, dans model_node après vérification des six outils. Aucune réponse ni exécution SQL attestée pour cet essai."
+    },
+    "router_check": {
+      "url": "http://127.0.0.1:8002/v1/models",
+      "http_status": 200,
+      "model_states": {
+        "calorvia_gemma": "loaded",
+        "calorvia_qwen": "unloaded"
+      },
+      "previous_port_8001": "connexion refusée",
+      "evidence": "Sortie ss et curl du Z4 fournie par Mi. Aucun appel de génération dans ce diagnostic."
     }
   },
   "rag_compatibility": {
     "main_reviewed": "c7196427d077a5ab87bd325a36cdf2fe87c88e90",
-    "feature_reviewed": "9c3df38a7769181e56eb3210c74401d1e2e358a5",
+    "feature_reviewed": "1540d1375e2df2cf6bfc921dca47cd5e44c95ce5",
     "merge_base": "8e015111637004e7964ea55e971bf4be1ac3263b",
     "overlapping_changed_paths": [],
     "scope": "Comparaison des deux historiques depuis leur ancêtre commun ; fichiers suivis uniquement.",
