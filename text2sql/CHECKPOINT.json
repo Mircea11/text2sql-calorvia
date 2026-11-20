@@ -1,6 +1,6 @@
 {
-  "checkpoint": 15,
-  "status": "routeur_8002_verifie_qwen_annonce_premiere_inference_en_attente",
+  "checkpoint": 16,
+  "status": "generation_Qwen_et_lecture_MCP_confirmees_SQL_agent_a_verifier",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,13 +37,13 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Sur un créneau libre du RAG, exécuter une question via le routeur 8002 avec calorvia_qwen. Contrôler execute_sql, la source compta, le comptage dans ecriture et la réponse.",
+    "Exécuter la cellule 4 (avril 2026). Vérifier execute_sql sur compta, le filtre de date, la valeur 1 320 et le texte de la réponse.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
   "pending_live": [
-    "Lecture d’une source native via MCP sur le Z4.",
-    "Inférence Qwen et appel d’outil MCP, puis embeddings NVIDIA ; catalogues HTTP déjà observés",
+    "SQL produit par l’agent et exécuté via execute_sql sur une source native.",
+    "Embeddings et compilation NVIDIA sur le Z4.",
     "Actual NVIDIA compilation and export",
     "Human certification of important terms",
     "Real agent evaluation with and without ontology",
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T13:54:57.236Z",
+  "saved_at": "2026-11-20T14:40:59.141Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -81,8 +81,8 @@
       "8001": "/home/bm/models/qwen3.5-9b/llama/Qwen3.5-9B-UD-Q4_K_XL.gguf"
     },
     "task2_api_candidate_port": 9001,
-    "generation_tested": false,
-    "tool_calling_tested": false,
+    "generation_tested": true,
+    "tool_calling_tested": true,
     "installation": {
       "source": "Sortie du terminal Z4 fournie par Mi",
       "additions": {
@@ -227,11 +227,27 @@
       },
       "previous_port_8001": "connexion refusée",
       "evidence": "Sortie ss et curl du Z4 fournie par Mi. Aucun appel de génération dans ce diagnostic."
+    },
+    "question_total_z4": {
+      "source": "Sortie du carnet fournie par Mi ; trace JSON locale non relue.",
+      "trace": "data/text2sql/premiere_question_z4_20261120_153754_990495.json",
+      "answer_count": 20562,
+      "tools": [
+        "list_tables"
+      ],
+      "agent_execute_sql_observed": false,
+      "use_ontology": false
+    },
+    "controle_avril": {
+      "date_column": "compta.ecriture.date_ecriture",
+      "reference_count": 1320,
+      "reference_source": "Copie DuckDB officielle après verify_manifest, lecture seule ; filtre du 1er avril inclus au 1er mai 2026 exclu.",
+      "agent_result": null
     }
   },
   "rag_compatibility": {
     "main_reviewed": "c7196427d077a5ab87bd325a36cdf2fe87c88e90",
-    "feature_reviewed": "1540d1375e2df2cf6bfc921dca47cd5e44c95ce5",
+    "feature_reviewed": "25446f9b2cc598b7c6c89d579f6906c78eb8fb83",
     "merge_base": "8e015111637004e7964ea55e971bf4be1ac3263b",
     "overlapping_changed_paths": [],
     "scope": "Comparaison des deux historiques depuis leur ancêtre commun ; fichiers suivis uniquement.",
