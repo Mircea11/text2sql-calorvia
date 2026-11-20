@@ -1,6 +1,6 @@
 {
-  "checkpoint": 6,
-  "status": "scripts_SQL_valides_sur_Z4_inventaire_Docker_en_attente",
+  "checkpoint": 7,
+  "status": "inventaire_docker_Z4_effectue_restauration_compta_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -38,7 +38,7 @@
   },
   "next_actions": [
     "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
-    "Inventorier les conteneurs actifs et arrêtés, les volumes du projet calorvia-sources, les trois ports et la présence du fichier de configuration avant toute restauration.",
+    "Restaurer d’abord compta avec restore_postgres.py, vérifier la lecture TCP agent_ro et le compte de 20 562 écritures.",
     "Contrôler les SQL officiels, restaurer les sources si nécessaire, vérifier les ACL et références natives.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
@@ -60,7 +60,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T09:42:38.365900+00:00",
+  "saved_at": "2026-11-20T10:01:46.137574+00:00",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -131,6 +131,14 @@
         "paie": 14
       },
       "native_restoration_verified": false
+    },
+    "docker_inventory": {
+      "source": "sortie du terminal Z4 de Mi",
+      "compose": "5.7.0",
+      "docker_dotenv_present": false,
+      "matching_containers": [],
+      "matching_volumes": [],
+      "listeners_on_requested_ports": []
     }
   }
 }
