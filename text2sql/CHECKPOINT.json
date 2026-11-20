@@ -1,6 +1,6 @@
 {
-  "checkpoint": 10,
-  "status": "trois_sources_natives_lues_sur_Z4_tests_de_permissions_en_attente",
+  "checkpoint": 11,
+  "status": "permissions_natives_verifiees_sur_Z4_premiere_question_MCP_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,13 +37,12 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Donner la priorité au RAG déjà en cours. Premier contrôle natif du laboratoire 2 à réaliser sur un créneau compatible.",
-    "Exécuter les quatre tests natifs de permissions sur le Z4, avec les trois ports dédiés, puis vérifier le journal et les lectures via MCP.",
+    "Initialiser le journal dédié puis poser une seule question via MCP et le Qwen existant entre deux lots RAG. Vérifier la source, le SQL, le résultat et la réponse.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
   "pending_live": [
-    "Tests natifs de refus, journal PostgreSQL et lectures via MCP",
+    "Journal PostgreSQL et lecture native via MCP sur le Z4",
     "Inférence Qwen et appel d’outil MCP, puis embeddings NVIDIA ; catalogues HTTP déjà observés",
     "Actual NVIDIA compilation and export",
     "Human certification of important terms",
@@ -55,11 +54,10 @@
     "Do not restart from scratch; inspect this checkpoint and existing files first",
     "No new GPU model instance; Task 1 has resource priority",
     "Do not modify Task 1 files or dependency versions",
-    "Native database tests are pending, not passed",
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T10:34:51.191221+00:00",
+  "saved_at": "2026-11-20T13:17:23.120Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -67,6 +65,7 @@
     "preserved_rag_commit": "9fb85bb247461d1698357bf066c1c9193d11b926"
   },
   "workstation": {
+    "9000": "HTTP 400 sur GET /v1/models, service inconnu",
     "evidence": "Sources : diagnostics, sortie d'installation et sortie pytest communiqués par Mi depuis le Z4.",
     "shared_python": "~/labo/calorvia_rag/.venv/bin/python",
     "python_version": "3.12.14",
@@ -81,7 +80,6 @@
       "8000": "/home/bm/models/rag/embedder/bge-m3",
       "8001": "/home/bm/models/qwen3.5-9b/llama/Qwen3.5-9B-UD-Q4_K_XL.gguf"
     },
-    "9000": "HTTP 400 sur GET /v1/models, service inconnu",
     "task2_api_candidate_port": 9001,
     "generation_tested": false,
     "tool_calling_tested": false,
@@ -150,7 +148,7 @@
         "transaction_read_only": "on",
         "table": "ecriture",
         "rows": 20562,
-        "permission_denial_tested": false
+        "permission_denial_tested": true
       },
       "paie": {
         "source": "Sortie terminal Z4 communiquée par Mi",
@@ -162,7 +160,7 @@
         "transaction_read_only": "on",
         "table": "payslips",
         "rows": 7298,
-        "permission_denial_tested": false
+        "permission_denial_tested": true
       },
       "erp": {
         "source": "Sortie du terminal Z4 communiquée par Mi",
@@ -174,17 +172,30 @@
         "user": "agent_ro",
         "table": "dbo.VTE_FACT",
         "rows": 10185,
-        "permission_denial_tested": false
+        "permission_denial_tested": true
       }
+    },
+    "native_permissions": {
+      "evidence": "Sortie du terminal Z4 fournie par Mi le 20 novembre 2026 ; XML local non consulté par l’IA.",
+      "test_file": "text2sql/tests/test_live_permissions.py",
+      "passed": 4,
+      "skipped": 0,
+      "seconds": 0.23,
+      "verified": [
+        "Refus UPDATE compta.budget",
+        "Refus UPDATE paie.contracts",
+        "Refus UPDATE GESPRO dbo.PAR_CODE",
+        "Refus SELECT paie employees.national_number"
+      ]
     }
   },
   "rag_compatibility": {
-    "main_reviewed": "70cb7fd90fbd498e8891a858979670280f27536f",
-    "feature_reviewed": "271f69a7b84a5f0aa31a63426ef86e4a19f789e7",
+    "main_reviewed": "c7196427d077a5ab87bd325a36cdf2fe87c88e90",
+    "feature_reviewed": "78e6829061b105e56a8d7c5e7b7f9a5318b20815",
     "merge_base": "8e015111637004e7964ea55e971bf4be1ac3263b",
     "overlapping_changed_paths": [],
     "scope": "Comparaison des deux historiques depuis leur ancêtre commun ; fichiers suivis uniquement.",
     "repeat": "Actualiser les deux références et comparer dans les deux sens avant chaque modification ou commande susceptible de toucher le RAG. Contrôler aussi les dépendances, ports, services, modèles et chemins utilisés. Avant toute intégration locale, vérifier git status et simuler la fusion sur les références fraîches.",
-    "local_z4": "Le statut communiqué montre un notebook RAG modifié et des fichiers C102 et résultats non suivis. Aucun de ces chemins ne figure dans les changements du laboratoire 2."
+    "local_z4": "État actuel des fichiers non suivis du Z4 inconnu. Aucun fichier RAG concerné par ce checkpoint."
   }
 }
