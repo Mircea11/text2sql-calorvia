@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 12 — Les quatre tests de permissions sont passés sur le Z4. La première question a été interrompue à l’initialisation du journal. Reprendre dans [le carnet Text-to-SQL](Text2SQL_travail.ipynb).**
+**Checkpoint 13 — Sur le Z4, le rôle RAG ne peut pas créer de schéma dans `calorvia_rag`. Le [carnet Text-to-SQL](Text2SQL_travail.ipynb) prépare une base distincte sur le PostgreSQL du labo 2, puis teste une question. Exécution Z4 en attente.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -60,6 +60,10 @@ réel du Compose fourni est **14330**, malgré les mentions 1433 dans le guide.
 ```bash
 .venv/bin/python -m text2sql preflight
 .venv/bin/python -m pytest text2sql/tests -q
+# Après la cellule de préparation du journal, dans chaque nouveau terminal :
+set -a
+. data/text2sql/journal_z4.env
+set +a
 .venv/bin/python -m text2sql init-journal
 .venv/bin/python -m text2sql verify-sources
 T2SQL_LIVE=1 .venv/bin/python -m pytest text2sql/tests/test_live_permissions.py -q
@@ -135,8 +139,8 @@ manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 | catalog.py, ontology/catalog.json | Catalogue des DDL | Trois SQL officiels, sqlglot | 51 fiches pour MCP/ontologie | tests/test_workflow.py | Types, PK/FK, commentaires ; vérifiés contre les fichiers |
 | validation.py | SELECT borné et confidentialité | SQL, dialecte, catalogue | SQL validé vers sources.py | tests/test_safety.py | Écritures, noms inconnus, fonctions dangereuses refusés ; testé |
 | sources.py | Accès agent_ro et rollback | Pilotes natifs, Settings, Journal | Colonnes/lignes/troncature vers MCP | verify-sources, native-check | Code vérifié ; moteurs réels non testés |
-| Text2SQL_travail.ipynb | Diagnostic du journal | Noyau Python, Docker et journal.sql | Affiche le compte, les droits et le diagnostic natif | Exécuter la cellule depuis le dépôt | Transaction annulée ; résultat Z4 attendu |
-| journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Initialisation Docker tentée sur le Z4, en échec ; cause à préciser |
+| Text2SQL_travail.ipynb | Journal dédié et première question | Python du labo, PostgreSQL compta 5433, Qwen 8001 | Schéma et trace JSON dans data/text2sql/ | Cellules 1 puis 2 | Création, reprise et collision simulées ; essai natif à effectuer |
+| journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Refus CREATE sur la base RAG confirmé ; DSN du labo 2 à vérifier |
 | mcp_server.py | Six outils stdio | SourceService | Outils pour agent.py | tests/test_protocol.py | Échange MCP réel sans bases ; passé |
 | agent.py | Boucle LangGraph et rapprochement | LLM HTTP, MCP, ontologie | Réponse, SQL, traces et Decimal vers API/évaluation | ask --question «…» | Boucle/rapprochement simulés passés ; LLM réel en attente |
 | api.py | Façade OpenAI authentifiée | Agent, clé API | JSON/SSE vers SDK/Open WebUI | serve, tests/test_protocol.py | SDK officiel JSON/SSE et rerank CPU passés |
