@@ -1,6 +1,6 @@
 {
-  "checkpoint": 11,
-  "status": "permissions_natives_verifiees_sur_Z4_premiere_question_MCP_en_attente",
+  "checkpoint": 12,
+  "status": "initialisation_du_journal_Docker_en_echec_sur_Z4_avant_Qwen",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,7 +37,7 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Initialiser le journal dédié puis poser une seule question via MCP et le Qwen existant entre deux lots RAG. Vérifier la source, le SQL, le résultat et la réponse.",
+    "Ouvrir Text2SQL_travail.ipynb et diagnostiquer le journal Docker sur le Z4. Après correction ou confirmation des permissions du journal, initialiser le schéma et vérifier une question via MCP et Qwen.",
     "Vérifier une requête outillée sur le Qwen existant, compiler NVIDIA, certifier les termes et effectuer les deux campagnes séquentiellement.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T13:17:23.120Z",
+  "saved_at": "2026-11-20T13:20:35.841Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -187,11 +187,16 @@
         "Refus UPDATE GESPRO dbo.PAR_CODE",
         "Refus SELECT paie employees.national_number"
       ]
+    },
+    "journal_attempt": {
+      "evidence": "Traceback du Z4 transmis par Mi. Journal.initialize() a échoué au retour de docker exec/psql. Le message PostgreSQL ou Docker précis ne figure pas dans le traceback.",
+      "llm_called": false,
+      "mcp_called": false
     }
   },
   "rag_compatibility": {
     "main_reviewed": "c7196427d077a5ab87bd325a36cdf2fe87c88e90",
-    "feature_reviewed": "78e6829061b105e56a8d7c5e7b7f9a5318b20815",
+    "feature_reviewed": "3c3b3c24317e43b6063b15ab0676df457a66d9ff",
     "merge_base": "8e015111637004e7964ea55e971bf4be1ac3263b",
     "overlapping_changed_paths": [],
     "scope": "Comparaison des deux historiques depuis leur ancêtre commun ; fichiers suivis uniquement.",

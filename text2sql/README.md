@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 11 — 20 novembre 2026. Sur le Z4, les quatre tests natifs de permissions ont réussi en 0,23 s. Prochaine vérification : une question via MCP et Qwen.**
+**Checkpoint 12 — Les quatre tests de permissions sont passés sur le Z4. La première question a été interrompue à l’initialisation du journal. Reprendre dans [le carnet Text-to-SQL](Text2SQL_travail.ipynb).**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -135,7 +135,8 @@ manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 | catalog.py, ontology/catalog.json | Catalogue des DDL | Trois SQL officiels, sqlglot | 51 fiches pour MCP/ontologie | tests/test_workflow.py | Types, PK/FK, commentaires ; vérifiés contre les fichiers |
 | validation.py | SELECT borné et confidentialité | SQL, dialecte, catalogue | SQL validé vers sources.py | tests/test_safety.py | Écritures, noms inconnus, fonctions dangereuses refusés ; testé |
 | sources.py | Accès agent_ro et rollback | Pilotes natifs, Settings, Journal | Colonnes/lignes/troncature vers MCP | verify-sources, native-check | Code vérifié ; moteurs réels non testés |
-| journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Sources/RAG préservés ; accès réel non testé |
+| Text2SQL_travail.ipynb | Diagnostic du journal | Noyau Python, Docker et journal.sql | Affiche le compte, les droits et le diagnostic natif | Exécuter la cellule depuis le dépôt | Transaction annulée ; résultat Z4 attendu |
+| journal.py, journal.sql | Traçabilité dédiée | DSN local ou Docker existant | Schéma text2sql_journal | init-journal | Initialisation Docker tentée sur le Z4, en échec ; cause à préciser |
 | mcp_server.py | Six outils stdio | SourceService | Outils pour agent.py | tests/test_protocol.py | Échange MCP réel sans bases ; passé |
 | agent.py | Boucle LangGraph et rapprochement | LLM HTTP, MCP, ontologie | Réponse, SQL, traces et Decimal vers API/évaluation | ask --question «…» | Boucle/rapprochement simulés passés ; LLM réel en attente |
 | api.py | Façade OpenAI authentifiée | Agent, clé API | JSON/SSE vers SDK/Open WebUI | serve, tests/test_protocol.py | SDK officiel JSON/SSE et rerank CPU passés |
