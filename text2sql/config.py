@@ -51,12 +51,17 @@ class Settings:
     max_rows: int = 200
     timeout_s: int = 30
     max_steps: int = 18
+    api_port: int = 9001
 
     @classmethod
     def load(cls) -> "Settings":
         load_dotenv(ROOT / ".env", override=False)
         load_dotenv(HERE / ".env", override=False)
+        api_port = int(os.getenv("T2SQL_API_PORT", "9001"))
+        if not 1 <= api_port <= 65535:
+            raise ValueError("T2SQL_API_PORT doit être compris entre 1 et 65535")
         return cls(
+            api_port=api_port,
             llm_url=os.getenv("T2SQL_LLM_URL", os.getenv("CALORVIA_LLM_BASE_URL", "")),
             llm_model=os.getenv("T2SQL_LLM_MODEL", os.getenv("CALORVIA_LLM_MODEL", "")),
             llm_key=os.getenv(

@@ -150,7 +150,7 @@ def main():
     elif args.command == "serve":
         import uvicorn
 
-        uvicorn.run("text2sql.api:app", host="127.0.0.1", port=9000, workers=1)
+        uvicorn.run("text2sql.api:app", host="127.0.0.1", port=settings.api_port, workers=1)
     elif args.command == "ask":
         from .agent import answer
 
@@ -213,9 +213,14 @@ def main():
 
         if args.limit is not None:
             raise RuntimeError(
-                "Les campagnes officielles couvrent les 44 questions ; --limit n'est pas utilisé"
+                "Les campagnes officielles couvrent toutes les questions du jeu ; --limit n'est pas utilisé"
             )
-        print(asyncio.run(evaluate_live(not args.without_ontology, resume=args.resume)))
+        use_ontology = not args.without_ontology
+        if args.resume:
+            use_ontology = json.loads(args.resume.read_text())["use_ontology"]
+            if type(use_ontology) is not bool or (args.without_ontology and use_ontology):
+                raise ValueError("Mode incompatible avec le fichier de reprise")
+        print(asyncio.run(evaluate_live(use_ontology, resume=args.resume)))
     elif args.command == "native-check":
         from .evaluation import verify_native_references
 

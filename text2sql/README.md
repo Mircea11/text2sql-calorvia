@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 2 — 19 novembre 2026. Code vérifié localement ; rendu natif encore incomplet.**
+**Checkpoint 3 — 20 novembre 2026. Endpoints du poste identifiés. Essais natifs en attente.**
 Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
 travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
 toutes les 15 minutes par des commits limités au laboratoire 2.
@@ -75,8 +75,7 @@ Le code NVIDIA est épinglé au commit indiqué dans `auto_ontology.py`. Son cod
 `openai==2.44.0` et `langchain-openai<1.3.5` sont incompatibles avec le banc CPU
 utilisé ici (3.55.1 et 1.8.3). La préparation prévoit donc des services CPU isolés,
 sans modèle GPU supplémentaire, et un catalogue pgvector distinct dont les
-migrations ne touchent pas le schéma du cours. **Les versions réelles de
-l'environnement RAG restent à inspecter avant cette installation.**
+migrations ne touchent pas le schéma du cours. Le poste utilise langchain-openai 1.8.1, au-dessus de la borne NVIDIA.
 
 ```bash
 .venv/bin/python -m text2sql ontology-draft
@@ -109,11 +108,11 @@ endpoints de modèles et sources ; ne pas recréer leur infrastructure. Les fich
 ```bash
 .venv/bin/python -m text2sql evaluate --without-ontology --allow-inference
 .venv/bin/python -m text2sql evaluate --allow-inference
-.venv/bin/python -m text2sql compare --without-run text2sql/results/SANS.json --with-run text2sql/results/AVEC.json
-.venv/bin/python -m text2sql evaluate --resume text2sql/results/LOT_INTERROMPU.json --allow-inference
+.venv/bin/python -m text2sql compare --without-run data/text2sql/runs/SANS.json --with-run data/text2sql/runs/AVEC.json
+.venv/bin/python -m text2sql evaluate --resume data/text2sql/runs/LOT_INTERROMPU.json --allow-inference
 ```
 
-Les noms JSON sont ceux renvoyés par la commande, pas des résultats fournis ici.
+Avant les deux campagnes, vérifier et commiter le reçu NVIDIA, son export et les références natives du même instantané. Les deux campagnes utilisent ensuite ce commit. Les fichiers de travail JSON/CSV sont dans `data/text2sql/runs/`. Pour la remise, copier les deux lots terminés et leurs CSV relus dans `text2sql/results/` après la comparaison. Utiliser les noms réels affichés par la commande.
 Une sauvegarde atomique JSON et une écriture PostgreSQL suivent **chaque question**.
 La reprise refuse tout changement de commit, modèle, données ou paramètres.
 Les questions attendues ne sont jamais injectées dans le contexte de l'agent.
@@ -142,16 +141,21 @@ manquantes visibles. Voir RAPPORT.md et DEMO.md pour le rendu restant.
 | evaluation.py, evaluation/questions.json | Jeu et campagnes reprenables | 45 questions, réponses attendues séparées, agent | JSON/CSV et journal PostgreSQL | evaluate / compare | 37 références CPU passées ; aucune mesure LLM réelle |
 | local_check.py | Diagnostic avant installation | Bibliothèque standard, état local | data/text2sql/local_environment.json | python text2sql/local_check.py | Aucun secret affiché, aucune inférence |
 | preflight.py, cli.py, __main__.py | Commandes et diagnostic après installation | Modules Task 2 et paquets installés | État et contrôles opérateur | python -m text2sql --help | CLI et diagnostic exécutés ici |
-| tests/ | Contrats et ACL indépendantes | Données officielles optionnelles ; moteurs pour ACL | Résultats de tests | pytest text2sql/tests -q | Voir results/verification_checkpoint_2.json ; tests natifs marqués en attente |
+| tests/ | Contrats et ACL indépendantes | Données officielles optionnelles ; moteurs pour ACL | Résultats de tests | pytest text2sql/tests -q | 65 tests CPU réussis, dont une interruption/reprise simulée ; 4 tests natifs en attente |
 | CHECKPOINT.json, results/ | Reprise et preuves | État vérifié, résultats distincts de Task 1 | Continuation et rapport | Lire avant de reprendre | État sauvegardé par étape ; aucun score RAG réutilisé |
 
 ## Limites et prochaine intervention
 
-Ce workspace n'accède pas au poste de cours, à Docker, aux bases natives ou aux
-endpoints de modèles. L'intervention nécessaire est de lancer **un seul diagnostic**
-avec le Python RAG sur ce poste : `python text2sql/local_check.py`, puis transmettre
-`data/text2sql/local_environment.json`. Aucun mot de passe ni clé ne doit être transmis.
-Ce diagnostic permettra d'adapter la suite sans présumer de l'environnement réel.
+Le poste de cours a exécuté le diagnostic avec `~/labo/calorvia_rag/.venv/bin/python` (3.12.14). Les scripts fournis sont sous `~/labo/calorvia_t2sql/sources_calorvia/sql/`. Les ports 14330, 5433 et 5434 ne répondaient pas. Le PostgreSQL du RAG répondait sur 5432.
+
+| Service sur le poste | Observation réelle | Réglage du laboratoire 2 |
+|---|---|---|
+| BGE-M3 | GET /v1/models sur 8000, HTTP 200 | Embeddings locaux sur 8000 |
+| Qwen3.5-9B, GGUF Q4_K_XL | GET /v1/models sur 8001, HTTP 200 | LLM existant sur 8001. Appel d'outil à vérifier |
+| Service sur 9000 | GET /v1/models, HTTP 400. Identité inconnue | Laisser ce port au service existant |
+| API Text-to-SQL | Port proposé 9001, disponibilité à vérifier | `T2SQL_API_PORT` règle à la fois FastAPI et l'URL de reranking de NVIDIA |
+
+La PR nº 2 a intégré le checkpoint 2 dans `main` au commit `47a4f45`. La suite est sur `feat/text2sql-calorvia`. Priorité au RAG après C98, puis à son juge. À la reprise du laboratoire 2, la première commande locale est `.venv/bin/python -m text2sql dependencies`. Le diagnostic signalait cinq paquets absents parmi ceux sondés (pymssql, sqlglot, fastapi, pytest et duckdb). L'audit complet précède l'installation. Configurer les identifiants précis des modèles indiqués dans `.env.example` dans le seul environnement du laboratoire 2.
 
 Les vérifications et le code sont réalisés par l'IA. Ils ne prouvent aucune
 compétence indépendante de Mi. La certification humaine, les cinq échecs réellement

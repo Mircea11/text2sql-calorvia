@@ -515,6 +515,7 @@ async def _evaluate_live(use_ontology: bool, resume: Path | None) -> Path:
         "git_commit": commit,
         "git_dirty": dirty,
         "model": settings.llm_model,
+        "llm_url": settings.llm_url,
         "use_ontology": use_ontology,
         "dataset_sha256": hashlib.sha256(DATASET.read_bytes()).hexdigest(),
         "catalog_sha256": hashlib.sha256(
@@ -530,13 +531,16 @@ async def _evaluate_live(use_ontology: bool, resume: Path | None) -> Path:
     config["ontology_export_sha256"] = hashlib.sha256((HERE / "ontology/auto_ontology_export.yaml").read_bytes()).hexdigest() if (HERE / "ontology/auto_ontology_export.yaml").exists() else None
     config["runtime_versions"] = {d.metadata["Name"]: d.version for d in importlib.metadata.distributions()}
     questions = json.loads(DATASET.read_text())
-    out = HERE / "results"
-    out.mkdir(exist_ok=True)
+    # Les sorties intermédiaires ignorées par Git permettent la reprise au même commit.
+    out = ROOT / "data/text2sql/runs"
+    out.mkdir(parents=True, exist_ok=True)
     if resume:
         payload = json.loads(resume.read_text())
         if any(payload.get(k) != v for k, v in config.items()):
             raise ValueError("Reprise refusée : commit, données ou réglages différents")
         path = resume
+        if payload["status"] == "completed" and path.with_suffix(".csv").is_file():
+            return path  # Préserve une éventuelle revue manuelle du CSV.
     else:
         identifier = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + (
             "_with_ontology" if use_ontology else "_without_ontology"
@@ -586,7 +590,8 @@ async def _evaluate_live(use_ontology: bool, resume: Path | None) -> Path:
         print(f"{index}/{len(questions)} {q['id']} sauvegardé", flush=True)
     payload["status"] = "completed"
     checkpoint()
-    with path.with_suffix(".csv").open("w", newline="") as f:
+    csv_temp = path.with_suffix(".csv.tmp")
+    with csv_temp.open("w", newline="") as f:
         fields = [
             "id",
             "type",
@@ -601,6 +606,7 @@ async def _evaluate_live(use_ontology: bool, resume: Path | None) -> Path:
         writer.writeheader()
         for row in payload["results"]:
             writer.writerow({k: row.get(k) for k in fields})
+    csv_temp.replace(path.with_suffix(".csv"))
     return path
 
 
@@ -613,12 +619,14 @@ def compare_runs(without: Path, with_ontology: Path) -> dict:
         "kind",
         "git_commit",
         "model",
+        "llm_url",
         "dataset_sha256",
         "catalog_sha256",
         "business_sha256",
         "max_rows",
         "max_steps",
         "timeout_s",
+        "runtime_versions",
     ]:
         if a.get(key) != b.get(key):
             raise ValueError(f"Comparaison non contrôlée : {key} diffère")

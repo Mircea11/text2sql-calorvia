@@ -135,3 +135,88 @@ def test_official_files_and_cpu_cache_are_consistent():
     if not (ROOT / "data/text2sql/offline/manifest.json").exists():
         pytest.skip("Copies CPU non construites")
     verify_manifest(directory, ROOT / "data/text2sql/offline")
+
+
+def test_api_port_configuration(monkeypatch):
+    from text2sql.config import Settings
+
+    import uvicorn
+    from text2sql import cli
+
+    bound = {}
+    monkeypatch.setattr(uvicorn, "run", lambda app, **options: bound.update(options))
+    monkeypatch.setattr(sys, "argv", ["text2sql", "serve"])
+    monkeypatch.setenv("T2SQL_API_PORT", "9017")
+    cli.main()
+    assert (bound["host"], bound["port"]) == ("127.0.0.1", 9017)
+    assert Settings.load().api_port == 9017
+    monkeypatch.setenv("T2SQL_API_PORT", "65536")
+    with pytest.raises(ValueError, match="T2SQL_API_PORT"):
+        Settings.load()
+
+
+def test_interrupted_baseline_resumes_in_clean_worktree(tmp_path, monkeypatch):
+    """Exerce la reprise sur un vrai dépôt temporaire ; modèle et journal simulés."""
+    import asyncio
+    import shutil
+    from text2sql import evaluation, journal, runtime
+
+    folder = tmp_path / "text2sql"
+    (folder / "ontology").mkdir(parents=True)
+    for name in ("business.yaml", "catalog.json"):
+        shutil.copy(HERE / "ontology" / name, folder / "ontology" / name)
+    (tmp_path / ".gitignore").write_text("data/\n")
+    questions = [
+        {"id": key, "type": "ambiguous", "question": key, "references": []}
+        for key in ("A", "B")
+    ]
+    dataset = folder / "questions.json"
+    dataset.write_text(json.dumps(questions))
+
+    def git(*args):
+        return subprocess.check_output(["git", *args], cwd=tmp_path, text=True)
+
+    git("init", "-q")
+    git("add", ".")
+    git(
+        "-c",
+        "user.name=Test",
+        "-c",
+        "user.email=test@example.invalid",
+        "commit",
+        "-qm",
+        "Références de test",
+    )
+    monkeypatch.setattr(evaluation, "ROOT", tmp_path)
+    monkeypatch.setattr(evaluation, "HERE", folder)
+    monkeypatch.setattr(evaluation, "DATASET", dataset)
+    monkeypatch.setattr(runtime, "ROOT", tmp_path)
+    monkeypatch.setenv("T2SQL_LLM_URL", "http://127.0.0.1:8001/v1")
+    monkeypatch.setenv("T2SQL_LLM_MODEL", "simulated")
+    monkeypatch.setenv("T2SQL_JOURNAL_DSN", "host=127.0.0.1 dbname=simulated")
+    monkeypatch.setattr(journal.Journal, "experiment", lambda self, payload: None)
+
+    class Interruption(BaseException):
+        pass
+
+    calls = []
+
+    async def model(question, **kwargs):
+        calls.append(question)
+        if calls == ["A", "B"]:
+            raise Interruption()
+        return {"answer": "Précisez la période."}
+
+    monkeypatch.setattr(evaluation, "answer", model)
+    with pytest.raises(Interruption):
+        asyncio.run(evaluation.evaluate_live(False))
+    (path,) = (tmp_path / "data/text2sql/runs").glob("*.json")
+    assert [r["id"] for r in json.loads(path.read_text())["results"]] == ["A"]
+    assert not git("status", "--porcelain")
+    asyncio.run(evaluation.evaluate_live(False, resume=path))
+    assert calls == ["A", "B", "B"]
+    assert json.loads(path.read_text())["status"] == "completed"
+    review = path.with_suffix(".csv")
+    review.write_text("Revue humaine conservée\n")
+    asyncio.run(evaluation.evaluate_live(False, resume=path))
+    assert review.read_text() == "Revue humaine conservée\n"

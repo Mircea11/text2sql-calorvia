@@ -108,7 +108,7 @@ def prepare_runtime(settings: Settings | None = None) -> Path:
             "EMBED_ENDPOINT": embed_url,
             "EMBED_MODEL": embed_model,
             "EMBED_API_KEY": os.getenv("T2SQL_EMBED_KEY", "local"),
-            "RERANK_ENDPOINT": "http://127.0.0.1:9000/v1/reranking",
+            "RERANK_ENDPOINT": f"http://127.0.0.1:{settings.api_port}/v1/reranking",
             "RERANK_MODEL": "calorvia-cpu-lexical",
             "RERANK_API_KEY": settings.api_key,
         }
