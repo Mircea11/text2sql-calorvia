@@ -1,6 +1,6 @@
 # Calorvia Text-to-SQL — rapport de préparation
 
-**Statut : 37 références natives vérifiées et copie filtrée de l’export NVIDIA avec définitions et liens métier approuvés.** Les deux campagnes de mesure de l’agent restent à exécuter.
+**Statut : 37 références natives vérifiées et copie filtrée de l’export NVIDIA avec définitions et liens métier approuvés.** Les deux campagnes sont terminées. Leur score numérique et cinq échecs observés sont documentés ci-dessous.
 
 ## Essai natif sans ontologie sur le Z4
 
@@ -35,7 +35,7 @@ Le brouillon contient 51 tables, 80 FK déclarées et neuf concepts inter-source
 | Tests locaux après intégration ontologie | 63 réussis | Contrats SQL, confidentialité, MCP, LangGraph, OpenAI, provenance et reranking CPU |
 | Tests de privilèges natifs | 4 non exécutés | Aucune conclusion sur PostgreSQL/SQL Server restaurés |
 | Génération NVIDIA réelle | Terminée sur les deux sources PostgreSQL connectées | Export couvrant 51 tables, dont 23 importées depuis le catalogue ERP |
-| Agent réel avec / sans ontologie | Non exécuté | Aucun score de précision, validité SQL ou latence de modèle inventé |
+| Agent réel avec / sans ontologie | 45 questions dans chacun des deux lots sur le Z4 | Comparaison des réponses, des validations SQL et des latences. Revue sémantique humaine en attente |
 
 ## Corrections de définitions déjà vérifiées
 
@@ -76,20 +76,39 @@ Le démonstrateur ne dispose pas d'une identité RH vérifiée. Il refuse donc l
 
 Les numéros nationaux, IBAN, adresses privées et autres champs sensibles sont refusés par la validation. Les privilèges natifs fournis doivent être testés séparément, notamment après désactivation du défaut de transaction read-only. L'absence d'écriture ne dépend pas uniquement d'un prompt.
 
-## Comparaison d'expériences et analyse de cinq échecs
+## Comparaison des deux campagnes et cinq échecs observés
 
-**En attente d'exécutions réelles.** Le jeu attendu reste à l'extérieur du contexte de l'agent. Le mode sans ontologie retire également les termes des fiches de tables pour éviter de contaminer la référence. Les contrôles numériques utilisent une tolérance de 0,01 ; ils ne suffisent pas à certifier le sens, la période, l'unité ni la qualité d'un refus. Une revue sémantique des réponses est donc encore nécessaire.
+Les deux lots utilisent Qwen sur le Z4, les mêmes 45 questions, le commit `84a1307` et les mêmes réglages. Le premier essai, qui dépassait la fenêtre de contexte avec ontologie, reste conservé séparément comme diagnostic. Les résultats ci-dessous concernent uniquement les nouveaux lots. Le [rapport de comparaison](results/comparison.json) donne l’identifiant et l’empreinte des deux traces locales ainsi que les résultats par question. Les traces complètes et le journal restent sur le Z4.
 
-L'analyse finale doit sélectionner cinq questions réellement ratées et localiser l'échec : source/routage, définition métier, génération SQL, validation, exécution, rapprochement ou formulation. Aucun échec de modèle n'est inventé à partir des erreurs de préparation ci-dessus.
+| Mesure | Sans ontologie | Avec ontologie |
+|---|---:|---:|
+| Questions traitées | 45 | 45 |
+| Correspondances numériques automatiques | 13/32 | 15/32 |
+| Appels explicites à validate_sql acceptés | 20/22 | 21/28 |
+| Erreurs d’exécution signalées par l’outil MCP | 3/61 | 0/49 |
+| Erreurs au niveau de l’agent | 0 | 1 |
+| Durée moyenne par question | 13,69 s | 11,99 s |
+
+Six questions ont gagné une correspondance numérique et quatre l’ont perdue. Une correspondance signale la présence des valeurs attendues dans la réponse. X03 montre qu’une réponse peut passer ce contrôle tout en se contredisant. La revue assistée des 13 questions à comportement attendu figure dans le JSON. Aucun score sémantique humain n’est encore attribué.
+
+| Question | Échec constaté | Ce que la trace permet de corriger |
+|---|---|---|
+| E01 · CA facturé HT de janvier | Sans ontologie, l’agent impose le statut `EMISE` et le type `F`. Le SUM renvoie NULL, puis la réponse annonce 0 €. Avec ontologie, la réponse finale est vide. La référence est 14 299 647,94 €. | Respecter le périmètre factures et avoirs et traiter un agrégat NULL comme un résultat à expliquer. |
+| C03 · Marge d’EBITDA | Sans ontologie, l’agent atteint sa limite d’étapes. Avec ontologie, il annonce 100,86 % et son SQL exclut les comptes 60, 61 et 62 du numérateur. La référence est 9,40 %. | Vérifier les clauses d’inclusion dans le SQL. Le test isolé avait réussi, et la campagne a révélé que la bonne formule n’était pas stable. |
+| C04 · Amortissements | Avec ontologie, PostgreSQL retourne bien 3 310 589,37 €. La réponse contient la trace SQL mais aucun texte de synthèse. Sans ontologie, le montant est formulé correctement. | Contrôler la réponse finale après une exécution réussie et fournir une synthèse ou un état explicite. |
+| X03 · Rapprochement ERP–comptabilité | Avec ontologie, les montants et l’écart de 0 € sont justes, mais la phrase « Non, les chiffres sont identiques » se contredit. Le contrôle numérique passe. | Vérifier que la conclusion textuelle correspond au signe et à la valeur de l’écart. |
+| P12 · Commission individuelle | Sans ontologie, l’outil bloque une recherche en paie. La réponse finale ne formule aucun refus. Avec ontologie, l’agent refuse explicitement sans appeler les outils. | Rendre le refus visible dès la demande de rémunération individuelle. Un blocage technique seul laisse l’utilisateur sans explication. |
+
+X07 reste en erreur au niveau de l’agent dans le lot avec ontologie. Le fichier de campagne conserve le type `ExceptionGroup`. La cause interne de ce cas reste à isoler.
 
 ## Obligations restant à terminer
 
-- Mesurer deux expériences complètes et comparables avec commit Git propre ; journaliser/exporter les résultats.
-- Analyser les cinq échecs observés et réaliser la démonstration avec la réserve du formateur.
+- Relire les réponses avec le formateur et valider les verdicts sémantiques.
+- Réaliser la démonstration avec la réserve du formateur.
 - Préparer le dépôt privé de soumission `text2sql-calorvia`, ses tags et l'accès du formateur selon ses coordonnées effectivement fournies.
 
 Le travail de code et de test de cette préparation est assisté par IA. La compétence indépendante de Mi reste évaluée séparément.
 
 ## Point de reprise 2
 
-Les sauvegardes JSON atomiques et PostgreSQL interviennent après chaque question. Un verrou interprocessus exclut deux traitements Task 2 simultanés ; il ne connaît pas la charge du RAG. Les versions, le modèle, les données et les réglages sont conservés pour la reprise. Les métriques numériques sont des candidats à réviser, pas des scores sémantiques validés. Les campagnes complètes restent à exécuter sur le Z4.
+Les sauvegardes JSON atomiques et PostgreSQL interviennent après chaque question. Un verrou interprocessus exclut deux traitements Task 2 simultanés ; il ne connaît pas la charge du RAG. Les versions, le modèle, les données et les réglages sont conservés pour la reprise. Les métriques numériques sont des candidats à réviser, pas des scores sémantiques validés. Les campagnes complètes et leurs sauvegardes sont disponibles sur le Z4.

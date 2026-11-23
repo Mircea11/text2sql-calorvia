@@ -1,22 +1,22 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 27 · Huit définitions et cinq liens approuvés. Contexte de l’agent corrigé et vérifié sur C03.**
+**Checkpoint 28 · Deux campagnes de 45 questions terminées sur le Z4.**
 
 | Étape | Résultat |
 |---|---|
 | Références SQL sur CPU | 14 ERP, 13 comptabilité et 10 paie conformes. [Rapport natif](results/20261123T093150439478Z_native_references.json) |
-| Campagne de 45 questions sans ontologie | À exécuter sur l’environnement de campagne. |
-| Ontologie NVIDIA et campagne avec ontologie | Copie filtrée vérifiée sur 51 tables. [Grille de revue humaine](RAPPORT.md#revue-humaine-des-définitions-métier) complétée pour cet instantané. |
+| Campagne sans ontologie | 45 questions traitées. 13/32 correspondances numériques. |
+| Campagne avec ontologie | 45 questions traitées. 15/32 correspondances numériques. [Comparaison et cinq échecs](RAPPORT.md#comparaison-des-deux-campagnes-et-cinq-échecs-observés) |
 
 Le [premier rapport](results/20261120T152013334515Z_native_references.json) isolait C03 à 36/37. PostgreSQL renvoyait un `numeric` de 9,40 %, lu par Python comme `Decimal('9.40')`. Le contrôle comparait les chaînes `"9.40"` et `"9.4"`. Le correctif fixe les deux décimales dans la requête de référence et dans le résultat attendu. C03 a été vérifié seul avant le lot complet. DuckDB a également validé les 37 références et régénéré le même jeu.
 
-Pour expliquer ce diagnostic, suivre la valeur depuis SQL jusqu’à la comparaison Python. Le score de 37/37 vérifie le jeu de référence. Les deux campagnes mesureront la qualité des réponses de l’agent. Les détails de reprise figurent dans le [checkpoint](CHECKPOINT.json).
+Pour expliquer ce diagnostic, suivre la valeur depuis SQL jusqu’à la comparaison Python. Le score de 37/37 vérifie le jeu de référence. Les deux campagnes fournissent des mesures comparables. La revue des réponses reste nécessaire pour un score sémantique. Les détails de reprise figurent dans le [checkpoint](CHECKPOINT.json).
 
 ### Récupération du catalogue d’ontologie
 
 NVIDIA avait découvert deux schémas avant l’import du brouillon. Le même objet se retrouvait sous deux identifiants différents. L’import réutilise désormais les identifiants découverts et met à jour les références internes du brouillon.
 
-Le service BGE-M3 déjà utilisé par le RAG produit 1 024 dimensions. La base d’ontologie attendait 2 048 dimensions et rejetait les écritures. Après avoir vérifié que le stockage était vide, nous l’avons réglé à 1 024 dimensions, puis réindexé les descriptions revues. PostgreSQL a confirmé 460 vecteurs de catalogue et 460 vecteurs sémantiques. La compilation NVIDIA a ensuite terminé sur les deux bases PostgreSQL connectées. L’export couvre 51 tables, dont les 23 tables ERP importées. Il contient 101 descriptions pour 412 attributs et trois attributs associés à des colonnes restreintes. Des avertissements de dépassement de contexte ont été observés. L’export brut est archivé localement. La copie chargée par l’agent retire les trois colonnes restreintes et leurs attributs, enlève les champs d’échantillons et masque les mentions de ces colonnes dans les descriptions. Elle conserve 51 tables et 409 attributs, dont 100 décrits. Le reçu relie les empreintes des deux fichiers. La revue des huit définitions et des cinq liens est consignée. Les campagnes restent à faire.
+Le service BGE-M3 déjà utilisé par le RAG produit 1 024 dimensions. La base d’ontologie attendait 2 048 dimensions et rejetait les écritures. Après avoir vérifié que le stockage était vide, nous l’avons réglé à 1 024 dimensions, puis réindexé les descriptions revues. PostgreSQL a confirmé 460 vecteurs de catalogue et 460 vecteurs sémantiques. La compilation NVIDIA a ensuite terminé sur les deux bases PostgreSQL connectées. L’export couvre 51 tables, dont les 23 tables ERP importées. Il contient 101 descriptions pour 412 attributs et trois attributs associés à des colonnes restreintes. Des avertissements de dépassement de contexte ont été observés. L’export brut est archivé localement. La copie chargée par l’agent retire les trois colonnes restreintes et leurs attributs, enlève les champs d’échantillons et masque les mentions de ces colonnes dans les descriptions. Elle conserve 51 tables et 409 attributs, dont 100 décrits. Le reçu relie les empreintes des deux fichiers. La revue des huit définitions et des cinq liens est consignée. Les campagnes et leur comparaison sont disponibles.
 
 ## Architecture en service et première question
 
@@ -141,7 +141,7 @@ contrôlés avant l'expérience avec ontologie. Un reçu de test simulé est ref
 
 ### Évaluation, reprise et démonstration
 
-Le premier lot avec ontologie a échoué avant le premier appel d’outil pour les 45 questions. Sur C03, le routeur a mesuré 11 350 jetons pour une fenêtre de 8 192. Le contexte utilise désormais des résumés courts des entrées NVIDIA et les définitions métier pertinentes. Les fiches MCP présentent uniquement les règles liées à la table consultée. C03 a ensuite répondu 9,40 % avec les deux agrégats comptables. Les premiers lots sont conservés comme diagnostic. Les deux campagnes comparées sont relancées sur le même commit corrigé.
+Le premier lot avec ontologie a échoué avant le premier appel d’outil pour les 45 questions. Sur C03, le routeur a mesuré 11 350 jetons pour une fenêtre de 8 192. Le contexte utilise désormais des résumés courts des entrées NVIDIA et les définitions métier pertinentes. Les fiches MCP présentent uniquement les règles liées à la table consultée. C03 a ensuite répondu 9,40 % avec les deux agrégats comptables. Les premiers lots sont conservés comme diagnostic. Les deux campagnes comparées ont été relancées et terminées sur le même commit corrigé.
 
 Travailler dans un worktree propre pour les campagnes officielles, afin de
 préserver les modifications RAG non commitées. Le worktree utilise les mêmes

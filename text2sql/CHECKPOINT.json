@@ -1,6 +1,6 @@
 {
-  "checkpoint": 27,
-  "status": "z4_contexte_ontologie_corrige_campagnes_appariees_a_relancer",
+  "checkpoint": 28,
+  "status": "z4_deux_campagnes_appariees_terminees_resultats_a_relire",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,16 +37,12 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Figer un commit puis exécuter les deux campagnes de 45 questions avec le même modèle, les mêmes données et les mêmes paramètres.",
-    "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
+    "Relire la comparaison et les 5 échecs documentés. Réviser les réponses et les traces avec le formateur avant d’annoncer un score sémantique.",
+    "Finaliser la démonstration, le dépôt privé de remise et les tags requis."
   ],
   "pending_live": [
-    "Campagnes des 45 questions.",
-    "Embeddings et compilation NVIDIA sur le Z4.",
-    "Actual NVIDIA compilation and export",
-    "Real agent evaluation with and without ontology",
-    "Five-failure analysis and instructor demonstration",
-    "Separate private submission repository and required milestone tags"
+    "Separate private submission repository and required milestone tags",
+    "Revue humaine des réponses et démonstration avec le formateur."
   ],
   "guardrails": [
     "Do not restart from scratch; inspect this checkpoint and existing files first",
@@ -55,7 +51,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-23T12:41:48Z",
+  "saved_at": "2026-11-23T13:07:38Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -408,6 +404,42 @@
       "c03_confirmed_margin_pct": "9.40",
       "focused_tests_passed": 7,
       "note": "Les deux premiers lots restent des diagnostics. La comparaison exige deux nouveaux lots du même commit."
+    },
+    "matched_agent_evaluation_z4": {
+      "report": "text2sql/results/comparison.json",
+      "experiment_commit": "84a130763c25f31f79eb390832d31276cf0f6687",
+      "questions_each": 45,
+      "numeric_matches": {
+        "without": 13,
+        "with": 15
+      },
+      "numeric_candidates_each": 32,
+      "numeric_changes": {
+        "gains": [
+          "E06",
+          "C02",
+          "C09",
+          "P01",
+          "X03",
+          "X05"
+        ],
+        "regressions": [
+          "E11",
+          "C04",
+          "P05",
+          "P08"
+        ]
+      },
+      "agent_errors": {
+        "without": 0,
+        "with": 1
+      },
+      "five_failure_review": "text2sql/RAPPORT.md#comparaison-des-deux-campagnes-et-cinq-échecs-observés",
+      "human_semantic_accuracy": null,
+      "cpu_tests": {
+        "passed": 69,
+        "skipped": 5
+      }
     }
   },
   "rag_compatibility": {
