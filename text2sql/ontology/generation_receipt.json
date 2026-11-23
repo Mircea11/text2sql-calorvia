@@ -19,5 +19,21 @@
     "source_export_sha256": "f8a847f0e5f8ae218fefee932f938dbe30936311f86b72eab743c31b045875aa",
     "removed_columns": 3,
     "removed_attributes": 3
+  },
+  "business_review": {
+    "status": "approved",
+    "reviewer": "Mi",
+    "date": "2026-11-23",
+    "scope": {
+      "business_definitions": 8,
+      "cross_source_links": 5
+    },
+    "business_sha256": "870b83d4de94557cd540609a8f84c24ed7f2983ba00beb956294da409e2ffaa5",
+    "scope_note": "La revue porte sur les définitions et liens métier du jeu actuel. Les descriptions générées ne sont pas certifiées en bloc.",
+    "review_again_if_changed": [
+      "définitions, formules ou règles de confidentialité",
+      "tables, colonnes, clés ou normalisation des liens",
+      "nouvel instantané de données ou export qui change le contexte présenté à l’agent"
+    ]
   }
 }

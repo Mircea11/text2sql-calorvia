@@ -1,6 +1,6 @@
 {
-  "checkpoint": 25,
-  "status": "z4_export_nvidia_filtre_verifie_revue_humaine_en_attente",
+  "checkpoint": 26,
+  "status": "z4_revue_metier_approuvee_campagnes_a_executer",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,7 +37,6 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Faire certifier les huit définitions et vérifier les liens inter-sources avec la grille du rapport.",
     "Figer un commit puis exécuter les deux campagnes de 45 questions avec le même modèle, les mêmes données et les mêmes paramètres.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
@@ -45,7 +44,6 @@
     "Campagnes des 45 questions.",
     "Embeddings et compilation NVIDIA sur le Z4.",
     "Actual NVIDIA compilation and export",
-    "Human certification of important terms",
     "Real agent evaluation with and without ontology",
     "Five-failure analysis and instructor demonstration",
     "Separate private submission repository and required milestone tags"
@@ -57,7 +55,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-23T11:35:08Z",
+  "saved_at": "2026-11-23T11:46:40Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -380,6 +378,22 @@
       "cpu_tests": {
         "passed": 68,
         "skipped": 5
+      },
+      "business_review": {
+        "status": "approved",
+        "reviewer": "Mi",
+        "date": "2026-11-23",
+        "scope": {
+          "business_definitions": 8,
+          "cross_source_links": 5
+        },
+        "business_sha256": "870b83d4de94557cd540609a8f84c24ed7f2983ba00beb956294da409e2ffaa5",
+        "scope_note": "La revue porte sur les définitions et liens métier du jeu actuel. Les descriptions générées ne sont pas certifiées en bloc.",
+        "review_again_if_changed": [
+          "définitions, formules ou règles de confidentialité",
+          "tables, colonnes, clés ou normalisation des liens",
+          "nouvel instantané de données ou export qui change le contexte présenté à l’agent"
+        ]
       }
     }
   },

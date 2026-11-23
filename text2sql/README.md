@@ -1,12 +1,12 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 25 · Export NVIDIA filtré et vérifié sur le Z4. Revue humaine préparée.**
+**Checkpoint 26 · Export NVIDIA filtré et vérifié sur le Z4. Huit définitions et cinq liens métier approuvés par Mi.**
 
 | Étape | Résultat |
 |---|---|
 | Références SQL sur CPU | 14 ERP, 13 comptabilité et 10 paie conformes. [Rapport natif](results/20261123T093150439478Z_native_references.json) |
 | Campagne de 45 questions sans ontologie | À exécuter sur l’environnement de campagne. |
-| Ontologie NVIDIA et campagne avec ontologie | Copie filtrée vérifiée sur 51 tables. [Grille de revue humaine](RAPPORT.md#revue-humaine-des-définitions-métier) à compléter avant la comparaison. |
+| Ontologie NVIDIA et campagne avec ontologie | Copie filtrée vérifiée sur 51 tables. [Grille de revue humaine](RAPPORT.md#revue-humaine-des-définitions-métier) complétée pour cet instantané. |
 
 Le [premier rapport](results/20261120T152013334515Z_native_references.json) isolait C03 à 36/37. PostgreSQL renvoyait un `numeric` de 9,40 %, lu par Python comme `Decimal('9.40')`. Le contrôle comparait les chaînes `"9.40"` et `"9.4"`. Le correctif fixe les deux décimales dans la requête de référence et dans le résultat attendu. C03 a été vérifié seul avant le lot complet. DuckDB a également validé les 37 références et régénéré le même jeu.
 
@@ -16,7 +16,7 @@ Pour expliquer ce diagnostic, suivre la valeur depuis SQL jusqu’à la comparai
 
 NVIDIA avait découvert deux schémas avant l’import du brouillon. Le même objet se retrouvait sous deux identifiants différents. L’import réutilise désormais les identifiants découverts et met à jour les références internes du brouillon.
 
-Le service BGE-M3 déjà utilisé par le RAG produit 1 024 dimensions. La base d’ontologie attendait 2 048 dimensions et rejetait les écritures. Après avoir vérifié que le stockage était vide, nous l’avons réglé à 1 024 dimensions, puis réindexé les descriptions revues. PostgreSQL a confirmé 460 vecteurs de catalogue et 460 vecteurs sémantiques. La compilation NVIDIA a ensuite terminé sur les deux bases PostgreSQL connectées. L’export couvre 51 tables, dont les 23 tables ERP importées. Il contient 101 descriptions pour 412 attributs et trois attributs associés à des colonnes restreintes. Des avertissements de dépassement de contexte ont été observés. L’export brut est archivé localement. La copie chargée par l’agent retire les trois colonnes restreintes et leurs attributs, enlève les champs d’échantillons et masque les mentions de ces colonnes dans les descriptions. Elle conserve 51 tables et 409 attributs, dont 100 décrits. Le reçu relie les empreintes des deux fichiers. La revue humaine et les campagnes restent à faire.
+Le service BGE-M3 déjà utilisé par le RAG produit 1 024 dimensions. La base d’ontologie attendait 2 048 dimensions et rejetait les écritures. Après avoir vérifié que le stockage était vide, nous l’avons réglé à 1 024 dimensions, puis réindexé les descriptions revues. PostgreSQL a confirmé 460 vecteurs de catalogue et 460 vecteurs sémantiques. La compilation NVIDIA a ensuite terminé sur les deux bases PostgreSQL connectées. L’export couvre 51 tables, dont les 23 tables ERP importées. Il contient 101 descriptions pour 412 attributs et trois attributs associés à des colonnes restreintes. Des avertissements de dépassement de contexte ont été observés. L’export brut est archivé localement. La copie chargée par l’agent retire les trois colonnes restreintes et leurs attributs, enlève les champs d’échantillons et masque les mentions de ces colonnes dans les descriptions. Elle conserve 51 tables et 409 attributs, dont 100 décrits. Le reçu relie les empreintes des deux fichiers. La revue des huit définitions et des cinq liens est consignée. Les campagnes restent à faire.
 
 ## Architecture en service et première question
 
@@ -29,7 +29,7 @@ Le carnet appelle l’agent LangGraph. Il ouvre un serveur MCP local par entrée
 | paie | PostgreSQL 5434 | 14 tables de paie, dont payslips et payslip_lines |
 | calorvia_text2sql_journal | PostgreSQL 5433 | Base distincte sur le même serveur que compta. Le compte text2sql_writer écrit les événements et expériences dans le schéma text2sql_journal. |
 
-Le catalogue décrit les 51 tables métier. L’ontologie ajoute les définitions métier. Sa compilation NVIDIA réelle est terminée. La certification humaine reste à effectuer. Le test courant utilise Qwen seul pour la génération, sans ontologie. BGE-M3 sur 8000 fournit des embeddings au workflow d’ontologie. Le routeur partagé répond sur le port 8002. Le carnet consulte son catalogue avant la question. Au contrôle du Z4, Gemma était chargé et Qwen déchargé. Les comptages natifs constituent les références de vérification.
+Le catalogue décrit les 51 tables métier. L’ontologie ajoute les définitions métier. Sa compilation NVIDIA réelle est terminée. Les définitions et liens métier de cet instantané ont été approuvés. Le test courant utilise Qwen seul pour la génération, sans ontologie. BGE-M3 sur 8000 fournit des embeddings au workflow d’ontologie. Le routeur partagé répond sur le port 8002. Le carnet consulte son catalogue avant la question. Au contrôle du Z4, Gemma était chargé et Qwen déchargé. Les comptages natifs constituent les références de vérification.
 
 Le 20 novembre, le carnet a renvoyé **20 562** écritures via `list_tables` seul. Ce test vérifie le chemin Qwen → MCP → PostgreSQL. Pour contrôler le SQL généré, la cellule 4 demande le nombre d’en-têtes dont `date_ecriture` tombe en avril 2026. La référence CPU vaut **1 320** sur la copie officielle après contrôle du manifeste. La sortie Z4 confirme le même nombre et les appels list_tables, get_table_card, validate_sql et execute_sql. Ce nombre est resté hors du message envoyé à Qwen. Aucun de ces contrôles ponctuels ne constitue un score sur les 45 questions.
 
@@ -49,7 +49,7 @@ pas utilisée. La réserve du formateur n'a pas été consultée.
 | Exigence obligatoire | Test d'acceptation | État |
 |---|---|---|
 | Trois bases : GESPRO/SQL Server, compta/PostgreSQL, paie/PostgreSQL | agent_ro ; 10 185 factures, 20 562 écritures, 7 298 fiches | Lectures natives sur le Z4 : 10 185 factures, 20 562 écritures et 7 298 fiches |
-| Ontologie NVIDIA auto-ontology | Génération réelle, export YAML des 51 tables et liens ; définitions testées et certifiées humainement | Compilation Z4 et copie filtrée vérifiées. Certification en attente |
+| Ontologie NVIDIA auto-ontology | Génération réelle, export YAML des 51 tables et liens ; définitions testées et certifiées humainement | Compilation Z4 et copie filtrée vérifiées. Définitions et liens métier approuvés |
 | Comparer ≥2 solutions pour SQL Server | Note argumentée Trino / copie / import YAML | Dans RAPPORT.md ; import YAML retenu sous réserve du test natif |
 | Six outils MCP | list_sources, list_tables, get_table_card, find_values, validate_sql, execute_sql | Découverte stdio et lecture native via execute_sql vérifiées sur le Z4 |
 | Lecture seule à plusieurs niveaux | SELECT unique, dialecte, noms, limites ; ACL refusant l'écriture même validation contournée | Tests applicatifs passés ; 4 contrôles natifs réussis sur le Z4 |

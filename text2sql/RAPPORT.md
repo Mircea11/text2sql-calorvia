@@ -1,6 +1,6 @@
 # Calorvia Text-to-SQL — rapport de préparation
 
-**Statut : 37 références natives vérifiées et copie filtrée de l’export NVIDIA prête pour la revue humaine.** Les deux campagnes de mesure de l’agent restent à exécuter.
+**Statut : 37 références natives vérifiées et copie filtrée de l’export NVIDIA avec définitions et liens métier approuvés.** Les deux campagnes de mesure de l’agent restent à exécuter.
 
 ## Essai natif sans ontologie sur le Z4
 
@@ -54,20 +54,21 @@ Pour chaque ligne, lire la définition dans [business.yaml](ontology/business.ya
 
 | Terme | Vérification à expliquer | Preuve attendue | Verdict |
 |---|---|---|---|
-| Chiffre d’affaires net facturé HT | Pourquoi soustraire les avoirs et éviter de multiplier les montants d’en-tête après une jointure ? | E03, 13 599 646,63 € pour mars 2026 | À revoir |
-| Chiffre d’affaires comptabilisé | Pourquoi filtrer les comptes 70 et prendre la période comptable ? | C06, 13 599 646,63 € pour mars 2026 | À revoir |
-| Résultat net avant affectation | Quels comptes sont exclus, et quel effet aurait leur inclusion ? | C01, 5 412 000,00 € pour 2025 | À revoir |
-| EBITDA et marge | Quels comptes entrent dans le numérateur ? Pourquoi le dénominateur est-il le CA 70 ? | C02 et C03, 1 278 366,78 € et 9,40 % pour mars 2026 | À revoir |
-| Stock à la date d’extraction | Quelle table contient la photographie et à quelle date ? | E08, 99 Aéris 12 au 31 mai 2026 | À revoir |
-| Effectif sous contrat | Comment compter une personne une seule fois et traiter la date de fin ? | P01, 190, 6, 126, 287 par site au 31 mai 2026 | À revoir |
-| Prestations et télétravail | Quelle unité compte-t-on et comment distinguer télétravail et accident ? | P04, 292 jours de télétravail en avril 2026. P06, 12 jours ouvrés d’accident en novembre 2025 | À revoir |
-| Charges de personnel et rémunérations | Pourquoi les deux sources peuvent-elles diverger ? Quand faut-il refuser une réponse individuelle ? | X06, écart de 63 999,81 € en mars 2026. P12, refus attendu | À revoir |
+| Chiffre d’affaires net facturé HT | Pourquoi soustraire les avoirs et éviter de multiplier les montants d’en-tête après une jointure ? | E03, 13 599 646,63 € pour mars 2026 | Validé |
+| Chiffre d’affaires comptabilisé | Pourquoi filtrer les comptes 70 et prendre la période comptable ? | C06, 13 599 646,63 € pour mars 2026 | Validé |
+| Résultat net avant affectation | Quels comptes sont exclus, et quel effet aurait leur inclusion ? | C01, 5 412 000,00 € pour 2025 | Validé |
+| EBITDA et marge | Quels comptes entrent dans le numérateur ? Pourquoi le dénominateur est-il le CA 70 ? | C02 et C03, 1 278 366,78 € et 9,40 % pour mars 2026 | Validé |
+| Stock à la date d’extraction | Quelle table contient la photographie et à quelle date ? | E08, 99 Aéris 12 au 31 mai 2026 | Validé |
+| Effectif sous contrat | Comment compter une personne une seule fois et traiter la date de fin ? | P01, 190, 6, 126, 287 par site au 31 mai 2026 | Validé |
+| Prestations et télétravail | Quelle unité compte-t-on et comment distinguer télétravail et accident ? | P04, 292 jours de télétravail en avril 2026. P06, 12 jours ouvrés d’accident en novembre 2025 | Validé |
+| Charges de personnel et rémunérations | Pourquoi les deux sources peuvent-elles diverger ? Quand faut-il refuser une réponse individuelle ? | X06, écart de 63 999,81 € en mars 2026. P12, refus attendu | Validé |
 
-Les [cinq liens inter-sources](ontology/business.yaml) restent à contrôler par leur clé, leur normalisation ou leur filtre, leur cardinalité et les cas sans correspondance. Les résultats attendus restent dans le jeu de référence pendant les campagnes.
+La revue de Mi couvre également les [cinq liens inter-sources](ontology/business.yaml) du jeu actuel. Les résultats attendus restent dans le jeu de référence pendant les campagnes.
 
-- **Relecteur et date**
-- **Corrections ou réserves**
-- **Statut** · En attente de revue humaine.
+- **Relecteur et date** · Mi, 2026-11-23.
+- **Verdict** · Après revue, Mi a approuvé les huit définitions et les cinq liens tels qu’ils figurent dans cet instantané. Aucune correction n’a été demandée.
+- **Portée** · L’approbation concerne les règles et les liens métier. Les descriptions générées par NVIDIA n’ont pas été certifiées individuellement.
+- **Maintien** · Conserver ces règles pour les campagnes de cet instantané. Réexaminer et consigner les changements si les définitions, les formules, le schéma, les clés, la confidentialité ou les données évoluent. Revoir aussi tout nouvel export qui modifie le contexte de l’agent.
 
 ## Confidentialité
 
@@ -83,7 +84,6 @@ L'analyse finale doit sélectionner cinq questions réellement ratées et locali
 
 ## Obligations restant à terminer
 
-- Faire réviser et certifier les termes importants à partir de la grille ci-dessus.
 - Mesurer deux expériences complètes et comparables avec commit Git propre ; journaliser/exporter les résultats.
 - Analyser les cinq échecs observés et réaliser la démonstration avec la réserve du formateur.
 - Préparer le dépôt privé de soumission `text2sql-calorvia`, ses tags et l'accès du formateur selon ses coordonnées effectivement fournies.
