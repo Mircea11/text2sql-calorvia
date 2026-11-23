@@ -137,25 +137,17 @@ def business_rules() -> dict:
     return yaml.safe_load((HERE / "ontology" / "business.yaml").read_text())
 
 
-def relevant_terms(question: str) -> list[dict]:
-    terms = business_rules()["terms"]
-    words = set(question.casefold().split())
-    ranked = sorted(
-        terms,
-        key=lambda t: sum(
-            w
-            in (
-                t["name"]
-                + " "
-                + " ".join(t.get("tables", []))
-                + " "
-                + " ".join(t.get("synonyms", []))
-            ).casefold()
-            for w in words
-        ),
-        reverse=True,
-    )
-    return ranked[:8]
+def _keywords(text: str) -> set[str]:
+    return {word for word in re.findall(r"[^\W\d_]+", text.casefold()) if len(word) >= 4}
+
+
+def table_terms(source: str, table: str) -> list[dict]:
+    qualified = f"{source}.{table}".casefold()
+    return [
+        {key: term[key] for key in ("name", "definition", "calculation", "time") if key in term}
+        for term in business_rules()["terms"]
+        if qualified in {name.casefold() for name in term["tables"]}
+    ]
 
 
 def context(question: str, enabled: bool) -> str:
@@ -163,28 +155,42 @@ def context(question: str, enabled: bool) -> str:
         return "Ontologie désactivée pour l'expérience de référence. Les fiches de tables restent disponibles."
     rules = business_rules()
     export = HERE / "ontology" / "auto_ontology_export.yaml"
+    words = _keywords(question)
+    ranked = sorted(
+        rules["terms"],
+        key=lambda term: len(words & _keywords(
+            " ".join([term["name"], *term["synonyms"], *term["tables"]])
+        )),
+        reverse=True,
+    )
     payload = {
         "cross_source_links": rules["cross_source_links"],
-        "terms": relevant_terms(question),
+        "terms": [
+            {key: value for key, value in term.items() if key != "synonyms"}
+            for term in ranked[:4]
+        ],
         "provenance": "brouillon métier révisé par IA ; certification humaine en attente",
     }
     if export.exists():
-        document, _ = _verified_agent_export()
+        document, receipt = _verified_agent_export()
         semantic = document.get("semantic_layer", {})
-        words = set(question.casefold().split())
+        # Les UUID et les fiches de colonnes restent dans le catalogue MCP.
+        def summaries(items):
+            matches = []
+            for item in items:
+                name = item.get("name") or ""
+                description = item.get("description") or ""
+                score = len(words & _keywords(name + " " + description))
+                if score:
+                    matches.append((score, {"name": name[:100], "description": description[:300]}))
+            return [item for _, item in sorted(matches, key=lambda match: -match[0])[:3]]
 
-        def score(t):
-            return sum(w in json.dumps(t, ensure_ascii=False).casefold() for w in words)
-
-        payload["auto_ontology_terms"] = sorted(
-            semantic.get("terms", []), key=score, reverse=True
-        )[:8]
-        payload["auto_ontology_calculations"] = sorted(
-            semantic.get("sql_attributes", {}).get("manual", []),
-            key=score,
-            reverse=True,
-        )[:5]
-        payload["provenance"] = (
-            "export natif NVIDIA présent ; consulter la preuve de génération et le registre de certification"
+        payload["auto_ontology_terms"] = summaries(semantic.get("terms", []))
+        payload["auto_ontology_calculations"] = summaries(
+            semantic.get("sql_attributes", {}).get("manual", [])
         )
-    return json.dumps(payload, ensure_ascii=False)
+        if receipt.get("business_review", {}).get("status") == "approved":
+            payload["provenance"] = "Définitions et liens métier approuvés pour cet instantané."
+        else:
+            payload["provenance"] = "Copie filtrée NVIDIA ; définitions métier à réviser."
+    return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))

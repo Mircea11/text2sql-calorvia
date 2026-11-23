@@ -1,6 +1,6 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 26 · Export NVIDIA filtré et vérifié sur le Z4. Huit définitions et cinq liens métier approuvés par Mi.**
+**Checkpoint 27 · Huit définitions et cinq liens approuvés. Contexte de l’agent corrigé et vérifié sur C03.**
 
 | Étape | Résultat |
 |---|---|
@@ -140,6 +140,8 @@ un export généré/certifié. Le reçu réel, ses empreintes et la couverture s
 contrôlés avant l'expérience avec ontologie. Un reçu de test simulé est refusé.
 
 ### Évaluation, reprise et démonstration
+
+Le premier lot avec ontologie a échoué avant le premier appel d’outil pour les 45 questions. Sur C03, le routeur a mesuré 11 350 jetons pour une fenêtre de 8 192. Le contexte utilise désormais des résumés courts des entrées NVIDIA et les définitions métier pertinentes. Les fiches MCP présentent uniquement les règles liées à la table consultée. C03 a ensuite répondu 9,40 % avec les deux agrégats comptables. Les premiers lots sont conservés comme diagnostic. Les deux campagnes comparées sont relancées sur le même commit corrigé.
 
 Travailler dans un worktree propre pour les campagnes officielles, afin de
 préserver les modifications RAG non commitées. Le worktree utilise les mêmes

@@ -159,10 +159,12 @@ class SourceService:
                 card["example_values"][name] = self.find_values(
                     source, definition["name"], name, "", limit=8
                 )["values"]
-        from .ontology import relevant_terms
+        from .ontology import table_terms
 
         card["ontology_terms"] = (
-            relevant_terms(table) if os.getenv("T2SQL_USE_ONTOLOGY", "1") == "1" else []
+            table_terms(source, definition["name"])
+            if os.getenv("T2SQL_USE_ONTOLOGY", "1") == "1"
+            else []
         )
         return card
 

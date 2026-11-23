@@ -57,7 +57,17 @@ def test_without_ontology_really_removes_terms_from_cards(monkeypatch):
     assert service.get_table_card("paie", "payslips")["ontology_terms"] == []
     assert "Chiffre d'affaires" not in context("chiffre d'affaires", False)
     monkeypatch.setenv("T2SQL_USE_ONTOLOGY", "1")
-    assert service.get_table_card("paie", "payslips")["ontology_terms"]
+    terms = service.get_table_card("paie", "payslips")["ontology_terms"]
+    assert [term["name"] for term in terms] == ["Charges de personnel et rémunérations"]
+
+
+def test_ontology_context_sends_short_summaries_for_ebitda():
+    rendered = context("Quelle est la marge d’EBITDA de mars 2026 ?", True)
+    payload = json.loads(rendered)
+    assert payload["terms"][0]["name"] == "EBITDA et marge d'EBITDA"
+    assert payload["auto_ontology_terms"]
+    assert all(set(term) == {"name", "description"} for term in payload["auto_ontology_terms"])
+    assert len(rendered) < 5000
 
 
 def test_import_reuses_discovered_catalog_ids_in_foreign_keys():

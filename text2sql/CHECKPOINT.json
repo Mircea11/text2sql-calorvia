@@ -1,6 +1,6 @@
 {
-  "checkpoint": 26,
-  "status": "z4_revue_metier_approuvee_campagnes_a_executer",
+  "checkpoint": 27,
+  "status": "z4_contexte_ontologie_corrige_campagnes_appariees_a_relancer",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -55,7 +55,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-23T11:46:40Z",
+  "saved_at": "2026-11-23T12:41:48Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -395,6 +395,19 @@
           "nouvel instantané de données ou export qui change le contexte présenté à l’agent"
         ]
       }
+    },
+    "ontology_context_fix_z4": {
+      "first_campaign_commit": "7b01b0e1566c766d96adcf2acee1644fb0c1c842",
+      "without_ontology_completed": 45,
+      "with_ontology_initial_request_errors": 45,
+      "c03_http_status": 400,
+      "c03_rejected_prompt_tokens": 11350,
+      "router_context_tokens": 8192,
+      "c03_system_characters_before": 22756,
+      "c03_system_characters_after": 4617,
+      "c03_confirmed_margin_pct": "9.40",
+      "focused_tests_passed": 7,
+      "note": "Les deux premiers lots restent des diagnostics. La comparaison exige deux nouveaux lots du même commit."
     }
   },
   "rag_compatibility": {
