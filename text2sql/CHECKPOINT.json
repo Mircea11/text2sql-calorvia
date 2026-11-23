@@ -1,6 +1,6 @@
 {
-  "checkpoint": 23,
-  "status": "z4_catalogue_et_vecteurs_ontologie_retablis_compilation_a_verifier",
+  "checkpoint": 24,
+  "status": "z4_compilation_nvidia_terminee_export_brut_a_revoir_avant_campagnes",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,7 +37,7 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Vérifier le résultat de la compilation, revoir l’export et faire certifier les termes. Figer ensuite le même commit pour les deux campagnes de 45 questions.",
+    "Exclure les attributs restreints de l’artefact utilisé par l’agent et faire réviser les termes. Figer le même commit pour les deux campagnes de 45 questions.",
     "Compiler et faire certifier les termes NVIDIA, puis mesurer la même campagne avec ontologie et revoir les réponses.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-23T11:17:18Z",
+  "saved_at": "2026-11-23T11:28:16Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -335,6 +335,30 @@
       "backfill_inputs": "Métadonnées de schéma et descriptions métier revues, aucun échantillon de ligne.",
       "focused_tests_passed": 5,
       "scope": "Récupération vérifiée des vecteurs sur le Z4. Compilation déclenchée, export final et revue humaine à vérifier."
+    },
+    "ontology_compilation_z4": {
+      "kind": "live_nvidia_compilation_and_export",
+      "completed_at": "2026-11-23T11:25:18.140850+00:00",
+      "covered_tables": {
+        "erp": 23,
+        "compta": 14,
+        "paie": 14
+      },
+      "live_compiler_sources": [
+        "compta",
+        "paie"
+      ],
+      "erp_source": "Schéma et termes importés depuis le catalogue du laboratoire.",
+      "export_sha256": "f8a847f0e5f8ae218fefee932f938dbe30936311f86b72eab743c31b045875aa",
+      "sample_bearing_columns": 0,
+      "semantic_terms": 51,
+      "semantic_attributes": 412,
+      "attributes_with_descriptions": 101,
+      "attributes_referencing_restricted_columns": 3,
+      "context_limit_log_lines": 32,
+      "scheduler_enabled_after_run": false,
+      "human_certification": false,
+      "export_storage": "Archive privée locale hors Git, hors du chemin chargé par l’agent."
     }
   },
   "rag_compatibility": {
