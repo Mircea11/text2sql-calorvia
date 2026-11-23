@@ -4,7 +4,7 @@ import httpx
 import pytest
 import yaml
 
-from text2sql import auto_ontology
+from text2sql import auto_ontology, runtime
 from text2sql.auto_ontology import native_draft
 from text2sql.catalog import load_catalog
 from text2sql.config import Settings
@@ -57,6 +57,28 @@ def test_without_ontology_really_removes_terms_from_cards(monkeypatch):
     assert service.get_table_card("paie", "payslips")["ontology_terms"]
 
 
+def test_import_reuses_discovered_catalog_ids_in_foreign_keys():
+    draft = native_draft()
+    discovered = native_draft()
+    accounting = next(
+        db for db in discovered["data_layer"]["databases"]
+        if db["schemas"][0]["database_name"] == "compta"
+    )
+    table = next(t for t in accounting["schemas"][0]["tables"] if t["name"] == "ecriture")
+    column = next(c for c in table["columns"] if c["name"] == "id_ecriture")
+    original_id = column["id"]
+    column["id"] = "discovered-column-id"
+    remapped = auto_ontology._reuse_catalog_ids(draft, discovered)
+    assert any(
+        fk["target_column_id"] == "discovered-column-id"
+        for fk in remapped["data_layer"]["foreign_keys"]
+    )
+    assert any(
+        fk["target_column_id"] == original_id
+        for fk in draft["data_layer"]["foreign_keys"]
+    )
+
+
 def test_nvidia_contract_import_compile_export_is_not_mislabelled_as_live(
     tmp_path, monkeypatch
 ):
@@ -66,6 +88,7 @@ def test_nvidia_contract_import_compile_export_is_not_mislabelled_as_live(
             (auto_ontology.HERE / "ontology" / name).read_bytes()
         )
     monkeypatch.setattr(auto_ontology, "HERE", tmp_path)
+    monkeypatch.setattr(runtime, "ROOT", tmp_path)
     calls = []
 
     def handler(request):
@@ -96,6 +119,7 @@ def test_nvidia_contract_import_compile_export_is_not_mislabelled_as_live(
 def test_nvidia_partial_export_cannot_create_generation_receipt(tmp_path, monkeypatch):
     (tmp_path / "ontology").mkdir()
     monkeypatch.setattr(auto_ontology, "HERE", tmp_path)
+    monkeypatch.setattr(runtime, "ROOT", tmp_path)
     seen = []
 
     def handler(request):

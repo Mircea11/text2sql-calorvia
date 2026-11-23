@@ -228,6 +228,41 @@ def write_draft() -> None:
     )
 
 
+def _catalog_ids(document: dict):
+    for database in document["data_layer"]["databases"]:
+        for schema in database["schemas"]:
+            db = (schema["database_name"].casefold(),)
+            yield db, database["id"]
+            schema_key = (*db, schema["name"].casefold())
+            yield schema_key, schema["id"]
+            for table in schema["tables"]:
+                table_key = (*schema_key, table["name"].casefold())
+                yield table_key, table["id"]
+                for column in table["columns"]:
+                    yield (*table_key, column["name"].casefold()), column["id"]
+
+
+def _reuse_catalog_ids(draft: dict, existing: dict) -> dict:
+    """Use the IDs NVIDIA assigned during native schema discovery."""
+    existing_ids = dict(_catalog_ids(existing))
+    replacements = {
+        identifier: existing_ids[key]
+        for key, identifier in _catalog_ids(draft)
+        if key in existing_ids
+    }
+
+    def remap(value):
+        if isinstance(value, dict):
+            return {key: remap(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [remap(item) for item in value]
+        if isinstance(value, str):
+            return replacements.get(value, value)
+        return value
+
+    return remap(draft)
+
+
 def generate(*, timeout_s=3600, transport=None) -> dict:
     """Compile sur un créneau libre, sous le verrou commun des traitements Task 2."""
     from .runtime import exclusive_work
@@ -251,7 +286,15 @@ def _generate(*, timeout_s=3600, transport=None) -> dict:
         before = client.get("/api/semantic-compilation/status")
         before.raise_for_status()
         previous = before.json().get("last_success_at")
-        yaml_text = yaml.safe_dump(native_draft(), allow_unicode=True, sort_keys=False)
+        export_options = {
+            "databases": [],
+            "format": "auto_ontology",
+            "include_ontology": False,
+        }
+        discovered = client.post("/api/model/export", json=export_options)
+        discovered.raise_for_status()
+        draft = _reuse_catalog_ids(native_draft(), yaml.safe_load(discovered.text))
+        yaml_text = yaml.safe_dump(draft, allow_unicode=True, sort_keys=False)
         imported = client.post(
             "/api/model/import",
             params={"replace": "false", "embed": "true"},
@@ -287,14 +330,7 @@ def _generate(*, timeout_s=3600, transport=None) -> dict:
                     "Compilation NVIDIA non terminée ; reprise locale nécessaire"
                 )
             time.sleep(3)
-        export = client.post(
-            "/api/model/export",
-            json={
-                "databases": [],
-                "format": "auto_ontology",
-                "include_ontology": False,
-            },
-        )
+        export = client.post("/api/model/export", json=export_options)
         export.raise_for_status()
         document = yaml.safe_load(export.text)
         exported = {

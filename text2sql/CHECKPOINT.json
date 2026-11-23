@@ -1,6 +1,6 @@
 {
-  "checkpoint": 22,
-  "status": "z4_37_references_natives_conformes_campagnes_en_attente",
+  "checkpoint": 23,
+  "status": "z4_catalogue_et_vecteurs_ontologie_retablis_compilation_a_verifier",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,7 +37,7 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Mesurer les 45 questions sans ontologie dans le worktree de campagne (cellule 6). Les 37 références natives sont vérifiées sur le Z4.",
+    "Vérifier le résultat de la compilation, revoir l’export et faire certifier les termes. Figer ensuite le même commit pour les deux campagnes de 45 questions.",
     "Compiler et faire certifier les termes NVIDIA, puis mesurer la même campagne avec ontologie et revoir les réponses.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-23T09:32:39Z",
+  "saved_at": "2026-11-23T11:17:18Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -315,6 +315,26 @@
       "dataset_sha256": "ed9d1aa4e6656fe51bc741dc50173cf1273c7d05500b82dd5d47e879548f2a90",
       "offline_passed": 37,
       "offline_regenerated_dataset_matches": true
+    },
+    "ontology_vector_recovery_z4": {
+      "upstream_commit": "ee42eff638ebd136c1c4fe4ab290785f912bb4bc",
+      "router": "http://127.0.0.1:8002/v1",
+      "router_model_limit": 1,
+      "generation_model": "calorvia_qwen",
+      "embedding_model": "BGE-M3",
+      "embedding_dimensions": 1024,
+      "ontology_database_port": 5435,
+      "reranker_port": 18090,
+      "import_retry_http_status": 200,
+      "catalog_id_fix": "Faire correspondre les objets par chemin qualifié et réutiliser les identifiants découverts par NVIDIA.",
+      "original_vector_type": "halfvec(2048)",
+      "rows_before_dimension_change": 0,
+      "vector_type": "halfvec(1024)",
+      "catalog_vectors_verified": 460,
+      "semantic_vectors_verified": 460,
+      "backfill_inputs": "Métadonnées de schéma et descriptions métier revues, aucun échantillon de ligne.",
+      "focused_tests_passed": 5,
+      "scope": "Récupération vérifiée des vecteurs sur le Z4. Compilation déclenchée, export final et revue humaine à vérifier."
     }
   },
   "rag_compatibility": {
