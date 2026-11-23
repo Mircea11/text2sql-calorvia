@@ -1,0 +1,23 @@
+{
+  "kind": "live_nvidia_compilation_and_export",
+  "upstream_commit": "ee42eff638ebd136c1c4fe4ab290785f912bb4bc",
+  "generated_at": "2026-11-23T11:25:19.937557+00:00",
+  "compilation_status": {
+    "calculated": true,
+    "running": false,
+    "last_success_at": "2026-11-23T11:25:18.140850+00:00",
+    "last_failure_at": null
+  },
+  "covered_tables": 51,
+  "export_sha256": "dc1afda6057f7d4822e3779ae654f0a5981bbe8b66eae9373f3708c707fe8097",
+  "human_certification": false,
+  "input_sha256": {
+    "catalog.json": "a3d1ae28ef85dedcd3d8a5f240755b14e57dcfe5a7da03868f7a4c9322106acf",
+    "business.yaml": "870b83d4de94557cd540609a8f84c24ed7f2983ba00beb956294da409e2ffaa5"
+  },
+  "agent_projection": {
+    "source_export_sha256": "f8a847f0e5f8ae218fefee932f938dbe30936311f86b72eab743c31b045875aa",
+    "removed_columns": 3,
+    "removed_attributes": 3
+  }
+}

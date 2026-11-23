@@ -9,6 +9,7 @@ import json
 import shutil
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import httpx
@@ -99,6 +100,7 @@ def main():
             "ontology-prepare",
             "ontology-start",
             "ontology-generate",
+            "ontology-prepare-export",
             "ontology-stop",
             "evaluate",
             "native-check",
@@ -115,6 +117,7 @@ def main():
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--without-run", type=Path)
     parser.add_argument("--with-run", type=Path)
+    parser.add_argument("--raw-export-dir", type=Path)
     parser.add_argument(
         "--allow-inference",
         action="store_true",
@@ -199,7 +202,16 @@ def main():
             raise RuntimeError("Prévoir un créneau libre avant la génération")
         from .auto_ontology import generate
 
-        print(json.dumps(generate(), indent=2))
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+        archive = args.raw_export_dir or ROOT / "data/text2sql/ontology-runtime" / f"export-{stamp}"
+        print(json.dumps(generate(output_dir=archive), indent=2))
+        print(f"Archive brute : {archive}")
+    elif args.command == "ontology-prepare-export":
+        if args.raw_export_dir is None:
+            parser.error("ontology-prepare-export requiert --raw-export-dir")
+        from .ontology import prepare_agent_export
+
+        print(json.dumps(prepare_agent_export(args.raw_export_dir), indent=2))
     elif args.command == "ontology-stop":
         from .ontology_runtime import stop_runtime
 

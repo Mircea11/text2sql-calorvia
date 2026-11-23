@@ -1,10 +1,13 @@
 """Format NVIDIA, provenance, couverture et contrôle avec/sans ontologie."""
 
+import hashlib
+import json
+
 import httpx
 import pytest
 import yaml
 
-from text2sql import auto_ontology, runtime
+from text2sql import auto_ontology, ontology, runtime
 from text2sql.auto_ontology import native_draft
 from text2sql.catalog import load_catalog
 from text2sql.config import Settings
@@ -77,6 +80,57 @@ def test_import_reuses_discovered_catalog_ids_in_foreign_keys():
         fk["target_column_id"] == original_id
         for fk in draft["data_layer"]["foreign_keys"]
     )
+
+
+def test_agent_export_filters_restricted_fields_and_preserves_raw_receipt(tmp_path, monkeypatch):
+    source = tmp_path / "raw"
+    target = tmp_path / "ontology"
+    source.mkdir()
+    target.mkdir()
+    inputs = {}
+    for name in ("catalog.json", "business.yaml"):
+        content = (auto_ontology.HERE / "ontology" / name).read_bytes()
+        (target / name).write_bytes(content)
+        inputs[name] = hashlib.sha256(content).hexdigest()
+    document = native_draft()
+    table = document["data_layer"]["databases"][0]["schemas"][0]["tables"][0]
+    table["columns"].append({
+        "id": "restricted-id", "name": "iban", "sample_values": ["private-sample"],
+    })
+    term = document["semantic_layer"]["terms"][0]
+    term["description"] = "Reference to IBAN in a description"
+    term["columns_attributes"].append({
+        "id": "restricted-attribute", "column_id": "restricted-id", "name": "IBAN",
+    })
+    document["data_layer"]["foreign_keys"].append({
+        "source_column_id": "restricted-id", "target_column_id": table["columns"][0]["id"],
+    })
+    raw = yaml.safe_dump(document).encode()
+    raw_sha = hashlib.sha256(raw).hexdigest()
+    receipt = {
+        "kind": "live_nvidia_compilation_and_export",
+        "input_sha256": inputs,
+        "export_sha256": raw_sha,
+        "human_certification": False,
+    }
+    for folder in (source, target):
+        (folder / "auto_ontology_export.yaml").write_bytes(raw)
+        (folder / "generation_receipt.json").write_text(json.dumps(receipt))
+    monkeypatch.setattr(ontology, "HERE", tmp_path)
+    with pytest.raises(ValueError, match="export NVIDIA filtré"):
+        ontology.verified_export()
+
+    filtered = ontology.prepare_agent_export(source)
+    assert ontology.verified_export() == filtered
+    assert filtered["agent_projection"] == {
+        "source_export_sha256": raw_sha, "removed_columns": 1, "removed_attributes": 1,
+    }
+    assert filtered["human_certification"] is False
+    assert (source / "auto_ontology_export.yaml").read_bytes() == raw
+    assert json.loads((source / "generation_receipt.json").read_text()) == receipt
+    projection = (target / "auto_ontology_export.yaml").read_text()
+    for restricted in ("iban", "sample_values", "private-sample", "restricted-id", "restricted-attribute"):
+        assert restricted not in projection.casefold()
 
 
 def test_nvidia_contract_import_compile_export_is_not_mislabelled_as_live(

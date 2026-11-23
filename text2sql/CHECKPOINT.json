@@ -1,6 +1,6 @@
 {
-  "checkpoint": 24,
-  "status": "z4_compilation_nvidia_terminee_export_brut_a_revoir_avant_campagnes",
+  "checkpoint": 25,
+  "status": "z4_export_nvidia_filtre_verifie_revue_humaine_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,8 +37,8 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Exclure les attributs restreints de l’artefact utilisé par l’agent et faire réviser les termes. Figer le même commit pour les deux campagnes de 45 questions.",
-    "Compiler et faire certifier les termes NVIDIA, puis mesurer la même campagne avec ontologie et revoir les réponses.",
+    "Faire certifier les huit définitions et vérifier les liens inter-sources avec la grille du rapport.",
+    "Figer un commit puis exécuter les deux campagnes de 45 questions avec le même modèle, les mêmes données et les mêmes paramètres.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
   "pending_live": [
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-23T11:28:16Z",
+  "saved_at": "2026-11-23T11:35:08Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -359,6 +359,28 @@
       "scheduler_enabled_after_run": false,
       "human_certification": false,
       "export_storage": "Archive privée locale hors Git, hors du chemin chargé par l’agent."
+    },
+    "ontology_agent_projection_z4": {
+      "source_export_sha256": "f8a847f0e5f8ae218fefee932f938dbe30936311f86b72eab743c31b045875aa",
+      "filtered_export_sha256": "dc1afda6057f7d4822e3779ae654f0a5981bbe8b66eae9373f3708c707fe8097",
+      "covered_tables": {
+        "erp": 23,
+        "compta": 14,
+        "paie": 14
+      },
+      "removed_restricted_columns": 3,
+      "removed_restricted_attributes": 3,
+      "remaining_semantic_attributes": 409,
+      "attributes_with_descriptions": 100,
+      "semantic_terms": 51,
+      "sample_values_in_projection": false,
+      "dangling_column_attribute_references": 0,
+      "human_certification": false,
+      "review_worksheet": "text2sql/RAPPORT.md#revue-humaine-des-définitions-métier",
+      "cpu_tests": {
+        "passed": 68,
+        "skipped": 5
+      }
     }
   },
   "rag_compatibility": {

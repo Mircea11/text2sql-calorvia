@@ -263,15 +263,15 @@ def _reuse_catalog_ids(draft: dict, existing: dict) -> dict:
     return remap(draft)
 
 
-def generate(*, timeout_s=3600, transport=None) -> dict:
+def generate(*, timeout_s=3600, transport=None, output_dir=None) -> dict:
     """Compile sur un créneau libre, sous le verrou commun des traitements Task 2."""
     from .runtime import exclusive_work
 
     with exclusive_work():
-        return _generate(timeout_s=timeout_s, transport=transport)
+        return _generate(timeout_s=timeout_s, transport=transport, output_dir=output_dir)
 
 
-def _generate(*, timeout_s=3600, transport=None) -> dict:
+def _generate(*, timeout_s=3600, transport=None, output_dir=None) -> dict:
     """Compile/exporte réellement ; l'appelant planifie cette charge sur un créneau libre."""
     url = local_url(os.getenv("T2SQL_AUTO_ONTOLOGY_URL", "http://127.0.0.1:3001"))
     headers = {"x-api-key": os.getenv("T2SQL_AUTO_ONTOLOGY_TOKEN", "")}
@@ -348,7 +348,10 @@ def _generate(*, timeout_s=3600, transport=None) -> dict:
             raise RuntimeError(
                 f"Couverture NVIDIA incomplète : {len(expected - exported)} tables manquantes"
             )
-        target = HERE / "ontology" / "auto_ontology_export.yaml"
+        directory = output_dir if output_dir is not None else HERE / "ontology"
+        if output_dir is not None:
+            directory.mkdir(mode=0o700, parents=True, exist_ok=False)
+        target = directory / "auto_ontology_export.yaml"
         target.write_text(export.text)
         receipt = {
             "kind": "mock_contract_test"
@@ -367,7 +370,9 @@ def _generate(*, timeout_s=3600, transport=None) -> dict:
                 for name in ["catalog.json", "business.yaml"]
             },
         }
-        (HERE / "ontology" / "generation_receipt.json").write_text(
-            json.dumps(receipt, indent=2) + "\n"
-        )
+        receipt_path = directory / "generation_receipt.json"
+        receipt_path.write_text(json.dumps(receipt, indent=2) + "\n")
+        if output_dir is not None:
+            target.chmod(0o600)
+            receipt_path.chmod(0o600)
         return receipt

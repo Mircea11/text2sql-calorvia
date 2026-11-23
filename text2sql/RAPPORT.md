@@ -1,6 +1,6 @@
 # Calorvia Text-to-SQL — rapport de préparation
 
-**Statut : code et vérifications locales disponibles ; rendu natif incomplet.** Les résultats ci-dessous ne mesurent pas encore la précision d'un agent utilisant les serveurs du cours.
+**Statut : 37 références natives vérifiées et copie filtrée de l’export NVIDIA prête pour la revue humaine.** Les deux campagnes de mesure de l’agent restent à exécuter.
 
 ## Essai natif sans ontologie sur le Z4
 
@@ -34,7 +34,7 @@ Le brouillon contient 51 tables, 80 FK déclarées et neuf concepts inter-source
 | Requêtes de référence | 37 vérifiées | Calculs sur les scripts officiels, après transpilation CPU |
 | Tests locaux après intégration ontologie | 63 réussis | Contrats SQL, confidentialité, MCP, LangGraph, OpenAI, provenance et reranking CPU |
 | Tests de privilèges natifs | 4 non exécutés | Aucune conclusion sur PostgreSQL/SQL Server restaurés |
-| Génération NVIDIA réelle | Non exécutée | Aucune ontologie humaine certifiée revendiquée |
+| Génération NVIDIA réelle | Terminée sur les deux sources PostgreSQL connectées | Export couvrant 51 tables, dont 23 importées depuis le catalogue ERP |
 | Agent réel avec / sans ontologie | Non exécuté | Aucun score de précision, validité SQL ou latence de modèle inventé |
 
 ## Corrections de définitions déjà vérifiées
@@ -47,6 +47,27 @@ Le brouillon contient 51 tables, 80 FK déclarées et neuf concepts inter-source
 | « Unités achetées » sans préciser les avoirs | 1 230 unités sur factures F, 960 nettes après avoirs | La question de développement précise « hors avoirs » ; aucune règle spécifique à un client n'est injectée |
 
 Ces corrections sont des vérifications assistées par IA sur références. Elles ne constituent pas la certification humaine demandée par le brief.
+
+## Revue humaine des définitions métier
+
+Pour chaque ligne, lire la définition dans [business.yaml](ontology/business.yaml) et expliquer les tables, le filtre et l’unité avant de regarder la valeur. Vérifier ensuite la [requête de référence](evaluation/questions.json) identifiée par son code. Inscrire un verdict (« validé », « à corriger » ou « non vérifié »), la date, le nom du relecteur et une justification courte. Le [rapport natif Z4](results/20261123T093150439478Z_native_references.json) atteste l’exécution des requêtes. Le verdict humain porte sur leur sens métier.
+
+| Terme | Vérification à expliquer | Preuve attendue | Verdict |
+|---|---|---|---|
+| Chiffre d’affaires net facturé HT | Pourquoi soustraire les avoirs et éviter de multiplier les montants d’en-tête après une jointure ? | E03, 13 599 646,63 € pour mars 2026 | À revoir |
+| Chiffre d’affaires comptabilisé | Pourquoi filtrer les comptes 70 et prendre la période comptable ? | C06, 13 599 646,63 € pour mars 2026 | À revoir |
+| Résultat net avant affectation | Quels comptes sont exclus, et quel effet aurait leur inclusion ? | C01, 5 412 000,00 € pour 2025 | À revoir |
+| EBITDA et marge | Quels comptes entrent dans le numérateur ? Pourquoi le dénominateur est-il le CA 70 ? | C02 et C03, 1 278 366,78 € et 9,40 % pour mars 2026 | À revoir |
+| Stock à la date d’extraction | Quelle table contient la photographie et à quelle date ? | E08, 99 Aéris 12 au 31 mai 2026 | À revoir |
+| Effectif sous contrat | Comment compter une personne une seule fois et traiter la date de fin ? | P01, 190, 6, 126, 287 par site au 31 mai 2026 | À revoir |
+| Prestations et télétravail | Quelle unité compte-t-on et comment distinguer télétravail et accident ? | P04, 292 jours de télétravail en avril 2026. P06, 12 jours ouvrés d’accident en novembre 2025 | À revoir |
+| Charges de personnel et rémunérations | Pourquoi les deux sources peuvent-elles diverger ? Quand faut-il refuser une réponse individuelle ? | X06, écart de 63 999,81 € en mars 2026. P12, refus attendu | À revoir |
+
+Les [cinq liens inter-sources](ontology/business.yaml) restent à contrôler par leur clé, leur normalisation ou leur filtre, leur cardinalité et les cas sans correspondance. Les résultats attendus restent dans le jeu de référence pendant les campagnes.
+
+- **Relecteur et date**
+- **Corrections ou réserves**
+- **Statut** · En attente de revue humaine.
 
 ## Confidentialité
 
@@ -62,9 +83,7 @@ L'analyse finale doit sélectionner cinq questions réellement ratées et locali
 
 ## Obligations restant à terminer
 
-- Vérifier les 37 requêtes de référence sur les moteurs natifs. Les trois restaurations et les quatre tests d’ACL sont confirmés sur le Z4.
-- Vérifier les endpoints partagés et la sortie structurée attendue par NVIDIA.
-- Compiler réellement, exporter puis faire réviser/certifier les termes importants.
+- Faire réviser et certifier les termes importants à partir de la grille ci-dessus.
 - Mesurer deux expériences complètes et comparables avec commit Git propre ; journaliser/exporter les résultats.
 - Analyser les cinq échecs observés et réaliser la démonstration avec la réserve du formateur.
 - Préparer le dépôt privé de soumission `text2sql-calorvia`, ses tags et l'accès du formateur selon ses coordonnées effectivement fournies.
