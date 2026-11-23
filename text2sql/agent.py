@@ -26,6 +26,7 @@ from mcp.client.stdio import stdio_client
 from langsmith import tracing_context
 
 from .config import ROOT, Settings
+from .metrics import clarify_scope, plan_metric
 from .ontology import context
 
 REQUIRED_TOOLS = {
@@ -149,6 +150,26 @@ def make_graph(model, tools):
     return graph.compile()
 
 
+def _answer_payload(response, executions, reconciliations, tool_trace, use_ontology):
+    audit = []
+    for key, data in executions.items():
+        audit.append(
+            f"Source {data['source']} ({key}) :\n```sql\n{data['sql']}\n```"
+            + (
+                "\nRésultat tronqué : ne pas conclure sur un total exhaustif."
+                if data["truncated"]
+                else ""
+            )
+        )
+    return {
+        "answer": str(response) + ("\n\n" + "\n\n".join(audit) if audit else ""),
+        "executions": list(executions.values()),
+        "reconciliations": reconciliations,
+        "tool_trace": tool_trace,
+        "ontology_enabled": use_ontology,
+    }
+
+
 async def answer(
     question: str,
     *,
@@ -165,6 +186,8 @@ async def answer(
     settings.require_llm()
     if not question.strip() or len(question) > 8000:
         raise ValueError("Question vide ou trop longue")
+    if not history and (clarification := clarify_scope(question)):
+        return _answer_payload(clarification, {}, [], [], use_ontology)
     from .runtime import exclusive_work
 
     with exclusive_work():
@@ -200,6 +223,9 @@ async def _answer(
             max_retries=0,
             timeout=120,
             http_async_client=http,
+            extra_body={"chat_template_kwargs": {"enable_thinking": False}}
+            if settings.llm_model == "calorvia_qwen"
+            else None,
         )
         async with stdio_client(params) as (read, write):
             async with ClientSession(read, write) as session:
@@ -264,6 +290,17 @@ async def _answer(
                         )
                     )
 
+                plan = plan_metric(question) if use_ontology and not history else None
+                if plan:
+                    execute = wrap("execute_sql")
+                    results = [
+                        await execute(source=measure.source, sql=measure.sql)
+                        for measure in plan.measures
+                    ]
+                    return _answer_payload(
+                        plan.render(results), executions, reconciliations, tool_trace, use_ontology,
+                    )
+
                 def reconcile_results(
                     left_id: str,
                     right_id: str,
@@ -317,21 +354,10 @@ async def _answer(
                     response = result["messages"][-1].content
                 except GraphRecursionError:
                     response = "Je n'ai pas pu obtenir une réponse vérifiée dans la limite d'étapes."
-                audit = []
-                for key, data in executions.items():
-                    audit.append(
-                        f"Source {data['source']} ({key}) :\n```sql\n{data['sql']}\n```"
-                        + (
-                            "\nRésultat tronqué : ne pas conclure sur un total exhaustif."
-                            if data["truncated"]
-                            else ""
-                        )
-                    )
-                return {
-                    "answer": str(response)
-                    + ("\n\n" + "\n\n".join(audit) if audit else ""),
-                    "executions": list(executions.values()),
-                    "reconciliations": reconciliations,
-                    "tool_trace": tool_trace,
-                    "ontology_enabled": use_ontology,
-                }
+                if not response:
+                    response = "Je n’ai pas obtenu de réponse vérifiée."
+                    if executions:
+                        response += " Les requêtes exécutées figurent ci-dessous."
+                return _answer_payload(
+                    response, executions, reconciliations, tool_trace, use_ontology,
+                )

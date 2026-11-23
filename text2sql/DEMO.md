@@ -6,9 +6,9 @@ Cette procédure ne constitue pas une démonstration déjà réalisée. Les cinq
 
 1. Vérifier les sources et les ACL natives ; conserver les sorties des tests.
 2. Utiliser le serveur LLM existant, sans démarrer un second modèle.
-3. Faire la génération/export NVIDIA puis arrêter uniquement ses conteneurs CPU s'ils ne servent plus. L'agent exploite ensuite l'export YAML local.
-4. Démarrer l'API : `python -m text2sql.cli serve`.
-5. Vérifier `/v1/models` avec la clé locale. Ne jamais afficher les `.env`.
+3. Vérifier le [reçu de l’export filtré](ontology/generation_receipt.json) et la [revue métier](RAPPORT.md#revue-humaine-des-définitions-métier). L’agent exploite cet export local.
+4. Réserver le routeur partagé pour le créneau. Démarrer l’API avec le Python du laboratoire et `-m text2sql serve`. Utiliser le port libre dédié à Text2SQL (`18090` lors des essais Z4) et le journal dédié.
+5. Vérifier `/health` et `/v1/models` sur ce port, avec la clé locale lorsque l’endpoint l’exige. Garder les fichiers `.env` hors écran.
 
 ## Déroulement
 
@@ -28,3 +28,10 @@ Cette procédure ne constitue pas une démonstration déjà réalisée. Les cinq
 - Supprime les factures de test.
 
 Le défaut de privilèges doit bloquer l'écriture même si la validation applicative est contournée. Montrer les tests natifs, sans modifier de lignes sources et sans exécuter de commande destructive pour la démonstration.
+
+## Preuves à ouvrir pour la démonstration
+
+- [Références natives](results/20261123T093150439478Z_native_references.json) · 37/37, avec le contrôle comptable C03 à 9,40 %.
+- [Comparaison des campagnes](results/comparison.json) · 45 questions par mode. Le contrôle numérique passe de 13/32 à 15/32.
+- [Analyse des échecs](RAPPORT.md#comparaison-des-deux-campagnes-et-cinq-échecs-observés) · Montrer C03 pour expliquer le filtre de comptes. Dans le lot avec ontologie, le SQL a exclu les charges 60–62 et obtenu 100,86 %. Montrer X03 pour expliquer pourquoi des chiffres justes peuvent accompagner une conclusion contradictoire.
+- Pour la répétition, utiliser X05 comme exemple de rapprochement avec ontologie et P12 comme exemple de refus explicite. Vérifier la réponse réellement produite si la question est rejouée.
