@@ -1,6 +1,6 @@
 {
-  "checkpoint": 21,
-  "status": "module_campagne_confirme_correction_pourcent_psycopg_a_retester_sur_Z4",
+  "checkpoint": 22,
+  "status": "z4_37_references_natives_conformes_campagnes_en_attente",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,12 +37,12 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Comparer les 37 requêtes de référence aux moteurs natifs (cellule 5), puis mesurer les 45 questions sans ontologie dans le worktree de campagne (cellule 6).",
+    "Mesurer les 45 questions sans ontologie dans le worktree de campagne (cellule 6). Les 37 références natives sont vérifiées sur le Z4.",
     "Compiler et faire certifier les termes NVIDIA, puis mesurer la même campagne avec ontologie et revoir les réponses.",
     "Analyser cinq échecs réels, finaliser la remise privée, les tags et la démonstration."
   ],
   "pending_live": [
-    "37 références natives et campagnes des 45 questions.",
+    "Campagnes des 45 questions.",
     "Embeddings et compilation NVIDIA sur le Z4.",
     "Actual NVIDIA compilation and export",
     "Human certification of important terms",
@@ -57,7 +57,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-20T15:18:47.591Z",
+  "saved_at": "2026-11-23T09:32:39Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -275,6 +275,46 @@
       "evidence": "Sorties enregistrées dans le carnet Text2SQL_travail(2).ipynb fourni par Mi. Le sous-processus de la section 5 a chargé evaluation.py dans le worktree. Arrêt de psycopg au moment de cur.execute, pas de bilan complet.",
       "cause": "Un tuple vide déclenchait l’interprétation des marqueurs % dans les requêtes SQL non paramétrées.",
       "verification": "Erreur reproduite avec le convertisseur psycopg. 23 références PostgreSQL converties avec succès après correction, 37 références conformes sur la copie hors ligne. Vérification native Z4 en attente."
+    },
+    "native_reference_verification_z4": {
+      "worktree": "data/text2sql_eval_z4",
+      "base_commit": "8eddb06",
+      "python": "/home/bm/labo/calorvia_rag/.venv/bin/python",
+      "cpu_only": true,
+      "previous_report": "text2sql/results/20261120T152013334515Z_native_references.json",
+      "previous_passed": 36,
+      "c03_before_correction": {
+        "source": "compta",
+        "column": "marge_pct",
+        "postgres_type": "numeric",
+        "python_type": "Decimal",
+        "postgres_value": "9.40",
+        "serialized_type": "str",
+        "actual_rows": [
+          [
+            "9.40"
+          ]
+        ],
+        "expected_rows": [
+          [
+            "9.4"
+          ]
+        ],
+        "cause": "L'égalité exacte des chaînes distingue le zéro final alors que les valeurs décimales sont égales."
+      },
+      "correction": "CAST du ROUND de C03 en DECIMAL(18,2) dans le générateur et le jeu de références. Les deux champs attendus contiennent 9.40.",
+      "c03_passed_before_full_run": true,
+      "native_passed": 37,
+      "native_total": 37,
+      "by_source": {
+        "erp": 14,
+        "compta": 13,
+        "paie": 10
+      },
+      "native_report": "text2sql/results/20261123T093150439478Z_native_references.json",
+      "dataset_sha256": "ed9d1aa4e6656fe51bc741dc50173cf1273c7d05500b82dd5d47e879548f2a90",
+      "offline_passed": 37,
+      "offline_regenerated_dataset_matches": true
     }
   },
   "rag_compatibility": {

@@ -1,9 +1,16 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 21 — Le carnet version 20 du Z4 charge le code du worktree. Le contrôle natif a révélé une erreur de traitement des motifs LIKE par le pilote. Après mise à jour du worktree, reprendre à la section 5 du même carnet.**
-Reprendre ici et dans `CHECKPOINT.json`, sans recréer les données. Branche de
-travail conservée : `feat/text2sql-calorvia`. Les étapes sont sauvegardées environ
-toutes les 15 minutes par des commits limités au laboratoire 2.
+**Checkpoint 22 · 23 novembre 2026 · 37/37 références SQL natives vérifiées sur le Z4.**
+
+| Étape | Résultat |
+|---|---|
+| Références SQL sur CPU | 14 ERP, 13 comptabilité et 10 paie conformes. [Rapport natif](results/20261123T093150439478Z_native_references.json) |
+| Campagne de 45 questions sans ontologie | À exécuter sur l’environnement de campagne. |
+| Ontologie NVIDIA et campagne avec ontologie | Compilation et revue humaine en attente. La comparaison des deux campagnes suivra. |
+
+Le [premier rapport](results/20261120T152013334515Z_native_references.json) isolait C03 à 36/37. PostgreSQL renvoyait un `numeric` de 9,40 %, lu par Python comme `Decimal('9.40')`. Le contrôle comparait les chaînes `"9.40"` et `"9.4"`. Le correctif fixe les deux décimales dans la requête de référence et dans le résultat attendu. C03 a été vérifié seul avant le lot complet. DuckDB a également validé les 37 références et régénéré le même jeu.
+
+Pour expliquer ce diagnostic, suivre la valeur depuis SQL jusqu’à la comparaison Python. Le score de 37/37 vérifie le jeu de référence. Les deux campagnes mesureront la qualité des réponses de l’agent. Les détails de reprise figurent dans le [checkpoint](CHECKPOINT.json).
 
 ## Architecture en service et première question
 

@@ -137,7 +137,7 @@ def make_questions(offline: Path) -> list[dict]:
         "C03",
         "Quelle est la marge d'EBITDA de mars 2026 en pourcentage ?",
         "compta",
-        f"SELECT ROUND(100.0*SUM(CASE WHEN {ebitda_filter} THEN l.credit-l.debit ELSE 0 END)/NULLIF(SUM(CASE WHEN l.numero_compte LIKE '70%' THEN l.credit-l.debit ELSE 0 END),0),2) AS marge_pct FROM ligne_ecriture l JOIN ecriture e ON e.id_ecriture=l.id_ecriture WHERE e.code_periode='2026-03'",
+        f"SELECT CAST(ROUND(100.0*SUM(CASE WHEN {ebitda_filter} THEN l.credit-l.debit ELSE 0 END)/NULLIF(SUM(CASE WHEN l.numero_compte LIKE '70%' THEN l.credit-l.debit ELSE 0 END),0),2) AS DECIMAL(18,2)) AS marge_pct FROM ligne_ecriture l JOIN ecriture e ON e.id_ecriture=l.id_ecriture WHERE e.code_periode='2026-03'",
         anchors=["9.40"],
     )
     add(

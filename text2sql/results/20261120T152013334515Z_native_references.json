@@ -1,0 +1,229 @@
+{
+  "kind": "native_reference_verification_not_agent_accuracy",
+  "passed": false,
+  "checks": [
+    {
+      "question": "E01",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E03",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E05",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E06",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E07",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E08",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E09",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E09",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E10",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E11",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E12",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C01",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C02",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C03",
+      "source": "compta",
+      "matches": false,
+      "error": null
+    },
+    {
+      "question": "C04",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C06",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C08",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C09",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C10",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "C11",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P01",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P04",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P05",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P06",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P07",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P08",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P09",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "P10",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X03",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X03",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X05",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X05",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X06",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X06",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X07",
+      "source": "compta",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "X07",
+      "source": "paie",
+      "matches": true,
+      "error": null
+    },
+    {
+      "question": "E13",
+      "source": "erp",
+      "matches": true,
+      "error": null
+    }
+  ],
+  "dataset_sha256": "db11ef857e69ab0e9caed0a24a261c785c56e93639b044fef7b62ab12e8ca980"
+}

@@ -381,10 +381,10 @@
     "references": [
       {
         "source": "compta",
-        "sql": "SELECT ROUND(100.0*SUM(CASE WHEN (l.numero_compte LIKE '7%' AND l.numero_compte NOT LIKE '79%') OR l.numero_compte LIKE '60%' OR l.numero_compte LIKE '61%' OR l.numero_compte LIKE '62%' THEN l.credit-l.debit ELSE 0 END)/NULLIF(SUM(CASE WHEN l.numero_compte LIKE '70%' THEN l.credit-l.debit ELSE 0 END),0),2) AS marge_pct FROM ligne_ecriture l JOIN ecriture e ON e.id_ecriture=l.id_ecriture WHERE e.code_periode='2026-03'",
+        "sql": "SELECT CAST(ROUND(100.0*SUM(CASE WHEN (l.numero_compte LIKE '7%' AND l.numero_compte NOT LIKE '79%') OR l.numero_compte LIKE '60%' OR l.numero_compte LIKE '61%' OR l.numero_compte LIKE '62%' THEN l.credit-l.debit ELSE 0 END)/NULLIF(SUM(CASE WHEN l.numero_compte LIKE '70%' THEN l.credit-l.debit ELSE 0 END),0),2) AS DECIMAL(18,2)) AS marge_pct FROM ligne_ecriture l JOIN ecriture e ON e.id_ecriture=l.id_ecriture WHERE e.code_periode='2026-03'",
         "expected_rows": [
           [
-            "9.4"
+            "9.40"
           ]
         ]
       }
@@ -397,7 +397,7 @@
       "source_results": [
         [
           [
-            "9.4"
+            "9.40"
           ]
         ]
       ],
