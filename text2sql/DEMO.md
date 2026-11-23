@@ -33,5 +33,6 @@ Le défaut de privilèges doit bloquer l'écriture même si la validation applic
 
 - [Références natives](results/20261123T093150439478Z_native_references.json) · 37/37, avec le contrôle comptable C03 à 9,40 %.
 - [Comparaison des campagnes](results/comparison.json) · 45 questions par mode. Le contrôle numérique passe de 13/32 à 15/32.
+- [Vérification après correction](results/quality_benchmark_z4.json) · 45/45 sur le jeu connu. Montrer la restitution de C03 et la conclusion calculée pour X03, puis passer aux questions de réserve.
 - [Analyse des échecs](RAPPORT.md#comparaison-des-deux-campagnes-et-cinq-échecs-observés) · Montrer C03 pour expliquer le filtre de comptes. Dans le lot avec ontologie, le SQL a exclu les charges 60–62 et obtenu 100,86 %. Montrer X03 pour expliquer pourquoi des chiffres justes peuvent accompagner une conclusion contradictoire.
 - Pour la répétition, utiliser X05 comme exemple de rapprochement avec ontologie et P12 comme exemple de refus explicite. Vérifier la réponse réellement produite si la question est rejouée.

@@ -1,6 +1,6 @@
 {
-  "checkpoint": 28,
-  "status": "z4_deux_campagnes_appariees_terminees_resultats_a_relire",
+  "checkpoint": 29,
+  "status": "z4_objectif_45_sur_45_verifie_sur_le_benchmark",
   "repository": "Mircea11/calorvia_rag",
   "working_branch": "feat/text2sql-calorvia",
   "task1_base_commit": "c00a6ae17e973282936f64ae22990e009e987eb9",
@@ -37,8 +37,8 @@
     "test_execution_environment": "Espace de vérification de l'IA, distinct du Z4. Nouvel audit : 65 tests réussis, quatre tests natifs ignorés, 37 références SQL sur copies DuckDB."
   },
   "next_actions": [
-    "Relire la comparaison et les 5 échecs documentés. Réviser les réponses et les traces avec le formateur avant d’annoncer un score sémantique.",
-    "Finaliser la démonstration, le dépôt privé de remise et les tags requis."
+    "Présenter le résultat et sa portée à Roman lors de la démonstration. Les cinq questions de réserve restent distinctes.",
+    "Préparer le dépôt privé de remise et les tags lorsque le dépôt de destination sera disponible."
   ],
   "pending_live": [
     "Separate private submission repository and required milestone tags",
@@ -51,7 +51,7 @@
     "Offline reference verification is not agent accuracy",
     "AI review is not human certification or independently proven user competence"
   ],
-  "saved_at": "2026-11-23T13:07:38Z",
+  "saved_at": "2026-11-23T14:40:22Z",
   "scope": "Ajouts text2sql/ et lien README racine uniquement ; aucun module RAG modifié",
   "integrated_checkpoint_2": {
     "main_merge": "47a4f450d640cf48cac5ff9d459259e4f1d7e088",
@@ -438,6 +438,20 @@
       "human_semantic_accuracy": null,
       "cpu_tests": {
         "passed": 69,
+        "skipped": 5
+      }
+    },
+    "quality_benchmark_z4": {
+      "report": "text2sql/results/quality_benchmark_z4.json",
+      "experiment_commit": "641c284ea33d7b3f95af82a3d90ebfeee9384184",
+      "questions_passing_benchmark_checks": 45,
+      "numeric_questions": 32,
+      "matching_reference_result_sets": 37,
+      "behavior_questions_assisted_review": 13,
+      "agent_errors": 0,
+      "independent_variant_checks_passed": 2,
+      "cpu_tests": {
+        "passed": 74,
         "skipped": 5
       }
     }

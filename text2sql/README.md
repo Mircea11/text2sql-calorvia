@@ -1,12 +1,13 @@
 # Calorvia — laboratoire 2 : Text-to-SQL
 
-**Checkpoint 28 · Deux campagnes de 45 questions terminées sur le Z4.**
+**Checkpoint 29 · 45/45 sur le benchmark Z4 après amélioration de l’agent.**
 
 | Étape | Résultat |
 |---|---|
 | Références SQL sur CPU | 14 ERP, 13 comptabilité et 10 paie conformes. [Rapport natif](results/20261123T093150439478Z_native_references.json) |
-| Campagne sans ontologie | 45 questions traitées. 13/32 correspondances numériques. |
-| Campagne avec ontologie | 45 questions traitées. 15/32 correspondances numériques. [Comparaison et cinq échecs](RAPPORT.md#comparaison-des-deux-campagnes-et-cinq-échecs-observés) |
+| Campagne initiale sans ontologie | 45 questions traitées. 13/32 correspondances numériques. |
+| Campagne initiale avec ontologie | 45 questions traitées. 15/32 correspondances numériques. [Comparaison et cinq échecs](RAPPORT.md#comparaison-des-deux-campagnes-et-cinq-échecs-observés) |
+| Campagne après amélioration | 32/32 questions numériques, 13/13 comportements en revue assistée par IA, 37/37 jeux de lignes conformes. [Preuves par question](results/quality_benchmark_z4.json) |
 
 Le [premier rapport](results/20261120T152013334515Z_native_references.json) isolait C03 à 36/37. PostgreSQL renvoyait un `numeric` de 9,40 %, lu par Python comme `Decimal('9.40')`. Le contrôle comparait les chaînes `"9.40"` et `"9.4"`. Le correctif fixe les deux décimales dans la requête de référence et dans le résultat attendu. C03 a été vérifié seul avant le lot complet. DuckDB a également validé les 37 références et régénéré le même jeu.
 

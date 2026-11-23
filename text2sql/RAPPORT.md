@@ -1,6 +1,6 @@
 # Calorvia Text-to-SQL — rapport de préparation
 
-**Statut : 37 références natives vérifiées et copie filtrée de l’export NVIDIA avec définitions et liens métier approuvés.** Les deux campagnes sont terminées. Leur score numérique et cinq échecs observés sont documentés ci-dessous.
+**Statut : 45/45 sur le jeu de développement après amélioration. Les deux campagnes initiales restent disponibles pour la comparaison d’origine.**
 
 ## Essai natif sans ontologie sur le Z4
 
@@ -100,6 +100,22 @@ Six questions ont gagné une correspondance numérique et quatre l’ont perdue.
 | P12 · Commission individuelle | Sans ontologie, l’outil bloque une recherche en paie. La réponse finale ne formule aucun refus. Avec ontologie, l’agent refuse explicitement sans appeler les outils. | Rendre le refus visible dès la demande de rémunération individuelle. Un blocage technique seul laisse l’utilisateur sans explication. |
 
 X07 reste en erreur au niveau de l’agent dans le lot avec ontologie. Le fichier de campagne conserve le type `ExceptionGroup`. La cause interne de ce cas reste à isoler.
+
+## Vérification après amélioration
+
+La [campagne finale sur le Z4](results/quality_benchmark_z4.json) a exécuté les 45 questions sur le commit `641c284`, avec l’export et les règles déjà approuvés. Pour les mesures prises en charge, l’agent construit une requête à partir du calcul métier et de la période demandée. Le MCP conserve sa validation de lecture seule et son journal. La réponse est rendue à partir des lignes reçues et, pour les rapprochements, la conclusion est calculée avec le même écart. Une valeur SQL absente reste une absence. Qwen répond aux demandes qui ne relèvent pas des calculs pris en charge. Aucun attendu du jeu de test n’est transmis à l’agent.
+
+| Contrôle | Résultat |
+|---|---:|
+| Questions numériques et références exécutées | 32/32 questions, 37/37 jeux de lignes conformes |
+| Comportements attendus, revue assistée par IA | 13/13, aucune requête SQL exécutée |
+| Erreurs au niveau de l’agent | 0 |
+| Variantes de formulation et de période comparées à un SQL indépendant | 2/2 |
+| Tests CPU | 74 réussis, 5 ignorés |
+
+Le jeu connu a guidé les améliorations. Le score 45/45 décrit cette campagne, avec des verdicts assistés par IA pour les clarifications, les cas hors périmètre et les refus. Les variantes évaluées portent sur le CA facturé d’avril et l’EBITDA de février. Les questions de réserve du formateur restent un test distinct de généralisation. Les calculs contrôlés couvrent les formes reconnues. Si une formule ou le schéma évolue, revoir ensemble la définition approuvée, le calcul dans `metrics.py` et ses tests.
+
+La comparaison appariée de la section précédente isole l’ontologie dans la version initiale. La campagne finale cumule un meilleur cadrage, des calculs contrôlés et une restitution à partir des résultats. Le score final mesure cet ensemble de changements.
 
 ## Obligations restant à terminer
 
