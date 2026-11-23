@@ -34,11 +34,13 @@ def prepare_runtime(settings: Settings | None = None) -> Path:
             "Configurer le mot de passe agent_ro et la clé de l'API Text-to-SQL avant NVIDIA"
         )
     embed = {}
-    for node in ast.parse((ROOT / "calorvia_tools.py").read_text()).body:
-        if isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant):
-            for target in node.targets:
-                if isinstance(target, ast.Name):
-                    embed[target.id] = node.value.value
+    shared_tools = ROOT / "calorvia_tools.py"
+    if shared_tools.is_file():
+        for node in ast.parse(shared_tools.read_text()).body:
+            if isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant):
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        embed[target.id] = node.value.value
     embed_url = os.getenv(
         "T2SQL_EMBED_URL", str(embed.get("EMBEDDING_URL", ""))
     ).removesuffix("/embeddings")
